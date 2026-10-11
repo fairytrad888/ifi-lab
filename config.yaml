@@ -1,0 +1,49 @@
+# IFI Lab configuration. Edit lists here; everything else reads from this file.
+
+benchmark: SPY
+
+etfs: [SPY, RSP, IWM, QQQ, SMH, XBI, XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLRE, XLU, XLV, XLY]
+
+# ~60 liquid large caps across sectors (used for earnings-drift tests and stock-level scans)
+stocks:
+  Utilities: [VST, CEG, NRG, NEE, DUK, SO]
+  Energy: [XOM, CVX, COP, SLB, EOG]
+  Technology: [NVDA, AVGO, AMD, TSM, MSFT, AAPL, ORCL, CRM, ADBE, MU]
+  Communication: [GOOGL, META, NFLX, DIS, TMUS]
+  Discretionary: [AMZN, TSLA, HD, MCD, NKE, BKNG]
+  Staples: [WMT, COST, PG, KO, PEP]
+  Financials: [JPM, BAC, GS, MS, V, MA]
+  HealthCare: [LLY, UNH, JNJ, ABBV, MRK, ISRG]
+  Industrials: [CAT, GE, ETN, PWR, HON, UBER]
+  Materials: [LIN, FCX, NEM]
+  RealEstate: [PLD, AMT, EQIX]
+
+# Nightly scan watchlist (Daily + 4H). Keep it to what you actually trade.
+watchlist: [SPY, RSP, IWM, SMH, XBI, XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLRE, XLU, XLV, XLY, VST, CEG, DUK, SO]
+
+costs:
+  etf: 0.0005     # 0.05% per side (spread + slippage)
+  stock: 0.0010   # 0.10% per side
+
+# Pre-registered testing choices (do not change after seeing results)
+testing:
+  split_date: "2015-01-01"   # time halves
+  min_trades: 100
+  random_rate: 0.025         # random-entry control: ~1 entry per 40 bars
+  random_seeds: 5
+  start: "2000-01-01"        # ignore bars before this
+
+risk:
+  account: 25000             # used only for share-size suggestions in the log
+  risk_per_trade: 0.01       # 1% of account per idea
+  max_open: 5
+
+alerts:
+  # free push notifications via https://ntfy.sh (set NTFY_TOPIC as a repository secret; leave empty to disable)
+  min_stage_change_to: 2
+  notify_events: ["Washout exit", "Down 9 complete", "Anchor reclaimed", "Anchor lost", "Bear trigger"]
+
+journal:
+  # optional: a Google Sheet tab published to the web as CSV (File > Share > Publish to web > CSV)
+  # columns: date,symbol,setup,side,entry,stop,exit,exit_date,shares,notes
+  trades_csv_url: ""
