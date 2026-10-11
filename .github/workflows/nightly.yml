@@ -1,0 +1,37 @@
+name: Nightly scan
+
+on:
+  schedule:
+    - cron: "15 22 * * 1-5"   # 22:15 UTC Mon-Fri = after the US close all year
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: ifi-lab
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Download data
+        run: python -m ifi.update_data
+      - name: Scan, log, outcomes, dashboard
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          if [ ! -f logs/events.csv ]; then python -m ifi.scan --backfill 250; else python -m ifi.scan; fi
+      - name: Commit results
+        run: |
+          git config user.name "ifi-bot"
+          git config user.email "ifi-bot@users.noreply.github.com"
+          git add -A logs state docs data/h4 data/earnings
+          git diff --cached --quiet || git commit -m "Nightly scan $(date -u +%F)"
+          git pull --rebase --autostash && git push
