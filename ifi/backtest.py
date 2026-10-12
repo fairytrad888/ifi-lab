@@ -3,7 +3,8 @@
 Execution model (identical for every experiment):
 - Signal on a bar's close; fill at the NEXT bar's open.
 - Initial stop = lowest low of the last 5 bars - 0.5 x ATR(14), measured at the signal bar.
-  1R = fill - stop. Trades with no room (stop >= fill) are skipped.
+  1R = fill - stop. If the next open is already BELOW the 5-bar low (structure broken before entry),
+  the trade is skipped (v1.1). This guarantees 1R >= 0.5 ATR, so R can't explode from a near-zero risk.
 - Stops and targets are checked intrabar; if the bar gaps through, the fill is the open.
   If stop and target could both trigger in one bar, the stop is assumed first (conservative).
 - Close-based exits (Trend line, stage drop, time) fill at the next open (time exits at that bar's close).
@@ -97,7 +98,7 @@ def simulate(sym: str, x: pd.DataFrame, entries: pd.Series, setup: str, exit_rul
         fill = o[e]
         stop = low5[t] - 0.5 * atr[t]
         risk = fill - stop
-        if not (risk > 0) or np.isnan(fill):
+        if np.isnan(fill) or fill < low5[t] or not (risk > 0):
             t += 1
             continue
         target = fill + rule["target"] * risk if "target" in rule else np.inf
@@ -181,6 +182,7 @@ def metrics(r: np.ndarray, boot: int = 2000, alpha: float = 0.05, seed: int = 7)
         ci_low=lo, ci_high=hi,
         profit_factor=(wins.sum() / -losses.sum()) if losses.sum() < 0 else np.inf,
         sqn=np.sqrt(min(n, 100)) * exp / sd if sd and sd > 0 else np.nan,
+        median=float(np.median(r)), exp_w10=float(np.clip(r, -10, 10).mean()),
         best=r.max(), worst=r.min(),
     )
 

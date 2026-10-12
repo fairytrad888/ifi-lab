@@ -21,7 +21,22 @@ def _clean(df: pd.DataFrame) -> pd.DataFrame:
     df = df.rename(columns=str.lower)[["open", "high", "low", "close", "volume"]]
     df = df.dropna(subset=["open", "high", "low", "close"])
     df = df[~df.index.duplicated(keep="last")].sort_index()
-    return df
+    return sanitize(df)
+
+
+def sanitize(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop impossible bars and one-bar spikes that fully reverse (bad ticks), e.g. a bar 40%+ away
+    from both neighbours. Real gaps that hold are kept."""
+    px = df[["open", "high", "low", "close"]]
+    ok = (px > 0).all(axis=1) & (df["high"] >= df["low"])
+    df = df[ok].copy()
+    df["high"] = df[["open", "high", "close"]].max(axis=1)
+    df["low"] = df[["open", "low", "close"]].min(axis=1)
+    c = df["close"]
+    up = np.log(c / c.shift(1))
+    dn = np.log(c.shift(-1) / c)
+    spike = (up.abs() > np.log(1.4)) & (dn.abs() > np.log(1.4)) & (np.sign(up) != np.sign(dn))
+    return df[~spike.fillna(False)]
 
 
 def _yf_download(tickers: list[str], **kw) -> dict[str, pd.DataFrame]:
@@ -103,7 +118,8 @@ def load(ticker: str, tf: str = "daily") -> pd.DataFrame | None:
     if not f.exists():
         return None
     df = pd.read_csv(f, index_col=0, parse_dates=True)
-    return df
+    cols = [c for c in df.columns if c not in ("open", "high", "low", "close", "volume")]
+    return pd.concat([sanitize(df[["open", "high", "low", "close", "volume"]]), df[cols]], axis=1, join="inner") if cols else sanitize(df)
 
 
 def earnings_dates(ticker: str, limit: int = 60) -> pd.DataFrame | None:

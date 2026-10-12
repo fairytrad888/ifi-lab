@@ -131,7 +131,10 @@ def main():
     lines = [f"# IFI Lab results: {a.tf} · {a.universe}",
              f"_Run {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · {len(reads)} symbols · "
              f"{min(x.index[0] for x in reads.values()):%Y-%m-%d} to {max(x.index[-1] for x in reads.values()):%Y-%m-%d} · "
-             f"split {split} · {n_tests} setup×exit tests (Bonferroni-adjusted)_", ""]
+             f"split {split} · {n_tests} setup×exit tests (Bonferroni-adjusted) · engine v1.1_", ""]
+    if a.universe in ("stocks", "all"):
+        lines += ["> **Survivorship bias:** this stock list was chosen in 2026 from today's large caps, so random long entries "
+                  "earn money too. Judge stock setups by their edge over the random-entry control, not by raw expectancy.", ""]
 
     # ---------------- P1 random-entry control per exit (pooled across seeds)
     rand_pool = {}
@@ -168,7 +171,7 @@ def main():
     lines += ["## P1 · Exits × setups (R per trade, after costs)", "",
               "Random-entry control (same stops and exits), mean expectancy by exit: " +
               ", ".join(f"{k} {v['mean']:+.3f}R" for k, v in rand_ref.items()), "",
-              fmt_table(top.to_dict("records"), ["setup", "exit", "n", "win_rate", "avg_win", "avg_loss", "expectancy",
+              fmt_table(top.to_dict("records"), ["setup", "exit", "n", "win_rate", "avg_win", "avg_loss", "expectancy", "median", "exp_w10",
                                                  "ci_low", "ci_low_adj", "exp_early", "exp_late", "exp_symA", "exp_symB",
                                                  "random_mean", "random_p95", "avg_bars", "verdict"]), ""]
     # exit ranking averaged across setups (what exits contribute regardless of entry)
