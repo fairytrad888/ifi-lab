@@ -50,7 +50,7 @@ Find out what works as fast as possible, decide by rules written in advance, and
 ## Routine
 
 **Each evening (5 minutes, after the board updates around 6:30 pm ET):**
-1. Check the regime line at the top of the board. If it says "caution," halve size or skip new entries (pending P2's verdict).
+1. Check the regime line at the top of the board for context only. Round 1 (P2) found no reliable benefit from skipping or shrinking trades in "caution" regimes, so size stays constant.
 2. Look at alerts and the Sector Board for stage 2–3 names with fresh events.
 3. Only act on setups with an ADOPT or PROMISING verdict. Confirm on the TradingView 4H chart.
 4. Enter with the logged stop and share size. Add the trade to the journal sheet.
@@ -61,6 +61,14 @@ Find out what works as fast as possible, decide by rules written in advance, and
 3. Compare the event statistics and journal against the backtest verdicts.
 
 **Monthly:** a CPI or Fed review using the pre-event baseline and post-event comparison (the October template in the IFI project).
+
+## Round 1 decisions (Oct 12, 2026; provisional until the v1.1 rerun)
+- **Primary setup:** E4 anchor reclaim + X3 3R target. ADOPT on ETFs (+0.32R, n=885) and on stocks (+0.28R, n=3160).
+- **Secondary:** E1 with-trend trigger + 3R (ADOPT on ETFs, but only about 5 trades a year); E5 score ≥4 + 2R/3R.
+- **Not entries:** E2 exhaustion confluence (REJECT with every exit) and E3 stage-2 transition. Keep them as chart context only.
+- **Exits:** fixed 2R/3R targets beat trailing exits. The Trend-line trail exits pullback entries within about 4 bars.
+- **Regime filter:** not supported (P2). **Sector cap:** adopted (P4: MAR 0.19 → 0.26).
+- **Risk:** 0.5–1% per trade.
 
 ## Roadmap
 
