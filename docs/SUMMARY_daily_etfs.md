@@ -1,104 +1,104 @@
 # IFI Lab results: daily · etfs
-_Run 2026-10-11 20:55 UTC · 17 symbols · 2000-01-03 to 2026-10-09 · split 2015-01-01 · 42 setup×exit tests (Bonferroni-adjusted)_
+_Run 2026-10-12 15:59 UTC · 17 symbols · 2000-01-03 to 2026-10-12 · split 2015-01-01 · 42 setup×exit tests (Bonferroni-adjusted) · engine v1.1_
 
 ## P1 · Exits × setups (R per trade, after costs)
 
-Random-entry control (same stops and exits), mean expectancy by exit: X1_time10 -0.004R, X2_target2R +0.076R, X3_target3R +0.108R, X4_trendline_trail -0.033R, X5_chandelier3atr +0.056R, X6_partial1R_then_line -0.054R, X7_stage_drop -0.039R
+Random-entry control (same stops and exits), mean expectancy by exit: X1_time10 +0.026R, X2_target2R +0.106R, X3_target3R +0.147R, X4_trendline_trail +0.021R, X5_chandelier3atr +0.090R, X6_partial1R_then_line +0.003R, X7_stage_drop +0.027R
 
-| setup | exit | n | win_rate | avg_win | avg_loss | expectancy | ci_low | ci_low_adj | exp_early | exp_late | exp_symA | exp_symB | random_mean | random_p95 | avg_bars | verdict |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| E1_trigger_with_trend | X3_target3R | 135 | 0.452 | 2.131 | -1.007 | 0.411 | 0.130 | 0.028 | 0.330 | 0.515 | 0.455 | 0.360 | 0.108 | 0.364 | 28.770 | ADOPT |
-| E4_anchor_reclaim | X3_target3R | 885 | 0.508 | 1.559 | -0.954 | 0.324 | 0.228 | 0.169 | 0.213 | 0.446 | 0.295 | 0.364 | 0.108 | 0.216 | 40.838 | ADOPT |
-| E1_trigger_with_trend | X2_target2R | 135 | 0.489 | 1.690 | -0.997 | 0.316 | 0.074 | -0.043 | 0.272 | 0.373 | 0.326 | 0.305 | 0.076 | 0.292 | 22.778 | PROMISING (not significant after correction) |
-| E1_trigger_with_trend | X1_time10 | 136 | 0.588 | 1.099 | -0.838 | 0.302 | 0.095 | -0.042 | 0.285 | 0.324 | 0.343 | 0.252 | -0.004 | 0.248 | 8.331 | PROMISING (not significant after correction) |
-| E4_anchor_reclaim | X2_target2R | 886 | 0.518 | 1.388 | -0.953 | 0.260 | 0.176 | 0.115 | 0.200 | 0.325 | 0.245 | 0.280 | 0.076 | 0.165 | 36.746 | ADOPT |
-| E1_trigger_with_trend | X5_chandelier3atr | 135 | 0.481 | 1.292 | -0.780 | 0.218 | 0.016 | -0.106 | 0.190 | 0.254 | 0.247 | 0.184 | 0.056 | 0.378 | 19.793 | REJECT |
-| E5_score4 | X3_target3R | 1448 | 0.434 | 1.805 | -0.999 | 0.217 | 0.140 | 0.094 | 0.139 | 0.302 | 0.131 | 0.333 | 0.108 | 0.194 | 34.722 | ADOPT |
-| E1b_trigger_counter_trend | X5_chandelier3atr | 702 | 0.383 | 1.785 | -0.766 | 0.211 | 0.088 | 0.017 | 0.095 | 0.374 | 0.285 | 0.120 | 0.056 | 0.207 | 21.548 | ADOPT |
-| E5_score4 | X2_target2R | 1537 | 0.464 | 1.572 | -1.002 | 0.192 | 0.123 | 0.082 | 0.129 | 0.261 | 0.157 | 0.239 | 0.076 | 0.141 | 29.602 | ADOPT |
-| E4_anchor_reclaim | X7_stage_drop | 1144 | 0.384 | 1.300 | -0.510 | 0.185 | 0.109 | 0.065 | 0.186 | 0.184 | 0.194 | 0.172 | -0.039 | 0.056 | 24.077 | ADOPT |
-| E1b_trigger_counter_trend | X3_target3R | 678 | 0.395 | 2.021 | -1.022 | 0.181 | 0.057 | -0.003 | 0.089 | 0.307 | 0.271 | 0.068 | 0.108 | 0.220 | 28.512 | REJECT |
-| E4_anchor_reclaim | X5_chandelier3atr | 1021 | 0.450 | 1.087 | -0.577 | 0.171 | 0.102 | 0.060 | 0.129 | 0.217 | 0.170 | 0.173 | 0.056 | 0.192 | 23.752 | REJECT |
-| E4_anchor_reclaim | X4_trendline_trail | 1259 | 0.369 | 1.182 | -0.436 | 0.162 | 0.092 | 0.046 | 0.166 | 0.157 | 0.153 | 0.175 | -0.033 | 0.053 | 20.052 | ADOPT |
-| E3_stage2_transition | X3_target3R | 656 | 0.424 | 1.724 | -0.997 | 0.156 | 0.040 | -0.036 | 0.129 | 0.185 | 0.098 | 0.231 | 0.108 | 0.229 | 34.599 | REJECT |
-| E3_stage2_transition | X2_target2R | 661 | 0.445 | 1.534 | -0.994 | 0.131 | 0.031 | -0.028 | 0.102 | 0.162 | 0.092 | 0.180 | 0.076 | 0.172 | 30.548 | REJECT |
-| E4_anchor_reclaim | X6_partial1R_then_line | 1260 | 0.410 | 0.917 | -0.442 | 0.114 | 0.066 | 0.036 | 0.111 | 0.118 | 0.113 | 0.116 | -0.054 | 0.012 | 19.751 | ADOPT |
-| E1b_trigger_counter_trend | X2_target2R | 681 | 0.421 | 1.645 | -1.027 | 0.099 | -0.004 | -0.064 | -0.003 | 0.240 | 0.133 | 0.056 | 0.076 | 0.170 | 24.073 | REJECT |
-| E5_score4 | X5_chandelier3atr | 1792 | 0.410 | 1.168 | -0.672 | 0.083 | 0.024 | -0.007 | 0.039 | 0.129 | 0.052 | 0.125 | 0.056 | 0.150 | 21.017 | REJECT |
-| E1b_trigger_counter_trend | X1_time10 | 705 | 0.506 | 0.867 | -0.756 | 0.066 | -0.014 | -0.057 | -0.029 | 0.200 | 0.136 | -0.020 | -0.004 | 0.114 | 8.329 | REJECT |
-| E5_score4 | X7_stage_drop | 1800 | 0.359 | 1.321 | -0.642 | 0.064 | 0.003 | -0.029 | 0.034 | 0.097 | 0.021 | 0.125 | -0.039 | 0.040 | 22.965 | PROMISING (not significant after correction) |
-| E4_anchor_reclaim | X1_time10 | 1175 | 0.569 | 0.572 | -0.617 | 0.060 | 0.015 | -0.016 | 0.029 | 0.094 | 0.071 | 0.044 | -0.004 | 0.088 | 9.258 | REJECT |
-| E3_stage2_transition | X7_stage_drop | 799 | 0.335 | 1.237 | -0.545 | 0.053 | -0.034 | -0.074 | 0.040 | 0.067 | 0.026 | 0.088 | -0.039 | 0.077 | 18.830 | REJECT |
-| E5_score4 | X4_trendline_trail | 1904 | 0.358 | 1.182 | -0.583 | 0.048 | -0.004 | -0.033 | 0.025 | 0.073 | 0.002 | 0.114 | -0.033 | 0.039 | 20.049 | PROMISING (not significant after correction) |
-| E5_score4 | X1_time10 | 2125 | 0.533 | 0.677 | -0.697 | 0.035 | -0.005 | -0.025 | -0.010 | 0.083 | 0.001 | 0.082 | -0.004 | 0.064 | 8.904 | REJECT |
-| E1_trigger_with_trend | X7_stage_drop | 150 | 0.433 | 0.514 | -0.335 | 0.033 | -0.064 | -0.103 | -0.013 | 0.094 | 0.032 | 0.034 | -0.039 | 0.186 | 4.387 | REJECT |
-| E1_trigger_with_trend | X4_trendline_trail | 150 | 0.433 | 0.506 | -0.334 | 0.030 | -0.066 | -0.107 | -0.019 | 0.095 | 0.035 | 0.023 | -0.033 | 0.184 | 4.120 | REJECT |
-| E3_stage2_transition | X5_chandelier3atr | 738 | 0.392 | 1.169 | -0.703 | 0.030 | -0.056 | -0.107 | -0.014 | 0.076 | 0.001 | 0.068 | 0.056 | 0.209 | 21.793 | REJECT |
-| E5_score4 | X6_partial1R_then_line | 1925 | 0.420 | 0.875 | -0.596 | 0.022 | -0.018 | -0.040 | 0.003 | 0.042 | -0.023 | 0.086 | -0.054 | 0.001 | 19.344 | UNSTABLE (fails a split half) |
-| E1_trigger_with_trend | X6_partial1R_then_line | 150 | 0.433 | 0.457 | -0.334 | 0.009 | -0.073 | -0.115 | -0.032 | 0.063 | 0.008 | 0.009 | -0.054 | 0.116 | 4.120 | REJECT |
-| E2_exhaustion_confluence | X7_stage_drop | 355 | 0.482 | 0.637 | -0.593 | -0.000 | -0.105 | -0.159 | 0.039 | -0.043 | 0.017 | -0.029 | -0.039 | 0.120 | 2.406 | REJECT |
-| E1b_trigger_counter_trend | X6_partial1R_then_line | 759 | 0.497 | 0.329 | -0.327 | -0.001 | -0.033 | -0.051 | -0.033 | 0.045 | -0.012 | 0.013 | -0.054 | 0.022 | 2.289 | REJECT |
-| E1b_trigger_counter_trend | X4_trendline_trail | 759 | 0.495 | 0.335 | -0.335 | -0.003 | -0.037 | -0.056 | -0.039 | 0.048 | -0.013 | 0.009 | -0.033 | 0.069 | 2.289 | REJECT |
-| E1b_trigger_counter_trend | X7_stage_drop | 759 | 0.494 | 0.335 | -0.336 | -0.004 | -0.038 | -0.057 | -0.039 | 0.045 | -0.015 | 0.008 | -0.039 | 0.073 | 2.331 | REJECT |
-| E2_exhaustion_confluence | X4_trendline_trail | 355 | 0.485 | 0.616 | -0.596 | -0.008 | -0.112 | -0.163 | 0.024 | -0.043 | 0.002 | -0.026 | -0.033 | 0.113 | 2.245 | REJECT |
-| E3_stage2_transition | X4_trendline_trail | 799 | 0.315 | 0.867 | -0.413 | -0.009 | -0.076 | -0.119 | -0.022 | 0.004 | -0.019 | 0.003 | -0.033 | 0.064 | 13.451 | REJECT |
-| E3_stage2_transition | X6_partial1R_then_line | 799 | 0.337 | 0.733 | -0.410 | -0.025 | -0.077 | -0.108 | -0.042 | -0.007 | -0.035 | -0.013 | -0.054 | 0.025 | 13.357 | REJECT |
-| E2_exhaustion_confluence | X6_partial1R_then_line | 355 | 0.490 | 0.524 | -0.583 | -0.040 | -0.128 | -0.165 | -0.028 | -0.054 | -0.043 | -0.036 | -0.054 | 0.054 | 2.245 | REJECT |
-| E2_exhaustion_confluence | X5_chandelier3atr | 355 | 0.251 | 2.754 | -1.006 | -0.064 | -0.273 | -0.384 | -0.252 | 0.141 | -0.072 | -0.050 | 0.056 | 0.246 | 13.792 | REJECT |
-| E3_stage2_transition | X1_time10 | 771 | 0.484 | 0.559 | -0.689 | -0.085 | -0.136 | -0.177 | -0.114 | -0.054 | -0.102 | -0.062 | -0.004 | 0.106 | 8.868 | REJECT |
-| E2_exhaustion_confluence | X3_target3R | 351 | 0.268 | 2.646 | -1.111 | -0.105 | -0.291 | -0.416 | -0.264 | 0.064 | -0.136 | -0.055 | 0.108 | 0.275 | 14.026 | REJECT |
-| E2_exhaustion_confluence | X2_target2R | 352 | 0.318 | 1.924 | -1.106 | -0.141 | -0.296 | -0.408 | -0.288 | 0.016 | -0.147 | -0.132 | 0.076 | 0.200 | 10.634 | REJECT |
-| E2_exhaustion_confluence | X1_time10 | 355 | 0.344 | 1.545 | -1.042 | -0.153 | -0.339 | -0.402 | -0.247 | -0.052 | -0.094 | -0.251 | -0.004 | 0.156 | 6.380 | REJECT |
+| setup | exit | n | win_rate | avg_win | avg_loss | expectancy | median | exp_w10 | ci_low | ci_low_adj | exp_early | exp_late | exp_symA | exp_symB | random_mean | random_p95 | avg_bars | verdict |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| E1_trigger_with_trend | X3_target3R | 135 | 0.452 | 2.130 | -1.007 | 0.410 | -1.008 | 0.410 | 0.129 | 0.029 | 0.330 | 0.514 | 0.455 | 0.357 | 0.147 | 0.375 | 28.807 | ADOPT |
+| E4_anchor_reclaim | X3_target3R | 885 | 0.508 | 1.559 | -0.953 | 0.324 | 0.036 | 0.324 | 0.228 | 0.170 | 0.213 | 0.447 | 0.296 | 0.364 | 0.147 | 0.244 | 40.844 | ADOPT |
+| E1_trigger_with_trend | X2_target2R | 135 | 0.489 | 1.694 | -0.998 | 0.318 | -0.312 | 0.318 | 0.076 | -0.041 | 0.272 | 0.377 | 0.327 | 0.308 | 0.106 | 0.303 | 22.800 | PROMISING (not significant after correction) |
+| E1_trigger_with_trend | X1_time10 | 136 | 0.588 | 1.103 | -0.839 | 0.304 | 0.320 | 0.304 | 0.097 | -0.042 | 0.285 | 0.328 | 0.343 | 0.256 | 0.026 | 0.220 | 8.353 | PROMISING (not significant after correction) |
+| E4_anchor_reclaim | X2_target2R | 886 | 0.518 | 1.387 | -0.953 | 0.260 | 0.112 | 0.260 | 0.176 | 0.114 | 0.200 | 0.325 | 0.245 | 0.281 | 0.106 | 0.182 | 36.751 | ADOPT |
+| E1b_trigger_counter_trend | X5_chandelier3atr | 696 | 0.388 | 1.780 | -0.760 | 0.225 | -0.394 | 0.220 | 0.100 | 0.040 | 0.113 | 0.382 | 0.302 | 0.130 | 0.090 | 0.202 | 21.731 | ADOPT |
+| E1_trigger_with_trend | X5_chandelier3atr | 135 | 0.481 | 1.297 | -0.780 | 0.220 | -0.037 | 0.220 | 0.018 | -0.106 | 0.190 | 0.258 | 0.247 | 0.187 | 0.090 | 0.349 | 19.815 | REJECT |
+| E5_score4 | X3_target3R | 1442 | 0.433 | 1.798 | -0.998 | 0.212 | -1.012 | 0.212 | 0.131 | 0.086 | 0.130 | 0.301 | 0.127 | 0.327 | 0.147 | 0.224 | 34.863 | REJECT |
+| E1b_trigger_counter_trend | X3_target3R | 672 | 0.400 | 2.016 | -1.020 | 0.195 | -1.009 | 0.195 | 0.070 | -0.017 | 0.107 | 0.315 | 0.289 | 0.078 | 0.147 | 0.251 | 28.763 | REJECT |
+| E5_score4 | X2_target2R | 1531 | 0.463 | 1.569 | -1.000 | 0.190 | -0.869 | 0.190 | 0.123 | 0.072 | 0.123 | 0.261 | 0.155 | 0.236 | 0.106 | 0.162 | 29.716 | ADOPT |
+| E4_anchor_reclaim | X5_chandelier3atr | 1021 | 0.450 | 1.086 | -0.577 | 0.171 | -0.138 | 0.171 | 0.101 | 0.060 | 0.129 | 0.216 | 0.170 | 0.172 | 0.090 | 0.184 | 23.755 | REJECT |
+| E4_anchor_reclaim | X7_stage_drop | 1143 | 0.383 | 1.256 | -0.510 | 0.167 | -0.212 | 0.162 | 0.094 | 0.043 | 0.152 | 0.183 | 0.164 | 0.171 | 0.027 | 0.095 | 24.048 | ADOPT |
+| E3_stage2_transition | X3_target3R | 655 | 0.424 | 1.723 | -0.997 | 0.158 | -1.010 | 0.158 | 0.036 | -0.032 | 0.129 | 0.188 | 0.098 | 0.235 | 0.147 | 0.254 | 34.653 | REJECT |
+| E4_anchor_reclaim | X4_trendline_trail | 1258 | 0.369 | 1.140 | -0.436 | 0.146 | -0.190 | 0.146 | 0.084 | 0.041 | 0.136 | 0.156 | 0.126 | 0.174 | 0.021 | 0.089 | 20.022 | ADOPT |
+| E3_stage2_transition | X2_target2R | 660 | 0.445 | 1.533 | -0.993 | 0.132 | -1.008 | 0.132 | 0.031 | -0.045 | 0.102 | 0.165 | 0.092 | 0.184 | 0.106 | 0.189 | 30.597 | REJECT |
+| E1b_trigger_counter_trend | X2_target2R | 675 | 0.427 | 1.641 | -1.025 | 0.112 | -1.008 | 0.112 | 0.001 | -0.053 | 0.014 | 0.247 | 0.150 | 0.066 | 0.106 | 0.196 | 24.284 | REJECT |
+| E4_anchor_reclaim | X6_partial1R_then_line | 1259 | 0.409 | 0.897 | -0.442 | 0.106 | -0.162 | 0.106 | 0.059 | 0.031 | 0.095 | 0.118 | 0.099 | 0.116 | 0.003 | 0.048 | 19.721 | ADOPT |
+| E5_score4 | X5_chandelier3atr | 1785 | 0.412 | 1.168 | -0.662 | 0.091 | -0.230 | 0.091 | 0.039 | 0.009 | 0.048 | 0.137 | 0.060 | 0.135 | 0.090 | 0.156 | 21.081 | REJECT |
+| E1b_trigger_counter_trend | X1_time10 | 699 | 0.512 | 0.866 | -0.748 | 0.079 | 0.012 | 0.079 | -0.003 | -0.039 | -0.013 | 0.207 | 0.152 | -0.012 | 0.026 | 0.107 | 8.398 | REJECT |
+| E5_score4 | X7_stage_drop | 1793 | 0.360 | 1.319 | -0.634 | 0.070 | -0.307 | 0.066 | 0.011 | -0.022 | 0.037 | 0.105 | 0.029 | 0.128 | 0.027 | 0.082 | 23.040 | REJECT |
+| E4_anchor_reclaim | X1_time10 | 1174 | 0.570 | 0.572 | -0.613 | 0.062 | 0.101 | 0.062 | 0.017 | -0.020 | 0.029 | 0.098 | 0.071 | 0.049 | 0.026 | 0.088 | 9.265 | REJECT |
+| E3_stage2_transition | X7_stage_drop | 798 | 0.336 | 1.237 | -0.544 | 0.054 | -0.304 | 0.044 | -0.035 | -0.093 | 0.040 | 0.070 | 0.026 | 0.092 | 0.027 | 0.107 | 18.852 | REJECT |
+| E5_score4 | X4_trendline_trail | 1896 | 0.358 | 1.181 | -0.576 | 0.053 | -0.283 | 0.053 | 0.001 | -0.026 | 0.026 | 0.082 | 0.009 | 0.117 | 0.021 | 0.075 | 20.120 | REJECT |
+| E5_score4 | X1_time10 | 2116 | 0.534 | 0.675 | -0.686 | 0.042 | 0.067 | 0.041 | 0.001 | -0.018 | -0.006 | 0.093 | 0.006 | 0.090 | 0.026 | 0.074 | 8.924 | REJECT |
+| E1_trigger_with_trend | X7_stage_drop | 150 | 0.433 | 0.514 | -0.335 | 0.033 | -0.076 | 0.033 | -0.064 | -0.103 | -0.013 | 0.094 | 0.032 | 0.034 | 0.027 | 0.211 | 4.387 | REJECT |
+| E3_stage2_transition | X5_chandelier3atr | 737 | 0.392 | 1.168 | -0.702 | 0.031 | -0.306 | 0.023 | -0.050 | -0.121 | -0.014 | 0.079 | 0.001 | 0.072 | 0.090 | 0.197 | 21.822 | REJECT |
+| E1_trigger_with_trend | X4_trendline_trail | 150 | 0.433 | 0.506 | -0.334 | 0.030 | -0.072 | 0.030 | -0.066 | -0.107 | -0.019 | 0.095 | 0.035 | 0.023 | 0.021 | 0.200 | 4.120 | REJECT |
+| E5_score4 | X6_partial1R_then_line | 1917 | 0.420 | 0.875 | -0.591 | 0.025 | -0.224 | 0.025 | -0.013 | -0.038 | 0.003 | 0.049 | -0.018 | 0.087 | 0.003 | 0.038 | 19.413 | REJECT |
+| E1_trigger_with_trend | X6_partial1R_then_line | 150 | 0.433 | 0.457 | -0.334 | 0.009 | -0.072 | 0.009 | -0.073 | -0.115 | -0.032 | 0.063 | 0.008 | 0.009 | 0.003 | 0.132 | 4.120 | REJECT |
+| E1b_trigger_counter_trend | X4_trendline_trail | 752 | 0.500 | 0.335 | -0.320 | 0.007 | -0.001 | 0.007 | -0.025 | -0.043 | -0.024 | 0.052 | -0.001 | 0.017 | 0.021 | 0.105 | 2.298 | REJECT |
+| E1b_trigger_counter_trend | X6_partial1R_then_line | 752 | 0.500 | 0.329 | -0.315 | 0.007 | -0.001 | 0.007 | -0.024 | -0.041 | -0.023 | 0.050 | -0.003 | 0.019 | 0.003 | 0.061 | 2.298 | REJECT |
+| E1b_trigger_counter_trend | X7_stage_drop | 752 | 0.499 | 0.335 | -0.321 | 0.006 | -0.002 | 0.006 | -0.027 | -0.045 | -0.024 | 0.049 | -0.002 | 0.016 | 0.027 | 0.109 | 2.340 | REJECT |
+| E3_stage2_transition | X4_trendline_trail | 798 | 0.316 | 0.867 | -0.412 | -0.008 | -0.245 | -0.016 | -0.077 | -0.118 | -0.022 | 0.007 | -0.019 | 0.007 | 0.021 | 0.103 | 13.466 | REJECT |
+| E3_stage2_transition | X6_partial1R_then_line | 798 | 0.337 | 0.733 | -0.408 | -0.024 | -0.227 | -0.024 | -0.073 | -0.106 | -0.042 | -0.004 | -0.035 | -0.009 | 0.003 | 0.060 | 13.372 | REJECT |
+| E2_exhaustion_confluence | X7_stage_drop | 337 | 0.487 | 0.501 | -0.529 | -0.028 | -0.008 | -0.028 | -0.107 | -0.144 | -0.000 | -0.056 | -0.026 | -0.030 | 0.027 | 0.158 | 2.457 | REJECT |
+| E2_exhaustion_confluence | X4_trendline_trail | 337 | 0.490 | 0.480 | -0.532 | -0.036 | -0.007 | -0.036 | -0.113 | -0.157 | -0.017 | -0.056 | -0.042 | -0.026 | 0.021 | 0.145 | 2.288 | REJECT |
+| E2_exhaustion_confluence | X6_partial1R_then_line | 337 | 0.496 | 0.449 | -0.517 | -0.039 | -0.001 | -0.039 | -0.110 | -0.144 | -0.021 | -0.057 | -0.054 | -0.013 | 0.003 | 0.091 | 2.288 | REJECT |
+| E2_exhaustion_confluence | X5_chandelier3atr | 337 | 0.258 | 2.590 | -0.981 | -0.059 | -1.023 | -0.059 | -0.252 | -0.402 | -0.289 | 0.181 | -0.117 | 0.037 | 0.090 | 0.245 | 14.261 | REJECT |
+| E3_stage2_transition | X1_time10 | 770 | 0.484 | 0.559 | -0.688 | -0.084 | -0.033 | -0.084 | -0.139 | -0.170 | -0.114 | -0.051 | -0.102 | -0.059 | 0.026 | 0.100 | 8.878 | REJECT |
+| E2_exhaustion_confluence | X3_target3R | 333 | 0.264 | 2.632 | -1.090 | -0.106 | -1.031 | -0.106 | -0.281 | -0.403 | -0.261 | 0.052 | -0.134 | -0.061 | 0.147 | 0.307 | 14.721 | REJECT |
+| E2_exhaustion_confluence | X2_target2R | 334 | 0.314 | 1.931 | -1.082 | -0.135 | -1.028 | -0.135 | -0.288 | -0.394 | -0.280 | 0.014 | -0.146 | -0.116 | 0.106 | 0.227 | 11.153 | REJECT |
+| E2_exhaustion_confluence | X1_time10 | 337 | 0.356 | 1.298 | -1.013 | -0.190 | -1.021 | -0.190 | -0.330 | -0.398 | -0.355 | -0.019 | -0.202 | -0.171 | 0.026 | 0.143 | 6.537 | REJECT |
 
 ### Exit rules ranked (trade-weighted across setups)
 
 | exit | trades | mean_expectancy | random_mean | edge_over_random |
 |---|---|---|---|---|
-| X3_target3R | 4,153 | 0.203 | 0.108 | 0.095 |
-| X2_target2R | 4,252 | 0.158 | 0.076 | 0.082 |
-| X5_chandelier3atr | 4,743 | 0.105 | 0.056 | 0.050 |
-| X7_stage_drop | 5,007 | 0.074 | -0.039 | 0.113 |
-| X4_trendline_trail | 5,226 | 0.055 | -0.033 | 0.088 |
-| X6_partial1R_then_line | 5,248 | 0.029 | -0.054 | 0.083 |
-| X1_time10 | 5,267 | 0.021 | -0.004 | 0.026 |
+| X3_target3R | 4,122 | 0.205 | 0.147 | 0.058 |
+| X2_target2R | 4,221 | 0.161 | 0.106 | 0.055 |
+| X5_chandelier3atr | 4,711 | 0.112 | 0.090 | 0.022 |
+| X7_stage_drop | 4,973 | 0.072 | 0.027 | 0.046 |
+| X4_trendline_trail | 5,191 | 0.053 | 0.021 | 0.032 |
+| X6_partial1R_then_line | 5,213 | 0.030 | 0.003 | 0.027 |
+| X1_time10 | 5,232 | 0.025 | 0.026 | -0.001 |
 
 ## P1b · Sizing (fixed-fractional, max open positions = 5)
 
 | setup | exit | risk_pct | cagr | max_dd | mar | final |
 |---|---|---|---|---|---|---|
-| E1_trigger_with_trend | X3_target3R | 0.005 | 0.010 | -0.047 | 0.224 | 131,269 |
-| E1_trigger_with_trend | X3_target3R | 0.010 | 0.020 | -0.091 | 0.220 | 168,612 |
-| E1_trigger_with_trend | X3_target3R | 0.020 | 0.037 | -0.176 | 0.213 | 262,199 |
-| E4_anchor_reclaim | X3_target3R | 0.005 | 0.027 | -0.128 | 0.209 | 203,102 |
-| E4_anchor_reclaim | X3_target3R | 0.010 | 0.052 | -0.242 | 0.213 | 383,103 |
-| E4_anchor_reclaim | X3_target3R | 0.020 | 0.094 | -0.457 | 0.206 | 1,112,997 |
-| E1_trigger_with_trend | X2_target2R | 0.005 | 0.008 | -0.033 | 0.230 | 122,026 |
-| E1_trigger_with_trend | X2_target2R | 0.010 | 0.015 | -0.066 | 0.225 | 146,761 |
-| E1_trigger_with_trend | X2_target2R | 0.020 | 0.028 | -0.128 | 0.214 | 203,779 |
+| E1_trigger_with_trend | X3_target3R | 0.005 | 0.010 | -0.047 | 0.223 | 131,201 |
+| E1_trigger_with_trend | X3_target3R | 0.010 | 0.020 | -0.091 | 0.220 | 168,437 |
+| E1_trigger_with_trend | X3_target3R | 0.020 | 0.037 | -0.176 | 0.213 | 261,657 |
+| E4_anchor_reclaim | X3_target3R | 0.005 | 0.027 | -0.128 | 0.209 | 203,430 |
+| E4_anchor_reclaim | X3_target3R | 0.010 | 0.052 | -0.242 | 0.213 | 384,333 |
+| E4_anchor_reclaim | X3_target3R | 0.020 | 0.095 | -0.457 | 0.207 | 1,120,032 |
+| E1_trigger_with_trend | X2_target2R | 0.005 | 0.008 | -0.033 | 0.231 | 122,178 |
+| E1_trigger_with_trend | X2_target2R | 0.010 | 0.015 | -0.066 | 0.226 | 147,125 |
+| E1_trigger_with_trend | X2_target2R | 0.020 | 0.028 | -0.128 | 0.216 | 204,779 |
 
 ## P2 · Market regime (SPY > 200-day average and Trend line rising)
 
 | setup | exit | n_on | exp_on | n_off | exp_off | diff | diff_ci_low | verdict |
 |---|---|---|---|---|---|---|---|---|
 | E1_trigger_with_trend | X4_trendline_trail | 43 | 0.069 | 107 | 0.014 | 0.054 | -0.234 | NO CLEAR EFFECT |
-| E1_trigger_with_trend | X5_chandelier3atr | 38 | -0.063 | 97 | 0.328 | -0.391 | -1.057 | NO CLEAR EFFECT |
-| E1b_trigger_counter_trend | X4_trendline_trail | 70 | 0.021 | 689 | -0.006 | 0.027 | -0.114 | NO CLEAR EFFECT |
-| E1b_trigger_counter_trend | X5_chandelier3atr | 62 | -0.048 | 640 | 0.236 | -0.285 | -0.729 | NO CLEAR EFFECT |
-| E2_exhaustion_confluence | X4_trendline_trail | 32 | -0.354 | 323 | 0.026 | -0.380 | -0.989 | NO CLEAR EFFECT |
-| E2_exhaustion_confluence | X5_chandelier3atr | 32 | -0.479 | 323 | -0.023 | -0.456 | -1.421 | NO CLEAR EFFECT |
-| E3_stage2_transition | X4_trendline_trail | 476 | 0.061 | 323 | -0.112 | 0.173 | 0.002 | FILTER HELPS |
-| E3_stage2_transition | X5_chandelier3atr | 447 | 0.081 | 291 | -0.048 | 0.129 | -0.118 | NO CLEAR EFFECT |
-| E4_anchor_reclaim | X4_trendline_trail | 845 | 0.184 | 414 | 0.116 | 0.068 | -0.130 | NO CLEAR EFFECT |
-| E4_anchor_reclaim | X5_chandelier3atr | 692 | 0.206 | 329 | 0.098 | 0.108 | -0.088 | NO CLEAR EFFECT |
-| E5_score4 | X4_trendline_trail | 1370 | 0.057 | 534 | 0.025 | 0.032 | -0.135 | NO CLEAR EFFECT |
-| E5_score4 | X5_chandelier3atr | 1318 | 0.085 | 474 | 0.077 | 0.008 | -0.169 | NO CLEAR EFFECT |
+| E1_trigger_with_trend | X5_chandelier3atr | 38 | -0.057 | 97 | 0.328 | -0.385 | -1.055 | NO CLEAR EFFECT |
+| E1b_trigger_counter_trend | X4_trendline_trail | 70 | 0.021 | 682 | 0.006 | 0.015 | -0.102 | NO CLEAR EFFECT |
+| E1b_trigger_counter_trend | X5_chandelier3atr | 62 | -0.038 | 634 | 0.251 | -0.289 | -0.741 | NO CLEAR EFFECT |
+| E2_exhaustion_confluence | X4_trendline_trail | 29 | -0.127 | 308 | -0.028 | -0.099 | -0.388 | NO CLEAR EFFECT |
+| E2_exhaustion_confluence | X5_chandelier3atr | 29 | -0.257 | 308 | -0.040 | -0.217 | -1.062 | NO CLEAR EFFECT |
+| E3_stage2_transition | X4_trendline_trail | 475 | 0.063 | 323 | -0.112 | 0.175 | 0.000 | FILTER HELPS |
+| E3_stage2_transition | X5_chandelier3atr | 446 | 0.083 | 291 | -0.048 | 0.131 | -0.113 | NO CLEAR EFFECT |
+| E4_anchor_reclaim | X4_trendline_trail | 844 | 0.160 | 414 | 0.116 | 0.044 | -0.139 | NO CLEAR EFFECT |
+| E4_anchor_reclaim | X5_chandelier3atr | 692 | 0.205 | 329 | 0.098 | 0.107 | -0.089 | NO CLEAR EFFECT |
+| E5_score4 | X4_trendline_trail | 1368 | 0.059 | 528 | 0.040 | 0.019 | -0.141 | NO CLEAR EFFECT |
+| E5_score4 | X5_chandelier3atr | 1316 | 0.086 | 469 | 0.105 | -0.018 | -0.182 | NO CLEAR EFFECT |
 
 ## P4 · Portfolio heat (E1_trigger_with_trend + X3_target3R)
 
 | rule | cagr | max_dd | mar | final |
 |---|---|---|---|---|
-| No sector cap | 0.020 | -0.091 | 0.220 | 168,607 |
-| Max 1 open per sector | 0.020 | -0.091 | 0.220 | 168,607 |
+| No sector cap | 0.020 | -0.091 | 0.220 | 168,432 |
+| Max 1 open per sector | 0.020 | -0.091 | 0.220 | 168,432 |
 
 ---
 **How to read verdicts.** ADOPT = ≥ min trades, bootstrap CI above 0 after correcting for the number of tests, positive in both time halves and both symbol halves, and better than random entries with the same exits. PROMISING = everything except significance. UNSTABLE = fails a half. REJECT = not positive or not better than random.
