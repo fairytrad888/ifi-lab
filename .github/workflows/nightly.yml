@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "15 22 * * 1-5"   # 22:15 UTC Mon-Fri = after the US close all year
   workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Re-scan the last N bars (0 = normal run). Use 250 once to add Playbook history."
+        required: false
+        default: "0"
 
 permissions:
   contents: write
@@ -27,7 +32,10 @@ jobs:
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: |
-          if [ ! -f logs/events.csv ]; then python -m ifi.scan --backfill 250; else python -m ifi.scan; fi
+          BF="${{ github.event.inputs.backfill || '0' }}"
+          if [ ! -f logs/events.csv ]; then python -m ifi.scan --backfill 250
+          elif [ "$BF" != "0" ]; then python -m ifi.scan --backfill "$BF"
+          else python -m ifi.scan; fi
       - name: Commit results
         run: |
           git config user.name "ifi-bot"
