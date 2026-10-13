@@ -1,0 +1,3 @@
+signal_id,symbol,setup,signal_bar,oos,status
+daily|IWM|2026-10-12 00:00|Playbook E1 trigger with trend,IWM,E1_trigger_with_trend,2026-10-12,True,pending
+daily|XBI|2026-10-12 00:00|Playbook E1 trigger with trend,XBI,E1_trigger_with_trend,2026-10-12,True,pending

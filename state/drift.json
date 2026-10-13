@@ -1,0 +1,12 @@
+{
+ "E4_anchor_reclaim": {
+  "ok": true,
+  "etfs": "ADOPT",
+  "stocks": "ADOPT"
+ },
+ "E1_trigger_with_trend": {
+  "ok": true,
+  "etfs": "ADOPT",
+  "stocks": "ADOPT"
+ }
+}

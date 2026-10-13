@@ -1,0 +1,15 @@
+{
+ "paper": {
+  "daily|IWM|2026-10-12 00:00|Playbook E1 trigger with trend": "pending",
+  "daily|XBI|2026-10-12 00:00|Playbook E1 trigger with trend": "pending"
+ },
+ "status": {
+  "E4_anchor_reclaim": "COLLECTING (0/20)",
+  "E1_trigger_with_trend": "COLLECTING (0/20)"
+ },
+ "drift": {
+  "E4_anchor_reclaim": true,
+  "E1_trigger_with_trend": true
+ },
+ "updated": "2026-10-13T02:41:15.045929+00:00"
+}
