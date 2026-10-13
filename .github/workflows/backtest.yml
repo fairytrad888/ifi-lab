@@ -43,7 +43,9 @@ jobs:
           else
             python -m ifi.run_backtests --tf ${{ inputs.tf }} --universe ${{ inputs.universe }}
           fi
-      - name: Refresh dashboard links
+      - name: Refresh dashboard, scoreboard and drift check
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python -m ifi.scan
       - name: Commit reports
         run: |
