@@ -10,7 +10,7 @@
   "open_trades": 0,
   "prelive_n": 38,
   "prelive_expectancy": 0.5090526315789473,
-  "ref_expectancy": 0.2907925067563804,
+  "ref_expectancy": 0.2906603374906493,
   "ref_ci_low": 0.2284684150554533,
   "ref": {
    "etfs": {
@@ -20,9 +20,9 @@
     "verdict": "ADOPT"
    },
    "stocks": {
-    "n": 3157,
-    "expectancy": 0.2813415510905891,
-    "ci_low": 0.2293281923862455,
+    "n": 3158,
+    "expectancy": 0.2811753353256477,
+    "ci_low": 0.229060782838876,
     "verdict": "ADOPT"
    }
   }
@@ -38,7 +38,7 @@
   "open_trades": 0,
   "prelive_n": 11,
   "prelive_expectancy": -0.3078181818181818,
-  "ref_expectancy": 0.34089602432689764,
+  "ref_expectancy": 0.34190888728461205,
   "ref_ci_low": 0.1221142765468535,
   "ref": {
    "etfs": {
@@ -49,8 +49,8 @@
    },
    "stocks": {
     "n": 522,
-    "expectancy": 0.3242951874852143,
-    "ci_low": 0.1808567835607489,
+    "expectancy": 0.325569997759579,
+    "ci_low": 0.1818872854394007,
     "verdict": "ADOPT"
    }
   }
