@@ -17,11 +17,55 @@ import yaml
 
 from .data import ROOT, load
 from .states import read, events_on_bar
+from .backtest import setups as bt_setups
+from . import forward as fw
 
 LOG = ROOT / "logs" / "events.csv"
 JOURNAL_STATS = ROOT / "logs" / "journal_stats.json"
 STATE = ROOT / "state" / "last_scan.json"
 HORIZONS = (5, 10)
+
+
+# ---------------------------------------------------------------- completed bars only (v1.3.1)
+# A run during the session sees bars that are still forming. Events and paper trades use completed
+# bars only, and any event logged before its bar had closed is purged and re-detected on the final bar.
+_SETTLE = pd.Timedelta(minutes=15)
+
+
+def bar_close_utc(tf: str, ts) -> pd.Timestamp:
+    """UTC time at which a bar is final. Daily index = date; 4H index = ET slot start (09:30 / 13:30)."""
+    ts = pd.Timestamp(ts)
+    if tf == "daily":
+        end = ts.normalize() + pd.Timedelta(hours=16)
+    else:
+        end = ts.normalize() + pd.Timedelta(hours=13, minutes=30) if ts.hour * 60 + ts.minute < 13 * 60 + 30 \
+            else ts.normalize() + pd.Timedelta(hours=16)
+    return end.tz_localize("America/New_York").tz_convert("UTC") + _SETTLE
+
+
+def completed(tf: str, x: pd.DataFrame | None, now: pd.Timestamp) -> pd.DataFrame | None:
+    if x is None or x.empty:
+        return x
+    n = len(x)
+    while n > 0 and bar_close_utc(tf, x.index[n - 1]) > now:
+        n -= 1
+    return x.iloc[:n]
+
+
+def purge_provisional(log: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Drop rows logged before their bar closed. Returns the cleaned log and, per tf|symbol,
+    the earliest purged bar (so the scan re-detects events from there)."""
+    if log.empty or "logged" not in log:
+        return log, {}
+    bars = pd.to_datetime(log["bar"].astype(str), format="ISO8601")
+    logged = pd.to_datetime(log["logged"].astype(str), format="ISO8601", errors="coerce").dt.tz_localize("UTC")
+    closes = pd.Series([bar_close_utc(tf, b) for tf, b in zip(log["tf"], bars)], index=log.index)
+    bad = logged.notna() & (logged < closes)
+    rewind = {}
+    for (tf, sym), b in zip(zip(log.loc[bad, "tf"], log.loc[bad, "symbol"]), bars[bad]):
+        k = f"{tf}|{sym}"
+        rewind[k] = min(rewind.get(k, b), b)
+    return log.loc[~bad].reset_index(drop=True), rewind
 
 
 def cfg():
@@ -43,6 +87,28 @@ def _row(sym, tf, x, i, ev, c):
         rrg=r.get("rrg", ""), with_trend=bool(r["trend200_up"]), stop=round(stop, 4) if pd.notna(stop) else np.nan,
         shares_1pct=shares, logged=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"),
     )
+
+
+PLAYBOOK_NAMES = {"E4_anchor_reclaim": "Playbook E4 anchor reclaim", "E1_trigger_with_trend": "Playbook E1 trigger with trend"}
+
+
+def playbook_rows(sym, tf, x, i, c, sets):
+    out = []
+    pb = c.get("playbook", {})
+    for su in pb.get("setups", []):
+        if su in sets and bool(sets[su].iloc[i]):
+            name = PLAYBOOK_NAMES.get(su, su)
+            if tf != "daily":  # the playbook is validated on Daily bars only; 4H copies are logged to build evidence
+                name = name.replace("Playbook", "4H watch")
+            row = _row(sym, tf, x, i, name, c)
+            low5 = x["low"].rolling(5).min().iloc[i]
+            risk = row["close"] - row["stop"] if pd.notna(row["stop"]) else np.nan
+            row["family"] = "Playbook" if tf == "daily" else "4H watch"
+            row["setup"] = su
+            row["target"] = round(row["close"] + pb.get("target_r", 3) * risk, 4) if risk and risk > 0 else np.nan
+            row["cancel_if_open_below"] = round(low5, 4)
+            out.append(row)
+    return out
 
 
 def fill_outcomes(log: pd.DataFrame, frames: dict, bench: dict) -> pd.DataFrame:
@@ -82,30 +148,34 @@ def fill_outcomes(log: pd.DataFrame, frames: dict, bench: dict) -> pd.DataFrame:
     return log
 
 
-def journal_stats(url: str) -> dict:
+def journal_load(url: str) -> pd.DataFrame | None:
     if not url:
-        return {}
-    try:
-        t = pd.read_csv(url)
-    except Exception as ex:
-        return {"error": str(ex)}
+        return None
+    t = pd.read_csv(url)
     t.columns = [c.strip().lower() for c in t.columns]
     t = t.dropna(subset=["entry", "stop", "exit"])
-    side = t.get("side", pd.Series("long", index=t.index)).fillna("long").str.lower()
+    side = t.get("side", pd.Series("long", index=t.index)).fillna("long").astype(str).str.lower()
     sign = np.where(side.str.startswith("s"), -1, 1)
     t["r"] = sign * (t["exit"] - t["entry"]) / (sign * (t["entry"] - t["stop"]))
+    t["date"] = pd.to_datetime(t["date"], errors="coerce")
+    t["symbol"] = t["symbol"].astype(str).str.upper().str.strip()
+    return t
+
+
+def journal_stats(t: pd.DataFrame | None) -> dict:
+    if t is None or t.empty:
+        return {}
     by = t.groupby(t.get("setup", pd.Series("all", index=t.index)).fillna("untagged"))["r"]
-    out = {"n": int(len(t)), "expectancy": float(t["r"].mean()) if len(t) else None,
-           "win_rate": float((t["r"] > 0).mean()) if len(t) else None,
-           "avg_win": float(t.loc[t.r > 0, "r"].mean()) if (t.r > 0).any() else None,
-           "avg_loss": float(t.loc[t.r <= 0, "r"].mean()) if (t.r <= 0).any() else None,
-           "by_setup": {k: {"n": int(v.count()), "expectancy": float(v.mean())} for k, v in by}}
-    return out
+    return {"n": int(len(t)), "expectancy": float(t["r"].mean()),
+            "win_rate": float((t["r"] > 0).mean()),
+            "avg_win": float(t.loc[t.r > 0, "r"].mean()) if (t.r > 0).any() else None,
+            "avg_loss": float(t.loc[t.r <= 0, "r"].mean()) if (t.r <= 0).any() else None,
+            "by_setup": {k: {"n": int(v.count()), "expectancy": float(v.mean())} for k, v in by}}
 
 
-def notify(c, new_rows: list[dict]):
+def notify(c, new_rows: list[dict], extra: list[str] | None = None):
     topic = os.environ.get("NTFY_TOPIC", "").strip()
-    if not topic or not new_rows:
+    if not topic or not (new_rows or extra):
         return
     import requests
 
@@ -114,9 +184,14 @@ def notify(c, new_rows: list[dict]):
     for r in new_rows:
         fam = r["family"]
         stage_up = fam.startswith("Stage") and int(r["event"].split("-> ")[-1]) >= c["alerts"]["min_stage_change_to"]
+        if fam == "Playbook":
+            lines.insert(0, f"★ {r['symbol']} {r['tf']}: {r['event']} | entry ~{r['close']} stop {r['stop']} "
+                            f"target {r.get('target')} | {r['shares_1pct']} sh | cancel if open < {r.get('cancel_if_open_below')}")
+            continue
         if fam in want or stage_up:
             lines.append(f"{r['symbol']} {r['tf']}: {r['event']} | stage {r['stage']} score {r['score']} | "
                          f"stop {r['stop']} size {r['shares_1pct']}")
+    lines = list(extra or []) + lines
     if lines:
         try:
             requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines[:40]).encode(),
@@ -132,6 +207,7 @@ def main():
     c = cfg()
     bench_sym = c["benchmark"]
     frames, bench, latest = {}, {}, []
+    now = pd.Timestamp.now(tz="UTC")
     for tf in ("daily", "h4"):
         b = load(bench_sym, tf)
         bench[tf] = b
@@ -139,22 +215,38 @@ def main():
             df = load(s, tf)
             if df is None or len(df) < 260:
                 continue
-            x = read(df, b)
-            frames[(tf, s)] = x
+            x = completed(tf, read(df, b), now)
+            if x is not None and len(x) >= 260:
+                frames[(tf, s)] = x
+        bench[tf] = completed(tf, b, now)
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
-    log = pd.read_csv(LOG, parse_dates=["bar"]) if LOG.exists() else pd.DataFrame()
+    log = pd.read_csv(LOG) if LOG.exists() else pd.DataFrame()
+    log, rewind = purge_provisional(log)
+    if rewind:
+        print("re-detecting provisional events:", {k: str(v) for k, v in rewind.items()})
     seen = set(log["id"]) if not log.empty else set()
     new_rows = []
     for (tf, s), x in frames.items():
         key = f"{tf}|{s}"
         last_done = pd.Timestamp(state[key]) if key in state else None
+        if key in rewind:
+            first = pd.Timestamp(rewind[key])
+            prior = x.index[x.index < first]
+            last_done = prior[-1] if len(prior) else None
         if a.backfill:
             start = max(len(x) - a.backfill, 1)
         elif last_done is not None:
             start = int(np.searchsorted(x.index.values, np.datetime64(last_done), side="right"))
         else:
             start = len(x) - 1
+        if not a.backfill:  # always re-check the last 3 completed bars (ids dedupe; catches bars first seen mid-session)
+            start = min(start, len(x) - 3)
+        sets = bt_setups(x)
         for i in range(max(start, 1), len(x)):
+            for row in playbook_rows(s, tf, x, i, c, sets):
+                if row["id"] not in seen:
+                    new_rows.append(row)
+                    seen.add(row["id"])
             for ev in events_on_bar(x, i):
                 row = _row(s, tf, x, i, ev, c)
                 if row["id"] not in seen:
@@ -164,19 +256,30 @@ def main():
     if new_rows:
         log = pd.concat([log, pd.DataFrame(new_rows)], ignore_index=True)
     if not log.empty:
-        log["bar"] = pd.to_datetime(log["bar"])
+        log["bar"] = pd.to_datetime(log["bar"].astype(str), format="ISO8601")
         log = fill_outcomes(log, frames, bench)
         log = log.sort_values(["bar", "symbol"]).reset_index(drop=True)
         LOG.parent.mkdir(parents=True, exist_ok=True)
         log.to_csv(LOG, index=False)
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(state, indent=1))
-    js = journal_stats(c["journal"].get("trades_csv_url", ""))
-    JOURNAL_STATS.write_text(json.dumps(js, indent=1))
+    # forward test, scoreboard, drift, journal execution
+    pt = fw.paper_trades(log, frames, c)
+    board = fw.scoreboard(pt, c)
+    dr = fw.drift(c)
+    try:
+        jdf = journal_load(c["journal"].get("trades_csv_url", ""))
+        js = journal_stats(jdf)
+        if jdf is not None:
+            js["execution"] = fw.match_journal(jdf, pt)
+    except Exception as ex:
+        js = {"error": str(ex)}
+    JOURNAL_STATS.write_text(json.dumps(js, indent=1, default=str))
+    extra = fw.alert_lines(pt, board, dr)
     if not a.backfill:
-        notify(c, new_rows)
+        notify(c, new_rows, extra)
     from .dashboard import build
-    build(frames, log, js, c)
+    build(frames, log, js, c, pt, board, dr)
     print(f"{len(new_rows)} new events; log size {len(log)}")
 
 

@@ -131,7 +131,7 @@ def main():
     lines = [f"# IFI Lab results: {a.tf} · {a.universe}",
              f"_Run {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · {len(reads)} symbols · "
              f"{min(x.index[0] for x in reads.values()):%Y-%m-%d} to {max(x.index[-1] for x in reads.values()):%Y-%m-%d} · "
-             f"split {split} · {n_tests} setup×exit tests (Bonferroni-adjusted) · engine v1.1_", ""]
+             f"split {split} · {n_tests} setup×exit tests (Bonferroni-adjusted) · engine v1.3.1_", ""]
     if a.universe in ("stocks", "all"):
         lines += ["> **Survivorship bias:** this stock list was chosen in 2026 from today's large caps, so random long entries "
                   "earn money too. Judge stock setups by their edge over the random-entry control, not by raw expectancy.", ""]
@@ -293,6 +293,74 @@ def main():
         lines += [f"## P4 · Portfolio heat ({b.setup} + {b.exit})", "",
                   fmt_table([dict(rule="No sector cap", **free), dict(rule="Max 1 open per sector", **capped)],
                             ["rule", "cagr", "max_dd", "mar", "final"]), ""]
+
+    # ---------------- P6 playbook portfolio (adopted setups, one exit, one position per symbol, sector cap)
+    pb = c.get("playbook", {})
+    tgt = f"X{2 if pb.get('target_r', 3) == 2 else 3}_target{pb.get('target_r', 3)}R"
+    if pb.get("setups") and not trades_all.empty:
+        d = trades_all[trades_all.setup.isin(pb["setups"]) & (trades_all.exit_rule == tgt)].sort_values("entry_date")
+        kept, busy_sym, busy_sec = [], {}, {}
+        for _, t in d.iterrows():
+            sec = sector_of.get(t.symbol, t.symbol)
+            if busy_sym.get(t.symbol, pd.Timestamp.min) > t.entry_date or busy_sec.get(sec, pd.Timestamp.min) > t.entry_date:
+                continue
+            kept.append(t)
+            busy_sym[t.symbol] = busy_sec[sec] = t.exit_date
+        k = pd.DataFrame(kept)
+        if not k.empty:
+            rr = k["r"].to_numpy()
+            streak = cur = 0
+            for v in rr:
+                cur = cur + 1 if v <= 0 else 0
+                streak = max(streak, cur)
+            years = (k.exit_date.max() - k.entry_date.min()).days / 365.25
+            rows6 = []
+            for rp in (0.005, 0.0075, 0.01):
+                pm = bt.portfolio(k, rp, c["risk"]["max_open"])
+                rows6.append(dict(risk=f"{rp:.2%}", trades=len(k), trades_per_year=len(k) / max(years, 1e-9),
+                                  expectancy=rr.mean(), win_rate=(rr > 0).mean(), longest_losing_streak=streak, **(pm or {"risk_pct": rp})))
+            lines += [f"## P6 · Playbook portfolio ({' + '.join(pb['setups'])}, exit {tgt}, 1 per symbol, 1 per sector, max {c['risk']['max_open']} open)", "",
+                      fmt_table(rows6, ["risk", "trades", "trades_per_year", "expectancy", "win_rate", "longest_losing_streak",
+                                        "cagr", "max_dd", "mar", "final"]), ""]
+            k.to_csv(RESULTS / f"P6_playbook_{a.tf}_{a.universe}.csv", index=False)
+
+    # ---------------- E6 earnings: playbook E4 within 20 bars after a positive earnings gap vs other times (stocks)
+    if edir.exists() and a.tf == "daily" and not trades_all.empty:
+        near_r, other_r = [], []
+        d = trades_all[(trades_all.setup == "E4_anchor_reclaim") & (trades_all.exit_rule == tgt)]
+        for s, x in reads.items():
+            f = edir / f"{s}.csv"
+            if not f.exists():
+                continue
+            e = pd.read_csv(f, index_col=0, parse_dates=True)
+            sp = next((k for k in e.columns if "surprise" in k), None)
+            if sp is None:
+                continue
+            gap = x["open"] / x["close"].shift(1) - 1
+            react = pd.Series(False, index=x.index)
+            for d0, row in e.iterrows():
+                if pd.isna(row[sp]) or row[sp] <= 0:
+                    continue
+                win = x.index[x.index >= d0][:2]
+                if len(win):
+                    dd = max(win, key=lambda q: abs(gap.get(q, 0)))
+                    if gap.get(dd, 0) > 0.02 and x.at[dd, "close"] > x.at[dd, "open"]:
+                        react.at[dd] = True
+            near = _bars_since(react) <= 20
+            for _, t in d[d.symbol == s].iterrows():
+                i = x.index.get_loc(t.entry_date)
+                (near_r if bool(near.iloc[max(i - 1, 0)]) else other_r).append(t.r)
+        if len(near_r) > 5 and len(other_r) > 5:
+            rng = np.random.default_rng(5)
+            a_, b_ = np.array(near_r), np.array(other_r)
+            diffs = [rng.choice(a_, len(a_)).mean() - rng.choice(b_, len(b_)).mean() for _ in range(2000)]
+            lo = float(np.quantile(diffs, 0.025))
+            lines += ["## E6 · Playbook E4 after a positive earnings gap (stocks)", "",
+                      fmt_table([dict(group="E4 ≤20 bars after positive gap", n=len(a_), expectancy=a_.mean()),
+                                 dict(group="E4 at other times", n=len(b_), expectancy=b_.mean()),
+                                 dict(group="Difference (95% CI low)", n=len(a_) + len(b_), expectancy=a_.mean() - b_.mean(), ci_low=lo,
+                                      verdict="EARNINGS CONTEXT HELPS" if lo > 0 else "NO CLEAR EFFECT")],
+                                ["group", "n", "expectancy", "ci_low", "verdict"]), ""]
 
     lines += ["---", "**How to read verdicts.** ADOPT = ≥ min trades, bootstrap CI above 0 after correcting for the number of tests, "
               "positive in both time halves and both symbol halves, and better than random entries with the same exits. "
