@@ -131,7 +131,7 @@ def main():
     lines = [f"# IFI Lab results: {a.tf} · {a.universe}",
              f"_Run {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · {len(reads)} symbols · "
              f"{min(x.index[0] for x in reads.values()):%Y-%m-%d} to {max(x.index[-1] for x in reads.values()):%Y-%m-%d} · "
-             f"split {split} · {n_tests} setup×exit tests (Bonferroni-adjusted) · engine v1.3.1_", ""]
+             f"split {split} · {n_tests} setup×exit tests (Bonferroni-adjusted) · engine v1.3.3_", ""]
     if a.universe in ("stocks", "all"):
         lines += ["> **Survivorship bias:** this stock list was chosen in 2026 from today's large caps, so random long entries "
                   "earn money too. Judge stock setups by their edge over the random-entry control, not by raw expectancy.", ""]

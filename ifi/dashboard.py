@@ -197,7 +197,7 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
     pt_html = "<p class='mut'>No paper trades yet.</p>"
     if pt is not None and not pt.empty:
         show = pt[pt["oos"].astype(bool)] if pt["oos"].astype(bool).any() else pt
-        order = {"open": 0, "pending": 1, "closed": 2, "cancelled": 3}
+        order = {"open": 0, "pending": 1, "closed": 2, "skipped": 3, "cancelled": 4}
         show = show.assign(_o=show["status"].map(order)).sort_values(["_o", "signal_bar"], ascending=[True, False]).head(20)
         def g(v, d=2):
             return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else (f"{v:.{d}f}" if isinstance(v, (int, float)) else str(v))

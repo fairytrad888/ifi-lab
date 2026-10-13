@@ -34,49 +34,115 @@ def _exit_rule(c) -> str:
     return "X2_target2R" if c.get("playbook", {}).get("target_r", 3) == 2 else "X3_target3R"
 
 
+PLAYBOOK_NAMES = {"E4_anchor_reclaim": "Playbook E4 anchor reclaim", "E1_trigger_with_trend": "Playbook E1 trigger with trend"}
+PRELIVE_BARS = 250  # pre-live history paper-traded for reference and to carry open trades into the live period
+
+
+def _fill_bar_trade(x: pd.DataFrame, i: int, ex: str, cost: float, r_mult: float):
+    """A signal whose fill bar is the newest completed bar (i + 1 == n - 1). backtest.simulate()
+    only scans signals with t < n - 2, so it never sees this case; apply its rules to that one bar.
+    Returns None when the trade is skipped (opened below structure / no risk), else a dict."""
+    o, h, l, c = (float(x[k].iloc[i + 1]) for k in ("open", "high", "low", "close"))
+    low5 = float(x["low"].iloc[max(i - 4, 0):i + 1].min())
+    atr = float(x["atr"].iloc[i])
+    if np.isnan(atr) or np.isnan(o):
+        return None
+    stop = low5 - 0.5 * atr
+    risk = o - stop
+    if o < low5 or not (risk > 0):
+        return None
+    target = o + bt.EXITS[ex].get("target", np.inf) * risk if "target" in bt.EXITS[ex] else np.inf
+    mfe = mae = 0.0
+    if l <= stop:  # same order as simulate(): stop first on the fill bar (exit at the stop level)
+        px, reason = stop, "stop"
+    else:
+        mfe, mae = (h - o) / risk, (l - o) / risk
+        if h >= target:
+            px, reason = target, "target"
+        else:
+            px, reason = c, "open_at_end"
+    r = (px - o) / risk - cost * (o + px) / risk
+    return dict(entry_date=x.index[i + 1], exit_date=x.index[i + 1], bars=1, r=r, mfe_r=mfe, mae_r=mae,
+                reason=reason, fill=o, stop=stop, target=o + r_mult * risk)
+
+
 def paper_trades(log: pd.DataFrame, frames: dict, c: dict) -> pd.DataFrame:
-    if log.empty or "family" not in log:
-        return pd.DataFrame()
+    """Paper-trade the Daily playbook exactly as the backtest does (v1.3.2).
+
+    Signals come from backtest.setups() on each symbol's completed Daily bars, and ALL signals of a
+    symbol/setup go through ONE backtest.simulate() call, so the forward test keeps the backtest's
+    sequencing: a new signal is skipped while that symbol/setup already has a trade open (including
+    trades opened before the forward-test start). `log` is kept for the call signature only."""
     ex = _exit_rule(c)
-    r_mult = c.get("playbook", {}).get("target_r", 3)
+    pb = c.get("playbook", {})
+    r_mult = pb.get("target_r", 3)
     start = pd.Timestamp(str(c.get("forward_test", {}).get("start", "2100-01-01")))
     etfs = set(c["etfs"])
-    sig = log[(log["family"] == "Playbook") & (log["tf"] == "daily")]
     rows = []
-    for e in sig.itertuples():
-        x = frames.get(("daily", e.symbol))
-        bar = pd.Timestamp(e.bar)
-        if x is None or bar not in x.index:
+    for (tf, sym), x in frames.items():
+        if tf != "daily" or x is None or len(x) < 3:
             continue
-        i = x.index.get_loc(bar)
-        setup = getattr(e, "setup", None)
-        if not isinstance(setup, str):
-            setup = "E4_anchor_reclaim" if "E4" in str(e.event) else "E1_trigger_with_trend"
-        base = dict(signal_id=e.id, symbol=e.symbol, setup=setup, signal_bar=bar, oos=bool(bar >= start))
-        if i + 1 >= len(x):
-            rows.append({**base, "status": "pending"})
-            continue
-        low5 = x["low"].iloc[max(i - 4, 0):i + 1].min()
-        stop = low5 - 0.5 * x["atr"].iloc[i]
-        fill = x["open"].iloc[i + 1]
-        ent = pd.Series(False, index=x.index)
-        ent.iloc[i] = True
-        cost = c["costs"]["etf"] if e.symbol in etfs else c["costs"]["stock"]
-        tr = bt.simulate(e.symbol, x, ent, setup, ex, cost)
-        if not tr:
-            rows.append({**base, "status": "cancelled", "fill_date": x.index[i + 1], "fill": round(fill, 4),
-                         "stop": round(stop, 4), "exit_reason": "opened below structure"})
-            continue
-        t = tr[0]
-        risk = fill - stop
-        is_open = t.reason == "open_at_end"
-        rows.append({**base, "status": "open" if is_open else "closed", "exit_reason": "" if is_open else t.reason,
-                     "fill_date": t.entry_date, "fill": round(fill, 4), "stop": round(stop, 4),
-                     "target": round(fill + r_mult * risk, 4), "exit_date": pd.NaT if is_open else t.exit_date,
-                     "bars": t.bars, "r": round(t.r, 3), "mfe_r": round(t.mfe_r, 3), "mae_r": round(t.mae_r, 3)})
+        sets = bt.setups(x)
+        cost = c["costs"]["etf"] if sym in etfs else c["costs"]["stock"]
+        first = max(int(np.searchsorted(x.index.values, np.datetime64(start))) - PRELIVE_BARS, 0)
+        low5 = x["low"].rolling(5).min()
+        for su in pb.get("setups", []):
+            if su not in sets:
+                continue
+            ent = sets[su].copy()
+            ent.iloc[:first] = False
+            sig_idx = np.flatnonzero(ent.to_numpy())
+            if not len(sig_idx):
+                continue
+            trades = bt.simulate(sym, x, ent, su, ex, cost)
+            pos = {x.index.get_loc(t.entry_date): t for t in trades}
+            spans = [(x.index.get_loc(t.entry_date), x.index.get_loc(t.exit_date), t.reason) for t in trades]
+            for i in sig_idx:
+                bar = x.index[i]
+                sid = f"daily|{sym}|{bar:%Y-%m-%d %H:%M}|{PLAYBOOK_NAMES.get(su, su)}"
+                base = dict(signal_id=sid, symbol=sym, setup=su, signal_bar=bar, oos=bool(bar >= start))
+                stop = low5.iloc[i] - 0.5 * x["atr"].iloc[i]
+                in_trade = any(e0 <= i and (i < e1 or why == "open_at_end") for e0, e1, why in spans)
+                if (i + 1) in pos:
+                    t = pos[i + 1]
+                    fill = x["open"].iloc[i + 1]
+                    risk = fill - stop
+                    is_open = t.reason == "open_at_end"
+                    rows.append({**base, "status": "open" if is_open else "closed",
+                                 "exit_reason": "" if is_open else t.reason,
+                                 "fill_date": t.entry_date, "fill": round(fill, 4), "stop": round(stop, 4),
+                                 "target": round(fill + r_mult * risk, 4),
+                                 "exit_date": pd.NaT if is_open else t.exit_date, "bars": t.bars,
+                                 "r": round(t.r, 3), "mfe_r": round(t.mfe_r, 3), "mae_r": round(t.mae_r, 3)})
+                elif in_trade:
+                    rows.append({**base, "status": "skipped", "exit_reason": "trade already open (backtest rule)",
+                                 "stop": round(stop, 4)})
+                elif i + 1 == len(x) - 1:  # fill bar is the newest completed bar (not covered by simulate)
+                    t = _fill_bar_trade(x, i, ex, cost, r_mult)
+                    if t is None:
+                        rows.append({**base, "status": "cancelled", "fill_date": x.index[i + 1],
+                                     "fill": round(x["open"].iloc[i + 1], 4), "stop": round(stop, 4),
+                                     "exit_reason": "opened below structure"})
+                    else:
+                        is_open = t["reason"] == "open_at_end"
+                        rows.append({**base, "status": "open" if is_open else "closed",
+                                     "exit_reason": "" if is_open else t["reason"], "fill_date": t["entry_date"],
+                                     "fill": round(t["fill"], 4), "stop": round(t["stop"], 4),
+                                     "target": round(t["target"], 4),
+                                     "exit_date": pd.NaT if is_open else t["exit_date"], "bars": 1,
+                                     "r": round(t["r"], 3), "mfe_r": round(t["mfe_r"], 3), "mae_r": round(t["mae_r"], 3)})
+                        if is_open:
+                            spans.append((i + 1, len(x) - 1, "open_at_end"))
+                elif i + 1 >= len(x):
+                    rows.append({**base, "status": "pending", "stop": round(stop, 4),
+                                 "cancel_if_open_below": round(low5.iloc[i], 4)})
+                else:
+                    rows.append({**base, "status": "cancelled", "fill_date": x.index[i + 1],
+                                 "fill": round(x["open"].iloc[i + 1], 4), "stop": round(stop, 4),
+                                 "exit_reason": "opened below structure"})
     pt = pd.DataFrame(rows)
     if not pt.empty:
-        pt = pt.sort_values("signal_bar").reset_index(drop=True)
+        pt = pt.sort_values(["signal_bar", "symbol"]).reset_index(drop=True)
         PAPER.parent.mkdir(parents=True, exist_ok=True)
         pt.to_csv(PAPER, index=False)
     return pt
@@ -194,6 +260,8 @@ def alert_lines(pt: pd.DataFrame, board: dict, dr: dict) -> list[str]:
             lines.append(f"Paper exit: {r.symbol} {r.setup.split('_')[0]} {r.exit_reason} {r.r:+.2f}R")
         elif r.status == "cancelled":
             lines.append(f"Paper cancelled: {r.symbol} opened below structure")
+        elif r.status == "skipped":
+            lines.append(f"Paper skipped: {r.symbol} {r.setup.split('_')[0]} (a trade from this setup is already open)")
     for su, b in board.items():
         old = prev.get("status", {}).get(su)
         if not first_run and old and old != b["status"] and not b["status"].startswith("COLLECTING"):
