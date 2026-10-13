@@ -7,6 +7,10 @@ The IFI indicator set, rebuilt in Python, running itself every night for free on
 | Data refresh (Yahoo Finance) | Weeknights 22:15 UTC | Daily + 4H bars, earnings dates |
 | Scan of your watchlist (Daily + 4H) | Weeknights | New events added to `logs/events.csv` with stop and share size |
 | Outcome tracking | Weeknights | Each logged event gets its 5- and 10-bar result vs SPY, in R |
+| **Forward test** | Weeknights | Every Daily playbook signal is paper-traded with the exact backtest rules (`logs/paper_trades.csv`) |
+| **Scoreboard** | Weeknights | Live results per setup vs the backtest: ON TRACK / WATCH / STOP (`logs/scoreboard.json`) |
+| **Drift check** | After each backtest run | Flags and alerts if a playbook setup loses ADOPT on either universe (`state/drift.json`) |
+| **Execution check** | Weeknights | Journal trades matched to signals: signals taken, entry slippage and result gap in R |
 | Dashboard | Weeknights | `docs/index.html`: Sector Board, rotation map, events, statistics, journal |
 | Phone alerts (optional) | Weeknights | Push via ntfy.sh for the events you choose |
 | Backtest queue | Saturdays, or on demand | `reports/SUMMARY_*.md` with ADOPT / PROMISING / REJECT verdicts |
@@ -57,4 +61,5 @@ open docs/index.html
 | `ifi/dashboard.py` | The static dashboard |
 | `config.yaml` | Universe, watchlist, costs, risk, alert and journal settings |
 | `PROCESS.md` | The operating routine, priorities and decision rules |
-| `tests/test_smoke.py` | Indicator sanity + a random-walk check that the engine has no look-ahead bias |
+| `ifi/forward.py` | Paper trades, scoreboard, drift check, journal matching, change alerts |
+| `tests/test_smoke.py` | Parity with TradingView (golden values), indicator sanity, random-walk look-ahead check. Runs before every backtest. |

@@ -35,7 +35,7 @@ testing:
 
 risk:
   account: 25000             # used only for share-size suggestions in the log
-  risk_per_trade: 0.01       # 1% of account per idea
+  risk_per_trade: 0.0075     # 0.75% per idea (over half of 3R trades lose; ~8-loss streaks are normal)
   max_open: 5
 
 alerts:
@@ -47,3 +47,14 @@ journal:
   # optional: a Google Sheet tab published to the web as CSV (File > Share > Publish to web > CSV)
   # columns: date,symbol,setup,side,entry,stop,exit,exit_date,shares,notes
   trades_csv_url: ""
+
+# Playbook (Round 1, engine v1.1): setups ADOPTED on BOTH ETFs and stocks, traded with one exit rule.
+playbook:
+  setups: [E4_anchor_reclaim, E1_trigger_with_trend]
+  target_r: 3              # exit at entry + 3R; stop = 5-bar low - 0.5 ATR
+  cancel_if_open_below_structure: true
+
+# Forward test (v1.3): every Daily playbook signal is paper-traded with the exact backtest rules.
+forward_test:
+  start: "2026-10-12"         # signals on/after this date count as live (rules frozen Oct 12, 2026)
+  min_trades_for_status: 20   # scoreboard status needs this many closed live trades

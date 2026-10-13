@@ -49,6 +49,8 @@ Find out what works as fast as possible, decide by rules written in advance, and
 
 ## Routine
 
+**The loop (automatic, v1.3):** signal → paper trade (exact backtest rules) → scoreboard vs backtest → status → alert on change. Saturday backtests feed the drift check. Your journal is matched to the signals.
+
 **Each evening (5 minutes, after the board updates around 6:30 pm ET):**
 1. Check the regime line at the top of the board for context only. Round 1 (P2) found no reliable benefit from skipping or shrinking trades in "caution" regimes, so size stays constant.
 2. Look at alerts and the Sector Board for stage 2–3 names with fresh events.
@@ -56,19 +58,31 @@ Find out what works as fast as possible, decide by rules written in advance, and
 4. Enter with the logged stop and share size. Add the trade to the journal sheet.
 
 **Saturday (20 minutes):**
-1. Backtests rerun automatically. Read `SUMMARY_*.md`, or ask Claude to review the repo.
+1. Backtests rerun automatically. Check the **Scoreboard** and any **drift banner** first. Then read `SUMMARY_*.md`, or ask Claude to review the repo.
+   - **ON TRACK:** keep trading.
+   - **WATCH:** halve risk on that setup.
+   - **STOP or drift:** pause that setup and bring it to Claude.
 2. Check the rotation map and update the watchlist in `config.yaml` (leading and improving sectors, plus their power names).
 3. Compare the event statistics and journal against the backtest verdicts.
 
 **Monthly:** a CPI or Fed review using the pre-event baseline and post-event comparison (the October template in the IFI project).
 
-## Round 1 decisions (Oct 12, 2026; provisional until the v1.1 rerun)
-- **Primary setup:** E4 anchor reclaim + X3 3R target. ADOPT on ETFs (+0.32R, n=885) and on stocks (+0.28R, n=3160).
-- **Secondary:** E1 with-trend trigger + 3R (ADOPT on ETFs, but only about 5 trades a year); E5 score ≥4 + 2R/3R.
-- **Not entries:** E2 exhaustion confluence (REJECT with every exit) and E3 stage-2 transition. Keep them as chart context only.
-- **Exits:** fixed 2R/3R targets beat trailing exits. The Trend-line trail exits pullback entries within about 4 bars.
-- **Regime filter:** not supported (P2). **Sector cap:** adopted (P4: MAR 0.19 → 0.26).
-- **Risk:** 0.5–1% per trade.
+## Round 1 decisions (engine v1.1 rerun, Oct 12, 2026)
+**Adoption rule added:** a setup/exit pair joins the playbook only if it is ADOPT on **both** ETFs and stocks (two-universe replication).
+
+| Pair | ETFs (edge over random) | Stocks (edge over random) | Status |
+|---|---|---|---|
+| **E4 anchor reclaim + 3R** | +0.324R (+0.18), n=885 | +0.281R (+0.14), n=3157 | **Playbook: primary** |
+| **E1 with-trend trigger + 3R** | +0.410R (+0.26), n=135 | +0.324R (+0.18), n=522 | **Playbook: secondary (rare)** |
+| E4 + 2R / stage-drop / trail | ADOPT both, smaller edges | ADOPT both | Allowed alternatives, not used (one exit keeps it simple) |
+| E5 score ≥4 + 2R | +0.08 edge | +0.06 edge | Dropped: small edge, overlaps E4 |
+| E1b counter-trend + chandelier | ADOPT | REJECT | Not replicated |
+| E2 exhaustion, E3 stage-2 | REJECT / stock-only | — | Context only |
+
+- **Exit:** one rule. Stop = 5-bar low − 0.5 ATR; target = 3R; skip if the next open is below the 5-bar low.
+- **Risk:** 0.75% per trade. Over half of 3R trades lose (median ≈ −1R), and losing streaks of 8–14 are normal.
+- **Limits:** one open position per symbol and per sector, max 5 open. **No regime filter** (P2 found no effect).
+- **4H:** counter-trend triggers + 3R or chandelier look promising (+0.38R, n≈150) but there are only 3 years of data. Watch only; rerun quarterly.
 
 ## Roadmap
 
