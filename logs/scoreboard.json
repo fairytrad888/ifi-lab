@@ -8,8 +8,8 @@
   "live_win_rate": null,
   "live_total_r": 0.0,
   "open_trades": 0,
-  "prelive_n": 0,
-  "prelive_expectancy": null,
+  "prelive_n": 38,
+  "prelive_expectancy": 0.5090526315789473,
   "ref_expectancy": 0.2907099545606194,
   "ref_ci_low": 0.2283760220969313,
   "ref": {
@@ -36,8 +36,8 @@
   "live_win_rate": null,
   "live_total_r": 0.0,
   "open_trades": 0,
-  "prelive_n": 0,
-  "prelive_expectancy": null,
+  "prelive_n": 11,
+  "prelive_expectancy": -0.3078181818181818,
   "ref_expectancy": 0.34197059645644007,
   "ref_ci_low": 0.1286056253616256,
   "ref": {
