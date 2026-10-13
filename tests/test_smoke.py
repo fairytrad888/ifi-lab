@@ -54,7 +54,31 @@ def test_no_lookahead():
     assert m["ci_low"] < 0.05, "positive edge on a random walk -> look-ahead bias"
 
 
+# Values read from TradingView (IFI 1.0, 4H) on the bar each fixture ends with. SMH was ~6 min before its
+# bar closed, so its tolerances are tight; XLF/XLU were mid-bar, so only the slow Trend line is held tight.
+GOLDEN = {
+    "SMH": dict(tol=dict(tr_line=0.1, sig_wt1=0.5, sig_wt2=0.5, sig_channel=0.5, mx_rsi=0.5),
+                tv=dict(tr_line=603.86, sig_wt1=15.37, sig_wt2=30.73, sig_channel=6.05, mx_rsi=45.88)),
+    "XLF": dict(tol=dict(tr_line=0.05, sig_wt1=2.0, sig_wt2=2.0, sig_channel=2.0),
+                tv=dict(tr_line=54.69, sig_wt1=-17.64, sig_wt2=-29.26, sig_channel=-29.03)),
+    "XLU": dict(tol=dict(tr_line=0.05, sig_wt1=2.0, sig_wt2=2.0),
+                tv=dict(tr_line=40.85, sig_wt1=32.16, sig_wt2=28.62)),
+}
+
+
+def test_parity_with_tradingview():
+    from ifi.indicators import compute_all
+    for sym, g in GOLDEN.items():
+        df = pd.read_csv(ROOT / "tests" / "fixtures" / f"{sym}_4h_golden.csv", index_col=0, parse_dates=True)
+        last = compute_all(df, v2=False).iloc[-1]
+        for k, tv in g["tv"].items():
+            diff = abs(last[k] - tv)
+            assert diff <= g["tol"][k], f"parity drift {sym} {k}: python {last[k]:.3f} vs TradingView {tv} (diff {diff:.3f})"
+    print("parity with TradingView ok:", ", ".join(GOLDEN))
+
+
 if __name__ == "__main__":
+    test_parity_with_tradingview()
     test_indicators()
     test_no_lookahead()
     print("all smoke tests passed")
