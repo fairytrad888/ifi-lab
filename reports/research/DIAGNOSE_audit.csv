@@ -1,0 +1,44 @@
+kind,ratio,from,to,note,found,dates,nearest,pivots
+reclaim,XLK,2026-04-06,2026-04-24,"mid-Apr E4, leg to 0.262",True,2026-04-13 (B),,
+reclaim,XLK,2026-09-08,2026-09-25,mid-Sep E4,True,"2026-09-08 (none), 2026-09-11 (none), 2026-09-17 (none)",,
+reclaim,SMH,2026-09-08,2026-09-25,mid-Sep E4,True,2026-09-22 (A),,
+reclaim,XLE,2026-01-08,2026-01-23,mid-Jan E4 (+2.98R),True,2026-01-14 (A),,
+reclaim,XLE,2026-07-20,2026-08-21,late-Jul / mid-Aug E4s,True,"2026-07-23 (B), 2026-07-29 (none), 2026-08-14 (none)",,
+reclaim,XLV,2026-03-18,2026-04-03,late-Mar E4 without a floor (-1.1R),True,2026-03-30 (B),,
+reclaim,XLV,2026-06-08,2026-06-24,mid-Jun E4,False,,2026-06-25 (1 bars after) tier none,
+reclaim,XLRE,2026-01-29,2026-02-13,early-Feb E4,True,2026-02-10 (none),,
+reclaim,XLRE,2026-07-20,2026-08-03,late-Jul E4 (-1.03R),True,2026-07-24 (none),,
+reclaim,RSP,2025-12-01,2025-12-31,Dec E4 without a visible floor,True,2025-12-16 (A),,
+reclaim,RSP,2026-06-08,2026-06-24,mid-Jun E4,True,2026-06-24 (B),,
+reclaim,XLF,2025-12-15,2026-01-02,late-Dec E4 without a floor,False,,2025-12-12 (1 bars before) tier B,
+reclaim,XLF,2026-06-08,2026-06-30,June E4 after the June floor,False,,2026-07-02 (2 bars after) tier A,
+reclaim,XLI,2025-12-29,2026-01-16,early-Jan E4 (+2.96R),True,2026-01-05 (A),,
+reclaim,XLI,2026-06-18,2026-07-02,late-Jun E4 (-1.03R),True,"2026-06-22 (none), 2026-06-24 (none)",,
+reclaim,XLU,2026-01-20,2026-02-06,late-Jan E4,False,,2026-02-12 (4 bars after) tier none,
+reclaim,XLE,2021-12-27,2022-01-14,"Dec 2021 reclaim, leg to Jun 2022",True,2022-01-04 (A),,
+reclaim,XLE,2022-08-22,2022-09-09,Aug 2022 reclaim of 0.0958,True,2022-08-22 (none),,
+reclaim,XLU,2021-11-29,2021-12-17,early-Dec 2021 reclaim,True,"2021-12-06 (none), 2021-12-13 (none)",,
+reclaim,XLU,2022-08-08,2022-08-26,mid-Aug 2022 reclaim,True,"2022-08-09 (none), 2022-08-17 (none)",,
+reclaim,XLU,2022-11-28,2022-12-16,early-Dec 2022 reclaim,True,"2022-11-28 (none), 2022-12-06 (none)",,
+reclaim,XLK,2022-07-18,2022-08-05,late-Jul 2022 reclaim,True,2022-07-20 (A),,
+r3,XLK,2026-06-15,2026-07-10,June top,False,,2026-07-16 (4 bars after),03-25 0.2102 HH; 04-30 0.2245 HH; 05-14 0.2407 HH; 06-08 0.2619 HH; 06-25 0.2590 LH; 07-06 0.2553 LH
+r3,SMH,2026-06-15,2026-07-17,June top (-22%),True,2026-07-16,,
+r3,XLE,2026-04-01,2026-04-24,April collapse,False,,2026-05-08 (10 bars after),01-08 0.0687 HH (line not rising); 02-24 0.0814 HH; 03-05 0.0851 HH; 04-02 0.0991 HH
+r3,XLV,2026-03-25,2026-04-17,March top,True,2026-04-09,,
+r3,XLRE,2026-03-25,2026-04-30,"Mar lower high, Apr lower low",False,,2026-03-20 (3 bars before),01-05 0.0593 LH (line not rising); 01-23 0.0615 HH (line not rising); 02-20 0.0643 HH; 03-06 0.0642 LH; 03-25 0.0639 LH (line not rising); 04-06 0.0637 LH (line not rising); 04-10 0.0635 LH (line not rising); 04-23 0.0630 LH (line not rising)
+r3,XLRE,2026-07-27,2026-08-14,after the late-Jul spike,False,,2026-09-04 (15 bars after),04-23 0.0630 LH (line not rising); 05-26 0.0599 LH (line not rising); 06-15 0.0620 HH (line not rising); 07-01 0.0625 HH (line not rising); 07-13 0.0604 LH (line not rising); 07-22 0.0616 HH (line not rising); 08-03 0.0630 HH
+r3,RSP,2026-03-20,2026-04-17,March top,True,2026-04-09,,
+r3,RSP,2026-08-31,2026-09-18,second top,True,2026-09-08,,
+r3,XLF,2026-01-15,2026-02-10,January top,True,2026-01-23,,
+r3,XLF,2026-09-04,2026-09-25,September top,True,2026-09-08,,
+r3,XLI,2026-03-30,2026-04-17,March top,True,2026-04-15,,
+r3,XLI,2026-07-27,2026-08-14,July top,True,2026-08-07,,
+r3,XLU,2026-04-01,2026-04-24,Mar-Apr top,False,,2026-05-06 (8 bars after),01-07 0.0632 LH (line not rising); 01-26 0.0637 HH (line not rising); 02-03 0.0629 LH (line not rising); 02-20 0.0688 HH; 03-05 0.0699 HH; 03-25 0.0711 HH; 04-02 0.0727 HH
+r3,XLU,2026-08-03,2026-08-28,August top,False,,none within 40 bars,05-28 0.0608 LH (line not rising); 06-16 0.0608 LH (line not rising); 07-01 0.0640 HH (line not rising); 07-10 0.0617 LH (line not rising); 07-22 0.0619 HH (line not rising); 07-29 0.0628 HH (line not rising); 08-21 0.0580 LH (line not rising)
+r3,XLE,2021-11-08,2021-12-03,Oct-Nov 2021 top,False,,2021-10-29 (6 bars before),08-16 0.0565 LH (line not rising); 09-01 0.0551 LH (line not rising); 09-22 0.0564 HH (line not rising); 10-14 0.0657 HH; 10-21 0.0652 LH; 10-29 0.0649 LH; 11-11 0.0632 LH (line not rising); 11-30 0.0620 LH (line not rising)
+r3,XLE,2022-06-20,2022-07-15,June 2022 top,True,2022-07-05,,
+r3,XLE,2022-12-01,2022-12-23,Nov-Dec 2022 top,True,2022-12-05,,
+r3,XLK,2021-12-27,2022-01-21,Dec 2021 top,True,2022-01-05,,
+r3,XLK,2022-08-22,2022-09-16,Aug 2022 top,True,2022-08-22,,
+r3,XLU,2022-07-11,2022-07-29,July 2022 whipsaw,True,2022-07-19,,
+r3,XLU,2022-10-03,2022-11-04,Sep-Oct 2022 top,False,,2022-11-11 (5 bars after),07-18 0.0924 LH; 07-29 0.0905 LH (line not rising); 08-05 0.0909 HH (line not rising); 08-12 0.0914 HH (line not rising); 08-25 0.0928 HH; 09-13 0.0973 HH; 09-19 0.0973 HH; 09-29 0.0977 HH
