@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       step:
-        description: "Gate to run (all = Step 0, then Step 1 gated by Step 0)"
+        description: "Gate to run (all = Step 0, then Step 1 gated by Step 0; diagnose = input checks only, no returns)"
         type: choice
-        options: [all, step0, step1]
+        options: [all, step0, step1, diagnose]
         default: all
       refresh_data:
         description: "Download a new frozen data snapshot (leave off to reuse the committed one)"
@@ -36,11 +36,15 @@ jobs:
         run: python tests/test_smoke.py
       - name: Research tests (state machines, look-ahead, bootstrap, lock, fixtures)
         run: python tests/test_research.py
-      - name: Run research gates
+      - name: Run research gates (or diagnostics)
         run: |
-          ARGS="--step ${{ inputs.step }}"
-          if [ "${{ inputs.refresh_data }}" = "true" ]; then ARGS="$ARGS --refresh-data"; fi
-          python -m research.run $ARGS
+          if [ "${{ inputs.step }}" = "diagnose" ]; then
+            python -m research.diagnose
+          else
+            ARGS="--step ${{ inputs.step }}"
+            if [ "${{ inputs.refresh_data }}" = "true" ]; then ARGS="$ARGS --refresh-data"; fi
+            python -m research.run $ARGS
+          fi
       - name: Commit results and snapshot
         run: |
           git config user.name "ifi-bot"

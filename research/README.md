@@ -7,7 +7,7 @@ Use **Actions → Research → Run workflow**:
 
 | Input | Meaning |
 |---|---|
-| `step` | `all` (default): Step 0, then Step 1 gated by Step 0. Or `step0`, or `step1` (needs an earlier Step 0 result) |
+| `step` | `all` (default): Step 0, then Step 1 gated by Step 0. Or `step0`, or `step1` (needs an earlier Step 0 result), or `diagnose` (input checks only, writes `DIAGNOSE.md`) |
 | `refresh_data` | Off: reuse the committed frozen snapshot. On: download a new one. The first run creates it automatically |
 
 All results are written to `reports/research/`:
@@ -71,6 +71,7 @@ If either falls short, the run is marked **PROVISIONAL** and must be reviewed be
 | `checks.py`, `synthetic.py` | Look-ahead check and synthetic markets |
 | `fixtures_scan.yaml` | Definition audit and parity fixtures |
 | `run.py` | The runner |
+| `diagnose.py` | Input checks only: TradingView parity, definition audit with nearest engine events, data and state summary, and a chart per logged event. Computes no returns and is not locked |
 | `../tests/test_research.py` | Unit tests |
 
 **Changing a definition after results are seen** needs a new version: a new `prereg_v22.yaml` and a new lock (`python -m research.common --write-lock`), visible in git history. Never edit v2.1 in place.
