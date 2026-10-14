@@ -1,0 +1,147 @@
+{
+ "created_utc": "2026-10-14T20:46:56Z",
+ "cutoff": "2026-10-14",
+ "files": {
+  "GLD": {
+   "file": "GLD.csv.gz",
+   "first": "2004-11-18",
+   "last": "2026-10-14",
+   "rows": 5510,
+   "sha256": "1e07acc02130f41854277d0abfdc28d44e68e6d3706fe9f69eaba0129d20d8b1"
+  },
+  "IWM": {
+   "file": "IWM.csv.gz",
+   "first": "2000-05-26",
+   "last": "2026-10-14",
+   "rows": 6635,
+   "sha256": "351bdfad17c4d96982d6220cebb3ea3b608e749c9736a2ba5c8a0bb563b86b7e"
+  },
+  "QQQ": {
+   "file": "QQQ.csv.gz",
+   "first": "1999-03-10",
+   "last": "2026-10-14",
+   "rows": 6943,
+   "sha256": "fcf4e71d7b86286c0f2e9b7027629972d2a90fada25e129624b00e7698a3585e"
+  },
+  "RSP": {
+   "file": "RSP.csv.gz",
+   "first": "2003-05-01",
+   "last": "2026-10-14",
+   "rows": 5902,
+   "sha256": "1a8155acd4ade0981ca6488423929b1ea48c9be3483a79faef231a77c08dc6cf"
+  },
+  "SMH": {
+   "file": "SMH.csv.gz",
+   "first": "2000-06-05",
+   "last": "2026-10-14",
+   "rows": 6630,
+   "sha256": "382682b69d34ae6c46231e1976793bf72274d34302751e7dd1474fffe01fc45a"
+  },
+  "SPY": {
+   "file": "SPY.csv.gz",
+   "first": "1993-01-29",
+   "last": "2026-10-14",
+   "rows": 8485,
+   "sha256": "12dfc4dcfced69838370b4187df4235336ef4cea821b4d68079c8c9222b9ef38"
+  },
+  "TLT": {
+   "file": "TLT.csv.gz",
+   "first": "2002-07-30",
+   "last": "2026-10-14",
+   "rows": 6092,
+   "sha256": "34ddf6c67fd4202793b61c19e5530df69d08ed35d087c5c8e3def67e9db031ca"
+  },
+  "XBI": {
+   "file": "XBI.csv.gz",
+   "first": "2006-02-06",
+   "last": "2026-10-14",
+   "rows": 5205,
+   "sha256": "5e94223b46adba9bc8cd67517e2d0266de5b4affabd50dd7df13cc7f4ab7f6fa"
+  },
+  "XLB": {
+   "file": "XLB.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "6befcfe1a5fe1e8b89274b4e123292a75848b4253e07eecc34a2ba5ef1a49cca"
+  },
+  "XLC": {
+   "file": "XLC.csv.gz",
+   "first": "2018-06-19",
+   "last": "2026-10-14",
+   "rows": 2092,
+   "sha256": "dc19f5d89dc22480edf8b9a624dcd1abc92e543d7706d10faea8f4e880d9932e"
+  },
+  "XLE": {
+   "file": "XLE.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "3bf96dd3efe2af26766d2fcfcbc1345af2b35a313c55738f887362cdabd64906"
+  },
+  "XLF": {
+   "file": "XLF.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "2ef8a52be0f57407a375c2390bea05fec170ac3013dfea668fc6cb1cdb4bb8ac"
+  },
+  "XLI": {
+   "file": "XLI.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "6c85e72b9f1362532b4dc9bd2300784cbad5fb08c497a3f4ee04b559befbabde"
+  },
+  "XLK": {
+   "file": "XLK.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "98832faeef899acb220b62cc591db5fc12fbf95eee27da7446e04e6ffbbda076"
+  },
+  "XLP": {
+   "file": "XLP.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "cb446e279f2f472710afec27db1dae23f010785f216af16e890d3f7623838623"
+  },
+  "XLRE": {
+   "file": "XLRE.csv.gz",
+   "first": "2015-10-08",
+   "last": "2026-10-14",
+   "rows": 2770,
+   "sha256": "706898853bf7c7c3b63b925c582c6865a1fb89023f1306a284aa90e58602fbc3"
+  },
+  "XLU": {
+   "file": "XLU.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "a3c6404ec2241582b4d117a119665ecaab9e902ef3b80183cba8fa5392591528"
+  },
+  "XLV": {
+   "file": "XLV.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "0849b6f2ce0f380517180848047be94b04235233c7ca78a4f676e2cc66fb1928"
+  },
+  "XLY": {
+   "file": "XLY.csv.gz",
+   "first": "1998-12-22",
+   "last": "2026-10-14",
+   "rows": 6995,
+   "sha256": "0e4b421f823ddd363d837b7b5e7a41a96675e36568e149f920cbb1b1220af2f3"
+  },
+  "^TNX": {
+   "file": "TNX.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-14",
+   "rows": 16183,
+   "sha256": "e721b5509e145d69b004b59eda36729aa007d4e1de9c684e33bf598815fa015a"
+  }
+ },
+ "source": "Yahoo Finance via yfinance, auto_adjust=False (split-adjusted, not dividend-adjusted)"
+}

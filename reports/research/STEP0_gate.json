@@ -1,0 +1,16 @@
+{
+ "passed": {
+  "P1": false,
+  "P2": false,
+  "P3": false,
+  "P4": false,
+  "P5": false,
+  "P6": false,
+  "P7": false
+ },
+ "stop": true,
+ "manifest": "a5bb7be73b52cba88ed64a65c2a8df9795a2b7ffdd7b0140a3fdf76b973dd09f",
+ "lock": "5345b23c62de650059012dcd76ed3bdacc9f2da8c8638c31e0b4b100074e755a",
+ "cutoff": "2026-10-14",
+ "null_ok": true
+}
