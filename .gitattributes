@@ -1,0 +1,5 @@
+research/*.py text eol=lf
+research/*.yaml text eol=lf
+research/*.md text eol=lf
+research/PREREG.lock text eol=lf
+ifi/*.py text eol=lf

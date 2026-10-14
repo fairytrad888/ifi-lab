@@ -1,0 +1,182 @@
+# IFI ratio rules v2.1: pre-registered Step 1 tests (locked Oct 14, 2026)
+#
+# Every number in this file was fixed BEFORE any Step 1 result existed. The SHA-256 of this file is
+# stored in research/PREREG.lock; research/run.py refuses to run if they differ. Changing anything
+# here after results are seen requires a new version (v2.2) with a new lock, visible in git history.
+
+version: "2.1"
+locked: "2026-10-14"
+
+universe:
+  benchmark: SPY
+  group_S: [XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLRE, XLU, XLV, XLY]
+  group_O: [SMH, XBI, IWM, RSP, QQQ, GLD, TLT]
+  macro: ["^TNX"]
+  start: "2000-01-01"       # first event date counted (indicator warm-up: 250 bars before this)
+  split: "2015-01-01"       # time halves: 2000-2014 / 2015-
+  min_bars: 600
+
+# ---------------------------------------------------------------- thresholds (v2.1, chosen values)
+thresholds:
+  ext_up: 2.0               # up-9 is "extended" at (close - line)/ATR >= this -> warning
+  early9: 10                # down-9 <= this many bars after the breakdown bar -> continuation
+  late9: 20                 # down-9 >= this many bars after the breakdown bar -> late (tier B floor component)
+  floor_win: 40             # washout exit and bullish divergence must fall within this many bars
+  deadline: 60              # floor expires this many bars after its last component
+  flat: 0.5                 # |10-bar line change| / ATR below this = flat line (range regime)
+  slope_bars: 10
+  tol: 0.25                 # ATR tolerance for line touch, anchor hold, floor break, line break
+  piv: 3                    # pivot bars left/right for structure and rule 3
+  xb_warn: 2                # X-B fast exit: warnings needed ...
+  xb_win: 20                # ... within this many bars, then a breakdown bar
+  stop: e4                  # e4 = 5-bar low - 0.5 ATR (Lab standard); lf = floor low - tol*ATR
+  target_r: 3.0             # X-3R target
+  max_hold_3r: 60           # X-3R time exit (bars)
+  max_hold_struct: 250      # X-A / X-B time cap (bars)
+  held_bars: 10             # T5 (descriptive): bars over which a touch is classed held at line / gray / failed
+  touch_gap: 5              # T5: no touch in the previous N bars (first touch of a pullback)
+  stack_gap: 20             # T3 control: one warning-stack event per 20 bars per ratio
+  cost: 0.0005              # per side (ETF)
+
+# neighbours tested one at a time; a PASS needs the same sign at every neighbour of a relevant parameter
+sensitivity:
+  ext_up: [1.5, 2.5]
+  late9: [15, 25]
+  floor_win: [30, 60]
+  deadline: [40, 90]
+  flat: [0.3, 0.7]
+  tol: [0.0, 0.5]
+  piv: [5]
+  xb_warn: [1, 3]
+  xb_win: [30]
+  stop: [lf]
+
+# which parameters can move each test's statistic
+relevant:
+  T1: [floor_win, deadline, flat, tol, late9, piv]
+  T2: [floor_win, deadline, flat, tol, late9, piv]
+  T3: [piv, flat]
+  T4a: [floor_win, deadline, flat, tol, late9, piv, stop]
+  T4b: [floor_win, deadline, flat, tol, late9, piv, stop, xb_warn, xb_win, ext_up]
+  T5: [flat, tol, piv]
+  T6: [floor_win, deadline, flat, tol, late9, piv]
+
+# ---------------------------------------------------------------- statistics
+stats:
+  k: 7                      # primary comparisons: T1, T2, T3, T4a, T4b, T5, T6 (Bonferroni)
+  alpha: 0.05               # family-wise, two-sided -> per test 0.05/7
+  reps: 5000                # bootstrap replications
+  block_months: 3           # calendar blocks of 3 months (outcomes span up to 60 bars, so 1-month blocks would be correlated)
+  seed: 7
+  min_n: 100                # events (or trades) on the tested side, full sample
+  min_n_sub: 20             # events on the tested side in each half and each group
+  min_n_t6: 50              # T6: each side (M > 0 and M <= 0)
+
+# ---------------------------------------------------------------- tests
+# outcome g{h}: log(close[t+h] / open[t+1]) of the ratio, minus the same-day average of all ratios
+# (peer-relative; every ratio shares SPY). Entry is the next open after the signal bar t.
+# n{h}: the numerator ETF's own log return over the same window (the tradeable version).
+# Definitions (full text in research/engine.py):
+#   tier A floor = washout exit + bullish divergence (A&D or Matrix 2-of-3) within floor_win bars, line not rising;
+#   tier B floor = any other floor containing a washout exit or a late down-9 (a divergence + late-9 floor is tier B);
+#   Lf = lowest low from the first to the latest floor component; floor ends on a close < Lf - tol*ATR or
+#   deadline bars after its last component; entry = close back above the resistance anchor (Lab E4) while a
+#   floor is active (one entry per floor).
+#   rule 3 = a higher-high pivot confirmed while the line is rising, then a lower pivot high, then a close below
+#   the most recent pivot low; re-arms only on a new such higher high.
+#   breakdown bar = first close below line - tol*ATR in a bull run (one per bull run).
+# Trades (T4): ifi/backtest.py execution (next-open fill, E4 stop, stop checked first, 0.05% per side).
+#   Entries closer than max_hold_struct bars to the data end are left out of T4 by date (horizon incomplete).
+#   Numerator version: the ETF's open on the exit bar for open fills, otherwise that bar's close (approximation).
+tests:
+  T1:
+    question: "Does a tier A floor + anchor reclaim start a relative leg?"
+    a: "tier A reclaim entries"
+    b: "all ratio-days"
+    measure: g40
+    expect: positive
+    numerator: true
+  T2:
+    question: "Does the bullish divergence add (tier A vs tier B)?"
+    a: "tier A reclaim entries"
+    b: "tier B reclaim entries"
+    measure: g40
+    expect: positive
+    numerator: true
+  T3:
+    question: "Does rule 3 confirmation (lower high, then close below the last pivot low) predict further relative decline?"
+    a: "rule 3 confirmations"
+    b: "all ratio-days"
+    measure: g20
+    expect: negative
+    numerator: false
+  T4a:
+    question: "Does the structural exit X-A beat X-3R on the same rule 2 trades?"
+    a: "R(X-A) - R(X-3R), paired, tier A and B entries"
+    measure: paired_r
+    expect: positive
+    numerator: true
+    capital_check: true     # R per 100 bars held of X-A must be >= X-3R's (point estimate)
+  T4b:
+    question: "Does the fast exit X-B beat X-3R on the same rule 2 trades?"
+    a: "R(X-B) - R(X-3R), paired"
+    measure: paired_r
+    expect: positive
+    numerator: true
+    capital_check: true
+  T5:
+    question: "Is the Trend line support in a rising trend (observation 2) more than in a flat-line range?"
+    a: "first touches of the line in a bull trend (rising line, HH + HL)"
+    b: "first touches of the line while it is flat"
+    measure: g20           # forward 20-bar peer-relative return from the next open
+    expect: positive
+    numerator: true
+  T6:
+    question: "Do rule 2 entries do better when the macro regime favours the sector (M > 0)?"
+    a: "tier A + B entries with M > 0"
+    b: "tier A + B entries with M <= 0"
+    measure: g40
+    expect: positive
+    numerator: true
+    regime: "US10Y Trend line rising (line > line 10 bars ago) x SPY stage >= 2"
+    m_estimate: "sector's average g20 per regime, estimated on the OTHER time half (cross-fitted)"
+
+pass_rules:
+  - "n >= min_n on the tested side (T6: min_n_t6 each side) and >= min_n_sub in each half and each group, else INSUFFICIENT"
+  - "Bonferroni-adjusted CI (two-sided 0.05/7, month-block bootstrap) excludes 0 in the expected direction"
+  - "point estimate in the expected direction in both time halves and both groups (S, O)"
+  - "point estimate in the expected direction at every neighbour of every relevant parameter, else FRAGILE"
+  - "T4: R per 100 bars held of the new exit >= X-3R's"
+  - "TRADEABLE if also the numerator-price version has an unadjusted 95% CI in the expected direction (T1, T2, T4, T5, T6); otherwise CONTEXT"
+  - "OPPOSITE if the adjusted CI excludes 0 in the wrong direction"
+
+# Step 0 decides which Step 1 tests are allowed to run (IFI_Research_Gates.md)
+gate:
+  step0_stop: "If Step 0 shows no information at all, Step 1 does not run."
+  requires:
+    T1: [P4, P5]            # any one of these Step 0 tests must PASS
+    T2: [P4, P5]
+    T3: [P1, P2, P3]
+    T4a: [P4, P5]
+    T4b: [P4, P5]
+    T5: [P2, P6]
+    T6: [P4, P5]
+
+# decisions written before results
+decisions:
+  T1: {pass: "Rule 2 (floor + reclaim) goes to Step 2 (sector ETF E4 filter) and the alignment score", fail: "Floors and reclaims stay chart context"}
+  T2: {pass: "Only tier A floors are used", fail: "If tier B is also positive vs all days (unadjusted CI > 0) the tiers merge; otherwise tier B is dropped"}
+  T3: {pass: "Rule 3 becomes the exit/avoid state and a negative ranking input", fail: "Warnings and lower high / lower low stay context only"}
+  T4a: {pass: "X-A replaces the 3R target for ratio-led trades and gets a Lab exit ID for forward testing", fail: "3R target stays"}
+  T4b: {pass: "X-B replaces the 3R target if X-A did not pass; if both pass, X-B is used only if X-B - X-A > 0 (paired point estimate), otherwise X-A", fail: "No fast exit"}
+  T5: {pass: "Pullback-to-line entries in rising trends go to Step 3 (4H execution)", fail: "No pullback entries"}
+  T6: {pass: "The macro term M stays in the alignment score A", fail: "M is dropped from A"}
+
+# validity checks: a run is VALID only if all hold; otherwise results are PROVISIONAL (still written)
+validity:
+  null_runs: "Synthetic random walks through Step 0 and the whole Step 1 pipeline: zero PASS allowed (else the run aborts)"
+  power_run: "Synthetic planted trend persistence (drift +/-0.2%/day, mean regime 80 bars): T1 and T3 must PASS (else the run aborts)"
+  lookahead: "Events computed on data cut at date d equal the full-history events dated <= d (tests/test_research.py)"
+  definition_audit_min: 0.80   # share of eye-logged scan events the engine must find (research/fixtures_scan.yaml)
+  parity_min: 0.90             # share of TradingView screenshot values matched within tolerance
+  parity_tol: 0.015            # relative tolerance

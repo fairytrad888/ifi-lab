@@ -1,0 +1,65 @@
+# Definition audit: events logged BY EYE in the ratio scan (IFI_Ratio_Scan_Log.md, Oct 14, 2026).
+# The engine must find each event inside its window. Dates come from chart reading, so windows are
+# 2-4 weeks wide. "reclaim" = close back above the resistance anchor (the E4 marker on Trend 2.0);
+# "r3" = rule 3 confirmation (lower high, then a close below the last pivot low).
+# Misses are listed in the report for review; they are evidence about the definitions, not tuning targets.
+
+reclaim:
+  - {ratio: XLK,  from: "2026-04-06", to: "2026-04-24", note: "mid-Apr E4, leg to 0.262"}
+  - {ratio: XLK,  from: "2026-09-08", to: "2026-09-25", note: "mid-Sep E4"}
+  - {ratio: SMH,  from: "2026-09-08", to: "2026-09-25", note: "mid-Sep E4"}
+  - {ratio: XLE,  from: "2026-01-08", to: "2026-01-23", note: "mid-Jan E4 (+2.98R)"}
+  - {ratio: XLE,  from: "2026-07-20", to: "2026-08-21", note: "late-Jul / mid-Aug E4s"}
+  - {ratio: XLV,  from: "2026-03-18", to: "2026-04-03", note: "late-Mar E4 without a floor (-1.1R)"}
+  - {ratio: XLV,  from: "2026-06-08", to: "2026-06-24", note: "mid-Jun E4"}
+  - {ratio: XLRE, from: "2026-01-29", to: "2026-02-13", note: "early-Feb E4"}
+  - {ratio: XLRE, from: "2026-07-20", to: "2026-08-03", note: "late-Jul E4 (-1.03R)"}
+  - {ratio: RSP,  from: "2025-12-01", to: "2025-12-31", note: "Dec E4 without a visible floor"}
+  - {ratio: RSP,  from: "2026-06-08", to: "2026-06-24", note: "mid-Jun E4"}
+  - {ratio: XLF,  from: "2025-12-15", to: "2026-01-02", note: "late-Dec E4 without a floor"}
+  - {ratio: XLF,  from: "2026-06-08", to: "2026-06-30", note: "June E4 after the June floor"}
+  - {ratio: XLI,  from: "2025-12-29", to: "2026-01-16", note: "early-Jan E4 (+2.96R)"}
+  - {ratio: XLI,  from: "2026-06-18", to: "2026-07-02", note: "late-Jun E4 (-1.03R)"}
+  - {ratio: XLU,  from: "2026-01-20", to: "2026-02-06", note: "late-Jan E4"}
+  - {ratio: XLE,  from: "2021-12-27", to: "2022-01-14", note: "Dec 2021 reclaim, leg to Jun 2022"}
+  - {ratio: XLE,  from: "2022-08-22", to: "2022-09-09", note: "Aug 2022 reclaim of 0.0958"}
+  - {ratio: XLU,  from: "2021-11-29", to: "2021-12-17", note: "early-Dec 2021 reclaim"}
+  - {ratio: XLU,  from: "2022-08-08", to: "2022-08-26", note: "mid-Aug 2022 reclaim"}
+  - {ratio: XLU,  from: "2022-11-28", to: "2022-12-16", note: "early-Dec 2022 reclaim"}
+  - {ratio: XLK,  from: "2022-07-18", to: "2022-08-05", note: "late-Jul 2022 reclaim"}
+
+r3:
+  - {ratio: XLK,  from: "2026-06-15", to: "2026-07-10", note: "June top"}
+  - {ratio: SMH,  from: "2026-06-15", to: "2026-07-17", note: "June top (-22%)"}
+  - {ratio: XLE,  from: "2026-04-01", to: "2026-04-24", note: "April collapse"}
+  - {ratio: XLV,  from: "2026-03-25", to: "2026-04-17", note: "March top"}
+  - {ratio: XLRE, from: "2026-03-25", to: "2026-04-30", note: "Mar lower high, Apr lower low"}
+  - {ratio: XLRE, from: "2026-07-27", to: "2026-08-14", note: "after the late-Jul spike"}
+  - {ratio: RSP,  from: "2026-03-20", to: "2026-04-17", note: "March top"}
+  - {ratio: RSP,  from: "2026-08-31", to: "2026-09-18", note: "second top"}
+  - {ratio: XLF,  from: "2026-01-15", to: "2026-02-10", note: "January top"}
+  - {ratio: XLF,  from: "2026-09-04", to: "2026-09-25", note: "September top"}
+  - {ratio: XLI,  from: "2026-03-30", to: "2026-04-17", note: "March top"}
+  - {ratio: XLI,  from: "2026-07-27", to: "2026-08-14", note: "July top"}
+  - {ratio: XLU,  from: "2026-04-01", to: "2026-04-24", note: "Mar-Apr top"}
+  - {ratio: XLU,  from: "2026-08-03", to: "2026-08-28", note: "August top"}
+  - {ratio: XLE,  from: "2021-11-08", to: "2021-12-03", note: "Oct-Nov 2021 top"}
+  - {ratio: XLE,  from: "2022-06-20", to: "2022-07-15", note: "June 2022 top"}
+  - {ratio: XLE,  from: "2022-12-01", to: "2022-12-23", note: "Nov-Dec 2022 top"}
+  - {ratio: XLK,  from: "2021-12-27", to: "2022-01-21", note: "Dec 2021 top"}
+  - {ratio: XLK,  from: "2022-08-22", to: "2022-09-16", note: "Aug 2022 top"}
+  - {ratio: XLU,  from: "2022-07-11", to: "2022-07-29", note: "July 2022 whipsaw"}
+  - {ratio: XLU,  from: "2022-10-03", to: "2022-11-04", note: "Sep-Oct 2022 top"}
+
+# TradingView values read from the user's IFI 2.0 screenshots (price-scale labels at the last visible
+# bar; 2026-10-14 values were read intraday). Fields: close, line (Trend line), anchor, sma200.
+parity:
+  - {ratio: XLE, date: "2022-12-30", close: 0.1144, line: 0.1115, anchor: 0.1065, sma200: 0.1013}
+  - {ratio: XLK, date: "2022-12-30", close: 0.1627, line: 0.1650}
+  - {ratio: XLU, date: "2022-12-30", close: 0.0922, line: 0.0905}
+  - {ratio: XLE, date: "2022-08-17", close: 0.0907, line: 0.0923, anchor: 0.0958, sma200: 0.0827}
+  - {ratio: XLU, date: "2022-08-17", close: 0.0908, line: 0.0896, anchor: 0.0905, sma200: 0.0822}
+  - {ratio: XLK, date: "2026-10-14", line: 0.2505, anchor: 0.2440, sma200: 0.2296}
+  - {ratio: XLU, date: "2026-10-14", line: 0.0543, anchor: 0.0603, sma200: 0.0614}
+  - {ratio: XLF, date: "2026-10-14", line: 0.0719, anchor: 0.0740, sma200: 0.0742}
+  - {ratio: XLI, date: "2026-10-14", line: 0.2238, anchor: 0.2349, sma200: 0.2391}

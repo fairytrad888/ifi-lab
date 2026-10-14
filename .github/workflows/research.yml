@@ -1,0 +1,51 @@
+name: Research
+
+on:
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "Gate to run (all = Step 0, then Step 1 gated by Step 0)"
+        type: choice
+        options: [all, step0, step1]
+        default: all
+      refresh_data:
+        description: "Download a new frozen data snapshot (leave off to reuse the committed one)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency: ifi-lab
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install (versions pinned to the ones the research code was validated with)
+        run: |
+          pip install -r requirements.txt
+          pip install pandas==3.0.6 numpy==2.5.4 scipy==1.18.1 matplotlib==3.11.2 yfinance==1.7.0
+      - name: Engine smoke tests (indicators, parity, no look-ahead)
+        run: python tests/test_smoke.py
+      - name: Research tests (state machines, look-ahead, bootstrap, lock, fixtures)
+        run: python tests/test_research.py
+      - name: Run research gates
+        run: |
+          ARGS="--step ${{ inputs.step }}"
+          if [ "${{ inputs.refresh_data }}" = "true" ]; then ARGS="$ARGS --refresh-data"; fi
+          python -m research.run $ARGS
+      - name: Commit results and snapshot
+        run: |
+          git config user.name "ifi-bot"
+          git config user.email "ifi-bot@users.noreply.github.com"
+          if [ -d reports/research ]; then git add reports/research; fi
+          if [ -d research/snapshot ]; then git add research/snapshot; fi
+          git diff --cached --quiet || git commit -m "Research ${{ inputs.step }} $(date -u +%F)"
+          git pull --rebase --autostash && git push
