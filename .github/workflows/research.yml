@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       step:
-        description: "all = Step 0, then Step 1 gated by Step 0; diagnose = input checks only; exits = E4 exit test v1"
+        description: "all = Step 0, then Step 1 gated by Step 0; diagnose = input checks only; exits = E4 exit test v1; profile = E4 profile (descriptive)"
         type: choice
-        options: [all, step0, step1, diagnose, exits]
+        options: [all, step0, step1, diagnose, exits, profile]
         default: all
       refresh_data:
         description: "Download a new frozen data snapshot (leave off to reuse the committed one)"
@@ -38,10 +38,14 @@ jobs:
         run: python tests/test_research.py
       - name: Exit-test unit tests (every exit by hand, Lab parity, truncation, lock)
         run: python tests/test_exits.py
+      - name: v1.4 tests (ladder, safety nets, freshness, tags, dashboard)
+        run: python tests/test_v14.py
       - name: Run research gates (or diagnostics)
         run: |
           if [ "${{ inputs.step }}" = "diagnose" ]; then
             python -m research.diagnose
+          elif [ "${{ inputs.step }}" = "profile" ]; then
+            python -m research.profile
           elif [ "${{ inputs.step }}" = "exits" ]; then
             if [ "${{ inputs.refresh_data }}" = "true" ]; then python -m research.exits.run --refresh-data; else python -m research.exits.run; fi
           else
@@ -56,6 +60,7 @@ jobs:
           if [ -d reports/research ]; then git add reports/research; fi
           if [ -d research/snapshot ]; then git add research/snapshot; fi
           if [ -d reports/exits ]; then git add reports/exits; fi
+          if [ -d reports/profile ]; then git add reports/profile; fi
           if [ -d research/exits/snapshot ]; then git add research/exits/snapshot; fi
           git diff --cached --quiet || git commit -m "Research ${{ inputs.step }} $(date -u +%F)"
           git pull --rebase --autostash && git push

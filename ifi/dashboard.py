@@ -89,7 +89,8 @@ def _rrg_svg(frames, syms):
 
 
 def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFrame | None = None,
-          scoreboard: dict | None = None, drift: dict | None = None):
+          scoreboard: dict | None = None, drift: dict | None = None, alloc_meta: dict | None = None,
+          health: dict | None = None, fresh: dict | None = None, c14: dict | None = None):
     DOCS.mkdir(parents=True, exist_ok=True)
     now = datetime.now(timezone.utc)
     rows = []
@@ -179,8 +180,31 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
         drift_html = "<div class='card' style='border-color:var(--dn);margin-top:12px'><b class='dn'>Verdict drift.</b> " + "; ".join(
             f"{html.escape(k)}: ETFs {html.escape(v['etfs'])}, stocks {html.escape(v['stocks'])}" for k, v in bad.items()) + \
             ". A playbook setup no longer passes on both universes. Review before taking new signals.</div>"
-    sb_html = "<p class='mut'>Scoreboard appears after the first backtest and paper trades.</p>"
-    if scoreboard:
+    sb_html = "<p class='mut'>Allocation appears after the first backtest and paper trades.</p>"
+    if scoreboard and "p_edge" in next(iter(scoreboard.values())):
+        def f2(v, d=2, pct=False):
+            if v is None or (isinstance(v, float) and np.isnan(v)):
+                return "–"
+            return f"{100 * v:.{d}f}%" if pct else f"{v:+.{d}f}"
+        am = alloc_meta or {}
+        sb_html = ("<table><tr><th>Setup</th><th>Risk per trade</th><th>P(edge &gt; 0)</th><th>Estimated edge (R)</th>"
+                   "<th>Live trades</th><th>Live R/trade</th><th>Live total R</th><th>Open</th><th>Backtest R (prior)</th>"
+                   "<th>Losing streak</th></tr>" + "".join(
+            f"<tr><td><b>{html.escape(k.split('_')[0])}</b> {html.escape(' '.join(k.split('_')[1:]))}</td>"
+            f"<td><b>{100 * v['risk']:.2f}%</b></td><td>{f2(v['p_edge'], 1, True)}</td><td>{f2(v['posterior_mean'])}</td>"
+            f"<td>{v['live_n']}</td><td>{f2(v['live_expectancy'])}</td><td>{f2(v['live_total_r'])}</td><td>{v['open_trades']}</td>"
+            f"<td class='mut'>{f2(v['prior_mean'])} (n {v['prior_n']:,})</td>"
+            f"<td class='{'dn' if v['streak_flag'] else ''}'>{v['losing_streak']}{' ⚠' if v['streak_flag'] else ''}</td></tr>"
+            for k, v in scoreboard.items()) + "</table>"
+            f"<p class='mut'>Ladder: the backtest edge × {((c14 or {}).get('allocation') or {}).get('haircut', 0.6)} counts like "
+            f"{((c14 or {}).get('allocation') or {}).get('n0', 100)} live trades; live paper trades since "
+            f"{c.get('forward_test', {}).get('start', '?')} update it. Risk 0% = paper only. "
+            f"Drawdown breaker: <b class='{'up' if am.get('breaker', 'ok') == 'ok' else 'dn'}'>{html.escape(str(am.get('breaker', 'ok')))}</b>"
+            f" (live paper drawdown {f2(am.get('live_drawdown'), 1, True)}, backtest maximum at this risk {f2(am.get('ref_drawdown'), 1, True)}"
+            "; the reference uses realised exits and a sector cap, so it trips on the early, conservative side)."
+            + (" A PAPER ONLY trip stays on until you set safety.breaker_reset in config_v14.yaml." if str(am.get('breaker', '')).startswith('PAPER') else "")
+            + "</p>")
+    elif scoreboard:
         def f2(v):
             return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{v:+.2f}"
         def pill(s):
@@ -194,6 +218,35 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
             f"<td class='mut'>{v['prelive_n']} @ {f2(v['prelive_expectancy'])}</td></tr>" for k, v in scoreboard.items()) + "</table>"
                    f"<p class='mut'>Live = paper trades of Daily playbook signals since {c.get('forward_test', {}).get('start', '?')}, with the exact backtest rules. "
                    "Status needs 20 closed trades: STOP if live R/trade is below 0 and below the backtest CI low; WATCH if only below the CI low.</p>")
+    hl_html = "<p class='mut'>Health checks start with live paper trades.</p>"
+    if health:
+        def pc(v):
+            return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{100 * v:.1f}%"
+
+        def ksp(v):
+            return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{v:.3f}"
+        hl_html = ("<table><tr><th>Setup</th><th>Live signals</th><th>Cancelled (live / pre-live)</th><th>Skipped (live / pre-live)</th>"
+                   "<th>Median stop width (live / pre-live)</th><th>Live R vs backtest (KS p)</th></tr>" + "".join(
+            f"<tr><td><b>{html.escape(k.split('_')[0])}</b></td><td>{v['live_signals']}</td><td>{pc(v['cancel_live'])} / {pc(v['cancel_pre'])}</td>"
+            f"<td>{pc(v['skip_live'])} / {pc(v['skip_pre'])}</td><td>{pc(v['stop_width_live'])} / {pc(v['stop_width_pre'])}</td>"
+            f"<td class='{'dn' if v.get('ks_flag') else ''}'>{ksp(v.get('ks_p'))}</td></tr>"
+            for k, v in health.items()) + "</table><p class='mut'>These flag data or execution problems, not edge. "
+            "The KS comparison starts at 20 live closed trades.</p>")
+    cand_html = ""
+    if c14 and c14.get("candidates"):
+        cand_html = ("<table><tr><th>ID</th><th>Lever</th><th style='text-align:left'>Hypothesis</th><th style='text-align:left'>Status</th></tr>" + "".join(
+            f"<tr><td><b>{html.escape(str(x['id']))}</b></td><td>{html.escape(str(x['lever']))}</td>"
+            f"<td style='text-align:left'>{html.escape(str(x['hypothesis']))}</td><td style='text-align:left' class='mut'>{html.escape(str(x['status']))}</td></tr>"
+            for x in c14["candidates"]) + "</table>")
+    fresh_html = ""
+    if fresh and fresh.get("check_failed"):
+        fresh_html = ("<div class='card' style='border-color:var(--amb);margin-top:12px'><b class='amb'>Freshness check did not run.</b> "
+                      "SPY hourly bars were unavailable, so daily data may be a session behind.</div>")
+    elif fresh and fresh.get("stale"):
+        fresh_html = ("<div class='card' style='border-color:var(--amb);margin-top:12px'><b class='amb'>Data stale.</b> "
+                      f"The {html.escape(str(fresh.get('expected')))} session has closed but {len(fresh.get('still_stale', []))} symbol(s) still lack it "
+                      f"({html.escape(', '.join(fresh.get('still_stale', [])[:10]))}; SPY ends {html.escape(str(fresh.get('spy_last')))}). "
+                      "Signals for that day will be processed on the next run (catch-up run at 03:30 UTC).</div>")
     pt_html = "<p class='mut'>No paper trades yet.</p>"
     if pt is not None and not pt.empty:
         show = pt[pt["oos"].astype(bool)] if pt["oos"].astype(bool).any() else pt
@@ -201,11 +254,12 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
         show = show.assign(_o=show["status"].map(order)).sort_values(["_o", "signal_bar"], ascending=[True, False]).head(20)
         def g(v, d=2):
             return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else (f"{v:.{d}f}" if isinstance(v, (int, float)) else str(v))
-        pt_html = ("<table><tr><th>Signal</th><th>Symbol</th><th style='text-align:left'>Setup</th><th>Status</th><th>Fill</th>"
+        pt_html = (f"<p class='mut'>Full universe: {pt['symbol'].nunique()} symbols paper-traded. Your real trades still follow the portfolio caps.</p>"
+                   "<table><tr><th>Signal</th><th>Symbol</th><th style='text-align:left'>Setup</th><th>Status</th><th>Fill</th>"
                    "<th>Stop</th><th>Target</th><th>Exit</th><th>R</th></tr>" + "".join(
             f"<tr><td>{pd.Timestamp(r.signal_bar):%Y-%m-%d}</td><td><b>{r.symbol}</b></td><td style='text-align:left'>{html.escape(r.setup.split('_')[0])}</td>"
             f"<td>{html.escape(r.status)}</td><td>{g(getattr(r, 'fill', np.nan))}</td><td class='dn'>{g(getattr(r, 'stop', np.nan))}</td>"
-            f"<td class='up'>{g(getattr(r, 'target', np.nan))}</td><td class='mut'>{html.escape(str(getattr(r, 'exit_reason', '') or ''))}</td>"
+            f"<td class='up'>{g(getattr(r, 'target', np.nan))}</td><td class='mut'>{html.escape('' if pd.isna(getattr(r, 'exit_reason', '')) else str(getattr(r, 'exit_reason', '')))}</td>"
             f"<td>{_num(getattr(r, 'r', np.nan), 2, 'up' if pd.notna(getattr(r, 'r', np.nan)) and getattr(r, 'r', 0) > 0 else 'dn')}</td></tr>"
             for r in show.itertuples()) + "</table>"
                    + ("" if pt["oos"].astype(bool).any() else "<p class='mut'>Showing pre-live (backfilled) paper trades until live signals arrive.</p>"))
@@ -225,10 +279,12 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IFI Board</title><style>{CSS}</style></head><body><main>
 <h1>IFI Board</h1><div class="mut">Updated {now:%Y-%m-%d %H:%M} UTC · {regime}</div>
-{drift_html}
-<h2>Scoreboard (forward test)</h2><div class="card">{sb_html}</div>
+{fresh_html}{drift_html}
+<h2>Allocation (forward test)</h2><div class="card">{sb_html}</div>
 <h2>Playbook signals</h2><div class="card">{pb_html}</div>
 <h2>Paper trades</h2><div class="card">{pt_html}</div>
+<h2>Process health</h2><div class="card">{hl_html}</div>
+{('<h2>Candidates</h2><div class="card">' + cand_html + '</div>') if cand_html else ''}
 <h2>Sector Board</h2><div class="card">{board}</div>
 <p class="mut">Stage: <span class="pill s3">3</span> above anchor · <span class="pill s2">2</span> above rising Trend line · <span class="pill s1">1</span> exhaustion + higher low · <span class="pill s0">0</span> none · <span class="pill s-1">-1</span> breakdown. Anchor S/R = support/resistance; distance in ATR.</p>
 <div class="grid"><div><h2>Rotation map (Daily vs {c['benchmark']})</h2><div class="card">{_rrg_svg(frames, c['watchlist'])}</div></div>

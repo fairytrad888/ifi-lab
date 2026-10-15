@@ -3,6 +3,7 @@ name: Nightly scan
 on:
   schedule:
     - cron: "15 22 * * 1-5"   # 22:15 UTC Mon-Fri = after the US close all year
+    - cron: "30 3 * * 2-6"    # 03:30 UTC Tue-Sat catch-up: picks up a session Yahoo published late (idempotent)
   workflow_dispatch:
     inputs:
       backfill:
@@ -26,7 +27,9 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Download data
+      - name: v1.4 tests (ladder, safety nets, freshness, tags, dashboard)
+        run: python tests/test_v14.py
+      - name: Download data (with freshness check and repair)
         run: python -m ifi.update_data
       - name: Scan, log, outcomes, dashboard
         env:

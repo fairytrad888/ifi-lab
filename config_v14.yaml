@@ -1,0 +1,36 @@
+# IFI Lab v1.4 settings (Oct 15, 2026). Read by ifi/allocation.py and ifi/scan.py.
+# Kept separate from config.yaml so your own edits there are never overwritten.
+# Every threshold here was fixed before any live result; changing one is a logged decision.
+
+forward_universe: full        # full = paper-trade every ETF and stock in config.yaml; watchlist = the old behaviour
+
+allocation:                   # IFI_Lab_v1.4_Design.md section 3 (approved: haircut 0.6)
+  n0: 100                     # the backtest prior counts like 100 live trades
+  haircut: 0.6                # backtest edge discounted (same-history fitting, survivorship)
+  sigma_default: 1.5          # R standard deviation if the backtest trade file is missing
+  tiers:                      # P(edge > 0) lower bound -> risk per trade
+    - [0.975, 0.0100]         # needs min_live_for_top live trades, otherwise 0.75%
+    - [0.900, 0.0075]
+    - [0.800, 0.0050]
+    - [0.700, 0.0025]
+    - [0.000, 0.0000]         # paper only
+  min_live_for_top: 100
+
+safety:
+  breaker_halve: 1.0          # live paper drawdown beyond 1.0x the backtest max drawdown at the current risk: halve
+  breaker_paper: 1.5          # beyond 1.5x: paper only until reviewed
+  ref_max_dd_at_075: 0.178    # fallback reference (P6 ETFs at 0.75%) if the backtest P6 file is missing
+  breaker_reset: ""           # after a PAPER ONLY trip is reviewed, set a date (YYYY-MM-DD) on or after the trip to re-arm
+  streak_flag_p: 0.01         # flag a losing streak this unlikely under the backtest win rate (pooled across universes)
+  health_min_live: 20         # process-health comparisons start at this many live trades
+  health_p: 0.01              # KS-test p-value below which the live R distribution is flagged
+
+candidates:                   # registry (v1.4 design section 6), status as of Oct 15, 2026
+  - {id: L1, lever: breadth, hypothesis: "Paper-trading the full universe raises trades a year and portfolio MAR at the same edge", status: "LIVE: full-universe paper trading from v1.4"}
+  - {id: C1, lever: selection, hypothesis: "E4 when rotation is Leading/Improving beats Lagging", status: "DEPRIORITISED: Step 0 found no ratio-state information (Oct 14)"}
+  - {id: C2, lever: selection, hypothesis: "E4 within 20 bars after a positive earnings gap", status: "COLLECTING: tagged on every paper trade (days since earnings)"}
+  - {id: C3, lever: selection, hypothesis: "Very wide stops (top 20% by stop width) have lower R", status: "COLLECTING: tagged on every paper trade (stop width)"}
+  - {id: C4, lever: timing, hypothesis: "A Daily signal confirmed by 4H stage >= 2 beats an unconfirmed one", status: "COLLECTING: tagged where 4H data exists (watchlist)"}
+  - {id: X8, lever: exits, hypothesis: "Half off at 3R, chandelier on the rest", status: "FAILED: exit test v1 (Oct 15): better per trade, worse portfolio MAR"}
+  - {id: X9, lever: exits, hypothesis: "3R with a 40-bar time cap", status: "FAILED: exit test v1 (Oct 15)"}
+  - {id: X10-X12, lever: exits, hypothesis: "Rule-3 structural, fast line-break and hybrid exits", status: "FAILED: exit test v1 (Oct 15)"}

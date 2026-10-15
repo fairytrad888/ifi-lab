@@ -18,7 +18,9 @@ import yaml
 from .data import ROOT, load
 from .states import read, events_on_bar
 from .backtest import setups as bt_setups
+from . import allocation as alloc
 from . import forward as fw
+from . import freshness
 
 LOG = ROOT / "logs" / "events.csv"
 JOURNAL_STATS = ROOT / "logs" / "journal_stats.json"
@@ -263,23 +265,70 @@ def main():
         log.to_csv(LOG, index=False)
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(state, indent=1))
-    # forward test, scoreboard, drift, journal execution
-    pt = fw.paper_trades(log, frames, c)
-    board = fw.scoreboard(pt, c)
+    # forward test (v1.4): full-universe paper trades with context tags, allocation ladder, health, drift
+    c14 = alloc.cfg14()
+    pframes = {k: v for k, v in frames.items() if k[0] == "daily"}
+    if c14.get("forward_universe", "watchlist") == "full":
+        braw = load(bench_sym, "daily")
+        stocks = [s for v in c["stocks"].values() for s in v]
+        for s in sorted(set(c["etfs"] + stocks)):
+            if ("daily", s) in pframes:
+                continue
+            df = load(s, "daily")
+            if df is None or len(df) < 260:
+                continue
+            x = completed("daily", read(df, braw), now)
+            if x is not None and len(x) >= 260:
+                pframes[("daily", s)] = x
+    ctx = dict(spy=pframes.get(("daily", bench_sym)), h4={s: x for (tf, s), x in frames.items() if tf == "h4"})
+    prev_alloc = json.loads(alloc.ALLOC.read_text()) if alloc.ALLOC.exists() else {}
+    prev_health = json.loads(alloc.HEALTH.read_text()) if alloc.HEALTH.exists() else {}
+    seeded = (ROOT / "state" / "v14_seeded").exists()
+    pt = fw.paper_trades(log, pframes, c, ctx)
+    full = alloc.ladder(pt, c, c14)
+    board = {k: v for k, v in full.items() if not k.startswith("_")}
+    pmeta = full["_portfolio"]
+    hl = alloc.health(pt, c, c14)
+    fresh = freshness.read_state()
     dr = fw.drift(c)
     try:
         jdf = journal_load(c["journal"].get("trades_csv_url", ""))
         js = journal_stats(jdf)
         if jdf is not None:
-            js["execution"] = fw.match_journal(jdf, pt)
+            # execution metrics keep their v1.3 meaning: watchlist signals (plus any symbol you actually traded)
+            mine = set(c["watchlist"]) | set(jdf["symbol"])
+            js["execution"] = fw.match_journal(jdf, pt[pt["symbol"].isin(mine)] if not pt.empty else pt)
     except Exception as ex:
         js = {"error": str(ex)}
     JOURNAL_STATS.write_text(json.dumps(js, indent=1, default=str))
     extra = fw.alert_lines(pt, board, dr)
+    if not seeded:  # first v1.4 run: record the full-universe history silently instead of pushing it
+        extra = [l_ for l_ in extra if not l_.startswith("Paper") or any(f" {w} " in l_ for w in c["watchlist"])]
+        (ROOT / "state").mkdir(parents=True, exist_ok=True)
+        (ROOT / "state" / "v14_seeded").write_text(datetime.now(timezone.utc).isoformat())
+    old_pf = prev_alloc.get("portfolio", {})
+    if old_pf and old_pf.get("breaker") != pmeta["breaker"]:
+        extra.insert(0, f"⚠ Drawdown breaker: {old_pf.get('breaker')} -> {pmeta['breaker']} "
+                        f"(live paper drawdown {100 * pmeta['live_drawdown']:.1f}%)")
+    for su, b in board.items():
+        was = prev_alloc.get("board", {}).get(su, {}).get("streak_flag")
+        if b["streak_flag"] and not was:
+            extra.insert(0, f"⚠ Losing streak {su}: {b['losing_streak']} in a row (p = {b['streak_p']:.3f} under the backtest "
+                            "win rate). Review, no automatic action.")
+    for su, h in hl.items():   # alert when a flag turns on, not every run while it stays on
+        if h.get("ks_flag") and not prev_health.get(su, {}).get("ks_flag"):
+            extra.append(f"Health {su}: live R distribution differs from the backtest (KS p = {h['ks_p']:.3f}). Check data and execution.")
+    fl = freshness.banner_line(fresh)
+    sig = json.dumps([fresh.get("expected"), sorted(fresh.get("still_stale", [])), bool(fresh.get("check_failed"))])
+    fa = ROOT / "state" / "freshness_alerted.json"
+    if fl and (not fa.exists() or fa.read_text() != sig):
+        extra.insert(0, fl)
+    fa.parent.mkdir(parents=True, exist_ok=True)
+    fa.write_text(sig if fl else "")
     if not a.backfill:
         notify(c, new_rows, extra)
     from .dashboard import build
-    build(frames, log, js, c, pt, board, dr)
+    build(frames, log, js, c, pt, board, dr, alloc_meta=pmeta, health=hl, fresh=fresh, c14=c14)
     print(f"{len(new_rows)} new events; log size {len(log)}")
 
 

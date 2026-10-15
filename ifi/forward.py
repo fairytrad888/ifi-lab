@@ -66,13 +66,15 @@ def _fill_bar_trade(x: pd.DataFrame, i: int, ex: str, cost: float, r_mult: float
                 reason=reason, fill=o, stop=stop, target=o + r_mult * risk)
 
 
-def paper_trades(log: pd.DataFrame, frames: dict, c: dict) -> pd.DataFrame:
+def paper_trades(log: pd.DataFrame, frames: dict, c: dict, ctx: dict | None = None) -> pd.DataFrame:
     """Paper-trade the Daily playbook exactly as the backtest does (v1.3.2).
 
     Signals come from backtest.setups() on each symbol's completed Daily bars, and ALL signals of a
     symbol/setup go through ONE backtest.simulate() call, so the forward test keeps the backtest's
     sequencing: a new signal is skipped while that symbol/setup already has a trade open (including
-    trades opened before the forward-test start). `log` is kept for the call signature only."""
+    trades opened before the forward-test start). `log` is kept for the call signature only.
+    v1.4: `frames` may hold the full universe; with `ctx` every row also carries context tags (allocation.tags)."""
+    from .allocation import tags as context_tags
     ex = _exit_rule(c)
     pb = c.get("playbook", {})
     r_mult = pb.get("target_r", 3)
@@ -100,7 +102,10 @@ def paper_trades(log: pd.DataFrame, frames: dict, c: dict) -> pd.DataFrame:
             for i in sig_idx:
                 bar = x.index[i]
                 sid = f"daily|{sym}|{bar:%Y-%m-%d %H:%M}|{PLAYBOOK_NAMES.get(su, su)}"
-                base = dict(signal_id=sid, symbol=sym, setup=su, signal_bar=bar, oos=bool(bar >= start))
+                base = dict(signal_id=sid, symbol=sym, setup=su, signal_bar=bar, oos=bool(bar >= start),
+                            universe="etf" if sym in etfs else "stock")
+                if ctx is not None:
+                    base.update(context_tags(x, i, sym, ctx, live=bool(bar >= start)))
                 stop = low5.iloc[i] - 0.5 * x["atr"].iloc[i]
                 in_trade = any(e0 <= i and (i < e1 or why == "open_at_end") for e0, e1, why in spans)
                 if (i + 1) in pos:
@@ -143,6 +148,7 @@ def paper_trades(log: pd.DataFrame, frames: dict, c: dict) -> pd.DataFrame:
     pt = pd.DataFrame(rows)
     if not pt.empty:
         pt = pt.sort_values(["signal_bar", "symbol"]).reset_index(drop=True)
+        pt["tag_signals_same_day"] = pt.groupby("signal_bar")["signal_id"].transform("size")
         PAPER.parent.mkdir(parents=True, exist_ok=True)
         pt.to_csv(PAPER, index=False)
     return pt
@@ -265,7 +271,9 @@ def alert_lines(pt: pd.DataFrame, board: dict, dr: dict) -> list[str]:
     for su, b in board.items():
         old = prev.get("status", {}).get(su)
         if not first_run and old and old != b["status"] and not b["status"].startswith("COLLECTING"):
-            lines.insert(0, f"⚠ Scoreboard {su}: {old} -> {b['status']} (live {b['live_expectancy']:+.2f}R, n={b['live_n']})")
+            le = b.get("live_expectancy")
+            le_txt = "–" if le is None or (isinstance(le, float) and np.isnan(le)) else f"{le:+.2f}R"
+            lines.insert(0, f"⚠ Risk tier {su}: {old} -> {b['status']} (live {le_txt}, n={b['live_n']})")
     for su, d in dr.items():
         old = prev.get("drift", {}).get(su)
         if not first_run and old is not None and old != d["ok"]:

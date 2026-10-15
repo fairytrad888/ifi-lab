@@ -22,6 +22,10 @@ def main():
     daily = sorted(set(c["etfs"] + stocks + c["watchlist"] + [c["benchmark"]]))
     got = fetch_daily(daily)
     print(f"daily: {len(got)}/{len(daily)} symbols")
+    from .freshness import ensure  # v1.4: make sure the newest completed session is present
+    rep = ensure(daily)
+    print(f"freshness: expected session {rep['expected']} · SPY ends {rep['spy_last']} · "
+          f"repaired {len(rep['repaired'])} · still stale {len(rep['still_stale'])}" + (f" · {rep['error']}" if rep['error'] else ""))
     h4 = sorted(set(c["watchlist"] + [c["benchmark"]]))
     got4 = fetch_4h(h4)
     print(f"4H: {len(got4)}/{len(h4)} symbols")
