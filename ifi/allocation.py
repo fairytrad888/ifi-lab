@@ -35,12 +35,24 @@ def _phi(z: float) -> float:
 
 
 # ------------------------------------------------------------------ backtest prior
+_READ: dict = {}
+
+
+def _read_trades(f) -> pd.DataFrame:
+    """The backtest trade file, read once per run (cached by path and modification time)."""
+    key = (str(f), f.stat().st_mtime_ns)
+    if key not in _READ:
+        _READ.clear() if len(_READ) > 4 else None
+        _READ[key] = pd.read_csv(f)
+    return _READ[key]
+
+
 def backtest_trades(setup: str, ex: str = PB_EXIT) -> pd.DataFrame:
     parts = []
     for uni in ("etfs", "stocks"):
         f = RESULTS / f"trades_daily_{uni}.csv.gz"
         if f.exists():
-            d = pd.read_csv(f)
+            d = _read_trades(f)
             parts.append(d[(d["setup"] == setup) & (d["exit_rule"] == ex)].assign(universe=uni))
     return pd.concat(parts) if parts else pd.DataFrame(columns=["r"])
 
@@ -96,6 +108,39 @@ def streak_probability(L: int, n: int, p_win: float, sims: int = 4000, seed: int
     run = np.zeros(sims, int)
     for j in range(n):
         run = np.where(losses[:, j], run + 1, 0)
+        hit |= run >= L
+    return float(hit.mean())
+
+
+def backtest_losses(setup: str) -> np.ndarray:
+    """Backtest trades of a setup (both universes pooled) as a loss sequence in exit-date order, the order a live
+    paper stream sees them. Empty when the trade file has no exit dates."""
+    t = backtest_trades(setup)
+    if len(t) == 0 or "exit_date" not in t:
+        return np.array([], bool)
+    t = t.assign(_x=pd.to_datetime(t["exit_date"], errors="coerce")).dropna(subset=["_x"])
+    t = t.sort_values(["_x", "symbol"] if "symbol" in t else ["_x"], kind="mergesort")
+    return (t["r"].to_numpy(float) <= 0)
+
+
+def streak_probability_block(L: int, n: int, losses: np.ndarray, block: int = 20, sims: int = 4000, seed: int = 7) -> float:
+    """P(a losing streak of at least L appears somewhere in n trades), by a moving-block bootstrap of the backtest
+    loss sequence. Unlike i.i.d. odds this keeps the clustering of losses in bad markets (the E4 history has a
+    19-trade streak where i.i.d. odds put the 99th percentile near 11), so the flag fires on unusual streaks only."""
+    if L <= 0 or n <= 0:
+        return 1.0
+    m = len(losses)
+    if m < 3 * block:
+        return np.nan
+    rng = np.random.default_rng(seed)
+    nb = -(-n // block)
+    starts = rng.integers(0, m - block + 1, size=(sims, nb))
+    idx = (starts[:, :, None] + np.arange(block)).reshape(sims, -1)[:, :n]
+    seq = losses[idx]
+    hit = np.zeros(sims, bool)
+    run = np.zeros(sims, int)
+    for j in range(n):
+        run = np.where(seq[:, j], run + 1, 0)
         hit |= run >= L
     return float(hit.mean())
 
@@ -184,14 +229,22 @@ def ladder(pt: pd.DataFrame, c: dict, c14: dict | None = None) -> dict:
         mean, p = posterior(pr["mean"], pr["sigma"], n, total, a)
         risk = tier(p, n, a) if not np.isnan(p) else 0.0
         L = current_streak(live["r"]) if n else 0
-        p_streak = streak_probability(L, max(n, L), pr["win"]) if L else 1.0
+        method = "iid"
+        p_streak = 1.0
+        if L:
+            p_streak = np.nan
+            if sf.get("streak_method", "iid") == "block":
+                p_streak = streak_probability_block(L, max(n, L), backtest_losses(su), int(sf.get("streak_block", 20)))
+                method = "block"
+            if np.isnan(p_streak):       # no dated backtest sequence: fall back to i.i.d. odds
+                p_streak, method = streak_probability(L, max(n, L), pr["win"]), "iid"
         board[su] = dict(
             status=f"{100 * risk:.2f}%", tier_risk=risk, risk=risk, live_n=n, live_total_r=total,
             live_expectancy=float(live["r"].mean()) if n else np.nan,
             live_win_rate=float((live["r"] > 0).mean()) if n else np.nan,
             open_trades=int((oos & (d["status"] == "open")).sum()) if len(d) else 0,
             prior_mean=pr["mean"], prior_n=pr["n"], prior_sigma=pr["sigma"], prior_win=pr["win"], prior_source=pr["source"],
-            posterior_mean=mean, p_edge=p, losing_streak=L, streak_p=p_streak,
+            posterior_mean=mean, p_edge=p, losing_streak=L, streak_p=p_streak, streak_method=method,
             streak_flag=bool(L and p_streak < sf["streak_flag_p"]))
     # risk in force when each live trade filled (persisted, so later tier changes never re-weight history)
     prev = json.loads(ALLOC.read_text()) if ALLOC.exists() else {}

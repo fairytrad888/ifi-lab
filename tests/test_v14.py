@@ -189,6 +189,65 @@ def test_paper_trades_full_universe_and_dashboard():
     print("full-universe paper trades with tags, ladder, health and dashboard ok:", len(pt), "paper rows")
 
 
+def test_block_streak_keeps_clustering():
+    """A history with bad-market clusters: the block bootstrap sees long streaks as more likely than i.i.d. odds,
+    so a normal bad-market streak is not flagged (v1.4.1)."""
+    rng = np.random.default_rng(4)
+    regimes = np.repeat(rng.random(60) < 0.25, 50)                 # 25% of 50-trade stretches are bad markets
+    losses = np.where(regimes, rng.random(3000) < 0.8, rng.random(3000) < 0.45)
+    p_win = 1 - losses.mean()
+    p_iid = A.streak_probability(12, 50, p_win)
+    p_blk = A.streak_probability_block(12, 50, losses, 20)
+    assert p_blk > 5 * p_iid and p_iid < 0.01, (p_iid, p_blk)
+    assert np.isnan(A.streak_probability_block(5, 20, losses[:30], 20))   # too short a history: caller falls back
+    print(f"block streak ok: P(12 losses in a row within 50) i.i.d. {p_iid:.4f} vs block bootstrap {p_blk:.3f}")
+
+
+def test_digest_and_alert_log():
+    import json
+    import yaml
+    from ifi import digest as G
+    from ifi import forward as fw
+    c = yaml.safe_load((ROOT / "config.yaml").read_text())
+    c = dict(c, forward_test=dict(c.get("forward_test", {}), start="2025-01-01"), etfs=["AAA"])
+    spy = read(rw(9))
+    frames = {("daily", s): read(rw(k), rw(9)) for k, s in enumerate(["AAA", "BBB"], start=10)}
+    tmp = Path(tempfile.mkdtemp())
+    saved = fw.PAPER, A.ALLOC, A.HEALTH, A.RISK_AT_FILL, fw.SENT, G.ALERTS, G.DIGEST
+    fw.PAPER, A.ALLOC, A.HEALTH, A.RISK_AT_FILL, fw.SENT = tmp / "pt.csv", tmp / "a.json", tmp / "h.json", tmp / "r.json", tmp / "s.json"
+    G.ALERTS, G.DIGEST = tmp / "alerts.jsonl", tmp / "digest.json"
+    try:
+        pt = fw.paper_trades(pd.DataFrame(), frames, c, dict(spy=spy, h4={}))
+        full = A.ladder(pt, c, C14)
+        board = {k: v for k, v in full.items() if not k.startswith("_")}
+        hl = A.health(pt, c, C14)
+        now = pd.Timestamp("2026-10-16 22:30", tz="UTC")
+        for k in range(3):
+            G.log_alerts([f"line {k}"], now - pd.Timedelta(days=10 * (2 - k)))
+        G.log_alerts([], now)                                          # no lines: nothing written
+        assert len(G.ALERTS.read_text().splitlines()) == 3
+        assert [r["lines"] for r in G.recent_alerts(7, now)] == [["line 2"]]
+        new_rows = [dict(family="Playbook", symbol="AAA", tf="daily", event="E4 anchor reclaim", close=10.0, stop=9.0,
+                         target=13.0, shares_1pct=100, cancel_if_open_below=9.5)]
+        lines = G.alert_text(c, new_rows, ["⚠ test"])
+        assert lines[0] == "⚠ test" and lines[1].startswith("★ AAA daily")
+        G.write_digest(pt, board, full["_portfolio"], hl, dict(expected="2026-10-16", stale=False), C14, new_rows, lines, now)
+        d = json.loads(G.DIGEST.read_text())
+        for k in ("freshness", "allocation", "portfolio", "health", "paper", "playbook_new", "alerts_this_run", "candidates", "research"):
+            assert k in d, k
+        assert d["playbook_new"][0]["symbol"] == "AAA" and d["alerts_last_7d"] == 1
+        views = {t["f1_view"] for grp in ("open", "closed_recent", "pending") for t in d["paper"][grp] if t["setup"] == "E4"}
+        assert views <= {"take", "skip", "unknown"}
+        assert G.f1_view(pd.Series(dict(setup="E4_anchor_reclaim", tag_dist_anchor_atr=2.0, tag_stage=3))) == "skip"
+        assert G.f1_view(pd.Series(dict(setup="E4_anchor_reclaim", tag_dist_anchor_atr=0.4, tag_stage=0))) == "skip"
+        assert G.f1_view(pd.Series(dict(setup="E4_anchor_reclaim", tag_dist_anchor_atr=0.4, tag_stage=2))) == "take"
+        assert G.f1_view(pd.Series(dict(setup="E1_trigger_with_trend", tag_dist_anchor_atr=3.0, tag_stage=2))) is None
+        json.dumps(d)
+    finally:
+        fw.PAPER, A.ALLOC, A.HEALTH, A.RISK_AT_FILL, fw.SENT, G.ALERTS, G.DIGEST = saved
+    print("alert log and digest ok:", len(d["paper"]["open"]), "open,", d["paper"]["live_closed_n"], "live closed")
+
+
 if __name__ == "__main__":
     test_ladder_math()
     test_calibration_direction()
@@ -199,4 +258,6 @@ if __name__ == "__main__":
     test_freshness()
     test_tags_no_lookahead()
     test_paper_trades_full_universe_and_dashboard()
+    test_block_streak_keeps_clustering()
+    test_digest_and_alert_log()
     print("all v1.4 tests passed")

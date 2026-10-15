@@ -1,0 +1,87 @@
+# Ranking test v1 (Path B, cycle 1): which E4 signals should take the 5 slots?
+# The rule tested: SKIP extended and stage-0 signals so their slots go to better ones (a filter).
+# Pre-registered Oct 15, 2026, BEFORE any stock-universe context slice was looked at.
+# Source of the hypotheses: the E4 profile (Oct 15) on ETFs only. ETFs are therefore NOT evidence here
+# (only a consistency check); the stock universe is the confirmation set; live paper tags are the final probation.
+version: ranking-1
+locked: "2026-10-15"
+
+data:
+  snapshot: research/exits/snapshot        # the frozen exit-test snapshot; never refreshed by this test
+  manifest_prefix: a3609f3fec828066        # sha256 prefix of its manifest.json (cutoff 2026-10-14); anything else aborts
+  universe_from: research/exits/prereg_exits_v1.yaml   # 17 ETFs + 61 stocks, start 2000-01-01, min 600 bars
+  primary: stocks                          # confirmation set (its E4 context slices were never inspected)
+  consistency: etfs                        # the hypotheses came from here; must agree in sign, is not evidence
+
+trades:
+  entry: E4_anchor_reclaim (research engine, Lab parity verified in exit test v1)
+  exit: X3 (3R target, 60-bar time cap), total-return R (dividends included), costs as in the exit test
+  sequencing: one open trade per symbol (Lab); the filter is applied BEFORE sequencing, so a skipped signal frees its symbol
+  features_at_signal_close:                # identical to the live paper tags (ifi/allocation.py tags)
+    dist: dist_anchor_atr                  # (close - anchor) / ATR(14) at the signal bar
+    stage: IFI stage at the signal bar
+    width: (close - (lowest low of the 5 bars to the signal bar - 0.5 ATR)) / close
+
+portfolio:
+  equity: daily mark-to-market, start 100,000, risk 0.75% of the previous close's equity per new position
+  max_open: 5
+  same_day_order: alphabetical by symbol (= the Lab's portfolio, which the exit test reproduced)
+  notional_cap: 0.20                       # PRIMARY: position value <= 20% of equity (5 x 20% = no leverage);
+                                           # a trade whose stop is too tight for its risk is scaled down
+  uncapped: reported as a sign check (= the Lab's sizing)
+
+arms:                                      # k = 1
+  F1: {kind: filter, drop_if: "dist > 1.5 or stage < 1", hypothesis: "C5 + C6: skipping entries more than 1.5 ATR above the anchor, or at IFI stage 0 or below, frees slots for better ones and raises portfolio MAR"}
+
+design_history:                            # recorded before any real-data run of this test
+  - "Oct 15, 2026: the first draft also had two same-day RANKING arms (closest to the anchor first; narrowest stop first). The synthetic power check showed ranking cannot move portfolio MAR even with -0.5 R planted on half the trades: arm MAR stayed near the median of random reorderings (percentile 0.34-0.77), because only about 10% of taken trades are contested same-day choices. A test that cannot detect a large effect would only spend the stock holdout, so both arms were removed."
+  - "The same check gave the filter percentile 1.00 at -0.5 R and 0.99-1.00 at -0.3 R, and no false PASS in three no-effect worlds. Consequence: the slot lever is WHICH signals to skip, not the order of same-day entries; ordering stays alphabetical."
+  - "The thresholds 1.5 ATR and stage < 1 are the profile's bin edges, which were written into research/profile.py before its first real run; nothing was tuned."
+
+controls:                                  # F1 is compared with the same operation done at random
+  filter: drop each signal independently with the probability equal to F1's drop share on that universe
+  draws: 300
+  seed: 11
+
+pass_rules:                                # all must hold to PASS
+  - "INFORMATION: stocks, capped: F1 MAR > the 95th percentile of the random-drop control MARs"
+  - "BOTH HALVES: stocks, capped: F1 MAR - baseline MAR > 0 in 2000-2014 and in 2015-2026 (point estimates)"
+  - "SIZING: stocks, uncapped: F1 MAR - baseline MAR > 0"
+  - "CONSISTENCY: ETFs, capped: F1 MAR - baseline MAR > 0"
+  - "INSUFFICIENT if fewer than 50 stock trades differ between F1 and the baseline"
+
+reported_not_gating:
+  - "Paired calendar-block bootstrap (6-month blocks, 2000 draws) of daily equity returns: 95% interval of F1 MAR - baseline MAR (stocks, capped)"
+  - "F1 vs baseline: trades, CAGR, max drawdown, MAR, exposure, for stocks / ETFs / one combined book (78 symbols)"
+  - "Supporting per-trade checks on stocks (6-month calendar-block bootstrap, 5000 draws, unadjusted 95% CI):"
+  - "  C5: mean R (dist > 1.5) - mean R (dist <= 1.5)"
+  - "  C6: mean R (stage < 1) - mean R (stage >= 1)"
+  - "  C3b: [E4 narrowest-quintile R - widest-quintile R] - [the same on random entries], quintile cut points from E4 signals"
+
+validity:                                  # each aborts the run before the real result
+  lock: prereg + ranking code + exit simulator + engine + ifi modules match RANKING.lock (and EXITS.lock)
+  lookahead: engine events identical on truncated data (research/checks.py)
+  null: "two no-effect synthetic worlds must not PASS: martingale prices (losing) and persistent trends (profitable), nothing planted"
+  power: "the persistent-trend world with -0.5 R planted on the trades F1 skips: F1 must PASS"
+  snapshot: Yahoo source and manifest prefix exactly as above
+  baseline_parity: the uncapped first-come book equals research/exits/run.py portfolio() exactly (trades, CAGR, max drawdown)
+
+params:
+  risk_pct: 0.0075
+  max_open: 5
+  notional_cap: 0.20
+  split: "2015-01-01"
+  dist_max: 1.5
+  stage_min: 1
+  min_changed: 50
+  alpha: 0.05
+  k: 1
+  boot_reps: 2000
+  boot_block_months: 6
+  support_reps: 5000
+  support_seed: 7
+  power_delta: -0.5
+
+decisions:
+  pass: "F1 becomes the slot-rule candidate. It goes on live probation: the nightly shows which signals F1 would skip next to the actual first-come book; the playbook changes only after probation (100 live E4 signals, F1 book MAR >= first-come)."
+  fail: "First-come with no filter stays. The slot question is closed for this cycle (these definitions are not re-tested on this data). Supporting checks update the candidate registry only."

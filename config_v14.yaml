@@ -21,7 +21,10 @@ safety:
   breaker_paper: 1.5          # beyond 1.5x: paper only until reviewed
   ref_max_dd_at_075: 0.178    # fallback reference (P6 ETFs at 0.75%) if the backtest P6 file is missing
   breaker_reset: ""           # after a PAPER ONLY trip is reviewed, set a date (YYYY-MM-DD) on or after the trip to re-arm
-  streak_flag_p: 0.01         # flag a losing streak this unlikely under the backtest win rate (pooled across universes)
+  streak_flag_p: 0.01         # flag a losing streak this unlikely given the backtest (pooled across universes)
+  streak_method: block        # v1.4.1 (Oct 15): block bootstrap of the dated backtest loss sequence (keeps bad-market clustering);
+                              # iid = independent trades at the backtest win rate (v1.4; fired at ~12 in 50 though history had 19)
+  streak_block: 20            # block length in trades
   health_min_live: 20         # process-health comparisons start at this many live trades
   health_p: 0.01              # KS-test p-value below which the live R distribution is flagged
 
@@ -29,8 +32,11 @@ candidates:                   # registry (v1.4 design section 6), status as of O
   - {id: L1, lever: breadth, hypothesis: "Paper-trading the full universe raises trades a year and portfolio MAR at the same edge", status: "LIVE: full-universe paper trading from v1.4"}
   - {id: C1, lever: selection, hypothesis: "E4 when rotation is Leading/Improving beats Lagging", status: "DEPRIORITISED: Step 0 found no ratio-state information (Oct 14)"}
   - {id: C2, lever: selection, hypothesis: "E4 within 20 bars after a positive earnings gap", status: "COLLECTING: tagged on every paper trade (days since earnings)"}
-  - {id: C3, lever: selection, hypothesis: "Very wide stops (top 20% by stop width) have lower R", status: "COLLECTING: tagged on every paper trade (stop width)"}
+  - {id: C3, lever: selection, hypothesis: "Very wide stops (top 20% by stop width) have lower R", status: "COLLECTING: tagged on every paper trade (stop width); C3b (width beyond random-entry arithmetic) reported in ranking test v1"}
   - {id: C4, lever: timing, hypothesis: "A Daily signal confirmed by 4H stage >= 2 beats an unconfirmed one", status: "COLLECTING: tagged where 4H data exists (watchlist)"}
+  - {id: C5, lever: selection, hypothesis: "E4 entries more than 1.5 ATR above the anchor have lower R (ETF profile: +0.13R vs +0.48R)", status: "TESTING: ranking test v1 (F1) on stocks; tagged live (dist_anchor_atr)"}
+  - {id: C6, lever: selection, hypothesis: "E4 at IFI stage 0 or below has lower R (ETF profile: -0.04R, n 56)", status: "TESTING: ranking test v1 (F1) on stocks; tagged live (stage)"}
+  - {id: F1, lever: slots, hypothesis: "Skipping C5/C6 signals frees the 5 slots for better ones and raises portfolio MAR", status: "TESTING: ranking test v1 (pre-registered Oct 15); same-day ranking arms dropped after the power check"}
   - {id: X8, lever: exits, hypothesis: "Half off at 3R, chandelier on the rest", status: "FAILED: exit test v1 (Oct 15): better per trade, worse portfolio MAR"}
   - {id: X9, lever: exits, hypothesis: "3R with a 40-bar time cap", status: "FAILED: exit test v1 (Oct 15)"}
   - {id: X10-X12, lever: exits, hypothesis: "Rule-3 structural, fast line-break and hybrid exits", status: "FAILED: exit test v1 (Oct 15)"}

@@ -21,6 +21,7 @@ from .backtest import setups as bt_setups
 from . import allocation as alloc
 from . import forward as fw
 from . import freshness
+from . import digest
 
 LOG = ROOT / "logs" / "events.csv"
 JOURNAL_STATS = ROOT / "logs" / "journal_stats.json"
@@ -175,31 +176,18 @@ def journal_stats(t: pd.DataFrame | None) -> dict:
             "by_setup": {k: {"n": int(v.count()), "expectancy": float(v.mean())} for k, v in by}}
 
 
-def notify(c, new_rows: list[dict], extra: list[str] | None = None):
+def notify(c, lines: list[str]):
+    """Push the run's alert lines to ntfy when NTFY_TOPIC is set (optional). The lines are always kept in
+    logs/alerts.jsonl and logs/digest.json (v1.4.1), so nothing is lost without a phone push."""
     topic = os.environ.get("NTFY_TOPIC", "").strip()
-    if not topic or not (new_rows or extra):
+    if not topic or not lines:
         return
     import requests
-
-    want = set(c["alerts"]["notify_events"])
-    lines = []
-    for r in new_rows:
-        fam = r["family"]
-        stage_up = fam.startswith("Stage") and int(r["event"].split("-> ")[-1]) >= c["alerts"]["min_stage_change_to"]
-        if fam == "Playbook":
-            lines.insert(0, f"★ {r['symbol']} {r['tf']}: {r['event']} | entry ~{r['close']} stop {r['stop']} "
-                            f"target {r.get('target')} | {r['shares_1pct']} sh | cancel if open < {r.get('cancel_if_open_below')}")
-            continue
-        if fam in want or stage_up:
-            lines.append(f"{r['symbol']} {r['tf']}: {r['event']} | stage {r['stage']} score {r['score']} | "
-                         f"stop {r['stop']} size {r['shares_1pct']}")
-    lines = list(extra or []) + lines
-    if lines:
-        try:
-            requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines[:40]).encode(),
-                          headers={"Title": f"IFI: {len(lines)} new events", "Priority": "default"}, timeout=20)
-        except Exception as ex:
-            print("ntfy failed:", ex)
+    try:
+        requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines[:40]).encode(),
+                      headers={"Title": f"IFI: {len(lines)} new events", "Priority": "default"}, timeout=20)
+    except Exception as ex:
+        print("ntfy failed:", ex)
 
 
 def main():
@@ -325,10 +313,16 @@ def main():
         extra.insert(0, fl)
     fa.parent.mkdir(parents=True, exist_ok=True)
     fa.write_text(sig if fl else "")
-    if not a.backfill:
-        notify(c, new_rows, extra)
+    lines = [] if a.backfill else digest.alert_text(c, new_rows, extra)
+    if lines:
+        digest.log_alerts(lines, now)
+        notify(c, lines)
     from .dashboard import build
     build(frames, log, js, c, pt, board, dr, alloc_meta=pmeta, health=hl, fresh=fresh, c14=c14)
+    try:
+        digest.write_digest(pt, board, pmeta, hl, fresh, c14, [] if a.backfill else new_rows, lines, now)
+    except Exception as ex:      # the digest is a convenience; it must never break the nightly
+        print("digest failed:", ex)
     print(f"{len(new_rows)} new events; log size {len(log)}")
 
 

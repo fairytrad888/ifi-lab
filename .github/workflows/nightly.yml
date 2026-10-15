@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: v1.4 tests (ladder, safety nets, freshness, tags, dashboard)
+      - name: v1.4 tests (ladder, safety nets, freshness, tags, dashboard, digest)
         run: python tests/test_v14.py
       - name: Download data (with freshness check and repair)
         run: python -m ifi.update_data
