@@ -1,0 +1,47 @@
+{
+ "run_utc": "2026-10-15 00:40 UTC",
+ "commit": "17c15dd3ed75e37176d5b7379ce53bc1ba9a29b2",
+ "lock": "c52713bc9d3e2f8561ef790d79928e27d3c99746f5ed6af46258bd5d57658d55",
+ "cutoff": "2026-10-14",
+ "manifest": "a3609f3fec828066882f39a0bda1b642db74f98e2a9b1f8c4a5e9f21b75441cb",
+ "n_etf": 17,
+ "n_stk": 61,
+ "versions": "Python 3.12.15, pandas 3.0.6, numpy 2.5.4, scipy 1.18.1",
+ "validity": [
+  [
+   "Lock (prereg, exit code, engine, ifi modules)",
+   "ok `c52713bc9d3e2f85`"
+  ],
+  [
+   "Engine look-ahead (truncation)",
+   "ok: identical events at 3 cut points on 2 synthetic markets (1093 events in the last full run)"
+  ],
+  [
+   "Synthetic null (martingale prices)",
+   "ok: X8 FAIL, X9 FAIL, X10 FAIL, X11 FAIL, X12 FAIL"
+  ],
+  [
+   "Synthetic power (persistent trends)",
+   "ok: X8 FAIL, X9 OPPOSITE, X10 PASS, X11 PASS, X12 FAIL (required: X10 PASS)"
+  ],
+  [
+   "Frozen snapshot",
+   "cutoff 2026-10-14 \u00b7 78 symbols \u00b7 missing: none"
+  ],
+  [
+   "Dividend data (Adj Close)",
+   "present for all 78 symbols"
+  ],
+  [
+   "Lab parity (X3 vs ifi/backtest.py X3_target3R)",
+   "ok: 912 Lab X3 trades reproduced exactly across 17 ETFs (covers entries, stop, target, time cap, costs and sequencing; X8-X12 logic is covered by the hand-built unit tests and the truncation test)"
+  ]
+ ],
+ "verdicts": {
+  "X8": "FAIL",
+  "X9": "FAIL",
+  "X10": "FAIL",
+  "X11": "FAIL",
+  "X12": "FAIL"
+ }
+}
