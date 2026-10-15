@@ -1,0 +1,118 @@
+# E4 exit test v1: pre-registered (locked Oct 14, 2026)
+#
+# Question: on the Lab's proven entry (E4 anchor reclaim, on prices), does any candidate exit beat the
+# current playbook exit (X3: 3R target, 60-bar time cap) on the SAME trades?
+# Every number here was fixed before any result existed. SHA-256 of this file and of all code that
+# produces the result is stored in research/exits/EXITS.lock; the runner refuses to start if any differ.
+# The ratio-rule study (research/prereg_v21.yaml, Step 0 = STOP) is separate and untouched.
+
+version: "exits-1"
+locked: "2026-10-14"
+
+universe:
+  # from config.yaml (the Lab's two backtest universes)
+  etfs: [SPY, RSP, IWM, QQQ, SMH, XBI, XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLRE, XLU, XLV, XLY]
+  stocks: [VST, CEG, NRG, NEE, DUK, SO, XOM, CVX, COP, SLB, EOG, NVDA, AVGO, AMD, TSM, MSFT, AAPL, ORCL, CRM,
+           ADBE, MU, GOOGL, META, NFLX, DIS, TMUS, AMZN, TSLA, HD, MCD, NKE, BKNG, WMT, COST, PG, KO, PEP, JPM,
+           BAC, GS, MS, V, MA, LLY, UNH, JNJ, ABBV, MRK, ISRG, CAT, GE, ETN, PWR, HON, UBER, LIN, FCX, NEM, PLD,
+           AMT, EQIX]
+  start: "2000-01-01"        # first entry date counted (250-bar indicator warm-up before it)
+  split: "2015-01-01"        # time halves
+  min_bars: 600
+  note: "The stock list was picked in 2026 (survivorship bias). It favours exits that hold winners longer, so
+         stocks are a replication check only; ETFs are the primary universe."
+
+entry:
+  setup: E4_anchor_reclaim   # ifi/backtest.py setups(): close back above the resistance anchor
+  fill: next open
+  stop: "lowest low of the 5 bars to the signal bar - 0.5 x ATR(14) at the signal bar"
+  cancel: "skip if the next open is below that 5-bar low, or risk <= 0 (Lab v1.1 rule)"
+  overlap: "every E4 signal is simulated with every exit (paired); a separate no-overlap sequence per
+            symbol and exit is used for the portfolio check"
+  horizon_exclusion: "entries whose signal bar is within 250 bars of the data end are left out by DATE,
+                      so every exit can finish"
+
+# Common execution for every exit (identical to ifi/backtest.py): the initial stop is always active and
+# checked first inside each bar (a gap through it fills at the open); targets fill at the target (or the
+# open on a gap); a time cap exits at that bar's close and is checked before close-based exits; close-based
+# exits are decided on a bar's close and filled at the NEXT open. Costs per side: ETFs 0.05%, stocks 0.10%,
+# converted to R.
+# Measure: total-return R = price R plus dividends received during the hold (price at bar j valued as
+# price * a[j] / a[entry], a = Yahoo Adj Close / Close). Exits that hold longer collect more dividends,
+# exactly as a real account would. Price-only R (the Lab's accounting) is reported next to it.
+exits:
+  X3:  {name: "3R target, 60-bar time cap (current playbook, baseline)", target_r: 3.0, time_cap: 60}
+  X8:  {name: "Half off at 3R, chandelier stop on the rest", target_r: 3.0, chandelier_atr: 3.0, time_cap: 250,
+        detail: "until 3R is hit the whole position has the initial stop; after it, the remaining half trails
+                 max(initial stop, highest high since entry - 3 ATR), updated at each close"}
+  X9:  {name: "3R target, 40-bar time cap", target_r: 3.0, time_cap: 40}
+  X10: {name: "Structural: hold until rule 3 confirms", time_cap: 250,
+        detail: "after entry: the highest pivot high (3/3, pivot bar on or after the entry bar) is the peak; a
+                 later lower pivot high, then a close below the most recent pivot low -> exit next open"}
+  X11: {name: "Fast: line break after stacked warnings, else rule 3", time_cap: 250,
+        detail: "X10, plus exit next open after a breakdown bar (first close below Trend line - 0.25 ATR in a
+                 bull run) when >= 2 warnings fell in the last 20 bars since entry. Warning = bearish WT
+                 trigger, A&D bearish divergence, Matrix 2-of-3 bearish divergence, or an up-9 with
+                 (close - line) >= 2 ATR or a flat line"}
+  X12: {name: "Hybrid: 3R target and 60-bar cap, but exit on rule 3 if it comes first", target_r: 3.0, time_cap: 60}
+
+params:                      # shared engine thresholds (same values as ratio rules v2.1)
+  piv: 3
+  tol: 0.25
+  xb_warn: 2
+  xb_win: 20
+  ext_up: 2.0
+  flat: 0.5
+  slope_bars: 10
+  cost_etf: 0.0005
+  cost_stock: 0.0010
+  random_rate: 0.025         # random-entry control (config.yaml testing)
+  random_seeds: [1, 2, 3, 4, 5]   # per symbol: seed * 100000 + crc32(symbol) % 100000 (independent streams)
+  risk_pct: 0.0075           # portfolio check (config.yaml risk)
+  max_open: 5
+
+sensitivity:                 # neighbours; a PASS needs the same sign (ETFs, point estimate) at each
+  X8: {chandelier_atr: [2.5, 3.5]}
+  X9: {time_cap: [30, 50]}
+  X10: {piv: [5]}
+  X11: {piv: [5], tol: [0.0, 0.5], xb_warn: [1, 3], xb_win: [30], ext_up: [1.5, 2.5]}
+  X12: {piv: [5]}
+
+stats:
+  comparisons: [X8, X9, X10, X11, X12]   # each vs X3, paired by entry
+  k: 5                                  # Bonferroni, two-sided family alpha 0.05
+  alpha: 0.05
+  reps: 5000
+  seed: 7
+  block_months: [6, 12]                 # calendar blocks by entry date; the WIDER (more conservative) CI of the two
+                                        # is used, because long-hold exits overlap neighbouring blocks
+  min_n: 200                            # paired trades per universe
+  min_n_half: 50
+
+pass_rules:
+  - "ETFs: Bonferroni-adjusted CI of mean paired dR (exit - X3) > 0"
+  - "Stocks: Bonferroni-adjusted CI of mean paired dR > 0 (replication)"
+  - "Both time halves positive (point estimate) in both universes"
+  - "ETFs: R per 100 bars held of the exit >= X3's (no slower capital)"
+  - "ETFs: portfolio MAR (CAGR / max drawdown on DAILY MARK-TO-MARKET equity; 0.75% risk, max 5 open, no-overlap
+     trades, dividends included) >= X3's"
+  - "ETFs: same sign at every sensitivity neighbour, else FRAGILE"
+  - "OPPOSITE if the ETF adjusted CI is entirely below 0; INSUFFICIENT below min_n / min_n_half"
+labels:
+  beyond_drift: "ETF dR on E4 entries minus dR on random entries (same exits): unadjusted 95% CI > 0.
+                 Otherwise the gain may be holding-period drift that any long entry would earn."
+
+decisions:
+  pass: "The passing exit with the highest ETF portfolio MAR becomes the exit candidate. It is paper-traded
+         next to X3 in the forward test (v1.4 forward probation); the live playbook exit changes only after
+         that probation."
+  fail: "X3 stays. The exit question is closed for this cycle (no re-test of these definitions on this data)."
+
+validity:
+  lock: "prereg + exit code + engine + ifi modules match EXITS.lock"
+  lookahead: "engine events identical on truncated data (research/checks.py)"
+  lab_parity: "X3 trades from this simulator equal ifi/backtest.py X3_target3R trades exactly (same entries,
+               price-only R within 1e-9) on the real ETF universe. This covers entries, stop, target, time cap,
+               costs and sequencing; X8-X12 logic is covered by hand-built unit tests and a truncation test"
+  null: "martingale random walks (no drift in price terms): 0 PASS among the 5 exits (else abort)"
+  power: "planted persistent trends: X10 must PASS (letting real trends run must be detectable), else abort"
