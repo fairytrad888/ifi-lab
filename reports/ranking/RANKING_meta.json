@@ -1,0 +1,38 @@
+{
+ "run_utc": "2026-10-15 21:31 UTC",
+ "commit": "7c62df1",
+ "lock": "d52fee814461fe5a2d7db9fbcf2bf7d06f08388ad55d9c9cc8e128c0e2e85901",
+ "cutoff": "2026-10-14",
+ "manifest": "a3609f3fec828066882f39a0bda1b642db74f98e2a9b1f8c4a5e9f21b75441cb",
+ "n_etf": 17,
+ "n_stk": 61,
+ "validity": [
+  [
+   "Lock (prereg, ranking code, exit simulator, engine, ifi modules; exit lock too)",
+   "ok `d52fee814461fe5a`"
+  ],
+  [
+   "Engine look-ahead (truncation)",
+   "ok: identical events at 3 cut points on 2 synthetic markets (1093 events in the last full run)"
+  ],
+  [
+   "Synthetic nulls (nothing planted)",
+   "ok: martingale prices: F1 FAIL, persistent trends: F1 FAIL (required: no PASS)"
+  ],
+  [
+   "Synthetic power (persistent trends, -0.5 R planted on the trades F1 skips)",
+   "ok: F1 PASS, percentile in random-drop controls 100.0% (required: PASS)"
+  ],
+  [
+   "Frozen snapshot (pre-registered manifest)",
+   "cutoff 2026-10-14 \u00b7 manifest `a3609f3fec828066`"
+  ],
+  [
+   "Baseline parity (uncapped first-come = research/exits/run.py portfolio())",
+   "ok: stocks: 797 trades, CAGR 5.759%, max DD -16.379% in both"
+  ]
+ ],
+ "verdicts": {
+  "F1": "FAIL"
+ }
+}
