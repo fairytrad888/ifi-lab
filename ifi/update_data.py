@@ -20,6 +20,10 @@ def main():
     c = yaml.safe_load((ROOT / "config.yaml").read_text())
     stocks = [s for v in c["stocks"].values() for s in v]
     daily = sorted(set(c["etfs"] + stocks + c["watchlist"] + [c["benchmark"]]))
+    c14f = ROOT / "config_v14.yaml"          # v1.5: the extended (paper-only) universe is downloaded too
+    if c14f.exists():
+        ext = (yaml.safe_load(c14f.read_text()) or {}).get("extended_universe") or {}
+        daily = sorted(set(daily) | set(ext.get("etfs", [])) | set(ext.get("stocks", [])))
     got = fetch_daily(daily)
     print(f"daily: {len(got)}/{len(daily)} symbols")
     from .freshness import ensure  # v1.4: make sure the newest completed session is present

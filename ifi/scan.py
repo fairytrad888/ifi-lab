@@ -22,6 +22,7 @@ from . import allocation as alloc
 from . import forward as fw
 from . import freshness
 from . import digest
+from . import shadow
 
 LOG = ROOT / "logs" / "events.csv"
 JOURNAL_STATS = ROOT / "logs" / "journal_stats.json"
@@ -256,10 +257,13 @@ def main():
     # forward test (v1.4): full-universe paper trades with context tags, allocation ladder, health, drift
     c14 = alloc.cfg14()
     pframes = {k: v for k, v in frames.items() if k[0] == "daily"}
+    ext = c14.get("extended_universe") or {}
+    ext_etfs, ext_stocks = list(ext.get("etfs", [])), list(ext.get("stocks", []))
+    cp = dict(c, etfs=list(c["etfs"]) + ext_etfs, _extended=ext_etfs + ext_stocks)   # paper-trade view of the config
     if c14.get("forward_universe", "watchlist") == "full":
         braw = load(bench_sym, "daily")
         stocks = [s for v in c["stocks"].values() for s in v]
-        for s in sorted(set(c["etfs"] + stocks)):
+        for s in sorted(set(c["etfs"] + stocks + ext_etfs + ext_stocks)):
             if ("daily", s) in pframes:
                 continue
             df = load(s, "daily")
@@ -272,7 +276,7 @@ def main():
     prev_alloc = json.loads(alloc.ALLOC.read_text()) if alloc.ALLOC.exists() else {}
     prev_health = json.loads(alloc.HEALTH.read_text()) if alloc.HEALTH.exists() else {}
     seeded = (ROOT / "state" / "v14_seeded").exists()
-    pt = fw.paper_trades(log, pframes, c, ctx)
+    pt = fw.paper_trades(log, pframes, cp, ctx)
     full = alloc.ladder(pt, c, c14)
     board = {k: v for k, v in full.items() if not k.startswith("_")}
     pmeta = full["_portfolio"]
@@ -294,6 +298,12 @@ def main():
         extra = [l_ for l_ in extra if not l_.startswith("Paper") or any(f" {w} " in l_ for w in c["watchlist"])]
         (ROOT / "state").mkdir(parents=True, exist_ok=True)
         (ROOT / "state" / "v14_seeded").write_text(datetime.now(timezone.utc).isoformat())
+    seed15 = ROOT / "state" / "v15_seeded"
+    if not seed15.exists() and cp["_extended"]:   # first v1.5 run: the extended universe's paper history is recorded silently
+        xs = set(cp["_extended"])
+        extra = [l_ for l_ in extra if not (l_.startswith("Paper") and any(f" {w} " in f"{l_} " for w in xs))]
+        seed15.parent.mkdir(parents=True, exist_ok=True)
+        seed15.write_text(datetime.now(timezone.utc).isoformat())
     old_pf = prev_alloc.get("portfolio", {})
     if old_pf and old_pf.get("breaker") != pmeta["breaker"]:
         extra.insert(0, f"⚠ Drawdown breaker: {old_pf.get('breaker')} -> {pmeta['breaker']} "
@@ -313,14 +323,28 @@ def main():
         extra.insert(0, fl)
     fa.parent.mkdir(parents=True, exist_ok=True)
     fa.write_text(sig if fl else "")
+    live_ev = {}
+    try:      # v1.5 live evidence: random-entry control, edge over drift, shadow books, review progress (descriptive)
+        rc = shadow.random_control(pframes, cp, c14)
+        session = str(max(x.index[-1] for x in pframes.values()).date()) if pframes else str(now.date())
+        live_ev = dict(edge=shadow.live_edge(pt, rc), books=shadow.shadow_books(pt, c14, session),
+                       reviews=shadow.review_progress(pt, c14, now.tz_localize(None)))
+        for rv in live_ev["reviews"]:
+            fa = ROOT / "state" / f"review_{rv['id']}_alerted"
+            if rv["due"] and not fa.exists():
+                extra.append(f"Review {rv['id']} is due ({rv['progress']}): {rv['what']}")
+                fa.parent.mkdir(parents=True, exist_ok=True)
+                fa.write_text(str(now))
+    except Exception as ex:
+        print("live evidence failed:", ex)
     lines = [] if a.backfill else digest.alert_text(c, new_rows, extra)
     if lines:
         digest.log_alerts(lines, now)
         notify(c, lines)
     from .dashboard import build
-    build(frames, log, js, c, pt, board, dr, alloc_meta=pmeta, health=hl, fresh=fresh, c14=c14)
+    build(frames, log, js, c, pt, board, dr, alloc_meta=pmeta, health=hl, fresh=fresh, c14=c14, live_ev=live_ev)
     try:
-        digest.write_digest(pt, board, pmeta, hl, fresh, c14, [] if a.backfill else new_rows, lines, now)
+        digest.write_digest(pt, board, pmeta, hl, fresh, c14, [] if a.backfill else new_rows, lines, now, live_ev=live_ev)
     except Exception as ex:      # the digest is a convenience; it must never break the nightly
         print("digest failed:", ex)
     print(f"{len(new_rows)} new events; log size {len(log)}")

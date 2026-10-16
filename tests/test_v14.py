@@ -31,7 +31,8 @@ def rw(seed, n=1500, start="2020-01-02"):
 def test_ladder_math():
     a = C14["allocation"]
     mean, p = A.posterior(0.30, 1.5, 0, 0.0, a)
-    assert abs(mean - 0.18) < 1e-12 and abs(p - A._phi(0.18 / (1.5 / 10))) < 1e-12
+    m0 = 0.30 * a["haircut"]
+    assert abs(mean - m0) < 1e-12 and abs(p - A._phi(m0 / (1.5 / 10))) < 1e-12
     assert A.tier(0.99, 50, a) == 0.0075 and A.tier(0.99, 150, a) == 0.01
     assert A.tier(0.95, 0, a) == 0.0075 and A.tier(0.85, 0, a) == 0.005 and A.tier(0.75, 0, a) == 0.0025 and A.tier(0.5, 0, a) == 0.0
     # live losses pull the estimate down
@@ -248,6 +249,68 @@ def test_digest_and_alert_log():
     print("alert log and digest ok:", len(d["paper"]["open"]), "open,", d["paper"]["live_closed_n"], "live closed")
 
 
+def test_v15_live_evidence():
+    """Shadow books, random-entry control, live edge, review progress, extended-universe labels and dashboard."""
+    import json
+    import yaml
+    from ifi import forward as fw
+    from ifi import shadow as SH
+    import ifi.dashboard as dsh
+    c = yaml.safe_load((ROOT / "config.yaml").read_text())
+    c = dict(c, forward_test=dict(c.get("forward_test", {}), start="2024-06-01"), etfs=["AAA"], _extended=["BBB"])
+    frames = {("daily", s): read(rw(k), rw(9)) for k, s in enumerate(["AAA", "BBB", "CCC"], start=10)}
+    tmp = Path(tempfile.mkdtemp())
+    saved = fw.PAPER, A.ALLOC, A.HEALTH, A.RISK_AT_FILL, fw.SENT, SH.RANDOM, SH.SHADOW, dsh.DOCS
+    fw.PAPER, A.ALLOC, A.HEALTH, A.RISK_AT_FILL, fw.SENT = tmp / "pt.csv", tmp / "a.json", tmp / "h.json", tmp / "r.json", tmp / "s.json"
+    SH.RANDOM, SH.SHADOW, dsh.DOCS = tmp / "rc.csv", tmp / "sb.csv", tmp / "docs"
+    try:
+        pt = fw.paper_trades(pd.DataFrame(), frames, c, dict(spy=read(rw(9)), h4={}))
+        assert set(pt["group"]) <= {"core", "extended"} and (pt[pt["symbol"] == "BBB"]["group"] == "extended").all()
+        rc = SH.random_control(frames, c, C14)
+        assert len(rc) and (pd.to_datetime(rc["fill_date"]) >= "2024-06-01").all()
+        # the same past random entries when the history is one bar shorter (generator prefix is stable)
+        short = {k: v.iloc[:-1] for k, v in frames.items()}
+        rc2 = SH.random_control(short, c, C14)
+        a = set(zip(rc["symbol"], rc["seed"], rc["fill_date"].astype(str)))
+        b = set(zip(rc2["symbol"], rc2["seed"], rc2["fill_date"].astype(str)))
+        assert b <= a, "random entries changed when the history grew"
+        ed = SH.live_edge(pt, rc)
+        assert ed and ed[-1]["slice"] == "all setups"
+        books = SH.shadow_books(pt, C14, "2026-10-16")
+        assert set(books) == {"B0", "C1", "S20"} and books["B0"]["taken"] <= books["S20"]["taken"]
+        SH.shadow_books(pt, C14, "2026-10-16")                     # same session again: replaced, not appended
+        assert len(pd.read_csv(SH.SHADOW)) == 3
+        rv = SH.review_progress(pt, C14, pd.Timestamp("2026-10-16"))
+        assert [r["id"] for r in rv] == ["R1", "R2", "R3"] and not any(r["due"] for r in rv)
+        rv_due = SH.review_progress(pt, dict(C14, reviews=[dict(id="X", closed_trades=1, what="q")]), pd.Timestamp("2026-10-16"))
+        assert rv_due[0]["due"] == (int((pt["oos"].astype(bool) & (pt["status"] == "closed")).sum()) >= 1)
+        full = A.ladder(pt, c, C14)
+        dsh.build(frames, pd.DataFrame(), {}, c, pt, {k: v for k, v in full.items() if not k.startswith("_")}, {},
+                  alloc_meta=full["_portfolio"], health=A.health(pt, c, C14), fresh={}, c14=C14,
+                  live_ev=dict(edge=ed, books=books, reviews=rv))
+        assert "Live evidence" in (tmp / "docs" / "index.html").read_text()
+    finally:
+        fw.PAPER, A.ALLOC, A.HEALTH, A.RISK_AT_FILL, fw.SENT, SH.RANDOM, SH.SHADOW, dsh.DOCS = saved
+    print(f"v1.5 live evidence ok: {len(rc)} random-control trades, books taken " + str({k: v['taken'] for k, v in books.items()}))
+
+
+def test_v15_book_rules():
+    from ifi import shadow as SH
+    d = pd.to_datetime
+    live = pd.DataFrame(dict(symbol=list("ABCDEFG"), setup="E4_anchor_reclaim",
+                             fill_date=d(["2026-10-13"] * 6 + ["2026-10-20"]), exit_date=d(["2026-10-15"] + [None] * 6),
+                             status=["closed"] + ["open"] * 6, r=[2.0, 0.5, -0.5, 0.1, 0.2, 0.3, 1.0],
+                             fill=100.0, stop=95.0))
+    b0 = SH._book(live, 5, 0.0075, 1.0)
+    assert b0["taken"] == 6 and b0["skipped"] == 1            # 5 on Oct 13; A closed Oct 15 frees a slot for G on Oct 20
+    assert abs(b0["equity"] - (100_000 + 750 * (2.0 + 0.5 - 0.5 + 0.1 + 0.2 + 1.0))) < 1e-6
+    c1 = SH._book(live, None, 0.001, 1.0)
+    assert c1["taken"] == 7                                   # 0.1% risk / 5% stop = 2% notional each
+    tight = SH._book(live, None, 0.01, 0.5)                   # 1% / 5% = 20% notional: two fit under 50%
+    assert tight["taken"] == 3                                 # 2 on Oct 13, then A's exit frees room for G
+    print("v1.5 shadow book rules ok (slots, cash, exits free capacity)")
+
+
 if __name__ == "__main__":
     test_ladder_math()
     test_calibration_direction()
@@ -260,4 +323,6 @@ if __name__ == "__main__":
     test_paper_trades_full_universe_and_dashboard()
     test_block_streak_keeps_clustering()
     test_digest_and_alert_log()
+    test_v15_live_evidence()
+    test_v15_book_rules()
     print("all v1.4 tests passed")

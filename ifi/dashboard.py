@@ -90,7 +90,7 @@ def _rrg_svg(frames, syms):
 
 def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFrame | None = None,
           scoreboard: dict | None = None, drift: dict | None = None, alloc_meta: dict | None = None,
-          health: dict | None = None, fresh: dict | None = None, c14: dict | None = None):
+          health: dict | None = None, fresh: dict | None = None, c14: dict | None = None, live_ev: dict | None = None):
     DOCS.mkdir(parents=True, exist_ok=True)
     now = datetime.now(timezone.utc)
     rows = []
@@ -232,6 +232,32 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
             f"<td class='{'dn' if v.get('ks_flag') else ''}'>{ksp(v.get('ks_p'))}</td></tr>"
             for k, v in health.items()) + "</table><p class='mut'>These flag data or execution problems, not edge. "
             "The KS comparison starts at 20 live closed trades.</p>")
+    ev_live_html = ""
+    if live_ev and (live_ev.get("edge") or live_ev.get("books")):
+        def fr(v, d=2):
+            return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{v:+.{d}f}"
+        def fp(v, d=1):
+            return "–" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{100 * v:+.{d}f}%"
+        e_rows = "".join(
+            f"<tr><td style='text-align:left'>{html.escape(x['slice'])}</td><td>{x['n']}</td><td>{fr(x['mean_r'])}</td>"
+            f"<td>{x['n_random']}</td><td>{fr(x['random_r'])}</td><td class='{'up' if (x['edge'] or 0) > 0 else 'dn'}'><b>{fr(x['edge'])}</b></td></tr>"
+            for x in live_ev.get("edge", []))
+        b_rows = "".join(
+            f"<tr><td style='text-align:left'><b>{html.escape(k)}</b> {html.escape(str(v.get('name', '')))}</td><td>{fp(v.get('ret'), 2)}</td>"
+            f"<td>{v.get('taken', 0)}</td><td>{v.get('skipped', 0)}</td><td>{v.get('open', 0)}</td><td>{fp(v.get('heat'), 2)}</td>"
+            f"<td>{fr(v.get('sharpe_monthly'))}</td></tr>" for k, v in (live_ev.get("books") or {}).items())
+        r_rows = "".join(
+            f"<tr><td><b>{html.escape(r['id'])}</b></td><td>{'<b class=amb>due</b>' if r['due'] else html.escape(r['progress'])}</td>"
+            f"<td style='text-align:left' class='mut'>{html.escape(r['what'])}</td></tr>" for r in live_ev.get("reviews", []))
+        ev_live_html = (
+            "<table><tr><th style='text-align:left'>Closed live trades</th><th>n</th><th>Mean R</th><th>Random n</th><th>Random mean R</th>"
+            "<th>Edge over random</th></tr>" + e_rows + "</table>"
+            "<p class='mut'>Random entries use the playbook's stop and exit on the same symbols and days: what any long entry earned "
+            "from the market. Out of sample, E4 beat them by ~0.09R on new ETFs and ~0.03R on new stocks.</p>"
+            "<table><tr><th style='text-align:left'>Shadow book (live paper trades)</th><th>Return</th><th>Taken</th><th>Skipped</th>"
+            "<th>Open</th><th>Open risk</th><th>Monthly Sharpe</th></tr>" + b_rows + "</table>"
+            "<p class='mut'>Descriptive: your real rule is B0. Monthly Sharpe appears after 6 months. Judged at review R2.</p>"
+            + (("<table><tr><th>Review</th><th>Progress</th><th style='text-align:left'>Question</th></tr>" + r_rows + "</table>") if r_rows else ""))
     cand_html = ""
     if c14 and c14.get("candidates"):
         cand_html = ("<table><tr><th>ID</th><th>Lever</th><th style='text-align:left'>Hypothesis</th><th style='text-align:left'>Status</th></tr>" + "".join(
@@ -281,6 +307,7 @@ def build(frames: dict, log: pd.DataFrame, journal: dict, c: dict, pt: pd.DataFr
 <h1>IFI Board</h1><div class="mut">Updated {now:%Y-%m-%d %H:%M} UTC · {regime}</div>
 {fresh_html}{drift_html}
 <h2>Allocation (forward test)</h2><div class="card">{sb_html}</div>
+{('<h2>Live evidence</h2><div class="card">' + ev_live_html + '</div>') if ev_live_html else ''}
 <h2>Playbook signals</h2><div class="card">{pb_html}</div>
 <h2>Paper trades</h2><div class="card">{pt_html}</div>
 <h2>Process health</h2><div class="card">{hl_html}</div>

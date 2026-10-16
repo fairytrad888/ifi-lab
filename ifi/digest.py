@@ -96,7 +96,7 @@ def f1_view(row) -> str | None:
 
 
 def _trade(r: pd.Series) -> dict:
-    keys = ["symbol", "setup", "universe", "signal_bar", "status", "fill_date", "fill", "stop", "target", "exit_date",
+    keys = ["symbol", "setup", "universe", "group", "signal_bar", "status", "fill_date", "fill", "stop", "target", "exit_date",
             "exit_reason", "r", "cancel_if_open_below", "tag_stage", "tag_dist_anchor_atr", "tag_stop_width",
             "tag_spy_trend200", "tag_signals_same_day"]
     d = {k: r.get(k) for k in keys if k in r.index}
@@ -120,7 +120,7 @@ def research_verdicts() -> dict:
 
 
 def write_digest(pt: pd.DataFrame, board: dict, pmeta: dict, health: dict, fresh: dict, c14: dict,
-                 new_rows: list[dict], lines: list[str], now: pd.Timestamp | None = None) -> dict:
+                 new_rows: list[dict], lines: list[str], now: pd.Timestamp | None = None, live_ev: dict | None = None) -> dict:
     now = now or pd.Timestamp.now(tz="UTC")
     live = pt[pt["oos"].astype(bool)] if not pt.empty and "oos" in pt else pd.DataFrame()
     def pick(status, n=None):
@@ -150,8 +150,13 @@ def write_digest(pt: pd.DataFrame, board: dict, pmeta: dict, health: dict, fresh
         alerts_last_7d=sum(len(r["lines"]) for r in recent_alerts(7, now)),
         candidates=c14.get("candidates", []),
         research=research_verdicts(),
-        f1_rule="F1 (ranking test v1, pre-registered): skip E4 signals more than 1.5 ATR above the anchor or at IFI stage < 1. "
-                "f1_view is descriptive until that test passes.",
+        f1_rule="F1 (ranking test v1) FAILED on Oct 15; f1_view is kept as a descriptive tag only.",
+        live_edge=(live_ev or {}).get("edge", []),
+        shadow_books={k: {f: v.get(f) for f in ("name", "taken", "skipped", "open", "ret", "heat", "sessions", "months", "sharpe_monthly")}
+                      for k, v in ((live_ev or {}).get("books") or {}).items()},
+        reviews=(live_ev or {}).get("reviews", []),
+        notes="v1.5: ladder prior uses the measured out-of-sample haircut 0.45; the paper universe includes 92 extended symbols "
+              "(group 'extended'); live_edge = live setup R minus live random-entry R (drift baseline).",
     )
     DIGEST.parent.mkdir(parents=True, exist_ok=True)
     DIGEST.write_text(json.dumps(_clean(out), indent=1))

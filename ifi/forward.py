@@ -80,6 +80,7 @@ def paper_trades(log: pd.DataFrame, frames: dict, c: dict, ctx: dict | None = No
     r_mult = pb.get("target_r", 3)
     start = pd.Timestamp(str(c.get("forward_test", {}).get("start", "2100-01-01")))
     etfs = set(c["etfs"])
+    ext = set(c.get("_extended", []))      # v1.5: extended (paper-only) universe
     rows = []
     for (tf, sym), x in frames.items():
         if tf != "daily" or x is None or len(x) < 3:
@@ -103,7 +104,7 @@ def paper_trades(log: pd.DataFrame, frames: dict, c: dict, ctx: dict | None = No
                 bar = x.index[i]
                 sid = f"daily|{sym}|{bar:%Y-%m-%d %H:%M}|{PLAYBOOK_NAMES.get(su, su)}"
                 base = dict(signal_id=sid, symbol=sym, setup=su, signal_bar=bar, oos=bool(bar >= start),
-                            universe="etf" if sym in etfs else "stock")
+                            universe="etf" if sym in etfs else "stock", group="extended" if sym in ext else "core")
                 if ctx is not None:
                     base.update(context_tags(x, i, sym, ctx, live=bool(bar >= start)))
                 stop = low5.iloc[i] - 0.5 * x["atr"].iloc[i]

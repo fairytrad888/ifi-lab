@@ -1,4 +1,4 @@
-# IFI Lab v1.4 settings (Oct 15, 2026). Read by ifi/allocation.py and ifi/scan.py.
+# IFI Lab v1.4 settings (Oct 15, 2026; v1.5 changes Oct 16 marked). Read by ifi/allocation.py and ifi/scan.py.
 # Kept separate from config.yaml so your own edits there are never overwritten.
 # Every threshold here was fixed before any live result; changing one is a logged decision.
 
@@ -6,7 +6,8 @@ forward_universe: full        # full = paper-trade every ETF and stock in config
 
 allocation:                   # IFI_Lab_v1.4_Design.md section 3 (approved: haircut 0.6)
   n0: 100                     # the backtest prior counts like 100 live trades
-  haircut: 0.6                # backtest edge discounted (same-history fitting, survivorship)
+  haircut: 0.45               # v1.5: MEASURED out of sample (construction v1 sealed set: 0.132R vs 0.297R in-sample = 0.45;
+                              # E4 alone 0.42, E1 0.61 on few trades). Was 0.6 (a guess). Starting P(edge>0) ~0.81: still the 0.50% tier
   sigma_default: 1.5          # R standard deviation if the backtest trade file is missing
   tiers:                      # P(edge > 0) lower bound -> risk per trade
     - [0.975, 0.0100]         # needs min_live_for_top live trades, otherwise 0.75%
@@ -28,15 +29,42 @@ safety:
   health_min_live: 20         # process-health comparisons start at this many live trades
   health_p: 0.01              # KS-test p-value below which the live R distribution is flagged
 
-candidates:                   # registry (v1.4 design section 6), status as of Oct 15, 2026
-  - {id: L1, lever: breadth, hypothesis: "Paper-trading the full universe raises trades a year and portfolio MAR at the same edge", status: "LIVE: full-universe paper trading from v1.4"}
+candidates:                   # registry (v1.4 design section 6), status as of Oct 16, 2026
+  - {id: L1, lever: breadth, hypothesis: "Paper-trading the full universe raises trades a year and portfolio MAR at the same edge", status: "LIVE: full-universe paper trading from v1.4; extended to 170 symbols in v1.5"}
   - {id: C1, lever: selection, hypothesis: "E4 when rotation is Leading/Improving beats Lagging", status: "DEPRIORITISED: Step 0 found no ratio-state information (Oct 14)"}
   - {id: C2, lever: selection, hypothesis: "E4 within 20 bars after a positive earnings gap", status: "COLLECTING: tagged on every paper trade (days since earnings)"}
-  - {id: C3, lever: selection, hypothesis: "Very wide stops (top 20% by stop width) have lower R", status: "COLLECTING: tagged on every paper trade (stop width); C3b (width beyond random-entry arithmetic) reported in ranking test v1"}
+  - {id: C3, lever: selection, hypothesis: "Very wide stops (top 20% by stop width) have lower R", status: "CLOSED: R arithmetic, not entry quality (C3b +0.02R vs random)"}
   - {id: C4, lever: timing, hypothesis: "A Daily signal confirmed by 4H stage >= 2 beats an unconfirmed one", status: "COLLECTING: tagged where 4H data exists (watchlist)"}
-  - {id: C5, lever: selection, hypothesis: "E4 entries more than 1.5 ATR above the anchor have lower R (ETF profile: +0.13R vs +0.48R)", status: "TESTING: ranking test v1 (F1) on stocks; tagged live (dist_anchor_atr)"}
-  - {id: C6, lever: selection, hypothesis: "E4 at IFI stage 0 or below has lower R (ETF profile: -0.04R, n 56)", status: "TESTING: ranking test v1 (F1) on stocks; tagged live (stage)"}
-  - {id: F1, lever: slots, hypothesis: "Skipping C5/C6 signals frees the 5 slots for better ones and raises portfolio MAR", status: "TESTING: ranking test v1 (pre-registered Oct 15); same-day ranking arms dropped after the power check"}
+  - {id: C5, lever: selection, hypothesis: "E4 entries more than 1.5 ATR above the anchor have lower R (ETF profile: +0.13R vs +0.48R)", status: "NOT RESOLVABLE: -0.08R on stocks (CI incl. 0); tagged live only"}
+  - {id: C6, lever: selection, hypothesis: "E4 at IFI stage 0 or below has lower R (ETF profile: -0.04R, n 56)", status: "NOT RESOLVABLE: -0.06R on stocks (CI incl. 0); tagged live only"}
+  - {id: F1, lever: slots, hypothesis: "Skipping C5/C6 signals frees the 5 slots for better ones and raises portfolio MAR", status: "FAILED: ranking v1 (Oct 15), 85.7th pct vs 95th needed"}
+  - {id: B1, lever: construction, hypothesis: "Every signal at small risk (cash-limited) beats 5 slots x 0.75% on Sharpe", status: "FAILED: construction v1 (Oct 16), P 0.873; bad-market months better (-0.07% vs -0.27%/month). Shadow book C1, review R2"}
+  - {id: B2, lever: construction, hypothesis: "20 slots x 0.1875% (heat capped 3.75%) beats 5 slots", status: "HYPOTHESIS: reported-only in construction v1 (P 0.959 sealed, 0.869 design). Shadow book S20, review R2"}
   - {id: X8, lever: exits, hypothesis: "Half off at 3R, chandelier on the rest", status: "FAILED: exit test v1 (Oct 15): better per trade, worse portfolio MAR"}
   - {id: X9, lever: exits, hypothesis: "3R with a 40-bar time cap", status: "FAILED: exit test v1 (Oct 15)"}
   - {id: X10-X12, lever: exits, hypothesis: "Rule-3 structural, fast line-break and hybrid exits", status: "FAILED: exit test v1 (Oct 15)"}
+
+# ---------------------------------------------------------------- v1.5 (Oct 16, 2026), after construction test v1
+extended_universe:            # sealed set 1, now used by construction v1: paper-traded for LIVE evidence only.
+                              # Not in config.yaml, so your watchlist, alerts and real book are unchanged.
+  etfs: [XHB, ITB, KRE, KBE, KIE, XRT, XME, XOP, XES, XPH, IYT, IHI, ITA, IGV, IYZ, PBJ, PBW, GDX,
+         EFA, EEM, EWJ, EWZ, EWG, EWU, EWC, EWA, EWW, EWT, EWY, EWH, EWS, FXI, EWP, EWI, EWQ, EWL, EWD, EWN]
+  stocks: [ABT, ACN, AIG, AMGN, AXP, BA, BK, BLK, BMY, BRK-B, C, CHTR, CL, CMCSA, COF, CSCO, CVS, DE, DHR, EMR,
+           F, FDX, GD, GILD, GM, IBM, INTC, INTU, LMT, LOW, MDLZ, MDT, MET, MMM, MO, NOW, PFE, PLTR, PM, PYPL,
+           QCOM, RTX, SBUX, SCHW, SPG, T, TGT, TMO, TXN, UNP, UPS, USB, VZ, WFC]
+
+live_controls:                # random entries with the playbook's stop and exit: the live drift baseline
+  random_rate: 0.025          # ~1 entry per 40 bars, as the Lab's control
+  random_seeds: [1, 2, 3, 4, 5]
+
+shadow_books:                 # the live paper trades replayed through three books (descriptive; the real rule stays B0)
+  B0: {name: "5 slots x 0.75% (current)", slots: 5, risk: 0.0075, cash: 1.0}
+  C1: {name: "every signal at 0.10%, cash-limited", slots: null, risk: 0.0010, cash: 1.0}
+  S20: {name: "20 slots x 0.1875%", slots: 20, risk: 0.001875, cash: 1.0}
+
+reviews:                      # pre-registered live checkpoints (Oct 16). A review is a scheduled look with a written question,
+                              # not an automatic action: the ladder and the breaker already act on their own.
+  - {id: R1, setup: E4_anchor_reclaim, closed_trades: 100, what: "E4 prior check: live E4 mean R vs the 0.13R prior, and live edge over random entries. If live R sits below the prior's lower range, review the haircut."}
+  - {id: R2, closed_trades: 150, date: "2027-10-16", what: "Construction: shadow books C1 and S20 vs B0 (monthly Sharpe and bad-market months). If one leads on both, pre-register an adoption decision; else close for this cycle."}
+  - {id: R3, setup: E4_anchor_reclaim, universe: stock, closed_trades: 150, what: "E4 on stocks: out of sample it beat random entries by only ~0.03R. If live stock E4 edge over random is <= 0, pre-register a test of E4-on-stocks vs E1-only on stocks."}
+
