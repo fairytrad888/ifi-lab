@@ -1,0 +1,644 @@
+{
+ "created_utc": "2026-10-16T13:01:43Z",
+ "cutoff": "2026-10-15",
+ "files": {
+  "ABT": {
+   "file": "ABT.csv.gz",
+   "first": "1980-03-17",
+   "last": "2026-10-15",
+   "rows": 11741,
+   "sha256": "e884f0b6825cff63b2a2d7aa8288c8eeb3df671909eb1c41426f1f3c03beed0f"
+  },
+  "ACN": {
+   "file": "ACN.csv.gz",
+   "first": "2001-07-19",
+   "last": "2026-10-15",
+   "rows": 6348,
+   "sha256": "306bea7334690ba527f007fda30db4dc20a06e1ace5000aaa2d6cced25c10c4d"
+  },
+  "AIG": {
+   "file": "AIG.csv.gz",
+   "first": "1973-01-02",
+   "last": "2026-10-15",
+   "rows": 13561,
+   "sha256": "b23dbec7d69deaed5525f135b396abb390463f2872e684cc06a3bca407ba780b"
+  },
+  "AMGN": {
+   "file": "AMGN.csv.gz",
+   "first": "1983-06-17",
+   "last": "2026-10-15",
+   "rows": 10918,
+   "sha256": "2aba8c8336f0e4afb4788c0418fa21da93e65233a00534e5063f3476ee0451e8"
+  },
+  "AXP": {
+   "file": "AXP.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "5fe03f97891827b2c582430de88b1c1e92912ccb4ae22d4b7a64e99445b89da8"
+  },
+  "BA": {
+   "file": "BA.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-15",
+   "rows": 16306,
+   "sha256": "7004fed57221c8aef62af8c112c0b87d68dc0b4adeb2c2bcf741ef5a03d72f9e"
+  },
+  "BLK": {
+   "file": "BLK.csv.gz",
+   "first": "1999-10-01",
+   "last": "2026-10-15",
+   "rows": 6801,
+   "sha256": "7ff7ac1ba8cddbb0efbd9d91ea91be9b04687ae604d4c581b931a2bcfbb7775a"
+  },
+  "BMY": {
+   "file": "BMY.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "0f460775c17976c0048cac315fade3c2a1d4c91b5f5db69cf9e6647bfddee0a5"
+  },
+  "BRK-B": {
+   "file": "BRK_B.csv.gz",
+   "first": "1996-05-09",
+   "last": "2026-10-15",
+   "rows": 7658,
+   "sha256": "4dd337d4322fb82e02bab16ab5c18abe738e493c23100c892d0c64101fb4430c"
+  },
+  "C": {
+   "file": "C.csv.gz",
+   "first": "1977-01-03",
+   "last": "2026-10-15",
+   "rows": 12550,
+   "sha256": "f34c940c8db158a506ee465f9fb35ad17060fd18d8e0fe16a9c3b9a1c6745bec"
+  },
+  "CHTR": {
+   "file": "CHTR.csv.gz",
+   "first": "2010-01-05",
+   "last": "2026-10-15",
+   "rows": 4221,
+   "sha256": "4ab87544e670177da5bf6328bb0c515ca8b77fde94374bd0e2e19db6caf13a48"
+  },
+  "CL": {
+   "file": "CL.csv.gz",
+   "first": "1973-05-02",
+   "last": "2026-10-15",
+   "rows": 13478,
+   "sha256": "10345893b99e7ed7852b081d1471a860ed7f64403db130ef45aa66eddd658127"
+  },
+  "CMCSA": {
+   "file": "CMCSA.csv.gz",
+   "first": "1980-03-17",
+   "last": "2026-10-15",
+   "rows": 11741,
+   "sha256": "a8e8a9c41dbf5ab987ecaea146b207a5a7bea88f17868425c5109594e9d9a87e"
+  },
+  "COF": {
+   "file": "COF.csv.gz",
+   "first": "1994-11-16",
+   "last": "2026-10-15",
+   "rows": 8031,
+   "sha256": "b0da117afe217bc4857146f5f55e0f1da90080f745053a9c693d156fd6dea560"
+  },
+  "CSCO": {
+   "file": "CSCO.csv.gz",
+   "first": "1990-02-16",
+   "last": "2026-10-15",
+   "rows": 9232,
+   "sha256": "e49841201e2e575d459f8d8f42fc3102837acc214c7ad25327b0a7bdcc22bb3e"
+  },
+  "CVS": {
+   "file": "CVS.csv.gz",
+   "first": "1973-02-21",
+   "last": "2026-10-15",
+   "rows": 13527,
+   "sha256": "821a6791f32dadb19933f02adb93d87008b627038dbf74f88344e06ce95fa8f6"
+  },
+  "DE": {
+   "file": "DE.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "e2ac60c3dc77f58d6bf525977fc8d072e3aa82de488d3bce4a7c2df2572e7e2e"
+  },
+  "DHR": {
+   "file": "DHR.csv.gz",
+   "first": "1978-12-29",
+   "last": "2026-10-15",
+   "rows": 12047,
+   "sha256": "6879c6863704201a8e25d99afc53ea009d4e795148e380b5cfdb28cd79e0cf19"
+  },
+  "EEM": {
+   "file": "EEM.csv.gz",
+   "first": "2003-04-14",
+   "last": "2026-10-15",
+   "rows": 5915,
+   "sha256": "815ed3c3c49594f9e95b9c59c5197fbfb7665861bc789d8ac288593be1c51e54"
+  },
+  "EFA": {
+   "file": "EFA.csv.gz",
+   "first": "2001-08-27",
+   "last": "2026-10-15",
+   "rows": 6321,
+   "sha256": "bc275806d7fa2ef80a81acd470ecc06c921c9bc6d83048ccc264eead522ddf46"
+  },
+  "EMR": {
+   "file": "EMR.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "f96f9ebe7864c9048746f6c989945da70b906db02a215b0d6f0f995970030a15"
+  },
+  "EWA": {
+   "file": "EWA.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "f189da520e7b5d4db81af89bd89ba9acda2526bf2798fc41e693cd7450102d2d"
+  },
+  "EWC": {
+   "file": "EWC.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "b7402865a0c34d4a94be04a037b82fed3627c6df685247e0ddc2b099eabf9827"
+  },
+  "EWD": {
+   "file": "EWD.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "7267045759a150b2a99fc8bd1daa708b537d93ac45fe59b8a72e1ffeba91fd40"
+  },
+  "EWG": {
+   "file": "EWG.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "dff6f0bbc6cd99a42be76c92c01088f547aa5c224c0cb64e5f42c50acb34eb1b"
+  },
+  "EWH": {
+   "file": "EWH.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "e6bc449b65d954151e2337419f0c9b1e7b5bb4cc7897bef30862022a60a6d772"
+  },
+  "EWI": {
+   "file": "EWI.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "8d35277d73a16bcedb86aef2f6064f68cd66dfdd10ec7724d90a7a7facf97827"
+  },
+  "EWJ": {
+   "file": "EWJ.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "62d06bc495e7cac865e489bd4f5b46413f3bed0f9c990ee3e9db268a9b1cd7de"
+  },
+  "EWL": {
+   "file": "EWL.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "7e06f21b5784b0d45a70736b80efd14409031346cc5e18203c022dfa3277d90b"
+  },
+  "EWN": {
+   "file": "EWN.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "127df7e7338374354ed5c91c029dad1900ca627577d2f3c72c7e07478e69a9fc"
+  },
+  "EWP": {
+   "file": "EWP.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "853ec326d5a42fd16e06f6a5e392222ca1c1dde58cc60d6dbc140735fd354aac"
+  },
+  "EWQ": {
+   "file": "EWQ.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "dbffaf638ee64658da7a1cca77b3d31f53be93888d01f20034d101c159fd21f1"
+  },
+  "EWS": {
+   "file": "EWS.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "3c0df4106200e8d34e9bca6aba013daf16b25dd3a73a69532494a57ce468d99e"
+  },
+  "EWT": {
+   "file": "EWT.csv.gz",
+   "first": "2000-06-23",
+   "last": "2026-10-15",
+   "rows": 6617,
+   "sha256": "0dab5bc00370a39b63004cb4975533eebb24f639d3ce8275b633fc4032750111"
+  },
+  "EWU": {
+   "file": "EWU.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "fe321a22595de0498dc91c0d7557c374ec3b0cf7fda5abb3e156c417b61a1163"
+  },
+  "EWW": {
+   "file": "EWW.csv.gz",
+   "first": "1996-03-18",
+   "last": "2026-10-15",
+   "rows": 7695,
+   "sha256": "0e647cd59df0c4239db12480939dab19769fddee471863fae1e7e4e8ba538102"
+  },
+  "EWY": {
+   "file": "EWY.csv.gz",
+   "first": "2000-05-12",
+   "last": "2026-10-15",
+   "rows": 6646,
+   "sha256": "ef5ec433359cf6ecc24f60fbbbc2c4d31b49e7a002ba7c9dbfee029809287001"
+  },
+  "EWZ": {
+   "file": "EWZ.csv.gz",
+   "first": "2000-07-14",
+   "last": "2026-10-15",
+   "rows": 6603,
+   "sha256": "4537d99a3c2223196f8f98ad157cd1fa61a813d96fe44478b3db0858524c2dc6"
+  },
+  "F": {
+   "file": "F.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "e6c5d37d56cccc281d729d36fcfc532312977d2e5da97e14281a819ee70f25f0"
+  },
+  "FDX": {
+   "file": "FDX.csv.gz",
+   "first": "1978-04-12",
+   "last": "2026-10-15",
+   "rows": 12229,
+   "sha256": "8519bc22ed4c9b3e463b10abbb6cf560c9a2dea79b1d613ed834f2b03fbf787e"
+  },
+  "FXI": {
+   "file": "FXI.csv.gz",
+   "first": "2004-10-08",
+   "last": "2026-10-15",
+   "rows": 5540,
+   "sha256": "4e6bf1bc7dda15f0a71050ace6ca3d385338b6ebdff0bf87543a529d08bb17f1"
+  },
+  "GD": {
+   "file": "GD.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-15",
+   "rows": 16306,
+   "sha256": "504d96176801f2050df87ea006c66e0b08af8b220c672f06d5ac2e7bacd1671c"
+  },
+  "GDX": {
+   "file": "GDX.csv.gz",
+   "first": "2006-05-22",
+   "last": "2026-10-15",
+   "rows": 5133,
+   "sha256": "59141f2e73f1e6d27b08cf53ce953593bf01db7b9452c1f8360a6aaf536366d1"
+  },
+  "GILD": {
+   "file": "GILD.csv.gz",
+   "first": "1992-01-22",
+   "last": "2026-10-15",
+   "rows": 8745,
+   "sha256": "8983299a38bcbeb89e929cbb7f27a59b55571fec3bb417c7e922d5be00d1f155"
+  },
+  "GM": {
+   "file": "GM.csv.gz",
+   "first": "2010-11-18",
+   "last": "2026-10-15",
+   "rows": 4000,
+   "sha256": "ffa3874fa3aebd9359625ddd3c4e515c84e48eb88af7b98f365fbc85ebd7e371"
+  },
+  "IBM": {
+   "file": "IBM.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-15",
+   "rows": 16306,
+   "sha256": "e80ec05b7b6bb93342891dff9002cb5952021de0a06aa63b68337d4317fedf7f"
+  },
+  "IGV": {
+   "file": "IGV.csv.gz",
+   "first": "2001-07-17",
+   "last": "2026-10-15",
+   "rows": 6350,
+   "sha256": "0c008d939497c22477b7e791221164e467e9f8b67a8551ace5b90df2a66e6c73"
+  },
+  "IHI": {
+   "file": "IHI.csv.gz",
+   "first": "2006-05-05",
+   "last": "2026-10-15",
+   "rows": 5144,
+   "sha256": "b4aa6347a874327d7f39e3a70c53ba30a93ca8bdb25c8207af113e768446aeb3"
+  },
+  "INTC": {
+   "file": "INTC.csv.gz",
+   "first": "1980-03-17",
+   "last": "2026-10-15",
+   "rows": 11741,
+   "sha256": "2d6743caf7ef48415645bc16e13afb9714f852f25d25d5637d807e70d739a30d"
+  },
+  "INTU": {
+   "file": "INTU.csv.gz",
+   "first": "1993-03-12",
+   "last": "2026-10-15",
+   "rows": 8457,
+   "sha256": "54f24a2e7e464463cec1a80343a795dfc4fa3f8d0a685649cb7af4fef7028f96"
+  },
+  "ITA": {
+   "file": "ITA.csv.gz",
+   "first": "2006-05-05",
+   "last": "2026-10-15",
+   "rows": 5144,
+   "sha256": "ca843e0b495f23ce356d44470273eb65f3e997f9c523607ad90d2382476b99df"
+  },
+  "ITB": {
+   "file": "ITB.csv.gz",
+   "first": "2006-05-05",
+   "last": "2026-10-15",
+   "rows": 5144,
+   "sha256": "9ac0090b5861feef55a538917664a2d1a524c678bede6fea17aaddb1f2e53777"
+  },
+  "IYT": {
+   "file": "IYT.csv.gz",
+   "first": "2004-01-02",
+   "last": "2026-10-15",
+   "rows": 5733,
+   "sha256": "d4065f03d196089aa09312197207b3f20759001aaf62748053975d740c4bae9d"
+  },
+  "IYZ": {
+   "file": "IYZ.csv.gz",
+   "first": "2000-05-26",
+   "last": "2026-10-15",
+   "rows": 6636,
+   "sha256": "62de2e104c5d35bccf44376e16d0ce77670cebec06aea17eb37587a7a714d9cf"
+  },
+  "KBE": {
+   "file": "KBE.csv.gz",
+   "first": "2005-11-15",
+   "last": "2026-10-15",
+   "rows": 5261,
+   "sha256": "b43c87d0cf01f5c7936d972131c4218591a09269fa36e6378e69ae164d4c1f11"
+  },
+  "KIE": {
+   "file": "KIE.csv.gz",
+   "first": "2005-11-15",
+   "last": "2026-10-15",
+   "rows": 5261,
+   "sha256": "ac8dd87dd5bc43260068b578b7e0373ebe9ec0b37fcc9510cd0f776bdb2ce921"
+  },
+  "KRE": {
+   "file": "KRE.csv.gz",
+   "first": "2006-06-22",
+   "last": "2026-10-15",
+   "rows": 5111,
+   "sha256": "c759f55ca3cd7e40bc2f893f1dffd9cddac0e7561231f844dfd3159cfccb962e"
+  },
+  "LMT": {
+   "file": "LMT.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-15",
+   "rows": 16305,
+   "sha256": "e1d2601e23555724ac114e4b1f64649ca5a244d3a57c4ca04a1422dae268c67b"
+  },
+  "LOW": {
+   "file": "LOW.csv.gz",
+   "first": "1980-03-17",
+   "last": "2026-10-15",
+   "rows": 11741,
+   "sha256": "3ef4a1d4a201ceea2ac5ff93478cc495d6aa54696101b337c2652ff19aeb38e6"
+  },
+  "MDLZ": {
+   "file": "MDLZ.csv.gz",
+   "first": "2001-06-13",
+   "last": "2026-10-15",
+   "rows": 6373,
+   "sha256": "a9ff3f9a6680728631ef4ab7140f750613c1290bc8a6177aca84ccf4b7c3c78f"
+  },
+  "MDT": {
+   "file": "MDT.csv.gz",
+   "first": "1973-05-02",
+   "last": "2026-10-15",
+   "rows": 13478,
+   "sha256": "e48e3afab0091c38ba19a158d2aa731bcc9994fbcbdd5261236dc085402a6ec3"
+  },
+  "MET": {
+   "file": "MET.csv.gz",
+   "first": "2000-04-05",
+   "last": "2026-10-15",
+   "rows": 6672,
+   "sha256": "23653f9ebf20d826aece66f30330a0c196bc6f29dbe591442bef2c85d00ac1aa"
+  },
+  "MMM": {
+   "file": "MMM.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-15",
+   "rows": 16306,
+   "sha256": "7afd0e3e06b5f8f2e80b4c0ef91859d3e14cd0fa38ed299801bc4e37a748da76"
+  },
+  "MO": {
+   "file": "MO.csv.gz",
+   "first": "1962-01-02",
+   "last": "2026-10-15",
+   "rows": 16306,
+   "sha256": "a5567fcd73b364073ee255342d2b41d96fa4ebdcd15c85b72587fd141c9ef02b"
+  },
+  "NOW": {
+   "file": "NOW.csv.gz",
+   "first": "2012-06-29",
+   "last": "2026-10-15",
+   "rows": 3594,
+   "sha256": "02c3962ad3a01dae495b1f98c6c73b514ea8b9dff2f1070ddeac71967234b394"
+  },
+  "PBJ": {
+   "file": "PBJ.csv.gz",
+   "first": "2005-06-23",
+   "last": "2026-10-15",
+   "rows": 5362,
+   "sha256": "057203c3c391e36e74721b9cfbf062d2734fd2eda8308d829c341f3d5ef87ecb"
+  },
+  "PBW": {
+   "file": "PBW.csv.gz",
+   "first": "2005-03-03",
+   "last": "2026-10-15",
+   "rows": 5440,
+   "sha256": "c4b590daacceda58b2e4e075196449388efce85235ecc73123048c2273b3baa7"
+  },
+  "PFE": {
+   "file": "PFE.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "0c0a91e5b69dcccc8defb659236562c2a4c7c41baf2cf0978efbff0b5ae3bba0"
+  },
+  "PLTR": {
+   "file": "PLTR.csv.gz",
+   "first": "2020-09-30",
+   "last": "2026-10-15",
+   "rows": 1518,
+   "sha256": "76c3f7ebe5634b81483cb4fe0bb9061432c347eefee2803568aca8b36aff8636"
+  },
+  "PM": {
+   "file": "PM.csv.gz",
+   "first": "2008-03-17",
+   "last": "2026-10-15",
+   "rows": 4676,
+   "sha256": "07393d6ca261327db7ac637d124c1bad4c58df383270bc036b1b0212e6e99e16"
+  },
+  "PYPL": {
+   "file": "PYPL.csv.gz",
+   "first": "2015-07-06",
+   "last": "2026-10-15",
+   "rows": 2838,
+   "sha256": "4efe4bcce2ad8fb1cc57cb80f1dff613f23c5490d22a0e7d515705d5f3e6cbe3"
+  },
+  "QCOM": {
+   "file": "QCOM.csv.gz",
+   "first": "1991-12-13",
+   "last": "2026-10-15",
+   "rows": 8771,
+   "sha256": "a49996927238e58d7eacddc9223d49cc5cedb68a0c3c714b0484ff3a4c6f6a2b"
+  },
+  "RTX": {
+   "file": "RTX.csv.gz",
+   "first": "1962-04-02",
+   "last": "2026-10-15",
+   "rows": 16243,
+   "sha256": "05a678df0c3a9d168911993ec4778bc35441a549d73a4266fd87506a9acb175e"
+  },
+  "SBUX": {
+   "file": "SBUX.csv.gz",
+   "first": "1992-06-26",
+   "last": "2026-10-15",
+   "rows": 8636,
+   "sha256": "bbb4e1532ae6d181ee309292e190502920f480c6e92e763c1029297f4613bbca"
+  },
+  "SCHW": {
+   "file": "SCHW.csv.gz",
+   "first": "1987-09-22",
+   "last": "2026-10-15",
+   "rows": 9841,
+   "sha256": "d1a6459f971f710fa9f05aec9c713554979594ed9e8f7610c4f7e416ce729862"
+  },
+  "SPG": {
+   "file": "SPG.csv.gz",
+   "first": "1993-12-14",
+   "last": "2026-10-15",
+   "rows": 8265,
+   "sha256": "0d5ecd7db2715c5390be8cc709240a8cf6d8a4476bce64413e2d737d64f7b728"
+  },
+  "T": {
+   "file": "T.csv.gz",
+   "first": "1983-11-21",
+   "last": "2026-10-15",
+   "rows": 10809,
+   "sha256": "2c1872f393118fb6cd9b358004a4b4294d5594f44eefff6a21e0de2b4a9c5271"
+  },
+  "TGT": {
+   "file": "TGT.csv.gz",
+   "first": "1973-02-21",
+   "last": "2026-10-15",
+   "rows": 13527,
+   "sha256": "2ff42e2c9b2691556b2ad283a96f5cc35562743afb1fdd407c903158979a5c30"
+  },
+  "TMO": {
+   "file": "TMO.csv.gz",
+   "first": "1980-03-17",
+   "last": "2026-10-15",
+   "rows": 11741,
+   "sha256": "560f08ac90f55f50b796a0750df306bc73cf64aee2bc0d6b4fecbfa92c8967e9"
+  },
+  "TXN": {
+   "file": "TXN.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "6ac53e40621db31dac36f858d69d69515d16fc7c4390844d5d1f41b855c643ca"
+  },
+  "UNP": {
+   "file": "UNP.csv.gz",
+   "first": "1980-01-02",
+   "last": "2026-10-15",
+   "rows": 11793,
+   "sha256": "4b799107a50d51356fe1682a75a650a7151ff9b205ab11ee18646b6dfddf29ee"
+  },
+  "UPS": {
+   "file": "UPS.csv.gz",
+   "first": "1999-11-10",
+   "last": "2026-10-15",
+   "rows": 6773,
+   "sha256": "a14761a89f43a3413242f15342b9b7d401a00e146fcacecf2e4e41865f370782"
+  },
+  "USB": {
+   "file": "USB.csv.gz",
+   "first": "1973-05-03",
+   "last": "2026-10-15",
+   "rows": 13477,
+   "sha256": "32f179e04cf70534eb47f91d38ade36019341c9de23aa25b2d887516b40388da"
+  },
+  "VZ": {
+   "file": "VZ.csv.gz",
+   "first": "1983-11-21",
+   "last": "2026-10-15",
+   "rows": 10809,
+   "sha256": "8e85ceb20a114116f0261a166ab26eca592a364265109eb5683e9420e2b24fb8"
+  },
+  "WFC": {
+   "file": "WFC.csv.gz",
+   "first": "1972-06-01",
+   "last": "2026-10-15",
+   "rows": 13707,
+   "sha256": "16f5b93489db323f8f6ee0e3fe2065eefcd81f8795940abe06979c45e674ac4e"
+  },
+  "XES": {
+   "file": "XES.csv.gz",
+   "first": "2006-06-22",
+   "last": "2026-10-15",
+   "rows": 5111,
+   "sha256": "505e81f9425f22334274f2261b51762be1654f8e629b717befb1ca6a5b8f0362"
+  },
+  "XHB": {
+   "file": "XHB.csv.gz",
+   "first": "2006-02-06",
+   "last": "2026-10-15",
+   "rows": 5206,
+   "sha256": "e2a084fcd5e8bf38d9cff411483b3de7710b38108580a7b8a6f8ceb0109c7378"
+  },
+  "XME": {
+   "file": "XME.csv.gz",
+   "first": "2006-06-22",
+   "last": "2026-10-15",
+   "rows": 5111,
+   "sha256": "8acefb5f2dcfd9ba0ba8c682e3eaae1edd08fd58aa734f546ecf2accf5871fab"
+  },
+  "XOP": {
+   "file": "XOP.csv.gz",
+   "first": "2006-06-22",
+   "last": "2026-10-15",
+   "rows": 5111,
+   "sha256": "4053754750d566c6a2350565b7b123faeb4d7ab11e6d46919e531ef0b5ae88e8"
+  },
+  "XPH": {
+   "file": "XPH.csv.gz",
+   "first": "2006-06-22",
+   "last": "2026-10-15",
+   "rows": 5111,
+   "sha256": "80b4ac5f9845ac249190c66fb56a129414426f85c099a5bf532a27c59f82f368"
+  },
+  "XRT": {
+   "file": "XRT.csv.gz",
+   "first": "2006-06-22",
+   "last": "2026-10-15",
+   "rows": 5111,
+   "sha256": "fc5b2b67023829f2ae3ed209a46733e0d31972f92b3defdcb67fca2ef77f564e"
+  }
+ },
+ "source": "Yahoo Finance via yfinance, auto_adjust=False (split-adjusted, not dividend-adjusted)"
+}

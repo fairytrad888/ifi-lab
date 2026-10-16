@@ -1,0 +1,42 @@
+{
+ "run_utc": "2026-10-16 13:03 UTC",
+ "commit": "5ac20a4",
+ "lock": "a5718f5bc26ee24635ff81aebc8cc48d238daee9cb0e15ea34e48a61c76d81fa",
+ "sealed_cutoff": "2026-10-15",
+ "sealed_manifest": "bf7473c15cb8b4c7fa457dfff468a324a887095453349b9ca3af612611ee51e5",
+ "sealed_created": "2026-10-16T13:01:43Z",
+ "validity": [
+  [
+   "Lock (prereg, construction code, Lab and research modules; exit lock too)",
+   "ok `a5718f5bc26ee246`"
+  ],
+  [
+   "Synthetic null (martingale prices)",
+   "ok: C1 FAIL (P 0.442; Sharpe C1 -0.25 vs B0 -0.20; required: no PASS)"
+  ],
+  [
+   "Synthetic power (persistent trends, independent symbols)",
+   "ok: C1 PASS (P 1.000; Sharpe C1 2.43 vs B0 1.32; required: PASS)"
+  ],
+  [
+   "Design trades vs the Lab's trade files (informational)",
+   "4,700 of 4,700 Lab E4/E1 trades have the same entry here (2 only here); 4,570 of those have the same R to 1e-6 (informational: the Lab files may come from a different data date)"
+  ],
+  [
+   "Design data (working history, daily marks)",
+   "ok: P 0.951, both halves True; Sharpe C1 0.91 vs B0 0.69"
+  ],
+  [
+   "Sealed snapshot (opened once)",
+   "created 2026-10-16T13:01:43Z \u00b7 cutoff 2026-10-15 \u00b7 91 symbols \u00b7 missing: BK"
+  ]
+ ],
+ "verdict": "FAIL",
+ "p": 0.87275,
+ "gates": {
+  "information": false,
+  "both halves": false,
+  "edge present": true
+ },
+ "design_p": 0.95125
+}
