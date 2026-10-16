@@ -3,5 +3,14 @@
  "daily|XBI|2026-10-12 00:00|Playbook E1 trigger with trend": 0.005,
  "daily|LIN|2026-10-13 00:00|Playbook E4 anchor reclaim": 0.005,
  "daily|WMT|2026-10-14 00:00|Playbook E4 anchor reclaim": 0.005,
- "daily|XLP|2026-10-14 00:00|Playbook E4 anchor reclaim": 0.005
+ "daily|XLP|2026-10-14 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|AIG|2026-10-12 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|CL|2026-10-14 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|MDLZ|2026-10-14 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|PBJ|2026-10-14 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|EWL|2026-10-15 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|EWU|2026-10-15 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|INTU|2026-10-15 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|UNH|2026-10-15 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|XRT|2026-10-15 00:00|Playbook E4 anchor reclaim": 0.005
 }
