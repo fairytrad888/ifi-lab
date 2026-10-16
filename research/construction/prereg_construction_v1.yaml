@@ -1,0 +1,97 @@
+# Book construction test v1: how should the proven edge be deployed?
+# Pre-registered Oct 16, 2026, before the confirmation (sealed) data exists in the repo.
+# The question is structural (diversification under a slot cap), not a feature of entries: no signal is selected or filtered.
+version: construction-1
+locked: "2026-10-16"
+
+honest_loop:                               # IFI_Testing_Reference_Honest_Loop.md section 4
+  origin: "Structure: with 78 symbols a 5-slot book takes ~19% of E4/E1 signals, so which trades it holds is a lottery of arrival order."
+  design_data: "Working history (the Lab's real E4/E1 X3 trade lists, 78 symbols, 2000-2026), realized equity, explored Oct 16: slot counts at equal heat, cash-limited full participation at several risks, heat caps, day caps, sector caps, universes. Logged in the data-use ledger."
+  judge: "A sealed set of 92 symbols (38 ETFs, 54 stocks) never used by any IFI test (rule below), downloaded once by this test's first run."
+  detectable: "MAR was too noisy to detect the gain even on design data (bootstrap P 0.49-0.66). Sharpe of monthly returns detected it (P 0.96-0.98), so Sharpe is the measure."
+  timeframe: Daily (setups, exits and the book are daily)
+  regimes: "Reported: monthly returns in months that start with SPY below a falling 200-day average (a rule known at the time). Not gating: too few episodes."
+  drift: "Both books use the same trades; the comparison is paired. E4/E1 on the sealed set are also compared with random entries (report)."
+  decision: written below, before results
+
+design_findings:                           # working history, realized equity, medians over random same-day orders
+  current_book: "5 slots x 0.75%: Sharpe 0.78 (random-order band 0.68-0.87), MAR 0.29, CAGR 6.0%, max DD -20%, 19% of signals taken"
+  full_participation: "every signal at 0.10-0.15% risk, cash-limited: Sharpe 1.05-1.11 (bootstrap P 0.96-0.98 vs current), MAR 0.45-0.50, max DD -10% to -15%, both time halves better"
+  matched_drawdown: "at -20% DD: CAGR 6.0% (5 slots) vs 7.4% (all signals) vs 7.7% (all + max 2 new per day); at -15%: 4.5% vs 6.8% vs 7.2%"
+  weaker_or_worse: "more slots alone at equal heat (10, 20) weaker (P 0.67-0.90); heat cap 3% and sector cap 3 worse; the gain sits in stocks and in 2000-2014"
+  practical: "full participation holds ~16-22 positions on average (max 38-66) and makes ~110-145 trades a year"
+
+trades:
+  setups: [E4_anchor_reclaim, E1_trigger_with_trend]   # ifi/backtest.py setups(), the live definitions
+  exit: X3_target3R                        # ifi/backtest.py simulate(): 3R target, 60-bar cap, price-only R, Lab costs
+  costs: {etf: 0.0005, stock: 0.0010}      # per side, as config.yaml
+  start: "2000-01-01"
+  sequencing: one open trade per symbol and setup (the Lab's rule); E4 and E1 on the same symbol may overlap (as live)
+  marks: "daily mark-to-market: (close - fill) / risk - cost x (fill + close) / risk, equal to the trade's R on its exit day"
+
+books:                                     # every book: risk = fraction of the previous close's equity; a trade exiting on day d frees its slot on d
+  B0: {name: "current: 5 slots x 0.75%", slots: 5, risk: 0.0075, cash: 1.0}
+  C1: {name: "every signal at 0.10%, cash-limited", slots: null, risk: 0.0010, cash: 1.0}
+  reported_only:
+    C2: {name: "every signal at 0.20%, max 2 new per day", slots: null, risk: 0.0020, cash: 1.0, day_cap: 2}
+    S10: {name: "10 slots x 0.375%", slots: 10, risk: 0.00375, cash: 1.0}
+    S20: {name: "20 slots x 0.1875%", slots: 20, risk: 0.001875, cash: 1.0}
+  cash_rule: "a new position is skipped if total position value would exceed 100% of equity (no leverage)"
+  order: "same-day entries in random order; B0 over 30 seeded orders, C1 and the reported books over 10; the path with the median Sharpe represents each book"
+
+measure:
+  primary: Sharpe ratio of monthly returns (month-end MTM equity), annualized
+  bootstrap: "paired moving-block bootstrap of the two monthly return series, 6-month blocks, 4000 draws, seed 7"
+
+pass_rules:                                # on the SEALED set; all must hold
+  - "INFORMATION: P(Sharpe C1 - Sharpe B0 > 0) >= 0.95"
+  - "BOTH HALVES: Sharpe C1 - Sharpe B0 > 0 in 2000-2014 and in 2015-2026 (point estimates)"
+  - "EDGE PRESENT: C1 Sharpe > 0 and the mean R of all sealed E4/E1 trades > 0"
+  - "INSUFFICIENT if fewer than 500 sealed trades or fewer than 120 months"
+
+validity:                                  # each aborts before what it protects
+  lock: prereg + construction code + the Lab and research modules it uses match CONSTRUCTION.lock (and EXITS.lock)
+  null: "martingale synthetic markets: C1 must not PASS"
+  power: "persistent-trend synthetic markets (positive edge, independent symbols): C1 must PASS"
+  design_data: "working history (research/exits/snapshot, manifest a3609f3fec828066..., daily MTM): INFORMATION and BOTH HALVES must hold, else ABORT WITHOUT OPENING the sealed set (the realized-equity finding did not survive daily marks)"
+  sealed_once: "the sealed snapshot is downloaded on the first run that reaches it and committed; later runs reuse it and never refresh it"
+
+sealed_universe:                           # rule: never used by any IFI test; equity ETFs with history from 2007 or earlier
+                                           # (near-duplicates of the working ETFs excluded: SOXX, XSD, IBB, IYR, VNQ, IYW, VGT, OIH)
+                                           # plus large US stocks from the S&P 100 (as known in 2025) not in the working list
+  etfs: [XHB, ITB, KRE, KBE, KIE, XRT, XME, XOP, XES, XPH, IYT, IHI, ITA, IGV, IYZ, PBJ, PBW, GDX,
+         EFA, EEM, EWJ, EWZ, EWG, EWU, EWC, EWA, EWW, EWT, EWY, EWH, EWS, FXI, EWP, EWI, EWQ, EWL, EWD, EWN]
+  stocks: [ABT, ACN, AIG, AMGN, AXP, BA, BK, BLK, BMY, BRK-B, C, CHTR, CL, CMCSA, COF, CSCO, CVS, DE, DHR, EMR,
+           F, FDX, GD, GILD, GM, IBM, INTC, INTU, LMT, LOW, MDLZ, MDT, MET, MMM, MO, NOW, PFE, PLTR, PM, PYPL,
+           QCOM, RTX, SBUX, SCHW, SPG, T, TGT, TMO, TXN, UNP, UPS, USB, VZ, WFC]
+  min_bars: 600
+  survivorship: "the stocks are today's large caps (survivors); both books trade the same signals, so the paired comparison is affected far less than raw returns"
+
+reported_not_gating:
+  - "Risk ladder: for the 5-slot, every-signal, and every-signal-with-max-2-new-a-day books, CAGR / MTM max drawdown / Sharpe / signals taken at each risk on params.risk_ladder (medians over 5 orders)"
+  - "Matched drawdown: for each of those books, the largest ladder risk whose median MTM max drawdown is no deeper than -15% and -20%, and its CAGR"
+  - "Every book: trades a year, signals taken, average and maximum open positions, average and maximum heat, worst month, CAGR, max DD, MAR, Sharpe by half"
+  - "Whole shares: C1 at $25,000 and $100,000 accounts with whole shares only (a position below one share is skipped), participation and Sharpe"
+  - "Regime months: mean monthly return of B0 and C1 in months starting with SPY below a falling 200-day average, and in the rest"
+  - "E4 and E1 on the sealed set: trades, mean R, win rate, and mean R of random entries (5 seeds, ~1 per 40 bars, same exit): the first out-of-sample check of the setups on new symbols"
+  - "The same tables on the working history (design data, daily MTM)"
+
+params:
+  b0_orders: 30
+  other_orders: 10
+  boot_reps: 4000
+  boot_block_months: 6
+  boot_seed: 7
+  p_min: 0.95
+  split: "2015-01-01"
+  min_trades: 500
+  min_months: 120
+  random_rate: 0.025
+  random_seeds: [1, 2, 3, 4, 5]
+  accounts: [25000, 100000]
+  matched_dd: [-0.15, -0.20]
+  risk_ladder: [0.0005, 0.00075, 0.001, 0.0015, 0.002, 0.003, 0.004, 0.005, 0.0075, 0.01, 0.0125, 0.015]
+
+decisions:
+  pass: "C1 (take every signal at small risk, cash-limited) becomes the construction candidate. Live probation: the nightly shows a C1 shadow book next to the 5-slot book on the live paper log; adoption after 12 months if the C1 shadow Sharpe >= the 5-slot Sharpe and the breaker never tripped. The ladder's tiers would then scale a base risk instead of setting it."
+  fail: "The 5-slot book stays. The construction question is closed for this cycle; the sealed set has been used once and is logged."

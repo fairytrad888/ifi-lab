@@ -229,7 +229,7 @@ def ladder(pt: pd.DataFrame, c: dict, c14: dict | None = None) -> dict:
         mean, p = posterior(pr["mean"], pr["sigma"], n, total, a)
         risk = tier(p, n, a) if not np.isnan(p) else 0.0
         L = current_streak(live["r"]) if n else 0
-        method = "iid"
+        method = sf.get("streak_method", "iid")      # the configured method; "iid (fallback)" when it could not run
         p_streak = 1.0
         if L:
             p_streak = np.nan
@@ -237,7 +237,8 @@ def ladder(pt: pd.DataFrame, c: dict, c14: dict | None = None) -> dict:
                 p_streak = streak_probability_block(L, max(n, L), backtest_losses(su), int(sf.get("streak_block", 20)))
                 method = "block"
             if np.isnan(p_streak):       # no dated backtest sequence: fall back to i.i.d. odds
-                p_streak, method = streak_probability(L, max(n, L), pr["win"]), "iid"
+                p_streak = streak_probability(L, max(n, L), pr["win"])
+                method = "iid (fallback)" if method == "block" else "iid"
         board[su] = dict(
             status=f"{100 * risk:.2f}%", tier_risk=risk, risk=risk, live_n=n, live_total_r=total,
             live_expectancy=float(live["r"].mean()) if n else np.nan,
