@@ -1,0 +1,31 @@
+{
+ "run_utc": "2026-10-17 21:02 UTC",
+ "commit": "4fb42fa",
+ "lock": "f7dbae2e2aa467dc408bcba0c8a3175302079981a52fec4ad0678e131f425475",
+ "sealed": "bf7473c15cb8b4c7fa457dfff468a324a887095453349b9ca3af612611ee51e5",
+ "design": "a3609f3fec828066882f39a0bda1b642db74f98e2a9b1f8c4a5e9f21b75441cb",
+ "validity": [
+  [
+   "Lock (prereg, benchmark and construction code, data modules; construction and exit locks too)",
+   "ok `f7dbae2e2aa467dc`"
+  ],
+  [
+   "Synthetic null (zero alpha)",
+   "ok: alpha +0.85% a year (95% -1.06 to +2.81), beta 0.60; required: gate A does not pass"
+  ],
+  [
+   "Synthetic power (planted alpha 4%/yr)",
+   "ok: alpha +4.85% a year (95% +2.94 to +6.81), beta 0.60; required: gate A passes"
+  ],
+  [
+   "Pinned snapshots (nothing downloaded)",
+   "design `a3609f3fec828066` \u00b7 sealed `bf7473c15cb8b4c7`"
+  ]
+ ],
+ "verdict": "NO_EDGE_BEYOND_BENCHMARKS",
+ "gates": {
+  "A": false,
+  "B": false,
+  "C": false
+ }
+}
