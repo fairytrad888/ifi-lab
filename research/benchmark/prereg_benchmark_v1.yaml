@@ -1,0 +1,69 @@
+# Benchmark test v1: does the IFI book earn more than simply holding the market at the same risk?
+# Pre-registered Oct 17, 2026. A MEASUREMENT: it scores the existing books against free alternatives and selects no rule.
+version: benchmark-1
+locked: "2026-10-17"
+
+honest_loop:
+  origin: "Structural: E4/E1 are long-only, 40%-67% of their R was market drift, and the entry beat random entries by only ~0.03-0.09R out of sample. No test so far compared the book with the market itself."
+  judge: "Primary: sealed set 1 (out of sample; used once by construction v1, and reusing it here selects nothing). Design data reported. Live data later (reviews R1/R2)."
+  detectable: "About 26 years of monthly returns: the standard error of annual alpha is roughly the book's residual volatility / sqrt(26), about 1% a year for a 5% residual, so an alpha of ~2%+ a year is detectable. The synthetic checks confirm the estimator before real data."
+  timeframe: Daily equity, monthly returns for the statistics
+  regimes: "None used. The trend rule is a benchmark (a rule known at the time), not a regime filter."
+  drift: "This test IS the drift control at book level."
+  decision: written below, before results
+
+data:
+  design: {snapshot: research/exits/snapshot, manifest_prefix: a3609f3fec828066}
+  sealed: {snapshot: research/construction/snapshot, manifest_prefix: bf7473c15cb8b4c7}
+  market: SPY from the design snapshot (close for price returns; adjclose reported as total return)
+
+books:                                     # exactly as construction v1 (same code, trades, seeds and median-Sharpe paths)
+  from: research/construction/prereg_construction_v1.yaml
+  primary: B0                              # the real rule: 5 slots x 0.75%
+  reported: [C1, S20]
+
+benchmarks:
+  BH: "SPY buy and hold"
+  TR: "SPY trend rule: hold SPY on day d+1 when SPY's close on day d is above its 200-day average, else cash; 0.05% per switch side"
+  returns: "price only (close), like the books' R; total-return SPY (adjclose) is reported as a sensitivity"
+  cash: "0% for idle cash in books and benchmarks alike"
+  matched_risk: "for CAGR / max drawdown tables, each benchmark's daily returns are scaled to the book's daily volatility over the same days (Sharpe does not depend on scale)"
+
+measures:                                  # monthly returns over the book's dates
+  alpha_1f: "OLS of book on SPY: annualized alpha (12 x monthly intercept) and beta"
+  alpha_2f: "OLS of book on SPY and TR: annualized alpha beyond both buy-and-hold and timed exposure"
+  sharpe: "book Sharpe vs BH and vs TR"
+  bootstrap: "paired moving-block bootstrap of the monthly rows (book, SPY, TR), 6-month blocks, 4000 draws, seed 7: 95% interval of alpha_2f, and P(Sharpe book > Sharpe benchmark)"
+
+gates:                                     # on the SEALED set, book B0
+  A: "ALPHA: the 2.5th percentile of alpha_2f > 0"
+  B: "BEATS THE TREND RULE: P(Sharpe B0 > Sharpe TR) >= 0.95"
+  C: "BEATS BUY AND HOLD: P(Sharpe B0 > Sharpe BH) >= 0.95"
+verdict:
+  EDGE: "A and B: return beyond market exposure and beyond the simplest timing rule"
+  PARTIAL: "exactly one of A and B"
+  NO_EDGE_BEYOND_BENCHMARKS: "neither A nor B"
+  note: "C is reported with the verdict but does not change it: beating buy-and-hold alone could be timing that the trend rule gives for free"
+
+validity:
+  lock: prereg + benchmark code + construction code and data modules match BENCHMARK.lock (and CONSTRUCTION.lock)
+  null: "synthetic book = 0.6 x market + noise with zero alpha (300 months): gate A must not pass"
+  power: "the same with a planted alpha of 4% a year: gate A must pass"
+  lookahead: "the trend rule on data truncated at a day gives the same positions up to that day (unit test)"
+  snapshots: "both manifests match their prefixes; nothing is downloaded"
+
+params:
+  boot_reps: 4000
+  boot_block_months: 6
+  boot_seed: 7
+  p_min: 0.95
+  tr_window: 200
+  tr_cost: 0.0005
+  null_beta: 0.6
+  power_alpha: 0.04
+  synthetic_months: 300
+
+decisions:
+  EDGE: "The book's edge is real beyond the market and beyond a one-line timing rule. Work continues on deployment; a beta-hedged variant becomes a candidate (pre-registered)."
+  PARTIAL: "Part of the value is exposure or timing. The benchmark that the book fails to beat becomes the hurdle for every future decision and for the live reviews (R1/R2 add alpha vs SPY and TR)."
+  NO_EDGE_BEYOND_BENCHMARKS: "On data it was not built on, the book adds nothing a passive or one-line rule doesn't. The live forward test continues as the final word, with the trend rule as the hurdle; no new entry or construction tests until live evidence shows alpha."

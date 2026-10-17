@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       step:
-        description: "all = Step 0, then Step 1 gated by Step 0; diagnose = input checks only; exits = E4 exit test v1; profile = E4 profile (descriptive); ranking = ranking test v1 (F1 slot filter); construction = book construction test v1"
+        description: "all = Step 0, then Step 1 gated by Step 0; diagnose = input checks only; exits = E4 exit test v1; profile = E4 profile (descriptive); ranking = ranking test v1 (F1 slot filter); construction = book construction test v1; benchmark = benchmark test v1 (book vs SPY and trend rule)"
         type: choice
-        options: [all, step0, step1, diagnose, exits, profile, ranking, construction]
+        options: [all, step0, step1, diagnose, exits, profile, ranking, construction, benchmark]
         default: all
       refresh_data:
         description: "Download a new frozen data snapshot (leave off to reuse the committed one)"
@@ -44,6 +44,8 @@ jobs:
         run: python tests/test_ranking.py
       - name: Construction-test unit tests (Lab trades, marks, book rules, bootstrap, sealed rule, lock)
         run: python tests/test_construction.py
+      - name: Benchmark-test unit tests (trend rule, alpha estimator, null/power, lock)
+        run: python tests/test_benchmark.py
       - name: Run research gates (or diagnostics)
         run: |
           if [ "${{ inputs.step }}" = "diagnose" ]; then
@@ -54,6 +56,8 @@ jobs:
             python -m research.ranking.run
           elif [ "${{ inputs.step }}" = "construction" ]; then
             python -m research.construction.run
+          elif [ "${{ inputs.step }}" = "benchmark" ]; then
+            python -m research.benchmark.run
           elif [ "${{ inputs.step }}" = "exits" ]; then
             if [ "${{ inputs.refresh_data }}" = "true" ]; then python -m research.exits.run --refresh-data; else python -m research.exits.run; fi
           else
@@ -71,6 +75,7 @@ jobs:
           if [ -d reports/profile ]; then git add reports/profile; fi
           if [ -d reports/ranking ]; then git add reports/ranking; fi
           if [ -d reports/construction ]; then git add reports/construction; fi
+          if [ -d reports/benchmark ]; then git add reports/benchmark; fi
           if [ -d research/construction/snapshot ]; then git add research/construction/snapshot; fi
           if [ -d research/exits/snapshot ]; then git add research/exits/snapshot; fi
           git diff --cached --quiet || git commit -m "Research ${{ inputs.step }} $(date -u +%F)"
