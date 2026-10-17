@@ -5,8 +5,8 @@
   "stocks": "ADOPT"
  },
  "E1_trigger_with_trend": {
-  "ok": true,
-  "etfs": "ADOPT",
+  "ok": false,
+  "etfs": "PROMISING (not significant after correction)",
   "stocks": "ADOPT"
  }
 }

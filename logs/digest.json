@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-17 07:59",
+ "generated_utc": "2026-10-17 15:15",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-10-16",
@@ -11,8 +11,8 @@
  "allocation": {
   "E4_anchor_reclaim": {
    "risk": 0.005,
-   "p_edge": 0.8085,
-   "posterior_mean": 0.1308,
+   "p_edge": 0.8073,
+   "posterior_mean": 0.1301,
    "live_n": 0,
    "live_expectancy": null,
    "live_total_r": 0.0,
@@ -21,21 +21,21 @@
    "streak_p": 1.0,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.2907
+   "prior_mean": 0.2891
   },
   "E1_trigger_with_trend": {
    "risk": 0.0025,
-   "p_edge": 0.7901,
-   "posterior_mean": 0.1422,
+   "p_edge": 0.7892,
+   "posterior_mean": 0.1417,
    "live_n": 1,
    "live_expectancy": -1.022,
    "live_total_r": -1.022,
    "open_trades": 0,
    "losing_streak": 1,
-   "streak_p": 0.5853,
+   "streak_p": 0.579,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.3419
+   "prior_mean": 0.3409
   }
  },
  "portfolio": {
@@ -496,15 +496,9 @@
  },
  "playbook_new": [],
  "alerts_this_run": [
-  "\u26a0 Risk tier E1_trigger_with_trend: 0.50% -> 0.25% (live -1.02R, n=1)",
-  "Paper exit: XBI E1 stop -1.02R",
-  "Paper fill: EWL E4 @ 62.34 stop 58.9331 target 72.5606",
-  "Paper fill: EWU E4 @ 48.14 stop 46.0262 target 54.4815",
-  "Paper fill: INTU E4 @ 334.68 stop 292.5974 target 460.9277",
-  "Paper fill: UNH E4 @ 410.35 stop 366.9503 target 540.5491",
-  "Paper fill: XRT E4 @ 88.22 stop 82.5902 target 105.1094"
+  "\u26a0 Drift E1_trigger_with_trend: lost ADOPT (ETFs PROMISING (not significant after correction), stocks ADOPT)"
  ],
- "alerts_last_7d": 42,
+ "alerts_last_7d": 43,
  "candidates": [
   {
    "id": "L1",
