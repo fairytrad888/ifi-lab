@@ -1,0 +1,20 @@
+{
+ "files": {
+  "data/bench/D/SPY.csv.gz": {
+   "first": "2000-01-03 00:00",
+   "last": "2026-10-16 00:00",
+   "rows": 6738,
+   "sha256": "b7d37236c84919d9eeef311bb626ffe174307bfa7a5c422d2160edbabef5ccbf"
+  }
+ },
+ "pool": "bench",
+ "tfs": {
+  "D": {
+   "created_utc": "2026-10-18 17:51",
+   "cutoff": "2026-10-16",
+   "missing": [],
+   "source": "yahoo/yfinance",
+   "symbols": 1
+  }
+ }
+}
