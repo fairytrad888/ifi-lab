@@ -1,0 +1,2 @@
+utc,stage,rule_id,version,rule_sha,pool,tf,n_signals,looked_at,result,note
+2026-10-18 17:56,fidelity,R001_flip_ladder,1,2a067f02e078fc29,dev,D,1375,events and conditions only (no outcomes),gate not passed,

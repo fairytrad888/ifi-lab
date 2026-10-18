@@ -1,0 +1,16 @@
+{
+ "rule_id": "R001_flip_ladder",
+ "version": 1,
+ "rule_sha": "2a067f02e078fc29bed495d9b5ef399d92bb3d5cb30eb30536c71e8db7927fd3",
+ "ratios": 13,
+ "events_dev": 1375,
+ "events_per_ratio_year": 4.479811757404941,
+ "examples": 3,
+ "recall": 1.0,
+ "specificity": NaN,
+ "blind_sample": 18,
+ "blind_reviewed": NaN,
+ "blind_agree": NaN,
+ "look_ahead_ok": true,
+ "gate_passed": false
+}
