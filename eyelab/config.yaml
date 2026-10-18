@@ -1,0 +1,51 @@
+# IFI Eye Lab v1 configuration. Changing anything here changes the lock fingerprint of every rule locked after it.
+version: 1
+
+pools:
+  dev: {file: pools/dev.txt, role: "the charts you look at: fidelity (outcome-blind) only, never graded"}
+  A:   {file: pools/A.txt,   role: "discovery: outcomes measured, every variant counted in the ledger"}
+  B:   {file: pools/B.txt,   role: "confirmation: sealed, opened once per locked rule version"}
+benchmark: SPY                 # regime splits and the relative-strength columns only
+history_start: "2000-01-01"
+timeframes: [D, W, H4]         # W is built from D; H4 comes from Yahoo 1h bars (about 2 years only)
+
+outcomes:
+  entry: next_open             # signal on bar t (known at its close), entry at the open of t+1
+  default_unit_atr: 1.0        # unit u (the "1R" distance) when a rule defines no stop: 1 x ATR(14) at bar t
+  first_passage:               # P(price reaches entry + k*u before entry - u) within H bars
+    - {name: fp1, k: 1, horizon: {D: 20, W: 8, H4: 30}}
+    - {name: fp2, k: 2, horizon: {D: 40, W: 16, H4: 60}}
+  forward:                     # close at t+h minus entry, in units of u
+    D: [5, 10, 20, 60]
+    W: [2, 4, 8, 13]
+    H4: [5, 10, 20]
+  same_bar_both: loss          # a bar that touches both barriers counts as a loss (conservative)
+
+nulls:
+  per_signal: 20               # matched null entries per signal, for each null type
+  seed: 20261018
+  min_history_bars: 250        # a bar is eligible (signal or null) only after this much history
+
+inference:
+  cluster: month               # bootstrap resamples calendar months (signals in the same month move together)
+  boot: 2000
+  seed: 7
+
+primary:                       # the one number a confirmation is judged on (fixed before any outcome is seen)
+  metric: fp1
+  vs_null: cross               # same date, other symbols in the pool: removes the market's move that day
+  rule: "95% lower bound of the mean (signal - cross null) > 0, the time-null advantage > 0, and positive in both time halves (split at the median signal date)"
+
+fidelity:
+  tolerance_bars: {D: 2, W: 1, H4: 3}
+  min_examples: 20
+  min_recall: 0.80             # share of your 'yes' examples the rule fires on
+  min_specificity: 0.80        # share of your 'no' examples it stays silent on
+  blind_sample: 18             # rule hits you review blind (two sheets of 9)
+  min_blind_agree: 0.80
+  chart_bars: {D: 120, W: 104, H4: 120}
+
+guard_windows_utc:             # Eye Lab never runs while the prior system downloads or commits (Mon=0)
+  - {days: [0, 1, 2, 3, 4], start: "21:45", end: "23:15"}   # nightly scan 22:15
+  - {days: [1, 2, 3, 4, 5], start: "03:00", end: "04:15"}   # nightly catch-up 03:30
+  - {days: [5], start: "11:45", end: "13:45"}               # Saturday backtest 12:00

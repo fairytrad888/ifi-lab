@@ -1,0 +1,7 @@
+# Your labelled cases for one rule. Copy to eyelab/examples/<RULE_ID>.csv.
+# label: 1 = "this is the signal", 0 = "this looks close but is NOT the signal" (near-misses teach the most).
+# date: the bar where you would have acted (signal complete at its close). tf: D, W or H4.
+# source: screenshot / list / verbal. Aim for 20+ rows, about half yes and half no.
+symbol,tf,date,label,source,note
+XLE,D,2026-09-15,1,screenshot,"anchor reclaim after washout #2"
+XLK,D,2026-08-04,0,screenshot,"reclaim but Trend line still falling"

@@ -1,0 +1,94 @@
+name: Eye Lab
+
+# Isolated from the prior IFI Lab system:
+#  - manual runs only; its own concurrency group (never queues or cancels the nightly, backtest or research runs)
+#  - refuses to run inside the prior system's download/commit windows (eyelab/config.yaml guard_windows_utc)
+#  - writes only to a temporary folder outside the checkout, then pushes it to the branch `eyelab-results`;
+#    it never commits to the default branch, so it can never race the nightly's push
+#  - verifies the freeze of the prior system's files and fails if the checkout changed in any way
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "selftest | build-data | fidelity | discovery | lock | confirm"
+        type: choice
+        options: [selftest, build-data, fidelity, discovery, lock, confirm]
+        default: selftest
+      rule:
+        description: "Rule id (eyelab/rules/<ID>.py) for fidelity, discovery, lock, confirm"
+        required: false
+        default: ""
+      pools:
+        description: "build-data only: pools to pin (bench,dev,A,B)"
+        required: false
+        default: "bench,dev,A,B"
+      timeframes:
+        description: "build-data only: D and/or H4, comma separated"
+        required: false
+        default: "D"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eyelab
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Output folder outside the checkout
+        run: echo "EYELAB_OUT=$RUNNER_TEMP/eyelab-results" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r eyelab/requirements.txt
+
+      - name: Guard window (no runs while the prior system works)
+        run: python -c "from eyelab.guard import in_guard_window as w; import sys; r=w(); print('window:', r or 'clear'); sys.exit(1 if r else 0)"
+
+      - name: Freeze of the prior system
+        run: python -m eyelab.freeze verify
+
+      - name: Results branch (separate from the default branch)
+        run: |
+          git config user.name "eyelab-bot"
+          git config user.email "eyelab-bot@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin eyelab-results >/dev/null; then
+            git fetch --depth 1 origin eyelab-results
+            git worktree add "$EYELAB_OUT" FETCH_HEAD
+            git -C "$EYELAB_OUT" checkout -B eyelab-results
+          else
+            git worktree add --detach "$EYELAB_OUT"
+            git -C "$EYELAB_OUT" checkout --orphan eyelab-results
+            git -C "$EYELAB_OUT" rm -rfq . || true
+            git -C "$EYELAB_OUT" clean -fdq
+          fi
+
+      - name: Tests
+        run: python eyelab/tests/test_eyelab.py
+
+      - name: Run stage
+        run: |
+          case "${{ inputs.stage }}" in
+            selftest)   python -m eyelab.run selftest | tee "$EYELAB_OUT/SELFTEST.txt" ;;
+            build-data) TFS=$(echo "${{ inputs.timeframes }}" | sed 's/,/ --tf /g'); python -m eyelab.run build-data --pools "${{ inputs.pools }}" --tf $TFS ;;
+            *)          python -m eyelab.run "${{ inputs.stage }}" --rule "${{ inputs.rule }}" ;;
+          esac
+
+      - name: Isolation check (the checkout must be untouched)
+        run: |
+          CHANGES=$(git status --porcelain --ignored=no | grep -v '^?? eyelab/_out/' || true)
+          if [ -n "$CHANGES" ]; then echo "ISOLATION BREACH: the run changed the checkout:"; echo "$CHANGES"; exit 1; fi
+          python -m eyelab.freeze verify
+
+      - name: Push results to eyelab-results
+        run: |
+          cd "$EYELAB_OUT"
+          git add -A
+          git commit -qm "Eye Lab ${{ inputs.stage }} ${{ inputs.rule }} $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing to commit"; exit 0; }
+          git push origin eyelab-results

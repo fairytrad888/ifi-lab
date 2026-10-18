@@ -1,0 +1,6 @@
+# Your XLU/SPY examples from the Oct 18 screenshot (symbol = the ETF; the ratio is ETF / SPY).
+# label 1 = "this is a bullish confluence event" (whether or not it later flipped).
+symbol,tf,date,label,source,note
+XLU,D,2026-04-24,1,screenshot,"triangle #1 + accumulation off the bottom + down-9: bounce that set the 0.06 lower high"
+XLU,D,2026-06-04,1,screenshot,"triangle #3 + RK+5 + accumulation: pushed to 0.06 and failed"
+XLU,D,2026-09-29,1,screenshot,"triangle #1 after 2 down-9 cycles and an accumulation group: the flip attempt now under way"
