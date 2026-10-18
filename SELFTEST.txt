@@ -1,0 +1,26 @@
+eyelab: stage selftest · out /home/runner/work/_temp/eyelab-results
+{
+ "geometry": {
+  "win": 1.0,
+  "loss": 0.0,
+  "both": 0.0,
+  "timeout": 1.0,
+  "ok": true
+ },
+ "blind": {
+  "ok": true
+ },
+ "power": {
+  "signals": 674,
+  "adv": 0.24258160237388723,
+  "lo": 0.21078516607828987,
+  "ok": true
+ },
+ "null": {
+  "worlds": 12,
+  "pass_rate": 0.0,
+  "mean_adv": -0.0008599214747153783,
+  "ok": "True"
+ },
+ "ok": true
+}
