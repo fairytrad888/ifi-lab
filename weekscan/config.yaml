@@ -1,0 +1,110 @@
+# IFI weekly accumulation alerts (spec: IFI_Weekly_Accumulation_Alerts_Spec.md, Oct 19, 2026)
+version: 1
+
+universe:
+  sources: [sp500, sp400, sp600]          # S&P 1500 from the Wikipedia constituent lists (GICS sector + sub-industry)
+  min_price: 5.0
+  min_dollar_volume: 20000000             # 20-day average of daily close x volume
+benchmark: SPY
+history: "10y"                            # daily history downloaded each run, resampled to weeks ending Friday
+
+signal:
+  trigger: accumulation                   # weekly IFI A&D washout exit (the green accumulation bar)
+  tags_weeks: 4                           # A&D bullish divergence or Signals bull trigger within 4 weeks: rank tags
+arm_weeks: 8                              # an accumulation bar stays armed 8 weeks while its low holds (weekly close)
+repeat_block_weeks: 8                     # no second alert for the same stock within 8 weeks
+qualifying_states: [bullish, basing]      # sector/industry ETF ratio vs SPY, weekly IFI stage: 2-3 bullish, 1 basing
+breadth_weeks: 8                          # sector breadth: share of members with an accumulation bar in 8 weeks
+push_top: 10
+earnings_flag_days: 14
+
+score:                                    # additive, transparent; ties broken by stop distance (tighter first)
+  bullish: 3.0
+  basing: 2.0
+  breadth_accumulation: 2.0               # x share of the group's members with accumulation in breadth_weeks
+  breadth_stage2: 1.0                     # x share of the group's members at weekly stage >= 2
+  leader: 1.5                             # stock / its ETF ratio at weekly stage >= 1
+  tag_ad_divergence: 1.0
+  tag_signals_trigger: 1.0
+  wide_stop_penalty: -1.0                 # stop (accumulation low) more than 15% below the close
+  wide_stop_pct: 0.15
+
+sector_etfs:
+  Information Technology: XLK
+  Health Care: XLV
+  Financials: XLF
+  Consumer Discretionary: XLY
+  Consumer Staples: XLP
+  Industrials: XLI
+  Energy: XLE
+  Materials: XLB
+  Utilities: XLU
+  Real Estate: XLRE
+  Communication Services: XLC
+
+industry_etfs:                            # GICS sub-industry (exact Wikipedia wording) -> industry ETF; others use the sector ETF
+  Semiconductors: SMH
+  Semiconductor Materials & Equipment: SMH
+  Application Software: IGV
+  Systems Software: IGV
+  Biotechnology: XBI
+  Pharmaceuticals: XPH
+  Health Care Equipment: IHI
+  Health Care Supplies: IHI
+  Health Care Services: IHF
+  Health Care Facilities: IHF
+  Managed Health Care: IHF
+  Health Care Distributors: IHF
+  Regional Banks: KRE
+  Diversified Banks: KBE
+  Property & Casualty Insurance: KIE
+  Life & Health Insurance: KIE
+  Multi-line Insurance: KIE
+  Reinsurance: KIE
+  Insurance Brokers: KIE
+  Investment Banking & Brokerage: KCE
+  Asset Management & Custody Banks: KCE
+  Financial Exchanges & Data: KCE
+  Oil & Gas Exploration & Production: XOP
+  Integrated Oil & Gas: XOP
+  Oil & Gas Equipment & Services: XES
+  Oil & Gas Drilling: XES
+  Steel: XME
+  Aluminum: XME
+  Copper: XME
+  Diversified Metals & Mining: XME
+  Gold: GDX
+  Silver: SIL
+  Homebuilding: ITB
+  Building Products: ITB
+  Aerospace & Defense: ITA
+  Air Freight & Logistics: IYT
+  Cargo Ground Transportation: IYT
+  Rail Transportation: IYT
+  Marine Transportation: IYT
+  Passenger Airlines: JETS
+  Construction & Engineering: PAVE
+  Construction Machinery & Heavy Transportation Equipment: PAVE
+  Apparel Retail: XRT
+  Home Improvement Retail: XRT
+  Other Specialty Retail: XRT
+  Automotive Retail: XRT
+  Computer & Electronics Retail: XRT
+  Broadline Retail: XRT
+  Consumer Staples Merchandise Retail: XRT
+  Drug Retail: XRT
+  Food Retail: XRT
+  Homefurnishing Retail: XRT
+  Restaurants: PEJ
+  Hotels, Resorts & Cruise Lines: PEJ
+  Casinos & Gaming: PEJ
+  Leisure Facilities: PEJ
+  Interactive Media & Services: FDN
+  Integrated Telecommunication Services: IYZ
+  Wireless Telecommunication Services: IYZ
+  Alternative Carriers: IYZ
+  Packaged Foods & Meats: PBJ
+  Soft Drinks & Non-alcoholic Beverages: PBJ
+  Brewers: PBJ
+  Distillers & Vintners: PBJ
+  Agricultural Products & Services: PBJ

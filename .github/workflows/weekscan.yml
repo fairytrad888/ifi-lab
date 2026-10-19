@@ -1,0 +1,88 @@
+name: Weekly accumulation alerts
+
+# Separate from the frozen IFI Lab and from the Eye Lab:
+#  - its own schedule (Saturday 15:20 UTC, after the weekly close and outside the Saturday backtest window)
+#  - its own concurrency group; it never commits to the default branch (results go to the branch `weekscan-results`)
+#  - the checkout must be untouched after the run (isolation check)
+
+on:
+  schedule:
+    - cron: "20 15 * * 6"
+  workflow_dispatch:
+    inputs:
+      push:
+        description: "Send the phone push (ntfy)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekscan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Output folder outside the checkout
+        run: echo "WEEKSCAN_OUT=$RUNNER_TEMP/weekscan-results" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r weekscan/requirements.txt
+
+      - name: Guard window (not while the prior system downloads or commits)
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          import sys
+          n = datetime.now(timezone.utc); hm = n.hour * 60 + n.minute; d = n.weekday()
+          wins = [((0,1,2,3,4), 21*60+45, 23*60+15), ((1,2,3,4,5), 3*60, 4*60+15), ((5,), 11*60+45, 13*60+45)]
+          hit = [w for w in wins if d in w[0] and w[1] <= hm < w[2]]
+          print("window:", "inside a prior-system window" if hit else "clear"); sys.exit(1 if hit else 0)
+          PY
+
+      - name: Results branch (separate from the default branch)
+        run: |
+          git config user.name "weekscan-bot"
+          git config user.email "weekscan-bot@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin weekscan-results >/dev/null; then
+            git fetch --depth 1 origin weekscan-results
+            git worktree add "$WEEKSCAN_OUT" FETCH_HEAD
+            git -C "$WEEKSCAN_OUT" checkout -B weekscan-results
+          else
+            git worktree add --detach "$WEEKSCAN_OUT"
+            git -C "$WEEKSCAN_OUT" checkout --orphan weekscan-results
+            git -C "$WEEKSCAN_OUT" rm -rfq . || true
+            git -C "$WEEKSCAN_OUT" clean -fdq
+          fi
+
+      - name: Tests
+        run: python weekscan/tests/test_weekscan.py
+
+      - name: Weekly scan
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.push }}" = "false" ]; then
+            python -m weekscan.run --no-push
+          else
+            python -m weekscan.run
+          fi
+
+      - name: Isolation check (the checkout must be untouched)
+        run: |
+          CHANGES=$(git status --porcelain --ignored=no | grep -v '^?? weekscan/_out/' || true)
+          if [ -n "$CHANGES" ]; then echo "ISOLATION BREACH:"; echo "$CHANGES"; exit 1; fi
+          echo "checkout untouched"
+
+      - name: Push results to weekscan-results
+        run: |
+          cd "$WEEKSCAN_OUT"
+          git add -A
+          git commit -qm "Weekly scan $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing to commit"; exit 0; }
+          git push origin weekscan-results
