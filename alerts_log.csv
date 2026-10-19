@@ -1,0 +1,25 @@
+week,symbol,group,group_state,reason,armed_week,acc_low,close,tag_ad_div,tag_trigger,pushed,seeded
+2026-08-21,PZZA,PEJ,bullish,accumulation this week in a bullish group,2026-08-21,22.770000457763672,23.940000534057617,False,False,False,True
+2026-08-28,IPGP,XLK,bullish,accumulation this week in a bullish group,2026-08-28,69.41000366210938,76.52999877929688,False,False,False,True
+2026-09-04,TXT,ITA,basing,accumulation this week in a basing group,2026-09-04,78.43000030517578,79.06999969482422,False,False,False,True
+2026-09-04,BHF,KIE,basing,accumulation this week in a basing group,2026-09-04,52.560001373291016,53.58000183105469,False,False,False,True
+2026-09-04,CRUS,SMH,bullish,accumulation this week in a bullish group,2026-09-04,106.26000213623047,113.20999908447266,False,False,False,True
+2026-09-04,ALHC,IHF,bullish,accumulation this week in a bullish group,2026-09-04,13.15999984741211,13.539999961853027,False,False,False,True
+2026-09-04,SEDG,SMH,bullish,accumulation this week in a bullish group,2026-09-04,31.1200008392334,34.20000076293945,False,False,False,True
+2026-09-04,TRN,PAVE,basing,accumulation this week in a basing group,2026-09-04,27.530000686645508,28.31999969482422,False,False,False,True
+2026-09-11,TRIP,FDN,bullish,accumulation this week in a bullish group,2026-09-11,8.40999984741211,9.09000015258789,False,False,False,True
+2026-09-18,ANIP,XPH,bullish,accumulation this week in a bullish group,2026-09-18,70.0,76.13999938964844,False,False,False,True
+2026-09-25,FN,XLK,bullish,accumulation this week in a bullish group,2026-09-25,390.6400146484375,417.3900146484375,False,False,False,True
+2026-09-25,MTZ,PAVE,basing,accumulation this week in a basing group,2026-09-25,210.25,212.85000610351562,False,False,False,True
+2026-09-25,ROAD,PAVE,basing,accumulation this week in a basing group,2026-09-25,88.7300033569336,93.70999908447266,False,False,False,True
+2026-10-02,AGX,PAVE,basing,accumulation this week in a basing group,2026-10-02,354.7799987792969,383.8299865722656,False,False,False,True
+2026-10-02,CALX,IGV,bullish,accumulation this week in a bullish group,2026-10-02,32.349998474121094,34.810001373291016,False,False,False,True
+2026-10-02,YELP,FDN,bullish,accumulation this week in a bullish group,2026-10-02,17.270000457763672,18.260000228881836,False,False,False,True
+2026-10-02,YOU,IGV,bullish,accumulation this week in a bullish group,2026-10-02,38.790000915527344,41.54999923706055,False,False,False,True
+2026-10-09,HII,ITA,basing,"group turned basing, 1 week after the accumulation",2026-10-02,256.7900085449219,264.79998779296875,False,False,False,True
+2026-10-09,KRMN,ITA,basing,"group turned basing, 1 week after the accumulation",2026-10-02,31.655000686645508,32.59000015258789,False,False,False,True
+2026-10-09,LHX,ITA,basing,accumulation this week in a basing group,2026-10-09,232.33999633789062,236.97000122070312,False,False,False,True
+2026-10-09,BWXT,ITA,basing,accumulation this week in a basing group,2026-10-09,134.8300018310547,143.8300018310547,False,False,False,True
+2026-10-09,FNF,KIE,basing,accumulation this week in a basing group,2026-10-09,37.880001068115234,38.79999923706055,False,False,False,True
+2026-10-16,SARO,ITA,basing,accumulation this week in a basing group,2026-10-16,19.559999465942383,21.309999465942383,False,False,True,False
+2026-10-16,AON,KIE,basing,accumulation this week in a basing group,2026-10-16,272.0400085449219,292.54998779296875,False,False,True,False
