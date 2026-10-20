@@ -1,8 +1,8 @@
 {
  "week": "2026-10-16",
- "released": 2,
- "pushed": 2,
- "armed_waiting": 138,
+ "released": 1,
+ "pushed": 0,
+ "armed_waiting": 146,
  "groups_ok": 10,
  "groups": 36,
  "missing": [
@@ -10,14 +10,13 @@
   "BLFS",
   "CWEN-A",
   "HLX",
-  "IBOC",
   "LEG",
   "QRVO",
   "VYLR"
  ],
  "notes": [
   "universe: 1503 stocks (sp400 400, sp500 503, sp600 600); 825 mapped to an industry ETF, 0 with no sector ETF",
-  "first run: the 8 weeks before 2026-10-16 were replayed silently to build the armed list"
+  "trigger upgraded (state v2): the 8 weeks before 2026-10-16 were replayed silently with the new trigger; earlier alerts still block repeats"
  ],
  "push": "push skipped: NTFY_TOPIC not set"
 }

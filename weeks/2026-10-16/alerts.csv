@@ -1,3 +1,2 @@
-week,symbol,group,group_state,reason,armed_week,acc_low,close,tag_ad_div,tag_trigger,pushed,leader,sector,sub_industry,sector_etf,sector_state,breadth_acc,breadth_stage2,stop_pct,score,earnings_soon
-2026-10-16,SARO,ITA,basing,accumulation this week in a basing group,2026-10-16,19.559999465942383,21.309999465942383,False,False,True,False,Industrials,Aerospace & Defense,XLI,bearish,0.2692307692307692,0.11538461538461539,0.08212107197829113,2.654,False
-2026-10-16,AON,KIE,basing,accumulation this week in a basing group,2026-10-16,272.0400085449219,292.54998779296875,False,False,True,False,Financials,Insurance Brokers,XLF,neutral,0.06896551724137931,0.43103448275862066,0.07010760589250593,2.569,True
+week,symbol,group,group_state,reason,armed_week,acc_low,close,signals,pushed,leader,sector,sub_industry,sector_etf,sector_state,breadth_acc,breadth_stage2,stop_pct,score,earnings_soon
+2026-10-16,DY,PAVE,basing,signal this week in a basing group,2026-10-16,250.1300048828125,253.61000061035156,['down9'],True,False,Industrials,Construction & Engineering,XLI,bearish,0.20588235294117646,0.14705882352941177,0.01372183951407246,3.309,False

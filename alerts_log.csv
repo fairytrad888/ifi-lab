@@ -23,3 +23,7 @@ week,symbol,group,group_state,reason,armed_week,acc_low,close,tag_ad_div,tag_tri
 2026-10-09,FNF,KIE,basing,accumulation this week in a basing group,2026-10-09,37.880001068115234,38.79999923706055,False,False,False,True
 2026-10-16,SARO,ITA,basing,accumulation this week in a basing group,2026-10-16,19.559999465942383,21.309999465942383,False,False,True,False
 2026-10-16,AON,KIE,basing,accumulation this week in a basing group,2026-10-16,272.0400085449219,292.54998779296875,False,False,True,False
+2026-09-18,STWD,XLF,basing,signal this week in a basing group,2026-09-18,14.890000343322754,14.9399995803833,,,False,True
+2026-09-18,BXMT,XLF,basing,signal this week in a basing group,2026-09-18,13.100000381469727,13.270000457763672,,,False,True
+2026-09-25,ZTS,XPH,bullish,signal this week in a bullish group,2026-09-25,69.5199966430664,71.05000305175781,,,False,True
+2026-10-16,DY,PAVE,basing,signal this week in a basing group,2026-10-16,250.1300048828125,253.61000061035156,,,True,False
