@@ -1,19 +1,25 @@
 # IFI weekly accumulation alerts
 
-Every Saturday the scan reads the S&P 1500 on weekly bars. It reports stocks that printed the IFI A&D accumulation bar
-(washout exit) while their sector or industry is **bullish or basing**. It is a selection aid; the edge is not yet tested.
+Every Saturday the scan reads the S&P 1500 on weekly bars. It reports stocks with a **red IFI A&D accumulation bar
+(washout) paired with at least one other bullish signal within 4 weeks**, while their sector or industry is **bullish or
+basing**. It is a selection aid; the edge is not yet tested.
+
+**Pairing signals:** Signals △, A&D ▲, Matrix ◆, a completed down-9, or the green accumulation bar.
+
+**Change in v1.1 (Oct 19):** v1.0 waited for the green bar (washout exit), which usually prints after the low.
 
 ## Rules (`config.yaml`)
 - **Group state:** each sector ETF (XLK, XLV, …) and industry ETF (SMH, IGV, XBI, KRE, XOP, ITB, XRT, …) is rated on its ratio to SPY, using the weekly IFI stage.
   - 2–3 = bullish; 1 = basing; 0 = neutral; −1 = bearish.
   - A stock uses its industry ETF when its GICS sub-industry has one, otherwise its sector ETF.
 - **Arm and release:**
-  - A weekly accumulation bar arms the stock for 8 weeks, as long as weekly closes hold above that bar's low.
+  - The paired signal arms the stock for 8 weeks, as long as weekly closes hold above the window's lowest low.
+  - While armed and not yet released, the stop follows new lows inside the washout and more signals are added.
   - One alert is released when the group is bullish or basing: in the same week, or later when the group turns.
   - A weekly close below the low disarms the stock.
   - The same stock gets no second alert within 8 weeks.
 - **Liquidity:** price ≥ $5 and ≥ $20M traded per day (20-day average).
-- **Rank:** group state, sector breadth (share of members with accumulation in 8 weeks, share at stage ≥ 2), the stock's ratio to its ETF, A&D ▲ / Signals △ tags within 4 weeks, and stop width. The top 10 are pushed.
+- **Rank:** group state, sector breadth (share of members with accumulation in 8 weeks, share at stage ≥ 2), the stock's ratio to its ETF, the number of distinct pairing signals (confluence), and stop width. The top 10 are pushed.
 - **Weeks:** a week counts from the Saturday after its Friday. There are never partial bars.
 
 ## Output (branch `weekscan-results`)

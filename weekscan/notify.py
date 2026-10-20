@@ -10,8 +10,9 @@ def message(week: str, alerts: list[dict], n_total: int, groups_ok: int, groups_
         return title, "No weekly accumulation released this week."
     lines = []
     for k, a in enumerate(alerts, 1):
-        tags = "".join([" ▲" if a.get("tag_ad_div") else "", " △" if a.get("tag_trigger") else "",
-                        " ⚠earnings" if a.get("earnings_soon") else ""])
+        from .scan import PAIR_LABEL
+        tags = " red+" + "+".join(PAIR_LABEL.get(k, k) for k in a.get("signals", [])) + \
+            (" ⚠earnings" if a.get("earnings_soon") else "")
         lines.append(f"{k}. {a['symbol']} ({a['group']} {a['group_state']}) close {a['close']:.2f} "
                      f"stop<{a['acc_low']:.2f} ({a['stop_pct']:.0%}){tags}")
     if n_total > len(alerts):

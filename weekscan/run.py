@@ -1,4 +1,4 @@
-"""IFI weekly accumulation alerts: one run per completed week (Saturday).
+"""IFI weekly accumulation alerts: one run per completed week (Saturday). v1.1: red accumulation bar + a pairing signal.
 
   python -m weekscan.run [--out DIR] [--no-push] [--seed-weeks 8]
 
@@ -126,7 +126,12 @@ def run(out: Path, push: bool = True, seed_weeks: int = 8, now: datetime | None 
     sf = out / "state.json"
     state = json.loads(sf.read_text()) if sf.exists() else {}
     weeks = list(spy_w.index)
-    if state.get("last_week") and pd.Timestamp(state["last_week"]) in spy_w.index:
+    if state and state.get("version") != scan.STATE_VERSION:
+        state = {"alerted": state.get("alerted", {}), "version": scan.STATE_VERSION}
+        todo = weeks[-(seed_weeks + 1):]
+        notes.append(f"trigger upgraded (state v{scan.STATE_VERSION}): the {seed_weeks} weeks before {current.date()} were "
+                     "replayed silently with the new trigger; earlier alerts still block repeats")
+    elif state.get("last_week") and pd.Timestamp(state["last_week"]) in spy_w.index:
         todo = [w for w in weeks if w > pd.Timestamp(state["last_week"])]
     else:
         todo = weeks[-(seed_weeks + 1):]
@@ -136,7 +141,7 @@ def run(out: Path, push: bool = True, seed_weeks: int = 8, now: datetime | None 
     all_events, releases = [], []
     for w in todo:
         gstate = {g: s.get(w) for g, s in gser.items()}
-        recs = scan.week_records(reads, w, CFG["signal"]["tags_weeks"])
+        recs = scan.week_records(reads, w, CFG["signal"]["window_weeks"], CFG["signal"]["pair_signals"])
         state, rel, ev = scan.step(state, w, recs, group_of, gstate, eligible, CFG)
         for r in rel:
             r["pushed"] = w == current and push
@@ -198,15 +203,16 @@ def run(out: Path, push: bool = True, seed_weeks: int = 8, now: datetime | None 
     mdl += [f"**{len(releases)} released** (top {len(top)} pushed) · {sum(1 for _ in waiting)} armed and waiting for their group · "
             f"{len(ok)} of {len(gdf)} groups bullish or basing", "",
             "## Alerts (ranked)", "",
-            "| # | stock | group | why | close | stop (acc. low) | score | tags |", "|---|---|---|---|---|---|---|---|"]
+            "| # | stock | group | why | close | stop (window low) | score | signals with the red bar | tags |",
+            "|---|---|---|---|---|---|---|---|---|"]
     for k, r in enumerate(releases, 1):
-        tags = " ".join(t for t, on in (("A&D▲", r["tag_ad_div"]), ("Sig△", r["tag_trigger"]), ("leader", r["leader"]),
-                                         ("earnings ≤14d", r.get("earnings_soon"))) if on)
+        sigs = " + ".join(scan.PAIR_LABEL.get(k, k) for k in r["signals"])
+        tags = " ".join(t for t, on in (("leader", r["leader"]), ("earnings ≤14d", r.get("earnings_soon"))) if on)
         sec = "" if r["sector_etf"] == r["group"] else f" · sector {r['sector_etf']} {r['sector_state']}"
         mdl.append(f"| {k} | {r['symbol']} | {r['group']} ({r['group_state']}){sec} · {r['sub_industry']} | {r['reason']} | "
-                   f"{r['close']:.2f} | {r['acc_low']:.2f} ({r['stop_pct']:.0%}) | {r['score']:.2f} | {tags} |")
+                   f"{r['close']:.2f} | {r['acc_low']:.2f} ({r['stop_pct']:.0%}) | {r['score']:.2f} | {sigs} | {tags} |")
     mdl += ["", "## Groups (ETF ratio to SPY, weekly IFI stage)", "",
-            "| ETF | state | last week | members | accumulation in 8w | stage ≥ 2 | armed, waiting |", "|---|---|---|---|---|---|---|"]
+            "| ETF | state | last week | members | red/green accumulation in 8w | stage ≥ 2 | armed, waiting |", "|---|---|---|---|---|---|---|"]
     order = {"bullish": 0, "basing": 1, "neutral": 2, "bearish": 3}
     for g in sorted(grows, key=lambda r: (order.get(r["state"], 9), r["etf"])):
         ch = " ← new" if g["changed"] and g["previous"] is not None else ""
@@ -214,19 +220,22 @@ def run(out: Path, push: bool = True, seed_weeks: int = 8, now: datetime | None 
                    f"{pct(g['breadth_stage2'])} | {g['armed_waiting']} |")
     if waiting:
         mdl += ["", "## Armed, waiting for the group to turn basing or bullish", "",
-                "| stock | group | armed (week) | acc. low |", "|---|---|---|---|"]
-        mdl += [f"| {s} | {a['group']} ({gser[a['group']].get(current)}) | {a['armed_week']} | {a['low']:.2f} |" for s, a in waiting]
+                "| stock | group | armed (week) | stop (window low) | signals with the red bar |", "|---|---|---|---|---|"]
+        mdl += [f"| {s} | {a['group']} ({gser[a['group']].get(current)}) | {a['armed_week']} | {a['low']:.2f} | "
+                f"{' + '.join(scan.PAIR_LABEL.get(k, k) for k in a.get('signals', []))} |" for s, a in waiting]
     mdl += ["", "_Selection aid, not a tested edge: weekly sector state as a filter has not been tested yet. "
-                "Bullish = ETF/SPY ratio at weekly stage 2-3; basing = stage 1. An alert's stop is the accumulation bar's low (weekly close)._"]
+                "Signal = a red A&D accumulation bar plus at least one other bullish signal within 4 weeks. "
+                "Bullish = ETF/SPY ratio at weekly stage 2-3; basing = stage 1. Stop = the window's lowest low (weekly close)._"]
     text = "\n".join(mdl) + "\n"
     (wdir / "ALERTS.md").write_text(text)
     (out / "LATEST.md").write_text(text)
-    res = {"week": str(current.date()), "released": len(releases), "pushed": len(top) if push else 0,
+    res = {"week": str(current.date()), "released": len(releases), "pushed": 0,
            "armed_waiting": len(waiting), "groups_ok": int(len(ok)), "groups": int(len(gdf)), "missing": missing,
            "notes": notes}
     if push:
         title, body = notify.message(str(current.date()), top, len(releases), int(len(ok)), int(len(gdf)))
         res["push"] = notify.push(title, body, link)
+        res["pushed"] = len(top) if res["push"].startswith("push sent") else 0
     (out / "RUN.json").write_text(json.dumps(res, indent=1, default=str))
     return res
 

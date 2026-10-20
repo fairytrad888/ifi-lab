@@ -1,5 +1,5 @@
 # IFI weekly accumulation alerts (spec: IFI_Weekly_Accumulation_Alerts_Spec.md, Oct 19, 2026)
-version: 1
+version: 2
 
 universe:
   sources: [sp500, sp400, sp600]          # S&P 1500 from the Wikipedia constituent lists (GICS sector + sub-industry)
@@ -8,10 +8,11 @@ universe:
 benchmark: SPY
 history: "10y"                            # daily history downloaded each run, resampled to weeks ending Friday
 
-signal:
-  trigger: accumulation                   # weekly IFI A&D washout exit (the green accumulation bar)
-  tags_weeks: 4                           # A&D bullish divergence or Signals bull trigger within 4 weeks: rank tags
-arm_weeks: 8                              # an accumulation bar stays armed 8 weeks while its low holds (weekly close)
+signal:                                   # v1.1 (Oct 19): earlier than the green bar
+  trigger: red_accumulation_pair          # a red A&D accumulation bar (washout, flow <= 2.3) in the window ...
+  window_weeks: 4                         # ... paired with at least one of these in the same 4 weeks:
+  pair_signals: [signals_trigger, ad_divergence, matrix_divergence, down9, accumulation_exit]
+arm_weeks: 8                              # the signal stays armed 8 weeks while weekly closes hold the window's lowest low
 repeat_block_weeks: 8                     # no second alert for the same stock within 8 weeks
 qualifying_states: [bullish, basing]      # sector/industry ETF ratio vs SPY, weekly IFI stage: 2-3 bullish, 1 basing
 breadth_weeks: 8                          # sector breadth: share of members with an accumulation bar in 8 weeks
@@ -24,8 +25,8 @@ score:                                    # additive, transparent; ties broken b
   breadth_accumulation: 2.0               # x share of the group's members with accumulation in breadth_weeks
   breadth_stage2: 1.0                     # x share of the group's members at weekly stage >= 2
   leader: 1.5                             # stock / its ETF ratio at weekly stage >= 1
-  tag_ad_divergence: 1.0
-  tag_signals_trigger: 1.0
+  per_signal_type: 0.75                   # x number of distinct pairing signal types (confluence)
+  max_signal_types: 3
   wide_stop_penalty: -1.0                 # stop (accumulation low) more than 15% below the close
   wide_stop_pct: 0.15
 

@@ -2,8 +2,11 @@
 
 Sector state  each sector / industry ETF's ratio to SPY on weekly bars, IFI stage at the week's close:
               2-3 bullish · 1 basing · 0 neutral · -1 bearish
-Stock signal  the weekly IFI A&D accumulation bar (washout exit) at the week's close
-Arm/release   an accumulation bar arms the stock for `arm_weeks` while weekly closes hold above that bar's low.
+Stock signal  (v1.1) a red A&D accumulation bar (washout: flow <= 2.3) within the last `window_weeks`, paired with at
+              least one other bullish signal in the same window: Signals bull trigger (△), A&D bullish divergence (▲),
+              Matrix bullish divergence (◆), a completed down-9, or the green accumulation bar (washout exit).
+              v1.0 waited for the green bar alone, which usually comes after the low.
+Arm/release   the signal arms the stock for `arm_weeks` while weekly closes hold above the window's lowest low.
               It is released (one alert) when its group ETF is bullish or basing: in the same week, or later
               when the group turns. Repeat alerts for a stock are blocked for `repeat_block_weeks`.
 """
@@ -14,6 +17,7 @@ import pandas as pd
 
 from .core.states import read
 
+STATE_VERSION = 2          # v1.1 trigger (red accumulation + pair); older state is re-seeded, alert history kept
 STATE_OF_STAGE = {3: "bullish", 2: "bullish", 1: "basing", 0: "neutral", -1: "bearish"}
 
 
@@ -52,23 +56,37 @@ def stock_reads(stock_weekly: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame
     return out
 
 
-def week_records(reads: dict[str, pd.DataFrame], week: pd.Timestamp, tags_weeks: int) -> dict[str, dict]:
-    """Per stock at `week`: accumulation flag, that bar's low, close, tags, stage."""
+PAIR_COLS = {"signals_trigger": "sig_trig_bull", "ad_divergence": "ad_bull_div", "matrix_divergence": "mx_strong_bull",
+             "down9": None, "accumulation_exit": "ad_washout_exit"}
+PAIR_LABEL = {"signals_trigger": "Sig△", "ad_divergence": "A&D▲", "matrix_divergence": "Matrix◆", "down9": "down-9",
+              "accumulation_exit": "green bar"}
+
+
+def _flag(x: pd.DataFrame, name: str) -> pd.Series:
+    if name == "down9":
+        return x["tr_nine"] == -1
+    return x[PAIR_COLS[name]].astype(bool)
+
+
+def week_records(reads: dict[str, pd.DataFrame], week: pd.Timestamp, window: int, pair: list[str]) -> dict[str, dict]:
+    """Per stock at `week`: is a red accumulation bar paired with another bullish signal inside the window?"""
     recs = {}
     for s, x in reads.items():
         if week not in x.index:
             continue
         i = x.index.get_loc(week)
-        lo = max(0, i - tags_weeks + 1)
-        recs[s] = {"acc": bool(x["ad_washout_exit"].iloc[i]), "low": float(x["low"].iloc[i]),
-                   "close": float(x["close"].iloc[i]), "stage": int(x["stage"].iloc[i]),
-                   "tag_ad_div": bool(x["ad_bull_div"].iloc[lo:i + 1].any()),
-                   "tag_trigger": bool(x["sig_trig_bull"].iloc[lo:i + 1].any())}
+        lo = max(0, i - window + 1)
+        red = x["ad_washout"].iloc[lo:i + 1].astype(bool)
+        seen = [k for k in pair if _flag(x, k).iloc[lo:i + 1].any()]
+        new = bool(red.iloc[-1]) or any(bool(_flag(x, k).iloc[i]) for k in pair)
+        recs[s] = {"cond": bool(red.any()) and len(seen) > 0, "new": new, "signals": seen,
+                   "low": float(x["low"].iloc[lo:i + 1].min()), "close": float(x["close"].iloc[i]),
+                   "stage": int(x["stage"].iloc[i])}
     return recs
 
 
 def breadth(reads: dict[str, pd.DataFrame], members: dict[str, list[str]], week: pd.Timestamp, weeks: int) -> dict:
-    """Group -> share of members with an accumulation bar in the last `weeks` weeks, and share at stage >= 2."""
+    """Group -> share of members with a red or green accumulation bar in the last `weeks` weeks, and share at stage >= 2."""
     out = {}
     for g, syms in members.items():
         acc = st2 = n = 0
@@ -78,7 +96,8 @@ def breadth(reads: dict[str, pd.DataFrame], members: dict[str, list[str]], week:
                 continue
             i = x.index.get_loc(week)
             n += 1
-            acc += bool(x["ad_washout_exit"].iloc[max(0, i - weeks + 1):i + 1].any())
+            w_ = slice(max(0, i - weeks + 1), i + 1)
+            acc += bool(x["ad_washout"].iloc[w_].any() or x["ad_washout_exit"].iloc[w_].any())
             st2 += int(x["stage"].iloc[i]) >= 2
         out[g] = {"n": n, "acc_share": acc / n if n else np.nan, "stage2_share": st2 / n if n else np.nan}
     return out
@@ -108,12 +127,19 @@ def step(state: dict, week: pd.Timestamp, recs: dict[str, dict], group_of: dict[
         elif age > arm_w:
             events.append({"week": wk, "symbol": s, "event": f"expired after {arm_w} weeks"})
             armed.pop(s)
-    # 2. arm: a new accumulation bar this week (re-arms with the new low)
+    # 2. arm: red accumulation + another bullish signal in the window, with something new this week.
+    #    While armed and not yet released, the stop follows the window's lowest low and the signals accumulate.
     for s, r in recs.items():
-        if r["acc"] and s in eligible and s in group_of:
+        if not (r["cond"] and s in eligible and s in group_of):
+            continue
+        a = armed.get(s)
+        if a is not None and not a["released"]:
+            a["low"] = min(a["low"], r["low"])
+            a["signals"] = sorted(set(a["signals"]) | set(r["signals"]))
+        elif r["new"]:
             armed[s] = {"armed_week": wk, "low": r["low"], "group": group_of[s], "released": False,
-                        "tag_ad_div": r["tag_ad_div"], "tag_trigger": r["tag_trigger"]}
-            events.append({"week": wk, "symbol": s, "event": "armed: weekly accumulation bar"})
+                        "signals": sorted(r["signals"])}
+            events.append({"week": wk, "symbol": s, "event": "armed: red accumulation + " + ", ".join(r["signals"])})
     # 3. release: the group ETF is bullish or basing
     for s, a in armed.items():
         if a["released"]:
@@ -124,7 +150,7 @@ def step(state: dict, week: pd.Timestamp, recs: dict[str, dict], group_of: dict[
             continue
         a["released"] = True
         age = _weeks_between(a["armed_week"], week)
-        why = (f"accumulation this week in a {st} group" if age == 0
+        why = (f"signal this week in a {st} group" if age == 0
                else f"group turned {st}, {age} week{'s' if age != 1 else ''} after the accumulation")
         last = alerted.get(s)
         if last is not None and _weeks_between(last, week) < block_w:
@@ -133,11 +159,10 @@ def step(state: dict, week: pd.Timestamp, recs: dict[str, dict], group_of: dict[
         r = recs.get(s, {})
         releases.append({"week": wk, "symbol": s, "group": g, "group_state": st, "reason": why,
                          "armed_week": a["armed_week"], "acc_low": a["low"], "close": r.get("close", np.nan),
-                         "tag_ad_div": a["tag_ad_div"] or r.get("tag_ad_div", False),
-                         "tag_trigger": a["tag_trigger"] or r.get("tag_trigger", False)})
+                         "signals": sorted(set(a["signals"]) | set(r.get("signals", [])))})
         alerted[s] = wk
         events.append({"week": wk, "symbol": s, "event": f"released: {why}"})
-    return {"armed": armed, "alerted": alerted, "last_week": wk}, releases, events
+    return {"armed": armed, "alerted": alerted, "last_week": wk, "version": STATE_VERSION}, releases, events
 
 
 def score(rel: dict, br: dict, leader: bool | None, cfg: dict) -> float:
@@ -147,7 +172,7 @@ def score(rel: dict, br: dict, leader: bool | None, cfg: dict) -> float:
     sc += w["breadth_accumulation"] * np.nan_to_num(b.get("acc_share", 0.0))
     sc += w["breadth_stage2"] * np.nan_to_num(b.get("stage2_share", 0.0))
     sc += w["leader"] * bool(leader)
-    sc += w["tag_ad_divergence"] * bool(rel["tag_ad_div"]) + w["tag_signals_trigger"] * bool(rel["tag_trigger"])
+    sc += w["per_signal_type"] * min(len(rel["signals"]), w["max_signal_types"])
     stop = (rel["close"] - rel["acc_low"]) / rel["close"] if rel["close"] else np.nan
     rel["stop_pct"] = float(stop)
     if stop == stop and stop > w["wide_stop_pct"]:
