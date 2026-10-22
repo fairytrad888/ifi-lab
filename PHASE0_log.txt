@@ -1,0 +1,16 @@
+[1/8] lock ok (e47a7479492e6491)
+[2/8] live reference: 37f6f7d4126c (2026-10-20T16:52:52Z), universe 1503
+snapshot reused: 1533 tickers, manifest aa0949a7f26275b5
+[3/8] snapshot: 1533 tickers (reused), missing 7
+  read 250/1503
+  read 500/1503
+  read 750/1503
+  read 1000/1503
+  read 1250/1503
+  read 1500/1503
+[4/8] events: 5513 (S1 2260, S2 2154, S3 878, E 221)
+[5/8] look-ahead: ok (60 symbols x 5 cuts); real-data fidelity to weekscan: ok
+[6/8] live parity: ok (Jaccard 0.9821, live 165, r007 168)
+[7/8] power at 0.15R on S1: 0.5233333333333333 (BELOW CRITERION)
+[8/8] written: PHASE0.md, PHASE0.json, events/*.csv.gz · phase0_pass=False
+{"phase0_pass": false, "status": {"lock": true, "lookahead": true, "fidelity": true, "parity": true, "power": false}, "events": {"S1": 2260, "S2": 2154, "S3": 878, "E": 221}}

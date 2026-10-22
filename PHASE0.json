@@ -1,0 +1,361 @@
+{
+ "run_utc": "2026-10-22 15:28",
+ "lock": "e47a7479492e64919dbf32aa445ff026eaf55edc0c42819815a606de2a322b29",
+ "live_ref": {
+  "sha": "37f6f7d4126ce6c9752baf06358b47b63ed2b636",
+  "when": "2026-10-20T16:52:52Z"
+ },
+ "snapshot": {
+  "id": "aa0949a7f26275b51aee1ffae83f7aa578cfc0f3d22dca6d1c86cfb187dee5fc",
+  "tickers": 1533,
+  "missing": [
+   "ADIG",
+   "BLFS",
+   "CWEN-A",
+   "HLX",
+   "LEG",
+   "QRVO",
+   "VYLR"
+  ],
+  "reused": true,
+  "tickers_with_splits": 631
+ },
+ "universe": {
+  "total": 1503,
+  "S1": 559,
+  "S2": 552,
+  "S3": 207,
+  "X": 114,
+  "E": 65,
+  "XD": 6
+ },
+ "build": {
+  "etfs_with_state": 36,
+  "stocks": 1487,
+  "no_group": 0,
+  "short_history": 9,
+  "no_data": 7,
+  "groups": 36
+ },
+ "events": {
+  "S1": 2260,
+  "S2": 2154,
+  "S3": 878,
+  "E": 221
+ },
+ "w_tiers": {
+  "cuts": [
+   1.568,
+   3.417
+  ],
+  "sets": {
+   "S1": {
+    "A": 753,
+    "B": 750,
+    "C": 757,
+    "weeks_with_A_and_C": 162,
+    "sum_week_weight": 213.1887676487799
+   },
+   "S2": {
+    "A": 741,
+    "B": 680,
+    "C": 733,
+    "weeks_with_A_and_C": 174,
+    "sum_week_weight": 215.74397876775373
+   }
+  }
+ },
+ "lookahead": {
+  "symbols_tested": 60,
+  "cuts": 5,
+  "failures": [],
+  "n_failures": 0,
+  "group_state_failures": [],
+  "ok": true,
+  "fidelity_weeks": 300,
+  "fidelity_arms": 578,
+  "fidelity_failures": [],
+  "fidelity_ok": true
+ },
+ "parity": {
+  "live_armed": 165,
+  "r007_armed": 168,
+  "shared": 165,
+  "jaccard": 0.9821,
+  "armed_week_agree": 1.0,
+  "low_agree": 1.0,
+  "released_agree": 1.0,
+  "only_live": [],
+  "only_r007": [
+   "OI",
+   "SAH",
+   "WD"
+  ],
+  "week_alerts_live": 1,
+  "week_alerts_r007": 1,
+  "week_alerts_jaccard": 1.0,
+  "pass": true,
+  "mismatch_reasons": {
+   "total": 3,
+   "near_threshold": 3
+  }
+ },
+ "power": {
+  "S1": [
+   {
+    "spread_R": 0.0,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.05333333333333334,
+    "power_holm_worst": 0.03333333333333333,
+    "gate_pass": 0.04,
+    "mean_est": 0.004249300826320147,
+    "sd_est": 0.09260662644344585
+   },
+   {
+    "spread_R": 0.1,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.3566666666666667,
+    "power_holm_worst": 0.25,
+    "gate_pass": 0.23,
+    "mean_est": 0.10329289372276677,
+    "sd_est": 0.08905886176521648
+   },
+   {
+    "spread_R": 0.15,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.5233333333333333,
+    "power_holm_worst": 0.4033333333333333,
+    "gate_pass": 0.37,
+    "mean_est": 0.14586065675251225,
+    "sd_est": 0.08285316504452626
+   },
+   {
+    "spread_R": 0.2,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.7166666666666667,
+    "power_holm_worst": 0.5933333333333334,
+    "gate_pass": 0.5633333333333334,
+    "mean_est": 0.19403831168309382,
+    "sd_est": 0.09096788207735984
+   },
+   {
+    "spread_R": 0.25,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.8666666666666667,
+    "power_holm_worst": 0.7966666666666666,
+    "gate_pass": 0.75,
+    "mean_est": 0.2490143366517043,
+    "sd_est": 0.08908565873002011
+   },
+   {
+    "spread_R": 0.3,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.9733333333333334,
+    "power_holm_worst": 0.9466666666666667,
+    "gate_pass": 0.8966666666666666,
+    "mean_est": 0.29561143384815325,
+    "sd_est": 0.08228414379859211
+   }
+  ],
+  "S1 (W tiers)": [
+   {
+    "spread_R": 0.0,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.03666666666666667,
+    "power_holm_worst": 0.02666666666666667,
+    "gate_pass": 0.02666666666666667,
+    "mean_est": -0.006684782185764743,
+    "sd_est": 0.09777698706599447
+   },
+   {
+    "spread_R": 0.1,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.30666666666666664,
+    "power_holm_worst": 0.19333333333333333,
+    "gate_pass": 0.23333333333333334,
+    "mean_est": 0.10626347367864271,
+    "sd_est": 0.09858991158859495
+   },
+   {
+    "spread_R": 0.15,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.4766666666666667,
+    "power_holm_worst": 0.34,
+    "gate_pass": 0.36666666666666664,
+    "mean_est": 0.15359015996076125,
+    "sd_est": 0.09591828941449998
+   },
+   {
+    "spread_R": 0.2,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.67,
+    "power_holm_worst": 0.5333333333333333,
+    "gate_pass": 0.5666666666666667,
+    "mean_est": 0.1974883524145371,
+    "sd_est": 0.09206943464788041
+   },
+   {
+    "spread_R": 0.25,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.8433333333333334,
+    "power_holm_worst": 0.76,
+    "gate_pass": 0.7266666666666667,
+    "mean_est": 0.25313378881900195,
+    "sd_est": 0.09257636727475985
+   },
+   {
+    "spread_R": 0.3,
+    "events": 2260,
+    "weeks_with_events": 559,
+    "power": 0.94,
+    "power_holm_worst": 0.89,
+    "gate_pass": 0.8566666666666667,
+    "mean_est": 0.29820749166774846,
+    "sd_est": 0.0883787125801114
+   }
+  ],
+  "S2": [
+   {
+    "spread_R": 0.0,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.06666666666666667,
+    "power_holm_worst": 0.04,
+    "gate_pass": 0.04666666666666667,
+    "mean_est": 0.00280599235232985,
+    "sd_est": 0.09209100508643135
+   },
+   {
+    "spread_R": 0.1,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.3333333333333333,
+    "power_holm_worst": 0.23666666666666666,
+    "gate_pass": 0.25666666666666665,
+    "mean_est": 0.10404833052096432,
+    "sd_est": 0.09167935775021152
+   },
+   {
+    "spread_R": 0.15,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.5666666666666667,
+    "power_holm_worst": 0.45,
+    "gate_pass": 0.4533333333333333,
+    "mean_est": 0.15814759547961826,
+    "sd_est": 0.08516509283686512
+   },
+   {
+    "spread_R": 0.2,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.7266666666666667,
+    "power_holm_worst": 0.61,
+    "gate_pass": 0.6066666666666667,
+    "mean_est": 0.2018541978397614,
+    "sd_est": 0.09245520536457769
+   },
+   {
+    "spread_R": 0.25,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.9066666666666666,
+    "power_holm_worst": 0.8333333333333334,
+    "gate_pass": 0.8166666666666667,
+    "mean_est": 0.2558078831651939,
+    "sd_est": 0.08690371126349168
+   },
+   {
+    "spread_R": 0.3,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.96,
+    "power_holm_worst": 0.9233333333333333,
+    "gate_pass": 0.8766666666666667,
+    "mean_est": 0.30382819188897997,
+    "sd_est": 0.09410181007857189
+   }
+  ],
+  "S2 (W tiers)": [
+   {
+    "spread_R": 0.0,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.05333333333333334,
+    "power_holm_worst": 0.02,
+    "gate_pass": 0.03333333333333333,
+    "mean_est": 0.003016794729227409,
+    "sd_est": 0.09451782923515772
+   },
+   {
+    "spread_R": 0.1,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.27666666666666667,
+    "power_holm_worst": 0.21333333333333335,
+    "gate_pass": 0.23,
+    "mean_est": 0.10252761371036169,
+    "sd_est": 0.0972196548446664
+   },
+   {
+    "spread_R": 0.15,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.4666666666666667,
+    "power_holm_worst": 0.33666666666666667,
+    "gate_pass": 0.37,
+    "mean_est": 0.14983140504143494,
+    "sd_est": 0.09385845670381822
+   },
+   {
+    "spread_R": 0.2,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.6266666666666667,
+    "power_holm_worst": 0.5233333333333333,
+    "gate_pass": 0.5366666666666666,
+    "mean_est": 0.19120944671044954,
+    "sd_est": 0.09946687328953197
+   },
+   {
+    "spread_R": 0.25,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.8466666666666667,
+    "power_holm_worst": 0.7533333333333333,
+    "gate_pass": 0.7266666666666667,
+    "mean_est": 0.24925555938298471,
+    "sd_est": 0.0976636204499048
+   },
+   {
+    "spread_R": 0.3,
+    "events": 2154,
+    "weeks_with_events": 545,
+    "power": 0.94,
+    "power_holm_worst": 0.8866666666666667,
+    "gate_pass": 0.8666666666666667,
+    "mean_est": 0.30667498486331823,
+    "sd_est": 0.09378817396144265
+   }
+  ]
+ },
+ "status": {
+  "lock": true,
+  "lookahead": true,
+  "fidelity": true,
+  "parity": true,
+  "power": false
+ },
+ "phase0_pass": false
+}

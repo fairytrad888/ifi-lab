@@ -1,0 +1,1643 @@
+{
+ "armed": {
+  "IPGP": {
+   "armed_week": "2026-08-28",
+   "low": 69.41000366,
+   "group": "XLK",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "SEDG": {
+   "armed_week": "2026-09-04",
+   "low": 29.51000023,
+   "group": "SMH",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AAON": {
+   "armed_week": "2026-08-28",
+   "low": 73.5,
+   "group": "ITB",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "CRUS": {
+   "armed_week": "2026-09-04",
+   "low": 106.2600021,
+   "group": "SMH",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "GME": {
+   "armed_week": "2026-09-04",
+   "low": 17.79000092,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "RBC": {
+   "armed_week": "2026-09-04",
+   "low": 471.5700073,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "VFC": {
+   "armed_week": "2026-09-04",
+   "low": 12.46000004,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "KMT": {
+   "armed_week": "2026-09-04",
+   "low": 28.73999977,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "RBA": {
+   "armed_week": "2026-09-11",
+   "low": 79.75,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ANIP": {
+   "armed_week": "2026-09-18",
+   "low": 69.58000183,
+   "group": "XPH",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "LMAT": {
+   "armed_week": "2026-09-11",
+   "low": 78.22000122,
+   "group": "IHI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "TRIP": {
+   "armed_week": "2026-09-18",
+   "low": 8.409999847,
+   "group": "FDN",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "AZO": {
+   "armed_week": "2026-09-18",
+   "low": 2756.129883,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HON": {
+   "armed_week": "2026-09-18",
+   "low": 196.9799957,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "LII": {
+   "armed_week": "2026-09-18",
+   "low": 350.2200012,
+   "group": "ITB",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "NCLH": {
+   "armed_week": "2026-09-18",
+   "low": 13.63000011,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "TPR": {
+   "armed_week": "2026-09-18",
+   "low": 109.7900009,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "TJX": {
+   "armed_week": "2026-09-18",
+   "low": 122.7799988,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CAVA": {
+   "armed_week": "2026-09-18",
+   "low": 49.67499924,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "ad_divergence"
+   ]
+  },
+  "ULS": {
+   "armed_week": "2026-09-18",
+   "low": 63.16999817,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "VVV": {
+   "armed_week": "2026-09-18",
+   "low": 26.20999908,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "MDU": {
+   "armed_week": "2026-09-18",
+   "low": 18.23999977,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "WDFC": {
+   "armed_week": "2026-09-18",
+   "low": 187.7799988,
+   "group": "XLP",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "LNT": {
+   "armed_week": "2026-09-25",
+   "low": 62.54000092,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "AEE": {
+   "armed_week": "2026-09-25",
+   "low": 98.18000031,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ATO": {
+   "armed_week": "2026-09-25",
+   "low": 154.7200012,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "CCL": {
+   "armed_week": "2026-09-25",
+   "low": 21.45000076,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CMS": {
+   "armed_week": "2026-09-25",
+   "low": 62.29000092,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "COST": {
+   "armed_week": "2026-09-25",
+   "low": 883.0999756,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "DTE": {
+   "armed_week": "2026-09-25",
+   "low": 119.6800003,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "DUK": {
+   "armed_week": "2026-09-25",
+   "low": 112.4000015,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "EIX": {
+   "armed_week": "2026-09-25",
+   "low": 51.09999847,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "EXC": {
+   "armed_week": "2026-09-25",
+   "low": 39.72999954,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ODFL": {
+   "armed_week": "2026-09-25",
+   "low": 169.6499939,
+   "group": "IYT",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "PNW": {
+   "armed_week": "2026-09-25",
+   "low": 90.26999664,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "PEG": {
+   "armed_week": "2026-09-25",
+   "low": 66.15000153,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ROL": {
+   "armed_week": "2026-09-25",
+   "low": 29.29000092,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "SO": {
+   "armed_week": "2026-09-25",
+   "low": 81.69000244,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "WEC": {
+   "armed_week": "2026-09-25",
+   "low": 99.80000305,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "XEL": {
+   "armed_week": "2026-09-25",
+   "low": 68.72000122,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "ZTS": {
+   "armed_week": "2026-10-09",
+   "low": 68.76999664,
+   "group": "XPH",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "BROS": {
+   "armed_week": "2026-09-25",
+   "low": 36.50999832,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "BURL": {
+   "armed_week": "2026-09-25",
+   "low": 226.8500061,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "ESAB": {
+   "armed_week": "2026-09-25",
+   "low": 62.74000168,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "IDA": {
+   "armed_week": "2026-09-25",
+   "low": 126.0599976,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "SUI": {
+   "armed_week": "2026-09-25",
+   "low": 109.7699966,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WMS": {
+   "armed_week": "2026-09-25",
+   "low": 122.9000015,
+   "group": "ITB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "XPO": {
+   "armed_week": "2026-09-25",
+   "low": 170.4499969,
+   "group": "IYT",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ALHC": {
+   "armed_week": "2026-09-25",
+   "low": 6.010000229,
+   "group": "IHF",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "AVA": {
+   "armed_week": "2026-09-25",
+   "low": 34.45999908,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "CRI": {
+   "armed_week": "2026-09-25",
+   "low": 28.86000061,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "KAI": {
+   "armed_week": "2026-09-25",
+   "low": 253.4100037,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "MWA": {
+   "armed_week": "2026-09-25",
+   "low": 20.89999962,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "POOL": {
+   "armed_week": "2026-09-25",
+   "low": 152.6999969,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "PZZA": {
+   "armed_week": "2026-09-25",
+   "low": 18.78000069,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "WINA": {
+   "armed_week": "2026-09-25",
+   "low": 280.0499878,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "ad_divergence"
+   ]
+  },
+  "YELP": {
+   "armed_week": "2026-10-02",
+   "low": 17.27000046,
+   "group": "FDN",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "CPT": {
+   "armed_week": "2026-10-02",
+   "low": 95.30000305,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "CASY": {
+   "armed_week": "2026-10-02",
+   "low": 575.0999756,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "FIS": {
+   "armed_week": "2026-10-02",
+   "low": 32.09999847,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HSY": {
+   "armed_week": "2026-10-02",
+   "low": 156.1600037,
+   "group": "PBJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HII": {
+   "armed_week": "2026-10-02",
+   "low": 256.7900085,
+   "group": "ITA",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "NKE": {
+   "armed_week": "2026-10-02",
+   "low": 31.96999931,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "PCG": {
+   "armed_week": "2026-10-02",
+   "low": 11.77000046,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "O": {
+   "armed_week": "2026-10-02",
+   "low": 53.15000153,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "UDR": {
+   "armed_week": "2026-10-02",
+   "low": 33.09999847,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "VMC": {
+   "armed_week": "2026-10-02",
+   "low": 237.0299988,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WM": {
+   "armed_week": "2026-10-02",
+   "low": 200.5800018,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "XYL": {
+   "armed_week": "2026-10-02",
+   "low": 98.58000183,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "BYD": {
+   "armed_week": "2026-10-02",
+   "low": 65.0,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ELS": {
+   "armed_week": "2026-10-02",
+   "low": 57.45999908,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "GMED": {
+   "armed_week": "2026-10-02",
+   "low": 72.54000092,
+   "group": "IHI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "NNN": {
+   "armed_week": "2026-10-02",
+   "low": 39.59000015,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "OGS": {
+   "armed_week": "2026-10-02",
+   "low": 70.37000275,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "SMG": {
+   "armed_week": "2026-10-02",
+   "low": 47.90000153,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "WLK": {
+   "armed_week": "2026-10-02",
+   "low": 58.95000076,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "XRAY": {
+   "armed_week": "2026-10-02",
+   "low": 8.319999695,
+   "group": "IHI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "AMTM": {
+   "armed_week": "2026-10-02",
+   "low": 17.71999931,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "ad_divergence",
+    "down9"
+   ]
+  },
+  "CALM": {
+   "armed_week": "2026-10-02",
+   "low": 61.88000107,
+   "group": "PBJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "CALX": {
+   "armed_week": "2026-10-02",
+   "low": 32.34999847,
+   "group": "IGV",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "EPRT": {
+   "armed_week": "2026-10-02",
+   "low": 24.62000084,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "KRMN": {
+   "armed_week": "2026-10-02",
+   "low": 30.87000084,
+   "group": "ITA",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "NHI": {
+   "armed_week": "2026-10-02",
+   "low": 63.50999832,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "NTST": {
+   "armed_week": "2026-10-02",
+   "low": 17.0,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "TBBK": {
+   "armed_week": "2026-10-02",
+   "low": 47.00999832,
+   "group": "KRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "ad_divergence"
+   ]
+  },
+  "YOU": {
+   "armed_week": "2026-10-02",
+   "low": 37.375,
+   "group": "IGV",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ALGN": {
+   "armed_week": "2026-10-09",
+   "low": 138.0500031,
+   "group": "IHI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "AON": {
+   "armed_week": "2026-10-16",
+   "low": 266.3299866,
+   "group": "KIE",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "BSX": {
+   "armed_week": "2026-10-09",
+   "low": 41.38999939,
+   "group": "IHI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CLX": {
+   "armed_week": "2026-10-09",
+   "low": 79.12000275,
+   "group": "XLP",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "STZ": {
+   "armed_week": "2026-10-09",
+   "low": 110.5999985,
+   "group": "PBJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "signals_trigger"
+   ]
+  },
+  "CCI": {
+   "armed_week": "2026-10-09",
+   "low": 65.31999969,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "EFX": {
+   "armed_week": "2026-10-09",
+   "low": 137.0099945,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "FISV": {
+   "armed_week": "2026-10-09",
+   "low": 43.86999893,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HRL": {
+   "armed_week": "2026-10-09",
+   "low": 18.95999908,
+   "group": "PBJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "LHX": {
+   "armed_week": "2026-10-16",
+   "low": 232.3399963,
+   "group": "ITA",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "signals_trigger"
+   ]
+  },
+  "LOW": {
+   "armed_week": "2026-10-09",
+   "low": 178.4499969,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "signals_trigger"
+   ]
+  },
+  "LULU": {
+   "armed_week": "2026-10-09",
+   "low": 90.37999725,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "MCD": {
+   "armed_week": "2026-10-09",
+   "low": 229.1999969,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "MAA": {
+   "armed_week": "2026-10-09",
+   "low": 113.9499969,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "OTIS": {
+   "armed_week": "2026-10-09",
+   "low": 63.57500076,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "PNR": {
+   "armed_week": "2026-10-09",
+   "low": 51.13000107,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "signals_trigger"
+   ]
+  },
+  "PEP": {
+   "armed_week": "2026-10-09",
+   "low": 123.4700012,
+   "group": "PBJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "SBAC": {
+   "armed_week": "2026-10-09",
+   "low": 156.6000061,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "VICI": {
+   "armed_week": "2026-10-09",
+   "low": 22.42499924,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9",
+    "signals_trigger"
+   ]
+  },
+  "WY": {
+   "armed_week": "2026-10-09",
+   "low": 18.26000023,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WYNN": {
+   "armed_week": "2026-10-09",
+   "low": 73.06999969,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "BWXT": {
+   "armed_week": "2026-10-16",
+   "low": 131.6000061,
+   "group": "ITA",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "FNF": {
+   "armed_week": "2026-10-09",
+   "low": 37.88000107,
+   "group": "KIE",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "GLPI": {
+   "armed_week": "2026-10-09",
+   "low": 37.33000183,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "IRT": {
+   "armed_week": "2026-10-09",
+   "low": 14.32999992,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "KBH": {
+   "armed_week": "2026-10-09",
+   "low": 40.91999817,
+   "group": "ITB",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "KNF": {
+   "armed_week": "2026-10-09",
+   "low": 47.79000092,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "KRG": {
+   "armed_week": "2026-10-09",
+   "low": 23.71999931,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "NXST": {
+   "armed_week": "2026-10-09",
+   "low": 153.1699982,
+   "group": "XLC",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "POST": {
+   "armed_week": "2026-10-09",
+   "low": 71.44999695,
+   "group": "PBJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "signals_trigger"
+   ]
+  },
+  "RYN": {
+   "armed_week": "2026-10-09",
+   "low": 17.70999908,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "SARO": {
+   "armed_week": "2026-10-16",
+   "low": 19.55999947,
+   "group": "ITA",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "SFM": {
+   "armed_week": "2026-10-09",
+   "low": 61.88000107,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "SLGN": {
+   "armed_week": "2026-10-09",
+   "low": 33.70000076,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "STWD": {
+   "armed_week": "2026-10-09",
+   "low": 12.27000046,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "TXRH": {
+   "armed_week": "2026-10-09",
+   "low": 154.5700073,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AKR": {
+   "armed_week": "2026-10-09",
+   "low": 17.95999908,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ARR": {
+   "armed_week": "2026-10-09",
+   "low": 13.15999985,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "ENOV": {
+   "armed_week": "2026-10-09",
+   "low": 16.70000076,
+   "group": "IHI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "FCPT": {
+   "armed_week": "2026-10-09",
+   "low": 20.86000061,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "HAYW": {
+   "armed_week": "2026-10-09",
+   "low": 11.23999977,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HUBG": {
+   "armed_week": "2026-10-09",
+   "low": 25.63999939,
+   "group": "IYT",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "OI": {
+   "armed_week": "2026-10-09",
+   "low": 5.300000191,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "signals_trigger"
+   ]
+  },
+  "SAH": {
+   "armed_week": "2026-10-09",
+   "low": 58.45999908,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "WU": {
+   "armed_week": "2026-10-09",
+   "low": 5.869999886,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CMCSA": {
+   "armed_week": "2026-10-16",
+   "low": 20.47999954,
+   "group": "XLC",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CRH": {
+   "armed_week": "2026-10-16",
+   "low": 78.62000275,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "LVS": {
+   "armed_week": "2026-10-16",
+   "low": 35.27999878,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "TMUS": {
+   "armed_week": "2026-10-16",
+   "low": 147.8999939,
+   "group": "IYZ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AA": {
+   "armed_week": "2026-10-16",
+   "low": 38.84999847,
+   "group": "XME",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AGNC": {
+   "armed_week": "2026-10-16",
+   "low": 8.409999847,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AN": {
+   "armed_week": "2026-10-16",
+   "low": 151.8200073,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "BC": {
+   "armed_week": "2026-10-16",
+   "low": 61.20000076,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CRS": {
+   "armed_week": "2026-10-16",
+   "low": 361.6000061,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "DY": {
+   "armed_week": "2026-10-16",
+   "low": 250.1300049,
+   "group": "PAVE",
+   "released": true,
+   "signals": [
+    "down9"
+   ]
+  },
+  "EXP": {
+   "armed_week": "2026-10-16",
+   "low": 160.0200043,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "GPK": {
+   "armed_week": "2026-10-16",
+   "low": 8.159999847,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HGV": {
+   "armed_week": "2026-10-16",
+   "low": 33.98500061,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "NLY": {
+   "armed_week": "2026-10-16",
+   "low": 17.76000023,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "SPXC": {
+   "armed_week": "2026-10-16",
+   "low": 161.6100006,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "UFPI": {
+   "armed_week": "2026-10-16",
+   "low": 73.72000122,
+   "group": "ITB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WFRD": {
+   "armed_week": "2026-10-16",
+   "low": 72.40000153,
+   "group": "XES",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WSO": {
+   "armed_week": "2026-10-16",
+   "low": 277.3399963,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "ABG": {
+   "armed_week": "2026-10-16",
+   "low": 160.3000031,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AGX": {
+   "armed_week": "2026-10-16",
+   "low": 344.6900024,
+   "group": "PAVE",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "APAM": {
+   "armed_week": "2026-10-16",
+   "low": 30.86000061,
+   "group": "KCE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "BBT": {
+   "armed_week": "2026-10-16",
+   "low": 26.67000008,
+   "group": "KRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "BNL": {
+   "armed_week": "2026-10-16",
+   "low": 17.89999962,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "BOOT": {
+   "armed_week": "2026-10-16",
+   "low": 110.5299988,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CC": {
+   "armed_week": "2026-10-16",
+   "low": 12.48999977,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CENX": {
+   "armed_week": "2026-10-16",
+   "low": 32.38999939,
+   "group": "XME",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "GPI": {
+   "armed_week": "2026-10-16",
+   "low": 225.5099945,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "HE": {
+   "armed_week": "2026-10-16",
+   "low": 8.199999809,
+   "group": "XLU",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "IBP": {
+   "armed_week": "2026-10-16",
+   "low": 176.1499939,
+   "group": "ITB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "LCII": {
+   "armed_week": "2026-10-16",
+   "low": 77.58000183,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "MRP": {
+   "armed_week": "2026-10-16",
+   "low": 21.06999969,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "PATK": {
+   "armed_week": "2026-10-16",
+   "low": 63.0,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "PHIN": {
+   "armed_week": "2026-10-16",
+   "low": 55.0,
+   "group": "XRT",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "PJT": {
+   "armed_week": "2026-10-16",
+   "low": 131.3699951,
+   "group": "KCE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "ROAD": {
+   "armed_week": "2026-10-16",
+   "low": 79.33000183,
+   "group": "PAVE",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WD": {
+   "armed_week": "2026-10-16",
+   "low": 31.39999962,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "WEN": {
+   "armed_week": "2026-10-16",
+   "low": 5.940000057,
+   "group": "PEJ",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  }
+ },
+ "alerted": {
+  "CRUS": "2026-08-21",
+  "IPGP": "2026-08-21",
+  "PZZA": "2026-08-21",
+  "SEDG": "2026-08-21",
+  "WD": "2026-08-28",
+  "LHX": "2026-09-04",
+  "TXT": "2026-09-04",
+  "BHF": "2026-09-04",
+  "ALHC": "2026-09-04",
+  "TRN": "2026-09-04",
+  "MTZ": "2026-09-11",
+  "ANIP": "2026-09-11",
+  "TRIP": "2026-09-11",
+  "STWD": "2026-09-18",
+  "BXMT": "2026-09-18",
+  "ZTS": "2026-09-25",
+  "FN": "2026-09-25",
+  "ROAD": "2026-09-25",
+  "YELP": "2026-09-25",
+  "AGX": "2026-10-02",
+  "CALX": "2026-10-02",
+  "YOU": "2026-10-02",
+  "HII": "2026-10-09",
+  "KRMN": "2026-10-09",
+  "AON": "2026-10-09",
+  "BWXT": "2026-10-09",
+  "FNF": "2026-10-09",
+  "SARO": "2026-10-09",
+  "DY": "2026-10-16"
+ },
+ "last_week": "2026-10-16",
+ "version": 2
+}

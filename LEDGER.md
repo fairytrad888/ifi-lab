@@ -1,0 +1,1 @@
+- 2026-10-22 15:28 UTC · Phase 0 · descriptive look: event counts and feature distributions for S1, S2, S3, E (no outcomes); look-ahead and live parity; synthetic power on S1/S2 week structure. Lock e47a7479492e6491.
