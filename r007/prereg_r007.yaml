@@ -1,0 +1,153 @@
+# R007 confluence ladder for sizing: pre-registration.
+# Registered Oct 22, 2026, before any R007 data exists in the repository. Design document (project):
+# claude/IFI_R007_Confluence_Ladder_Design.md. Locked by PREREG.lock together with the method code.
+# Any change after the lock is a deviation: append it under `deviations` with its date and reason.
+id: R007
+registered: "2026-10-22"
+question: >-
+  Among weekly accumulation events (a red A&D bar paired with another bullish signal), do IFI tags sort events into
+  tiers whose outcomes differ enough to size by? Measured between events of the same week, so it is a selection
+  question, not a timing or edge-existence question.
+
+honest_loop:
+  origin: "Structure and the sizing question (Oct 21-22 brainstorm and critique); the live weekscan score (model W) was designed from theory on Oct 19, not from outcomes."
+  judge: "S1 (gate), S2 (confirmation), S3 (book): S&P 1500 stocks that no IFI test has used; the 115 used stocks are excluded. The live weekscan started on these symbols with the week ending 2026-10-16, after the event window."
+  detectable: "Phase 0 synthetic power on the real S1 week structure must show P(one-sided p < 0.05 | true A-C = 0.15R) >= 0.80."
+  timeframe: "Weekly, matching the live alert stream. A daily replication would be a separate test (R008)."
+  regimes: "None. Week-level variables cancel within a week. Halves (2008-2016, 2017-2026) are fixed here."
+  drift: "Within-week comparison removes each week's market move; tier A vs the same-week random null is reported; Phase 3 books are compared with SPY and the trend rule."
+  survivorship: "Today's constituents only (delisted names missing). Halves rule and a reported ETF read; live probation is the final word."
+
+universe:
+  source: "weekscan-results universe.csv at the live reference commit (config live_ref)"
+  excluded: "config excluded.lab_stocks + excluded.sealed_set1_stocks"
+  prices: "Yahoo daily, split-adjusted (auto_adjust off, as weekscan), 2003-01-01 to 2026-10-21, one snapshot with a sha256 manifest; split events stored as a later-split factor"
+  cleaning: "weekscan.marketdata.sanitize, as live: drops impossible bars and one-bar spikes of 40%+ that fully reverse on the next bar (the only use of a later bar; accepted as data cleaning)"
+  weeks: "W-FRI bars from daily (weekscan.marketdata.weekly)"
+  groups: "weekscan config: industry ETF if mapped and readable, else sector ETF (as weekscan.run)"
+
+symbol_sets:
+  salt: "R007:"
+  method: "sha256(salt + symbol) hex, sorted within each GICS sector, dealt in the fixed cycle below by position"
+  excluded: "X: used stocks and every share class of their companies; XD: second share classes (same company name without class labels), only the alphabetically first class is dealt"
+  cycle: [S1, S2, S1, S2, S3, S1, S2, S1, S2, S3, S1, S2, S1, S2, S3, S1, S2, S1, S2, E]   # S1 8, S2 8, S3 3, E 1 of 20
+  use: {S1: "Phase 1 gate (opened once)", S2: "Phase 2 calibration (opened once, only if Phase 1 passes)",
+        S3: "Phase 3 sizing book (opened once, only if Phase 2 passes)", E: "Phase E blind eye sessions"}
+
+events:
+  window_weeks: 4
+  pair_signals: [signals_trigger, ad_divergence, matrix_divergence, down9, accumulation_exit]
+  condition: "a red A&D bar (ad_washout) in the 4-week window and at least one pair signal in the window (weekscan.scan.week_records cond)"
+  new: "a red bar or a pair signal prints in the event week (week_records new)"
+  arm: "weekly replay of weekscan arm logic without release: arm when cond and new and the stock is eligible and has a group; while armed, a later cond widens the low; disarm on a weekly close below the low; expire after 8 weeks"
+  event: "an arm in an event week, unless the stock had an R007 event less than 8 weeks earlier (repeat block)"
+  event_weeks: ["2008-01-04", "2026-03-27"]
+  min_weekly_bars: 104
+  eligible_at_week: "price as traded then (split-adjusted weekly close x the factor of later splits) >= 5 and 20-day mean of daily close x volume (at the week's last trading day; unchanged by splits) >= 20,000,000"
+  timing: "Matrix diamonds print on their confirmation bar and A&D divergences 2 bars after the pivot (core/indicators.py), so no tag uses bars after the event week; checked by the Phase 0 truncation test"
+  required_data: "SPY and every group ETF must be in the snapshot, else it is not written"
+
+trade:
+  entry: "open of the first trading day after the event week"
+  stop: "lowest weekly low of the 4-week window at the event week (fixed at entry)"
+  skip: ["entry open <= stop", "entry - stop < 0.5 x daily ATR(14, Wilder) at the event week's last trading day"]
+  target_R: 2.0
+  time_cap_weeks: 26                 # exit at the close of the last trading day on or before event week end + 26 weeks
+  same_day_both: stop_first
+  gap: "a later day opening at or below the stop exits at the open (loss beyond -1R kept); opening at or above the target exits at the open"
+  cost_per_side: 0.001
+  r_formula: "R = (exit - entry - cost * (entry + exit)) / (entry - stop)"
+  outcome_cutoff: "2026-09-30"
+
+outcomes:
+  O1: "realized R (primary)"
+  O2: "target reached before stop (binary); model L is fitted on it"
+  O3: "tail loss: realized R <= -1.25"
+
+null:
+  per_event: 5
+  pool: "same symbol set, same event week, stocks eligible that week with a group and without an R007 event that week"
+  rule: "same entry, stop (their own 4-week window low), skips and exits"
+  seed: 20261022
+
+features:                            # 14 inputs, all at the event week
+  n_types: "distinct pair types seen in the window, capped at 3"
+  pair_flags: "one binary per pair type seen in the window (5)"
+  trig2: "the latest Signals trigger in the window has streak >= 2 (0 when no trigger)"
+  red_age: "weeks since the latest red bar in the window (0-3)"
+  flow_min: "minimum A&D flow (ad_flow) in the window"
+  stage: "stock weekly IFI stage (-1..3)"
+  group_state: "group ETF / SPY weekly state: bullish / basing / neutral / bearish / missing (no ETF bar that week)"
+  breadth_acc: "share of group members with a red or green accumulation bar in the last 8 weeks (weekscan.scan.breadth)"
+  breadth_stage2: "share of group members at weekly stage >= 2"
+  leader: "stock / group ETF ratio at weekly stage >= 1 (missing when no ETF bar)"
+  stop_pct: "(close - window low) / close; the model uses log(stop_pct)"
+  dist_anchor_atr: "(close - Trend anchor) / weekly ATR (read column dist_anchor_atr)"
+
+models:
+  W: >-
+    The live weekscan score, no fitting: group bullish 3 / basing 2 / neutral, bearish or missing 0;
+    + 2 x breadth_acc + 1 x breadth_stage2 (missing = 0); + 1.5 if leader; + 0.75 x min(n_types, 3);
+    - 1 if stop_pct > 0.15. Tier cut points: terciles of W over all S1 events (no outcomes involved).
+  L: >-
+    L2 logistic regression on O2, main effects only. Continuous inputs winsorized at the 1st/99th percentile of the
+    training data, then standardized; categorical inputs one-hot (group_state with missing as its own level,
+    stage as categorical). Penalty C chosen from {0.03, 0.1, 0.3} by inner time-blocked cross-validation on the
+    training folds only. Out-of-fold scores in Phase 1 come from 5 time blocks of event years
+    (2008-11, 2012-15, 2016-18, 2019-21, 2022-26); tier cut points = terciles of the training folds' fitted scores.
+    Leave-one-out tag contributions (change in out-of-fold log-loss) are descriptive.
+
+metric:
+  tiers: "A = top third, B = middle, C = bottom third by the model's cut points"
+  spread: "within-week A-C mean of O1 over weeks with >= 1 A and >= 1 C event; week weight n_A x n_C / (n_A + n_C)"
+  bootstrap: "contributing weeks resampled with replacement, 2000 draws, seed 20261022; one-sided p = share of draws <= 0"
+  halves: [["2008-01-04", "2016-12-30"], ["2017-01-06", "2026-03-27"]]
+
+phase0:
+  outputs: "counts, feature distributions, look-ahead, live parity, synthetic power; no outcome is computed"
+  power: {target_spread_R: 0.15, criterion: 0.80, reps: 300, boot: 1000, p_base: 0.40, week_sd: 0.15,
+          spreads_reported: [0.0, 0.10, 0.15, 0.20, 0.25, 0.30], seed: 20261022,
+          tiers: "criterion on random thirds of the real S1 event weeks; also reported with model W's actual tiers (outcome-free), which cluster by week"}
+  parity: "weekscan.run.run on the snapshot (daily bars from 10 years before the live run date up to that date) reproduces the live armed list for the reference week: Jaccard of armed symbols >= 0.95, and among shared symbols armed week and low (within 0.5%) agree for >= 95%; mismatches near the eligibility thresholds are counted (intraday vs end-of-day bars can flip them)"
+  fidelity: "on the look-ahead symbols, R007's week records equal weekscan week_records at the cut weeks and R007's arms equal weekscan step (no release) over the full history"
+  lookahead: "read columns, week records and replayed events up to a cut are identical when the data after the cut is deleted"
+
+phase1:
+  set: S1
+  models: [W, L]
+  pass_each: ["spread >= 0.15 R", "Holm across the 2 models at one-sided alpha 0.05 on the bootstrap p", "spread >= 0.075 R in each half"]
+  survivorship_flag: "a lift present only in the first half counts as a fail"
+  reported: ["log-loss gain over a week-only base rate", "O3 rate per tier", "tier A vs the null", "group ETF consistency read (reported only)"]
+  fail: "stop: size flat; weekscan score orders alerts for reading only; S2, S3 and E stay unused"
+
+phase2:
+  set: S2
+  setup: "freeze each passing model (L refit on all of S1, C by inner time-blocked CV) and its cut points"
+  pass: "within-week A-C spread in O1 > 0, one-sided alpha 0.05 on the bootstrap p, Holm across the passing models"
+  reported: ["calibration by decile", "tier frequencies", "O3 rate per tier", "tier A vs the null", "shrinkage vs S1"]
+
+phase3:
+  set: S3
+  book: "risk 0.75% per trade, at most 5 open, notional cap 20%, at most 2 open per group, daily marks"
+  order: "B0: random order within a week, 20 orders; T1/T2: A then B then C, random within a tier, 20 orders"
+  arms: {B0: "flat 1x", T1: "A 1.5x, B 1x, C 0.5x", T2: "A and B 1x, C skipped"}
+  pass: "T1 or T2 Sharpe of monthly returns > B0 on the median order, paired bootstrap P >= 0.95, Holm across the 2 arms"
+  reported: ["CAGR, max drawdown, win rate per arm", "SPY buy-and-hold and the trend rule at matched risk", "the same books on S2"]
+
+phaseE:
+  set: E
+  sample: "300 events stratified by the frozen model's tier (100 each), tier hidden"
+  charts: "Eye Lab blind renderer, weekly, cut at the event week, no symbol, no dates, price axis in % from the close"
+  rating: "1-5 for +2R before -1R; the ratings file is sha256-locked before outcomes are revealed"
+  primary: "rating coefficient in an O2 logistic with the model score, week bootstrap, one-sided alpha 0.05"
+  reported: ["Brier score and calibration of the ratings"]
+
+decisions:
+  phase1_fail: "size flat; R007 closes; S2, S3, E unused; no R008"
+  phase2_fail: "tiers unused; shrinkage recorded; S3 unused"
+  phase3_fail: "tiers order which alerts are read first; sizing flat"
+  phase3_pass: "live alerts carry the tier tag; tiered sizing on probation in the forward log for 6 months before any real-money change (the user's decision)"
+  phaseE_adds: "the rating becomes a sizing input next to the tier (rule designed then)"
+  after_any_pass: "R008 replicates Phase 1 on daily E4/E1 events (S1 symbols)"
+
+deviations: []

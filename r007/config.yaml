@@ -1,0 +1,37 @@
+# R007 confluence ladder: operating configuration (paths, data range, guards).
+# The study definitions and thresholds live in prereg_r007.yaml (locked). Both files are covered by PREREG.lock.
+version: 1
+
+data:
+  start: "2003-01-01"                 # daily history from here (weekly warm-up before the first event week)
+  end: "2026-10-21"                   # inclusive; the snapshot is downloaded once, committed, never refreshed
+                                      # (after the reference week so the parity run sees the live run date's bars)
+  chunk: 100                          # tickers per Yahoo request
+  max_missing_share: 0.02             # the snapshot is accepted only if at most 2% of tickers fail to download
+  float_format: "%.10g"
+
+live_ref:                             # the live weekscan run used for the parity check and for the universe
+  branch: weekscan-results
+  week: "2026-10-16"                  # first state v2 (v1.1 trigger) commit whose last_week is this week
+  state_version: 2
+
+excluded:                             # stocks already used by IFI tests: never in any R007 symbol set
+  lab_stocks:                         # ifi-lab config.yaml `stocks` (61), working history of the Lab
+    [VST, CEG, NRG, NEE, DUK, SO, XOM, CVX, COP, SLB, EOG, NVDA, AVGO, AMD, TSM, MSFT, AAPL, ORCL, CRM, ADBE, MU,
+     GOOGL, META, NFLX, DIS, TMUS, AMZN, TSLA, HD, MCD, NKE, BKNG, WMT, COST, PG, KO, PEP, JPM, BAC, GS, MS, V, MA,
+     LLY, UNH, JNJ, ABBV, MRK, ISRG, CAT, GE, ETN, PWR, HON, UBER, LIN, FCX, NEM, PLD, AMT, EQIX]
+  sealed_set1_stocks:                 # research/construction/prereg_construction_v1.yaml sealed_universe.stocks (54), used Oct 16
+    [ABT, ACN, AIG, AMGN, AXP, BA, BK, BLK, BMY, BRK-B, C, CHTR, CL, CMCSA, COF, CSCO, CVS, DE, DHR, EMR, F, FDX, GD,
+     GILD, GM, IBM, INTC, INTU, LMT, LOW, MDLZ, MDT, MET, MMM, MO, NOW, PFE, PLTR, PM, PYPL, QCOM, RTX, SBUX, SCHW,
+     SPG, T, TGT, TMO, TXN, UNP, UPS, USB, VZ, WFC]
+
+lookahead:                            # Phase 0 truncation check on real data
+  symbols: 60
+  cuts_per_symbol: 5
+  seed: 20261022
+
+guard_windows_utc:                    # no run while the prior system or the weekly scan downloads or commits (Mon=0)
+  - {days: [0, 1, 2, 3, 4], start: "21:45", end: "23:15"}   # prior nightly scan 22:15
+  - {days: [1, 2, 3, 4, 5], start: "03:00", end: "04:15"}   # prior nightly catch-up 03:30
+  - {days: [5], start: "11:45", end: "13:45"}               # prior Saturday backtest 12:00
+  - {days: [5], start: "15:00", end: "17:00"}               # weekly scan 15:20
