@@ -1,0 +1,22 @@
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: CWEN-A"}}}
+$CWEN-A: possibly delisted; no timezone found
+
+1 Failed download:
+['CWEN-A']: possibly delisted; no timezone found
+$HLX: possibly delisted; no price data found  (1d 2003-01-01 -> 2026-10-22)
+
+1 Failed download:
+['HLX']: possibly delisted; no price data found  (1d 2003-01-01 -> 2026-10-22)
+$LEG: possibly delisted; no price data found  (1d 2003-01-01 -> 2026-10-22)
+
+1 Failed download:
+['LEG']: possibly delisted; no price data found  (1d 2003-01-01 -> 2026-10-22)
+$QRVO: possibly delisted; no price data found  (1d 2003-01-01 -> 2026-10-22)
+
+1 Failed download:
+['QRVO']: possibly delisted; no price data found  (1d 2003-01-01 -> 2026-10-22)
+[1/8] lock ok (e47a7479492e6491)
+[2/8] live reference: 37f6f7d4126c (2026-10-20T16:52:52Z), universe 1503
+snapshot written: 1533 tickers, 7 missing, manifest aa0949a7f26275b5
+[3/8] snapshot: 1533 tickers (new), missing 7
+{"snapshot": "aa0949a7f26275b5", "tickers": 1533, "missing": ["ADIG", "BLFS", "CWEN-A", "HLX", "LEG", "QRVO", "VYLR"], "reused": false, "sets": {"S1": 559, "S2": 552, "S3": 207, "X": 114, "E": 65, "XD": 6}}
