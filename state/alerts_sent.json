@@ -605,8 +605,8 @@
   "daily|FXI|2026-07-27 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|VZ|2026-07-27 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EWA|2026-07-28 00:00|Playbook E4 anchor reclaim": "closed",
-  "daily|EWD|2026-07-28 00:00|Playbook E4 anchor reclaim": "open",
-  "daily|IHI|2026-07-28 00:00|Playbook E4 anchor reclaim": "open",
+  "daily|EWD|2026-07-28 00:00|Playbook E4 anchor reclaim": "closed",
+  "daily|IHI|2026-07-28 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|PBJ|2026-07-28 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|AMT|2026-07-29 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|CVX|2026-07-29 00:00|Playbook E4 anchor reclaim": "skipped",
@@ -665,7 +665,7 @@
   "daily|EWY|2026-08-13 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|INTU|2026-08-13 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EQIX|2026-08-14 00:00|Playbook E4 anchor reclaim": "skipped",
-  "daily|XLC|2026-08-14 00:00|Playbook E4 anchor reclaim": "open",
+  "daily|XLC|2026-08-14 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|FXI|2026-08-17 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|PWR|2026-08-17 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|SMH|2026-08-17 00:00|Playbook E4 anchor reclaim": "closed",
@@ -788,12 +788,14 @@
   "daily|DUK|2026-10-20 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|EWC|2026-10-20 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|EWU|2026-10-20 00:00|Playbook E4 anchor reclaim": "skipped",
-  "daily|KIE|2026-10-20 00:00|Playbook E4 anchor reclaim": "pending",
-  "daily|RSP|2026-10-20 00:00|Playbook E4 anchor reclaim": "pending",
+  "daily|KIE|2026-10-20 00:00|Playbook E4 anchor reclaim": "open",
+  "daily|RSP|2026-10-20 00:00|Playbook E4 anchor reclaim": "open",
   "daily|SO|2026-10-20 00:00|Playbook E4 anchor reclaim": "skipped",
-  "daily|XBI|2026-10-20 00:00|Playbook E1 trigger with trend": "pending",
-  "daily|XLB|2026-10-20 00:00|Playbook E4 anchor reclaim": "pending",
-  "daily|XLF|2026-10-20 00:00|Playbook E4 anchor reclaim": "pending"
+  "daily|XBI|2026-10-20 00:00|Playbook E1 trigger with trend": "open",
+  "daily|XLB|2026-10-20 00:00|Playbook E4 anchor reclaim": "open",
+  "daily|XLF|2026-10-20 00:00|Playbook E4 anchor reclaim": "open",
+  "daily|IBM|2026-10-21 00:00|Playbook E4 anchor reclaim": "pending",
+  "daily|MMM|2026-10-21 00:00|Playbook E4 anchor reclaim": "pending"
  },
  "status": {
   "E4_anchor_reclaim": "0.50%",
@@ -803,5 +805,5 @@
   "E4_anchor_reclaim": true,
   "E1_trigger_with_trend": false
  },
- "updated": "2026-10-22T00:44:01.860142+00:00"
+ "updated": "2026-10-22T08:52:16.333633+00:00"
 }
