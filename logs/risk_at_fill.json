@@ -22,5 +22,7 @@
  "daily|RSP|2026-10-20 00:00|Playbook E4 anchor reclaim": 0.005,
  "daily|XBI|2026-10-20 00:00|Playbook E1 trigger with trend": 0.0025,
  "daily|XLB|2026-10-20 00:00|Playbook E4 anchor reclaim": 0.005,
- "daily|XLF|2026-10-20 00:00|Playbook E4 anchor reclaim": 0.005
+ "daily|XLF|2026-10-20 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|IBM|2026-10-21 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|MMM|2026-10-21 00:00|Playbook E4 anchor reclaim": 0.005
 }
