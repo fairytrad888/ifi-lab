@@ -5,8 +5,11 @@ signal, as the live weekly scan), do IFI tags sort events into tiers whose outco
 The comparison is between events of the same week. Design: project doc `IFI_R007_Confluence_Ladder_Design.md`;
 definitions and thresholds: `prereg_r007.yaml` (locked by `PREREG.lock`).
 
-**This deploy is Phase 0 only.** No outcome can be computed: `guard.OPEN_PHASES` is empty and `outcomes.trade`
-refuses real data. Phases 1, 2, 3 and E each need their own deploy and an explicit go.
+**Phase 0 ran on Oct 22 (power below criterion on S1). Amendment 1 (before any outcome): the Phase 1 judge is
+S1+S2 pooled, the gate is p < 0.05 (Holm over W and L) with spread >= 0.10R and each half >= 0.05R; S3 becomes a
+one-time sanity check.** This deploy adds Phase 1. Outcomes can be computed only with `R007_PHASE=1`, only for S1+S2
+events and their same-week nulls, and only once: a marker (`PHASE1.started`) is written and pushed in its own step
+before anything is computed, and any later start is refused. Phases 3 and E each need their own deploy and a go.
 
 ## Isolation
 - Own folder (`r007/`), own workflow (`.github/workflows/r007.yml`, manual only), own results branch `r007-results`.
@@ -28,9 +31,17 @@ refuses real data. Phases 1, 2, 3 and E each need their own deploy and an explic
 5. Checks: look-ahead truncation, fidelity to weekscan code on real data, live parity, synthetic power.
 6. Report: `PHASE0.md`, `PHASE0.json`, `LEDGER.md` on `r007-results`.
 
+## Phase 1 (`Actions → R007 confluence ladder → Run workflow → phase1`, once)
+1. Marker step: refuses if Phase 1 was ever started; writes and pushes `PHASE1.started`.
+2. Rebuilds events from the committed snapshot and requires them to equal Phase 0's S1/S2 files in every column.
+3. Builds the same-week null pool (outcome-free) and stops if it covers fewer than 90% of events.
+4. Outcomes for S1+S2 events and 5 nulls each; model W tiers (S1+S2 terciles) and model L out-of-fold tiers.
+5. Gate and report: `PHASE1.md`, `PHASE1.json`, `outcomes/S1S2_events.csv.gz`, `LEDGER.md`.
+
 ## Files
 `prereg_r007.yaml` definitions · `config.yaml` paths and guards · `guard.py` isolation, lock, outcome guard ·
 `data.py` snapshot · `sets.py` symbol sets · `events.py` events and features · `outcomes.py` trade outcomes (locked,
 closed) · `metric.py` within-week spread, bootstrap, Holm · `power.py` synthetic power · `lookahead.py` truncation and
-fidelity · `parity.py` live reference and parity · `phase0.py` orchestration and report · `run.py` CLI ·
+fidelity · `parity.py` live reference and parity · `phase0.py` orchestration and report · `model.py` model L ·
+`phase1.py` Phase 1 gate · `run.py` CLI ·
 `tests/test_r007.py` synthetic tests.

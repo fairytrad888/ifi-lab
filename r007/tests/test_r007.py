@@ -246,8 +246,39 @@ def t_isolation():
         pass
     finally:
         os.environ["R007_OUT"] = old
-    assert not guard.outcomes_open() and guard.OPEN_PHASES == ()
-    print("isolation ok: no prior-system imports, output outside the repo, outcomes closed")
+    assert not guard.outcomes_open() and guard.OPEN_PHASES == ("1",)
+    print("isolation ok: no prior-system imports, output outside the repo, outcomes closed unless R007_PHASE=1")
+
+
+def t_model():
+    from r007 import model
+    rng = np.random.default_rng(11)
+    n = 3000
+    weeks = pd.date_range("2008-01-04", "2026-03-27", freq="W-FRI")
+    ev = pd.DataFrame({
+        "week": rng.choice(weeks, n).astype("datetime64[ns]").astype(str),
+        "n_types": rng.integers(1, 3, n), "red_age": rng.integers(0, 2, n),
+        "f_signals_trigger": rng.random(n) < 0.05, "f_ad_divergence": rng.random(n) < 0.05,
+        "f_matrix_divergence": rng.random(n) < 0.03, "f_down9": rng.random(n) < 0.2,
+        "f_accumulation_exit": rng.random(n) < 0.8, "trig2": rng.random(n) < 0.02,
+        "flow_min": rng.normal(0.5, 1.5, n), "dist_anchor_atr": np.where(rng.random(n) < 0.02, np.nan, rng.normal(-3, 3, n)),
+        "leader": np.where(rng.random(n) < 0.05, np.nan, (rng.random(n) < 0.3).astype(float)),
+        "breadth_acc": rng.random(n), "breadth_stage2": rng.random(n), "stop_pct": np.abs(rng.normal(0.06, 0.04, n)),
+        "stage": rng.choice([-1, 1], n), "group_state": rng.choice(["bullish", "basing", "neutral", "bearish", "missing"], n)})
+    for c in ["f_signals_trigger", "f_ad_divergence", "f_matrix_divergence", "f_down9", "f_accumulation_exit", "trig2"]:
+        ev[c] = ev[c].astype(int)
+    logit = -0.4 + 2.0 * (ev["breadth_acc"] - 0.5) + 0.8 * (ev["group_state"] == "bullish")
+    y = (rng.random(n) < 1 / (1 + np.exp(-logit))).astype(float)
+    res = model.oof(ev, y)
+    assert res["logloss_model"] < res["logloss_base"], res
+    assert res["loo"]["breadth_acc"] > 0 and res["loo"]["group_state"] > 0, res["loo"]
+    assert set(np.unique(res["tier"])) <= {0, 1, 2} and (res["tier"] >= 0).all()
+    top = max(res["loo"], key=res["loo"].get)
+    # a pure-noise target carries no out-of-fold information
+    yn = (rng.random(n) < 0.4).astype(float)
+    rn = model.oof(ev, yn)
+    assert rn["logloss_model"] >= rn["logloss_base"] - 0.002, rn["logloss_model"]
+    print(f"model ok: planted effect found out of fold (top input {top}); noise gives no gain")
 
 
 def t_end_to_end(u, daily):
@@ -275,6 +306,43 @@ def t_end_to_end(u, daily):
     md = (Path(_TMP) / "PHASE0.md").read_text()
     assert "No outcome was computed" in md
     print(f"phase0 ok: {len(ev)} synthetic events, parity Jaccard {res['parity']['jaccard']}, no outcome columns")
+    # Phase 1 on the same output: refused while closed, then S1+S2 only, once
+    from r007 import phase1
+    try:
+        phase1.run(log=lambda *a: None, daily_override=daily, ref_override=ref)
+        raise AssertionError("phase1 ran with outcomes closed")
+    except RuntimeError:
+        pass
+    os.environ["R007_PHASE"] = "1"
+    try:
+        try:
+            phase1.run(log=lambda *a: None, daily_override=daily, ref_override=ref)
+            raise AssertionError("phase1 ran without its marker")
+        except RuntimeError as e:
+            assert "marker missing" in str(e)
+        phase1.mark(log=lambda *a: None)
+        try:
+            phase1.mark(log=lambda *a: None)
+            raise AssertionError("second marker allowed")
+        except RuntimeError:
+            pass
+        j = phase1.run(log=lambda *a: None, daily_override=daily, ref_override=ref)
+        try:
+            phase1.run(log=lambda *a: None, daily_override=daily, ref_override=ref)
+            raise AssertionError("phase1 ran twice")
+        except RuntimeError as e:
+            assert "runs once" in str(e)
+    finally:
+        os.environ.pop("R007_PHASE", None)
+    raw = (Path(_TMP) / "PHASE1.json").read_text()
+    assert "NaN" not in raw and json.loads(raw)["null"]["pool_coverage"] >= 0.9
+    oc = pd.read_csv(Path(_TMP) / "outcomes" / "S1S2_events.csv.gz")
+    assert set(oc["set"]) <= {"S1", "S2"} and len(oc) == res["events"]["S1"] + res["events"]["S2"]
+    assert j["integrity"] == {"snapshot": "same as Phase 0", "S1": "identical", "S2": "identical"}, j["integrity"]
+    assert set(j["gate"]) == {"W", "L"} and "PHASE1" not in str(Path(_TMP) / "events")
+    assert "Phase 1" in (Path(_TMP) / "PHASE1.md").read_text()
+    print(f"phase1 ok: {j['events']['traded']} traded S1+S2 events, {j['null']['trades']} null trades, "
+          f"refused when closed or without its marker, runs once, strict JSON, no S3/E outcomes")
 
 
 def t_splits_and_snapshot(daily):
@@ -339,5 +407,6 @@ if __name__ == "__main__":
     t_sets(u)
     t_parity_compare()
     t_isolation()
+    t_model()
     t_end_to_end(u, daily)
     print("all r007 tests passed")

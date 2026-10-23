@@ -88,9 +88,10 @@ def w_tiers(ev: pd.DataFrame) -> dict:
 
 
 def prepare(live_ref: str = "origin/weekscan-results", log=print, daily_override: dict | None = None,
-            ref_override: dict | None = None) -> tuple[dict, pd.DataFrame, dict, dict, dict]:
+            ref_override: dict | None = None, require_closed: bool = True,
+            require_reuse: bool = False) -> tuple[dict, pd.DataFrame, dict, dict, dict]:
     """Lock, live reference, symbol sets and the snapshot (downloaded once). Returns (lock, u, ref, daily, manifest)."""
-    if guard.outcomes_open():
+    if require_closed and guard.outcomes_open():
         raise RuntimeError("Phase 0 must run with outcomes closed")
     lk = guard.verify_lock()
     if not lk["ok"]:
@@ -108,6 +109,8 @@ def prepare(live_ref: str = "origin/weekscan-results", log=print, daily_override
     if daily_override is not None:
         daily, man = daily_override, {"id": "override", "missing": [], "reused": None}
     else:
+        if require_reuse and not (guard.out_dir() / "data" / "MANIFEST.json").exists():
+            raise RuntimeError("no committed snapshot: later phases never download prices")
         daily, man = data.snapshot(tickers, log, required=required)
     log(f"[3/8] snapshot: {len(daily)} tickers ({'reused' if man.get('reused') else 'new'}), missing {len(man['missing'])}")
     return lk, u, ref, daily, man

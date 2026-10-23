@@ -64,7 +64,7 @@ outcomes:
   O2: "target reached before stop (binary); model L is fitted on it"
   O3: "tail loss: realized R <= -1.25"
 
-null:
+null_trades:                         # (key was `null:`, which YAML reads as None; renamed Oct 22, text unchanged)
   per_event: 5
   pool: "same symbol set, same event week, stocks eligible that week with a group and without an R007 event that week"
   rule: "same entry, stop (their own 4-week window low), skips and exits"
@@ -150,4 +150,40 @@ decisions:
   phaseE_adds: "the rating becomes a sizing input next to the tier (rule designed then)"
   after_any_pass: "R008 replicates Phase 1 on daily E4/E1 events (S1 symbols)"
 
-deviations: []
+# Amendment 1 (Oct 22, 2026), after Phase 0 and before any outcome existed. It supersedes the sections it names.
+# Reason: Phase 0 power on S1 was 0.52 at 0.15R (criterion 0.80); events were 5,513, not the ~13,000 projected.
+# The user chose the judge data and the gate rule (IFI_R007_Phase0_Review_2026-10-22.md).
+amendment_1:
+  phase1:
+    set: [S1, S2]                    # pooled judge data, 4,414 events (power 0.84 at 0.15R in Phase 0's simulation)
+    models: [W, L]
+    pass_each: ["Holm across the 2 models at one-sided alpha 0.05 on the bootstrap p",
+                "within-week A-C spread >= 0.10 R", "spread >= 0.05 R in each half"]
+    survivorship_flag: "a lift present only in the first half counts as a fail (covered by the halves rule)"
+    events_used: "events whose trade is not skipped (skips counted per tier)"
+    reported: ["mean O1, O2 hit rate and O3 rate per tier", "tier frequencies and skips", "tier vs the same-week null",
+               "L: chosen C per fold, out-of-fold log-loss vs the training-fold constant base rate, calibration by decile, leave-one-out tag contributions",
+               "per-event outcomes for S1 and S2 (file)"]
+    once: "Phase 1 runs once; a second run is refused (PHASE1.json exists)"
+    fail: "stop: size flat; weekscan score orders alerts for reading only; S3 and E stay unused; no R008"
+  phase2: "folded into Phase 1: S2 is now judge data, so calibration, tier frequencies, O3 and the null are reported there"
+  phase3:
+    book_design: "the Phase 3 book is run on S1+S2 with out-of-fold tiers (reported; W needs no fit, L out-of-fold)"
+    s3: "S3 opened once, only if Phase 1 passes: its within-week A-C spread for each passing model and the same books; sanity rule: S3 point spread > 0 for the model taken to live probation, else tiers do not go to probation. Power is low (0.26 at a true 0.15R), so S3 can only catch a reversal"
+    pass: "as registered (T1 or T2 Sharpe > B0, paired bootstrap P >= 0.95, Holm), judged on S1+S2 out-of-fold, plus the S3 sanity rule"
+  models_W_cuts: "terciles of W over all S1+S2 events (outcome-free)"
+  model_L_details:
+    loss: "sklearn convention: minimize 0.5 * ||w||^2 + C * sum(log-loss); intercept unpenalized; Newton/IRLS"
+    inputs: "n_types, red_age (ordinal, standardized); 5 pair flags, trig2, leader (binary, standardized); flow_min, breadth_acc, breadth_stage2, log(max(stop_pct, 0.005)), dist_anchor_atr (continuous: winsorized 1/99 on training data, standardized); stage and group_state one-hot (stage levels -1..3; group_state with missing)"
+    missing: "dist_anchor_atr -> training median; leader, breadth -> 0 (as model W)"
+    folds: "event-year blocks 2008-11, 2012-15, 2016-18, 2019-21, 2022-26; C from {0.03, 0.1, 0.3} by leave-one-block-out on the 4 training blocks (mean log-loss); tier cuts = terciles of the fitted training scores"
+    loo: "each of the 16 inputs (pair flags separately, breadth separately) dropped in turn with the fold's chosen C; change in out-of-fold log-loss (descriptive)"
+  base_rate: "log-loss benchmark = the training folds' constant O2 rate"
+  dropped: "group ETF consistency read: 29 of the 36 group ETFs were already used by IFI tests and the 36 give too few events to read"
+
+deviations:
+  - {date: "2026-10-22", what: "Phase 1 judge data S1 -> S1+S2 pooled; Phase 2 folded into Phase 1; S3 becomes a one-time sanity check", why: "Phase 0 power 0.52 < 0.80 at 0.15R on S1; S1+S2 0.84", before_outcomes: true}
+  - {date: "2026-10-22", what: "gate point rule 0.15R / halves 0.075R -> 0.10R / 0.05R (p rule unchanged)", why: "at a true 0.15R the old point rule passed ~46% on S1+S2; new rule 73%, false pass 3% at 0", before_outcomes: true}
+  - {date: "2026-10-22", what: "model W cut points from S1+S2 terciles (was S1)", why: "follows the pooled judge data", before_outcomes: true}
+  - {date: "2026-10-22", what: "model L input handling specified (stop_pct floor 0.005, missing values, winsorizing continuous inputs only, loss convention)", why: "unspecified in the registration; fixed before any outcome", before_outcomes: true}
+  - {date: "2026-10-22", what: "group ETF consistency read dropped", why: "29 of 36 ETFs already used; too few events", before_outcomes: true}

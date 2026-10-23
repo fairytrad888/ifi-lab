@@ -23,12 +23,12 @@ PREREG = yaml.safe_load((ROOT / "prereg_r007.yaml").read_text())
 LOCK = ROOT / "PREREG.lock"
 LOCKED_FILES = ["r007/prereg_r007.yaml", "r007/config.yaml", "r007/guard.py", "r007/data.py", "r007/sets.py",
                 "r007/events.py", "r007/outcomes.py", "r007/metric.py", "r007/power.py", "r007/lookahead.py",
-                "r007/parity.py", "r007/phase0.py",
+                "r007/parity.py", "r007/phase0.py", "r007/model.py", "r007/phase1.py",
                 # the live weekly-scan code and settings R007 reuses (signal, arm logic, groups, score, filters)
                 "weekscan/scan.py", "weekscan/config.yaml", "weekscan/marketdata.py", "weekscan/universe.py",
                 "weekscan/core/indicators.py", "weekscan/core/pine.py", "weekscan/core/states.py"]
 PRIOR_PACKAGES = ("ifi", "research", "eyelab")   # R007 imports weekscan (read-only) and nothing else of the repo
-OPEN_PHASES: tuple[str, ...] = ()                # Phase 0 deploy: no phase may compute real outcomes
+OPEN_PHASES: tuple[str, ...] = ("1",)            # Phase 1 deploy: only R007_PHASE=1 may compute outcomes (S1+S2)
 
 
 def out_dir() -> Path:

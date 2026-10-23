@@ -5,19 +5,23 @@ name: R007 confluence ladder
 #  - refuses to run inside the prior system's or the weekly scan's windows (r007/config.yaml guard_windows_utc)
 #  - reads the branch weekscan-results (never writes it); writes only to the branch r007-results
 #  - verifies the freeze of the prior system and the R007 pre-registration lock, and fails if the checkout changed
-#  - this deploy runs Phase 0 only: no outcome can be computed (r007/guard.py OPEN_PHASES is empty)
+#  - outcomes can be computed only in the phase1 step (R007_PHASE=1), only for S1+S2, and only once
 
 on:
   workflow_dispatch:
     inputs:
       stage:
-        description: "selftest | phase0"
+        description: "selftest | phase0 | phase1"
         type: choice
-        options: [selftest, phase0]
+        options: [selftest, phase0, phase1]
         default: selftest
 
 permissions:
   contents: write
+
+defaults:
+  run:
+    shell: bash          # bash -eo pipefail: a failing python before `| tee` fails the step
 
 concurrency:
   group: r007
@@ -84,6 +88,21 @@ jobs:
       - name: Phase 0
         if: inputs.stage == 'phase0'
         run: python -m r007.run phase0 2>&1 | tee "$R007_OUT/PHASE0_log.txt"
+
+      - name: Phase 1 marker (one-time; refused if Phase 1 was ever started)
+        if: inputs.stage == 'phase1'
+        run: |
+          python -m r007.run phase1-mark
+          cd "$R007_OUT"
+          git add PHASE1.started
+          git commit -qm "R007 phase1 started (run $GITHUB_RUN_ID)"
+          git push origin r007-results
+
+      - name: Phase 1 (gate on S1+S2; runs once; outcomes for S1+S2 only)
+        if: inputs.stage == 'phase1'
+        env:
+          R007_PHASE: "1"
+        run: python -m r007.run phase1 2>&1 | tee -a "$R007_OUT/PHASE1_log.txt"
 
       - name: Isolation check (the checkout must be untouched)
         if: always()

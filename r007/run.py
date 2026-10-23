@@ -3,8 +3,10 @@
   python -m r007.run verify        lock check only
   python -m r007.run snapshot      live reference, symbol sets and the one-time price snapshot (committed on its own)
   python -m r007.run phase0        Phase 0 (reuses the snapshot; needs origin/weekscan-results fetched)
+  python -m r007.run phase1-mark   one-time marker for Phase 1 (pushed on its own before any outcome)
+  R007_PHASE=1 python -m r007.run phase1   Phase 1 gate on S1+S2 (runs once; outcomes for S1+S2 only)
 
-Later phases are not available in this deploy: each needs its own deploy and an explicit go.
+Phases 3 and E are not available in this deploy: each needs its own deploy and an explicit go.
 """
 from __future__ import annotations
 
@@ -17,7 +19,7 @@ from . import guard
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="r007")
-    ap.add_argument("stage", choices=["verify", "snapshot", "phase0"])
+    ap.add_argument("stage", choices=["verify", "snapshot", "phase0", "phase1-mark", "phase1"])
     ap.add_argument("--live-ref", default="origin/weekscan-results")
     a = ap.parse_args(argv)
     if a.stage == "verify":
@@ -27,6 +29,18 @@ def main(argv=None) -> int:
     w = guard.overlaps_guard(minutes=120)
     if w:
         print(f"refused: a run started now could reach guard window {w}")
+        return 1
+    if a.stage == "phase1-mark":
+        from . import phase1
+        phase1.mark()
+        return 0
+    if a.stage == "phase1":
+        from . import phase1
+        res = phase1.run(a.live_ref)
+        print(json.dumps({"passed": res["passed"], "gate": res["gate"]}, default=str))
+        return 0
+    if guard.outcomes_open():
+        print("refused: snapshot and phase0 run with outcomes closed (unset R007_PHASE)")
         return 1
     from . import phase0
     if a.stage == "snapshot":
