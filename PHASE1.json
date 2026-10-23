@@ -1,0 +1,168 @@
+{
+ "run_utc": "2026-10-23 16:28",
+ "lock": "30cf81d70b9ce176698016b5abf8ab14eae1b56d2884516735b490ce2e52f7f0",
+ "snapshot": "aa0949a7f26275b51aee1ffae83f7aa578cfc0f3d22dca6d1c86cfb187dee5fc",
+ "integrity": {
+  "snapshot": "same as Phase 0",
+  "S1": "identical",
+  "S2": "identical"
+ },
+ "events": {
+  "judge": 4414,
+  "traded": 3686,
+  "skipped": 728,
+  "skip_reasons": {
+   "risk < 0.5 ATR": 512,
+   "entry open <= stop": 216
+  }
+ },
+ "null": {
+  "trades": 20054,
+  "events_without_null": 47,
+  "pool_coverage": 1.0
+ },
+ "w_cuts": [
+  1.56,
+  3.433
+ ],
+ "results": {
+  "W": {
+   "spread": 0.020069153445305223,
+   "p": 0.372,
+   "weeks": 234,
+   "lo90": -0.10186531607136623,
+   "hi90": 0.13579699230524236,
+   "halves": [
+    0.1620583034256584,
+    -0.042726089548964966
+   ]
+  },
+  "L": {
+   "spread": -0.028471680228005135,
+   "p": 0.613,
+   "weeks": 174,
+   "lo90": -0.19219776545619663,
+   "hi90": 0.1304351685808718,
+   "halves": [
+    -0.2741187097782255,
+    0.05427359265585725
+   ]
+  }
+ },
+ "gate": {
+  "W": {
+   "holm_p_ok": false,
+   "spread_ok": false,
+   "halves_ok": false,
+   "pass": false
+  },
+  "L": {
+   "holm_p_ok": false,
+   "spread_ok": false,
+   "halves_ok": false,
+   "pass": false
+  }
+ },
+ "passed": [],
+ "tiers": {
+  "W": [
+   {
+    "tier": "A",
+    "traded": 1257,
+    "skipped": 214,
+    "mean_R": 0.26347614068297204,
+    "hit_2R_first": 0.42641209228321403,
+    "tail_le_-1.25R": 0.04136833731105807,
+    "mean_null_R": 0.22614971222350147,
+    "R_minus_null": 0.03699773796762104
+   },
+   {
+    "tier": "B",
+    "traded": 1212,
+    "skipped": 258,
+    "mean_R": 0.18156032527058347,
+    "hit_2R_first": 0.3886138613861386,
+    "tail_le_-1.25R": 0.03217821782178218,
+    "mean_null_R": 0.19817923448600888,
+    "R_minus_null": -0.01643105973113617
+   },
+   {
+    "tier": "C",
+    "traded": 1217,
+    "skipped": 256,
+    "mean_R": 0.21315423417808219,
+    "hit_2R_first": 0.39605587510271156,
+    "tail_le_-1.25R": 0.03451109285127362,
+    "mean_null_R": 0.1951855961970494,
+    "R_minus_null": 0.016103583381081175
+   }
+  ],
+  "L": [
+   {
+    "tier": "A",
+    "traded": 1336,
+    "skipped": 402,
+    "mean_R": 0.29379637462103814,
+    "hit_2R_first": 0.43263473053892215,
+    "tail_le_-1.25R": 0.0374251497005988,
+    "mean_null_R": 0.24949885876901068,
+    "R_minus_null": 0.04106948093638686
+   },
+   {
+    "tier": "B",
+    "traded": 1226,
+    "skipped": 190,
+    "mean_R": 0.14599754114987382,
+    "hit_2R_first": 0.3833605220228385,
+    "tail_le_-1.25R": 0.03425774877650897,
+    "mean_null_R": 0.20670793297840304,
+    "R_minus_null": -0.05970701950563155
+   },
+   {
+    "tier": "C",
+    "traded": 1124,
+    "skipped": 136,
+    "mean_R": 0.21276190757803992,
+    "hit_2R_first": 0.39234875444839856,
+    "tail_le_-1.25R": 0.036476868327402136,
+    "mean_null_R": 0.15621000561401177,
+    "R_minus_null": 0.05765845991931657
+   }
+  ]
+ },
+ "L": {
+  "chosen_C": {
+   "0": 0.03,
+   "1": 0.03,
+   "2": 0.03,
+   "3": 0.03,
+   "4": 0.03
+  },
+  "logloss_model": 0.681043549138222,
+  "logloss_base": 0.676421718590794,
+  "loo": {
+   "n_types": -1.0590969910961867e-05,
+   "red_age": 6.209674699031442e-05,
+   "f_signals_trigger": 0.00011203636455292543,
+   "f_ad_divergence": -4.3378502867952307e-05,
+   "f_matrix_divergence": -0.00037417062156253067,
+   "f_down9": -6.494316808525191e-05,
+   "f_accumulation_exit": 3.527422658311519e-05,
+   "trig2": -0.0001644919681891288,
+   "leader": -1.7927349151625194e-05,
+   "flow_min": -0.00014421272803455398,
+   "breadth_acc": 0.00041479850254855233,
+   "breadth_stage2": -0.0008832446710763664,
+   "log_stop": 0.0002648649451261198,
+   "dist_anchor_atr": -0.00207989784144591,
+   "stage": -0.0004353779566659277,
+   "group_state": -0.0018349206622273462
+  }
+ },
+ "base": {
+  "mean_R": 0.21992656702690425,
+  "hit_2R_first": 0.40396093326098753,
+  "mean_null_R": 0.20673980920792306
+ },
+ "decision": "Phase 1 FAILED for both models: per the pre-registration, size flat; the weekly-scan score orders alerts for reading only; S3 and E stay unused; R007 closes; no R008."
+}

@@ -1,0 +1,18 @@
+[1/8] lock ok (30cf81d70b9ce176)
+[2/8] live reference: 37f6f7d4126c (2026-10-20T16:52:52Z), universe 1503
+snapshot reused: 1533 tickers, manifest aa0949a7f26275b5
+[3/8] snapshot: 1533 tickers (reused), missing 7
+  read 250/1503
+  read 500/1503
+  read 750/1503
+  read 1000/1503
+  read 1250/1503
+  read 1500/1503
+  events identical to Phase 0: {'snapshot': 'same as Phase 0', 'S1': 'identical', 'S2': 'identical'}
+[4/8] judge events: 4414 (S1 2260, S2 2154)
+  null candidates: median 580 per week; events covered 100.0%
+[5/8] event outcomes: 3686 traded, 728 skipped
+[6/8] nulls: 20054 null trades
+[7/8] gate: W spread 0.020R p 0.3720 fail, L spread -0.028R p 0.6130 fail
+[8/8] written: PHASE1.md, PHASE1.json, outcomes/S1S2_events.csv.gz · passed=[]
+{"passed": [], "gate": {"W": {"holm_p_ok": false, "spread_ok": false, "halves_ok": false, "pass": false}, "L": {"holm_p_ok": false, "spread_ok": false, "halves_ok": false, "pass": false}}}
