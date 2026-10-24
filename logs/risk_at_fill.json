@@ -24,5 +24,10 @@
  "daily|XLB|2026-10-20 00:00|Playbook E4 anchor reclaim": 0.005,
  "daily|XLF|2026-10-20 00:00|Playbook E4 anchor reclaim": 0.005,
  "daily|IBM|2026-10-21 00:00|Playbook E4 anchor reclaim": 0.005,
- "daily|MMM|2026-10-21 00:00|Playbook E4 anchor reclaim": 0.005
+ "daily|MMM|2026-10-21 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|HD|2026-10-22 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|JNJ|2026-10-22 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|SBUX|2026-10-22 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|UNP|2026-10-22 00:00|Playbook E4 anchor reclaim": 0.005,
+ "daily|XLU|2026-10-22 00:00|Playbook E4 anchor reclaim": 0.005
 }
