@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-24 08:21",
+ "generated_utc": "2026-10-24 15:38",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-10-23",
@@ -11,8 +11,8 @@
  "allocation": {
   "E4_anchor_reclaim": {
    "risk": 0.005,
-   "p_edge": 0.8073,
-   "posterior_mean": 0.1301,
+   "p_edge": 0.807,
+   "posterior_mean": 0.1299,
    "live_n": 0,
    "live_expectancy": null,
    "live_total_r": 0.0,
@@ -21,21 +21,21 @@
    "streak_p": 1.0,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.2891
+   "prior_mean": 0.2886
   },
   "E1_trigger_with_trend": {
    "risk": 0.0025,
-   "p_edge": 0.7892,
-   "posterior_mean": 0.1417,
+   "p_edge": 0.7884,
+   "posterior_mean": 0.1415,
    "live_n": 1,
    "live_expectancy": -1.022,
    "live_total_r": -1.022,
    "open_trades": 2,
    "losing_streak": 1,
-   "streak_p": 0.579,
+   "streak_p": 0.5855,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.3409
+   "prior_mean": 0.3403
   }
  },
  "portfolio": {
@@ -727,14 +727,8 @@
   "universe_rows": 804
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "Paper fill: HD E4 @ 325.0 stop 302.3701 target 392.8897",
-  "Paper fill: JNJ E4 @ 265.82 stop 248.2803 target 318.439",
-  "Paper fill: SBUX E4 @ 101.38 stop 95.2848 target 119.6656",
-  "Paper fill: UNP E4 @ 296.75 stop 275.8152 target 359.5545",
-  "Paper fill: XLU E4 @ 42.73 stop 40.95 target 48.07"
- ],
- "alerts_last_7d": 100,
+ "alerts_this_run": [],
+ "alerts_last_7d": 99,
  "candidates": [
   {
    "id": "L1",
