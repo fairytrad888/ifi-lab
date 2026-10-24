@@ -725,3 +725,53 @@ week,symbol,event
 2026-10-16,DY,released: signal this week in a basing group
 2026-10-16,AGX,suppressed (alerted 2026-10-02): signal this week in a basing group
 2026-10-16,ROAD,suppressed (alerted 2026-09-25): signal this week in a basing group
+2026-10-23,AAON,disarmed: weekly close below the accumulation low
+2026-10-23,PZZA,disarmed: weekly close below the accumulation low
+2026-10-23,WINA,disarmed: weekly close below the accumulation low
+2026-10-23,WYNN,disarmed: weekly close below the accumulation low
+2026-10-23,BWXT,disarmed: weekly close below the accumulation low
+2026-10-23,ARR,disarmed: weekly close below the accumulation low
+2026-10-23,TMUS,disarmed: weekly close below the accumulation low
+2026-10-23,AA,disarmed: weekly close below the accumulation low
+2026-10-23,CRS,disarmed: weekly close below the accumulation low
+2026-10-23,DY,disarmed: weekly close below the accumulation low
+2026-10-23,SPXC,disarmed: weekly close below the accumulation low
+2026-10-23,AGX,disarmed: weekly close below the accumulation low
+2026-10-23,BNL,disarmed: weekly close below the accumulation low
+2026-10-23,CENX,disarmed: weekly close below the accumulation low
+2026-10-23,BX,armed: red accumulation + accumulation_exit
+2026-10-23,AVGO,"armed: red accumulation + ad_divergence, down9"
+2026-10-23,BG,armed: red accumulation + accumulation_exit
+2026-10-23,CHTR,armed: red accumulation + accumulation_exit
+2026-10-23,FSLR,armed: red accumulation + down9
+2026-10-23,WYNN,"armed: red accumulation + down9, accumulation_exit"
+2026-10-23,AA,armed: red accumulation + accumulation_exit
+2026-10-23,DY,armed: red accumulation + down9
+2026-10-23,FR,armed: red accumulation + down9
+2026-10-23,ORA,armed: red accumulation + ad_divergence
+2026-10-23,SF,armed: red accumulation + down9
+2026-10-23,TEX,armed: red accumulation + accumulation_exit
+2026-10-23,VC,armed: red accumulation + down9
+2026-10-23,WHR,armed: red accumulation + accumulation_exit
+2026-10-23,ADEA,"armed: red accumulation + down9, accumulation_exit"
+2026-10-23,AIR,"armed: red accumulation + down9, accumulation_exit"
+2026-10-23,ARR,"armed: red accumulation + down9, accumulation_exit"
+2026-10-23,BNL,armed: red accumulation + down9
+2026-10-23,BXMT,armed: red accumulation + accumulation_exit
+2026-10-23,FMC,armed: red accumulation + accumulation_exit
+2026-10-23,FUN,armed: red accumulation + accumulation_exit
+2026-10-23,LEU,armed: red accumulation + down9
+2026-10-23,OI,"armed: red accumulation + signals_trigger, ad_divergence, accumulation_exit"
+2026-10-23,PMT,armed: red accumulation + accumulation_exit
+2026-10-23,RUN,"armed: red accumulation + signals_trigger, accumulation_exit"
+2026-10-23,WAFD,armed: red accumulation + accumulation_exit
+2026-10-23,WSC,armed: red accumulation + accumulation_exit
+2026-10-23,APAM,"released: group turned basing, 1 week after the accumulation"
+2026-10-23,PJT,"released: group turned basing, 1 week after the accumulation"
+2026-10-23,BX,released: signal this week in a basing group
+2026-10-23,DY,suppressed (alerted 2026-10-16): signal this week in a basing group
+2026-10-23,SF,released: signal this week in a basing group
+2026-10-23,TEX,released: signal this week in a basing group
+2026-10-23,ADEA,released: signal this week in a bullish group
+2026-10-23,AIR,released: signal this week in a basing group
+2026-10-23,LEU,released: signal this week in a bullish group

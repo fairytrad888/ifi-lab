@@ -27,3 +27,11 @@ week,symbol,group,group_state,reason,armed_week,acc_low,close,tag_ad_div,tag_tri
 2026-09-18,BXMT,XLF,basing,signal this week in a basing group,2026-09-18,13.100000381469727,13.270000457763672,,,False,True
 2026-09-25,ZTS,XPH,bullish,signal this week in a bullish group,2026-09-25,69.5199966430664,71.05000305175781,,,False,True
 2026-10-16,DY,PAVE,basing,signal this week in a basing group,2026-10-16,250.1300048828125,253.61000061035156,,,True,False
+2026-10-23,AIR,ITA,basing,signal this week in a basing group,2026-10-23,90.69000244140625,95.25,,,True,False
+2026-10-23,ADEA,XLK,bullish,signal this week in a bullish group,2026-10-23,20.329999923706055,21.200000762939453,,,True,False
+2026-10-23,PJT,KCE,basing,"group turned basing, 1 week after the accumulation",2026-10-16,131.3699951171875,140.94000244140625,,,True,False
+2026-10-23,BX,KCE,basing,signal this week in a basing group,2026-10-23,105.44000244140625,117.97000122070312,,,True,False
+2026-10-23,LEU,XLE,bullish,signal this week in a bullish group,2026-10-23,99.33000183105469,102.44999694824219,,,True,False
+2026-10-23,SF,KCE,basing,signal this week in a basing group,2026-10-23,65.4000015258789,66.68000030517578,,,True,False
+2026-10-23,APAM,KCE,basing,"group turned basing, 1 week after the accumulation",2026-10-16,30.860000610351562,33.56999969482422,,,True,False
+2026-10-23,TEX,PAVE,basing,signal this week in a basing group,2026-10-23,50.060001373291016,51.290000915527344,,,True,False

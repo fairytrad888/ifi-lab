@@ -1,12 +1,11 @@
 {
- "week": "2026-10-16",
- "released": 1,
+ "week": "2026-10-23",
+ "released": 8,
  "pushed": 0,
- "armed_waiting": 146,
+ "armed_waiting": 153,
  "groups_ok": 10,
  "groups": 36,
  "missing": [
-  "ADIG",
   "BLFS",
   "CWEN-A",
   "HLX",
@@ -15,8 +14,7 @@
   "VYLR"
  ],
  "notes": [
-  "universe: 1503 stocks (sp400 400, sp500 503, sp600 600); 825 mapped to an industry ETF, 0 with no sector ETF",
-  "trigger upgraded (state v2): the 8 weeks before 2026-10-16 were replayed silently with the new trigger; earlier alerts still block repeats"
+  "universe: 1503 stocks (sp400 400, sp500 503, sp600 600); 832 mapped to an industry ETF, 0 with no sector ETF"
  ],
  "push": "push skipped: NTFY_TOPIC not set"
 }
