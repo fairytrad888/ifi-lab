@@ -4,9 +4,9 @@
   "cancel_live": 0.0,
   "cancel_pre": 0.0,
   "skip_live": 0.27906976744186046,
-  "skip_pre": 0.48059701492537316,
+  "skip_pre": 0.4827586206896552,
   "stop_width_live": 0.06293430335097004,
-  "stop_width_pre": 0.07095478600865558,
+  "stop_width_pre": 0.07065217391304349,
   "ks": null,
   "ks_p": null,
   "ks_flag": false
@@ -14,11 +14,11 @@
  "E1_trigger_with_trend": {
   "live_signals": 7,
   "cancel_live": 0.0,
-  "cancel_pre": 0.011111111111111112,
+  "cancel_pre": 0.011235955056179775,
   "skip_live": 0.42857142857142855,
-  "skip_pre": 0.06666666666666667,
+  "skip_pre": 0.06741573033707865,
   "stop_width_live": 0.0399097545075074,
-  "stop_width_pre": 0.038293813028073075,
+  "stop_width_pre": 0.03766742417027644,
   "ks": null,
   "ks_p": null,
   "ks_flag": false

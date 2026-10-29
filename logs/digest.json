@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-29 01:48",
+ "generated_utc": "2026-10-29 10:19",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-10-28",
@@ -49,18 +49,18 @@
   "E4_anchor_reclaim": {
    "live_signals": 43,
    "skip_live": 0.2791,
-   "skip_pre": 0.4806,
+   "skip_pre": 0.4828,
    "stop_width_live": 0.0629,
-   "stop_width_pre": 0.071,
+   "stop_width_pre": 0.0707,
    "ks_p": null,
    "ks_flag": false
   },
   "E1_trigger_with_trend": {
    "live_signals": 7,
    "skip_live": 0.4286,
-   "skip_pre": 0.0667,
+   "skip_pre": 0.0674,
    "stop_width_live": 0.0399,
-   "stop_width_pre": 0.0383,
+   "stop_width_pre": 0.0377,
    "ks_p": null,
    "ks_flag": false
   }
@@ -808,28 +808,11 @@
   ],
   "live_closed_n": 2,
   "live_signals_n": 50,
-  "universe_rows": 810
+  "universe_rows": 806
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "Paper fill: EWA E4 @ 29.49 stop 28.7879 target 31.5964",
-  "Paper fill: EWN E1 @ 65.36 stop 63.0307 target 72.3479",
-  "Paper fill: SLB E4 @ 53.87 stop 47.8628 target 71.8916",
-  "Paper fill: UPS E4 @ 105.39 stop 97.2529 target 129.8014",
-  "SPY daily: Stage 0 -> 3 | stage 3 score 2 | stop 755.207 size 10",
-  "IWM daily: Stage -1 -> 2 | stage 2 score 2 | stop 271.5826 size 19",
-  "XBI daily: Stage 0 -> 2 | stage 2 score 2 | stop 145.4458 size 15",
-  "XLC daily: Washout exit #2 | stage 1 score 1 | stop 101.7837 size 138",
-  "XLC daily: Down 9 complete | stage 1 score 1 | stop 101.7837 size 138",
-  "VST daily: Anchor lost | stage -1 score 2 | stop 132.4728 size 18",
-  "SPY h4: Stage 2 -> 3 | stage 3 score 3 | stop 762.0817 size 18",
-  "SPY h4: Anchor reclaimed | stage 3 score 3 | stop 762.0817 size 18",
-  "SMH h4: Stage -1 -> 2 | stage 2 score 1 | stop 524.7044 size 4",
-  "XBI h4: Stage 2 -> 3 | stage 3 score 4 | stop 147.9274 size 19",
-  "XBI h4: Anchor reclaimed | stage 3 score 4 | stop 147.9274 size 19",
-  "XLI h4: Stage 0 -> 2 | stage 2 score 1 | stop 164.5965 size 44"
- ],
- "alerts_last_7d": 78,
+ "alerts_this_run": [],
+ "alerts_last_7d": 66,
  "candidates": [
   {
    "id": "L1",
