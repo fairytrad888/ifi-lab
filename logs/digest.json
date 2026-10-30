@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-30 01:57",
+ "generated_utc": "2026-10-30 10:21",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-10-29",
@@ -1110,33 +1110,9 @@
   "live_signals_n": 66,
   "universe_rows": 826
  },
- "playbook_new": [
-  {
-   "symbol": "XLY",
-   "tf": "daily",
-   "event": "Playbook E4 anchor reclaim",
-   "close": 116.2,
-   "stop": 112.0343,
-   "target": 128.6971,
-   "cancel_if_open_below": 112.83
-  }
- ],
- "alerts_this_run": [
-  "Paper skipped: EWU E4 (a trade from this setup is already open)",
-  "Paper skipped: HD E4 (a trade from this setup is already open)",
-  "Paper skipped: KIE E4 (a trade from this setup is already open)",
-  "Paper skipped: MMM E4 (a trade from this setup is already open)",
-  "\u2605 XLY daily: Playbook E4 anchor reclaim | entry ~116.2 stop 112.0343 target 128.6971 | 45 sh | cancel if open < 112.83",
-  "XLRE daily: Stage 0 -> 2 | stage 2 score 2 | stop 41.4653 size 117",
-  "XLY daily: Stage 2 -> 3 | stage 3 score 5 | stop 112.0343 size 45",
-  "XLY daily: Anchor reclaimed | stage 3 score 5 | stop 112.0343 size 45",
-  "SPY h4: Stage 3 -> 2 | stage 2 score 2 | stop 762.9131 size 33",
-  "SPY h4: Anchor lost | stage 2 score 2 | stop 762.9131 size 33",
-  "IWM h4: Stage 2 -> 3 | stage 3 score 4 | stop 275.7256 size 22",
-  "IWM h4: Anchor reclaimed | stage 3 score 4 | stop 275.7256 size 22",
-  "XLRE h4: Stage 0 -> 3 | stage 3 score 5 | stop 41.5665 size 144"
- ],
- "alerts_last_7d": 72,
+ "playbook_new": [],
+ "alerts_this_run": [],
+ "alerts_last_7d": 54,
  "candidates": [
   {
    "id": "L1",
