@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-31 09:53",
+ "generated_utc": "2026-10-31 17:02",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-10-30",
@@ -11,7 +11,7 @@
  "allocation": {
   "E4_anchor_reclaim": {
    "risk": 0.005,
-   "p_edge": 0.807,
+   "p_edge": 0.8072,
    "posterior_mean": 0.1299,
    "live_n": 0,
    "live_expectancy": null,
@@ -21,12 +21,12 @@
    "streak_p": 1.0,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.2886
+   "prior_mean": 0.2888
   },
   "E1_trigger_with_trend": {
    "risk": 0.0025,
-   "p_edge": 0.7695,
-   "posterior_mean": 0.1296,
+   "p_edge": 0.7724,
+   "posterior_mean": 0.1313,
    "live_n": 2,
    "live_expectancy": -1.046,
    "live_total_r": -2.092,
@@ -35,7 +35,7 @@
    "streak_p": 0.415,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.3403
+   "prior_mean": 0.3441
   }
  },
  "portfolio": {
