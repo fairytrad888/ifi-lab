@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-31 01:35",
+ "generated_utc": "2026-10-31 09:53",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-10-30",
@@ -1133,26 +1133,8 @@
   "universe_rows": 829
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "Paper fill: COF E4 @ 208.88 stop 196.9034 target 244.8098",
-  "Paper fill: EWD E4 @ 52.05 stop 49.6956 target 59.1131",
-  "Paper fill: EWG E4 @ 42.05 stop 40.4825 target 46.7525",
-  "Paper cancelled: EWS opened below structure",
-  "Paper fill: GD E4 @ 376.44 stop 341.6894 target 480.6917",
-  "Paper fill: GM E4 @ 85.51 stop 73.2155 target 122.3935",
-  "Paper fill: HON E4 @ 222.45 stop 209.9325 target 260.0024",
-  "Paper fill: KBE E4 @ 66.66 stop 64.5088 target 73.1136",
-  "Paper fill: SPG E4 @ 218.19 stop 208.7373 target 246.5482",
-  "Paper fill: USB E4 @ 61.05 stop 58.4303 target 68.9092",
-  "Paper fill: WFC E4 @ 85.06 stop 80.6191 target 98.3826",
-  "Paper fill: XLY E4 @ 114.89 stop 112.0343 target 123.4571",
-  "Paper skipped: MDLZ E4 (a trade from this setup is already open)",
-  "XLK daily: Anchor lost | stage -1 score 0 | stop 174.7727 size 39",
-  "XLY daily: Stage 3 -> 2 | stage 2 score 4 | stop 113.0193 size 79",
-  "XLY daily: Anchor lost | stage 2 score 4 | stop 113.0193 size 79",
-  "IWM h4: Stage 0 -> 3 | stage 3 score 4 | stop 275.6477 size 50"
- ],
- "alerts_last_7d": 68,
+ "alerts_this_run": [],
+ "alerts_last_7d": 63,
  "candidates": [
   {
    "id": "L1",
