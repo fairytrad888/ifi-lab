@@ -1,15 +1,5 @@
 {
  "armed": {
-  "IPGP": {
-   "armed_week": "2026-08-28",
-   "low": 69.41000366210938,
-   "group": "XLK",
-   "released": true,
-   "signals": [
-    "accumulation_exit",
-    "down9"
-   ]
-  },
   "SEDG": {
    "armed_week": "2026-09-04",
    "low": 29.510000228881836,
@@ -33,19 +23,9 @@
    "armed_week": "2026-09-04",
    "low": 17.790000915527344,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
-   ]
-  },
-  "RBC": {
-   "armed_week": "2026-09-04",
-   "low": 471.57000732421875,
-   "group": "XLI",
-   "released": false,
-   "signals": [
-    "accumulation_exit",
-    "down9"
    ]
   },
   "VFC": {
@@ -111,7 +91,7 @@
    "armed_week": "2026-09-18",
    "low": 2756.1298828125,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -125,21 +105,11 @@
     "accumulation_exit"
    ]
   },
-  "LII": {
-   "armed_week": "2026-09-18",
-   "low": 350.2200012207031,
-   "group": "ITB",
-   "released": false,
-   "signals": [
-    "accumulation_exit",
-    "down9"
-   ]
-  },
   "NCLH": {
    "armed_week": "2026-09-18",
    "low": 13.630000114440918,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9",
@@ -159,7 +129,7 @@
    "armed_week": "2026-09-18",
    "low": 122.77999877929688,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -168,7 +138,7 @@
    "armed_week": "2026-09-18",
    "low": 49.67499923706055,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "ad_divergence"
@@ -188,7 +158,7 @@
    "armed_week": "2026-09-18",
    "low": 26.209999084472656,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9"
@@ -208,7 +178,7 @@
    "armed_week": "2026-09-18",
    "low": 187.77999877929688,
    "group": "XLP",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9"
@@ -248,7 +218,7 @@
    "armed_week": "2026-09-25",
    "low": 21.450000762939453,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -267,7 +237,7 @@
    "armed_week": "2026-09-25",
    "low": 883.0999755859375,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -396,7 +366,7 @@
    "armed_week": "2026-09-25",
    "low": 36.5099983215332,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9"
@@ -406,7 +376,7 @@
    "armed_week": "2026-09-25",
    "low": 226.85000610351562,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -541,7 +511,7 @@
    "armed_week": "2026-10-02",
    "low": 575.0999755859375,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -634,21 +604,11 @@
     "down9"
    ]
   },
-  "XYL": {
-   "armed_week": "2026-10-02",
-   "low": 98.58000183105469,
-   "group": "XLI",
-   "released": false,
-   "signals": [
-    "accumulation_exit",
-    "down9"
-   ]
-  },
   "BYD": {
    "armed_week": "2026-10-02",
    "low": 65.0,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9"
@@ -790,16 +750,6 @@
     "down9"
    ]
   },
-  "TBBK": {
-   "armed_week": "2026-10-02",
-   "low": 47.0099983215332,
-   "group": "KRE",
-   "released": false,
-   "signals": [
-    "accumulation_exit",
-    "ad_divergence"
-   ]
-  },
   "YOU": {
    "armed_week": "2026-10-02",
    "low": 37.375,
@@ -843,7 +793,7 @@
    "armed_week": "2026-10-09",
    "low": 79.12000274658203,
    "group": "XLP",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -895,6 +845,7 @@
    "released": false,
    "signals": [
     "accumulation_exit",
+    "ad_divergence",
     "down9"
    ]
   },
@@ -912,7 +863,7 @@
    "armed_week": "2026-10-09",
    "low": 178.4499969482422,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "signals_trigger"
@@ -932,7 +883,7 @@
    "armed_week": "2026-10-09",
    "low": 229.1999969482422,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "ad_divergence",
@@ -1114,15 +1065,6 @@
     "down9"
    ]
   },
-  "SFM": {
-   "armed_week": "2026-10-09",
-   "low": 61.880001068115234,
-   "group": "XRT",
-   "released": false,
-   "signals": [
-    "accumulation_exit"
-   ]
-  },
   "SLGN": {
    "armed_week": "2026-10-09",
    "low": 33.70000076293945,
@@ -1139,14 +1081,15 @@
    "released": false,
    "signals": [
     "accumulation_exit",
-    "down9"
+    "down9",
+    "signals_trigger"
    ]
   },
   "TXRH": {
    "armed_week": "2026-10-09",
    "low": 154.57000732421875,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -1197,6 +1140,7 @@
    "group": "IYT",
    "released": false,
    "signals": [
+    "accumulation_exit",
     "down9"
    ]
   },
@@ -1226,6 +1170,7 @@
    "released": false,
    "signals": [
     "accumulation_exit",
+    "ad_divergence",
     "signals_trigger"
    ]
   },
@@ -1233,7 +1178,7 @@
    "armed_week": "2026-10-16",
    "low": 35.029998779296875,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9",
@@ -1246,14 +1191,15 @@
    "group": "XLF",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "down9"
    ]
   },
   "AN": {
    "armed_week": "2026-10-16",
    "low": 151.82000732421875,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -1291,7 +1237,7 @@
    "armed_week": "2026-10-16",
    "low": 33.98500061035156,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -1302,7 +1248,8 @@
    "group": "XLF",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "down9"
    ]
   },
   "UFPI": {
@@ -1311,7 +1258,8 @@
    "group": "ITB",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "ad_divergence"
    ]
   },
   "WFRD": {
@@ -1336,7 +1284,7 @@
    "armed_week": "2026-10-16",
    "low": 160.3000030517578,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -1363,9 +1311,10 @@
    "armed_week": "2026-10-16",
    "low": 110.52999877929688,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "signals_trigger"
    ]
   },
   "CC": {
@@ -1381,14 +1330,15 @@
    "armed_week": "2026-10-16",
    "low": 224.64999389648438,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "signals_trigger"
    ]
   },
   "HE": {
    "armed_week": "2026-10-16",
-   "low": 8.199999809265137,
+   "low": 8.149999618530273,
    "group": "XLU",
    "released": false,
    "signals": [
@@ -1412,6 +1362,7 @@
    "released": false,
    "signals": [
     "accumulation_exit",
+    "ad_divergence",
     "signals_trigger"
    ]
   },
@@ -1438,7 +1389,7 @@
    "armed_week": "2026-10-16",
    "low": 55.0,
    "group": "XRT",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -1453,19 +1404,20 @@
    ]
   },
   "ROAD": {
-   "armed_week": "2026-10-16",
+   "armed_week": "2026-10-30",
    "low": 79.33000183105469,
    "group": "PAVE",
    "released": true,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "down9"
    ]
   },
   "WEN": {
    "armed_week": "2026-10-16",
    "low": 5.940000057220459,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
@@ -1481,7 +1433,7 @@
   },
   "AVGO": {
    "armed_week": "2026-10-23",
-   "low": 320.2300109863281,
+   "low": 319.29998779296875,
    "group": "SMH",
    "released": false,
    "signals": [
@@ -1489,18 +1441,9 @@
     "down9"
    ]
   },
-  "BG": {
-   "armed_week": "2026-10-23",
-   "low": 100.5,
-   "group": "PBJ",
-   "released": false,
-   "signals": [
-    "accumulation_exit"
-   ]
-  },
   "CHTR": {
    "armed_week": "2026-10-23",
-   "low": 101.62999725341797,
+   "low": 101.11000061035156,
    "group": "XLC",
    "released": false,
    "signals": [
@@ -1509,10 +1452,11 @@
   },
   "FSLR": {
    "armed_week": "2026-10-23",
-   "low": 168.60000610351562,
+   "low": 165.86000061035156,
    "group": "SMH",
    "released": false,
    "signals": [
+    "accumulation_exit",
     "down9"
    ]
   },
@@ -1520,7 +1464,7 @@
    "armed_week": "2026-10-23",
    "low": 72.29000091552734,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit",
     "down9"
@@ -1528,19 +1472,21 @@
   },
   "AA": {
    "armed_week": "2026-10-23",
-   "low": 37.900001525878906,
+   "low": 37.70500183105469,
    "group": "XME",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "down9"
    ]
   },
   "DY": {
-   "armed_week": "2026-10-23",
+   "armed_week": "2026-10-30",
    "low": 215.27999877929688,
    "group": "PAVE",
    "released": true,
    "signals": [
+    "accumulation_exit",
     "down9"
    ]
   },
@@ -1559,43 +1505,39 @@
    "group": "XLU",
    "released": false,
    "signals": [
-    "ad_divergence"
+    "accumulation_exit",
+    "ad_divergence",
+    "down9"
    ]
   },
   "SF": {
-   "armed_week": "2026-10-23",
+   "armed_week": "2026-10-30",
    "low": 65.4000015258789,
    "group": "KCE",
    "released": true,
    "signals": [
+    "accumulation_exit",
     "down9"
    ]
   },
   "TEX": {
-   "armed_week": "2026-10-23",
-   "low": 50.060001373291016,
+   "armed_week": "2026-10-30",
+   "low": 48.91999816894531,
    "group": "PAVE",
    "released": true,
    "signals": [
-    "accumulation_exit"
-   ]
-  },
-  "VC": {
-   "armed_week": "2026-10-23",
-   "low": 74.13999938964844,
-   "group": "XLY",
-   "released": false,
-   "signals": [
+    "accumulation_exit",
     "down9"
    ]
   },
   "WHR": {
    "armed_week": "2026-10-23",
-   "low": 26.079999923706055,
+   "low": 25.5,
    "group": "XLY",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "down9"
    ]
   },
   "ADEA": {
@@ -1628,27 +1570,19 @@
     "down9"
    ]
   },
-  "BNL": {
-   "armed_week": "2026-10-23",
-   "low": 17.1299991607666,
-   "group": "XLRE",
-   "released": false,
-   "signals": [
-    "down9"
-   ]
-  },
   "BXMT": {
    "armed_week": "2026-10-23",
    "low": 10.119999885559082,
    "group": "XLF",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "signals_trigger"
    ]
   },
   "FMC": {
    "armed_week": "2026-10-23",
-   "low": 4.800000190734863,
+   "low": 4.369999885559082,
    "group": "XLB",
    "released": false,
    "signals": [
@@ -1657,31 +1591,21 @@
   },
   "FUN": {
    "armed_week": "2026-10-23",
-   "low": 6.75,
+   "low": 6.599999904632568,
    "group": "PEJ",
-   "released": false,
+   "released": true,
    "signals": [
     "accumulation_exit"
    ]
   },
   "LEU": {
-   "armed_week": "2026-10-23",
-   "low": 99.33000183105469,
+   "armed_week": "2026-10-30",
+   "low": 96.80000305175781,
    "group": "XLE",
    "released": true,
    "signals": [
-    "down9"
-   ]
-  },
-  "OI": {
-   "armed_week": "2026-10-23",
-   "low": 5.300000190734863,
-   "group": "XLB",
-   "released": false,
-   "signals": [
     "accumulation_exit",
-    "ad_divergence",
-    "signals_trigger"
+    "down9"
    ]
   },
   "PMT": {
@@ -1690,7 +1614,8 @@
    "group": "XLRE",
    "released": false,
    "signals": [
-    "accumulation_exit"
+    "accumulation_exit",
+    "signals_trigger"
    ]
   },
   "RUN": {
@@ -1720,13 +1645,188 @@
    "signals": [
     "accumulation_exit"
    ]
+  },
+  "ALB": {
+   "armed_week": "2026-10-30",
+   "low": 89.7699966430664,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "BAC": {
+   "armed_week": "2026-10-30",
+   "low": 49.2599983215332,
+   "group": "KBE",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "KLAC": {
+   "armed_week": "2026-10-30",
+   "low": 144.82000732421875,
+   "group": "SMH",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "MGM": {
+   "armed_week": "2026-10-30",
+   "low": 26.709999084472656,
+   "group": "PEJ",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "MOS": {
+   "armed_week": "2026-10-30",
+   "low": 16.989999771118164,
+   "group": "XLB",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "ARWR": {
+   "armed_week": "2026-10-30",
+   "low": 55.83000183105469,
+   "group": "XBI",
+   "released": true,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "BHF": {
+   "armed_week": "2026-10-30",
+   "low": 41.97800064086914,
+   "group": "KIE",
+   "released": true,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CAR": {
+   "armed_week": "2026-10-30",
+   "low": 97.2300033569336,
+   "group": "XLI",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "FLG": {
+   "armed_week": "2026-10-30",
+   "low": 9.930000305175781,
+   "group": "KRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "GNTX": {
+   "armed_week": "2026-10-30",
+   "low": 19.75,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "SLM": {
+   "armed_week": "2026-10-30",
+   "low": 17.350000381469727,
+   "group": "XLF",
+   "released": false,
+   "signals": [
+    "down9"
+   ]
+  },
+  "VC": {
+   "armed_week": "2026-10-30",
+   "low": 69.88999938964844,
+   "group": "XLY",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "ACAD": {
+   "armed_week": "2026-10-30",
+   "low": 18.389999389648438,
+   "group": "XPH",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "AESI": {
+   "armed_week": "2026-10-30",
+   "low": 8.449999809265137,
+   "group": "XES",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "BNL": {
+   "armed_week": "2026-10-30",
+   "low": 16.700000762939453,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "CENX": {
+   "armed_week": "2026-10-30",
+   "low": 30.75,
+   "group": "XME",
+   "released": false,
+   "signals": [
+    "accumulation_exit",
+    "down9"
+   ]
+  },
+  "GNL": {
+   "armed_week": "2026-10-30",
+   "low": 6.849999904632568,
+   "group": "XLRE",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "KGS": {
+   "armed_week": "2026-10-30",
+   "low": 43.5,
+   "group": "XES",
+   "released": false,
+   "signals": [
+    "accumulation_exit"
+   ]
+  },
+  "PLAB": {
+   "armed_week": "2026-10-30",
+   "low": 26.899999618530273,
+   "group": "SMH",
+   "released": false,
+   "signals": [
+    "matrix_divergence"
+   ]
   }
  },
  "alerted": {
   "PZZA": "2026-08-21",
   "IPGP": "2026-08-28",
   "TXT": "2026-09-04",
-  "BHF": "2026-09-04",
+  "BHF": "2026-10-30",
   "CRUS": "2026-09-04",
   "ALHC": "2026-09-04",
   "SEDG": "2026-09-04",
@@ -1758,8 +1858,37 @@
   "TEX": "2026-10-23",
   "ADEA": "2026-10-23",
   "AIR": "2026-10-23",
-  "LEU": "2026-10-23"
+  "LEU": "2026-10-23",
+  "GME": "2026-10-30",
+  "AZO": "2026-10-30",
+  "NCLH": "2026-10-30",
+  "TJX": "2026-10-30",
+  "CAVA": "2026-10-30",
+  "VVV": "2026-10-30",
+  "WDFC": "2026-10-30",
+  "CCL": "2026-10-30",
+  "COST": "2026-10-30",
+  "BROS": "2026-10-30",
+  "BURL": "2026-10-30",
+  "CASY": "2026-10-30",
+  "BYD": "2026-10-30",
+  "CLX": "2026-10-30",
+  "LOW": "2026-10-30",
+  "MCD": "2026-10-30",
+  "TXRH": "2026-10-30",
+  "LVS": "2026-10-30",
+  "AN": "2026-10-30",
+  "HGV": "2026-10-30",
+  "ABG": "2026-10-30",
+  "BOOT": "2026-10-30",
+  "GPI": "2026-10-30",
+  "PHIN": "2026-10-30",
+  "WEN": "2026-10-30",
+  "WYNN": "2026-10-30",
+  "FUN": "2026-10-30",
+  "MGM": "2026-10-30",
+  "ARWR": "2026-10-30"
  },
- "last_week": "2026-10-23",
+ "last_week": "2026-10-30",
  "version": 2
 }

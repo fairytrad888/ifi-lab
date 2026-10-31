@@ -1,9 +1,9 @@
 {
- "week": "2026-10-23",
- "released": 8,
+ "week": "2026-10-30",
+ "released": 30,
  "pushed": 0,
- "armed_waiting": 153,
- "groups_ok": 10,
+ "armed_waiting": 133,
+ "groups_ok": 14,
  "groups": 36,
  "missing": [
   "BLFS",

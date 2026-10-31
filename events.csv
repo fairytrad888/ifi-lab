@@ -775,3 +775,72 @@ week,symbol,event
 2026-10-23,ADEA,released: signal this week in a bullish group
 2026-10-23,AIR,released: signal this week in a basing group
 2026-10-23,LEU,released: signal this week in a bullish group
+2026-10-30,IPGP,expired after 8 weeks
+2026-10-30,RBC,disarmed: weekly close below the accumulation low
+2026-10-30,LII,disarmed: weekly close below the accumulation low
+2026-10-30,XYL,disarmed: weekly close below the accumulation low
+2026-10-30,TBBK,disarmed: weekly close below the accumulation low
+2026-10-30,SFM,disarmed: weekly close below the accumulation low
+2026-10-30,BG,disarmed: weekly close below the accumulation low
+2026-10-30,VC,disarmed: weekly close below the accumulation low
+2026-10-30,BNL,disarmed: weekly close below the accumulation low
+2026-10-30,OI,disarmed: weekly close below the accumulation low
+2026-10-30,ALB,armed: red accumulation + down9
+2026-10-30,BAC,armed: red accumulation + down9
+2026-10-30,KLAC,armed: red accumulation + accumulation_exit
+2026-10-30,MGM,armed: red accumulation + accumulation_exit
+2026-10-30,MOS,armed: red accumulation + accumulation_exit
+2026-10-30,ARWR,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,BHF,armed: red accumulation + accumulation_exit
+2026-10-30,CAR,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,DY,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,FLG,armed: red accumulation + accumulation_exit
+2026-10-30,GNTX,armed: red accumulation + down9
+2026-10-30,SF,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,SLM,armed: red accumulation + down9
+2026-10-30,TEX,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,VC,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,ACAD,armed: red accumulation + accumulation_exit
+2026-10-30,AESI,armed: red accumulation + accumulation_exit
+2026-10-30,BNL,armed: red accumulation + accumulation_exit
+2026-10-30,CENX,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,GNL,armed: red accumulation + accumulation_exit
+2026-10-30,KGS,armed: red accumulation + accumulation_exit
+2026-10-30,LEU,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,PLAB,armed: red accumulation + matrix_divergence
+2026-10-30,ROAD,"armed: red accumulation + down9, accumulation_exit"
+2026-10-30,GME,"released: group turned bullish, 8 weeks after the accumulation"
+2026-10-30,AZO,"released: group turned bullish, 6 weeks after the accumulation"
+2026-10-30,NCLH,"released: group turned bullish, 6 weeks after the accumulation"
+2026-10-30,TJX,"released: group turned bullish, 6 weeks after the accumulation"
+2026-10-30,CAVA,"released: group turned bullish, 6 weeks after the accumulation"
+2026-10-30,VVV,"released: group turned bullish, 6 weeks after the accumulation"
+2026-10-30,WDFC,"released: group turned bullish, 6 weeks after the accumulation"
+2026-10-30,CCL,"released: group turned bullish, 5 weeks after the accumulation"
+2026-10-30,COST,"released: group turned bullish, 5 weeks after the accumulation"
+2026-10-30,BROS,"released: group turned bullish, 5 weeks after the accumulation"
+2026-10-30,BURL,"released: group turned bullish, 5 weeks after the accumulation"
+2026-10-30,CASY,"released: group turned bullish, 4 weeks after the accumulation"
+2026-10-30,BYD,"released: group turned bullish, 4 weeks after the accumulation"
+2026-10-30,CLX,"released: group turned bullish, 3 weeks after the accumulation"
+2026-10-30,LOW,"released: group turned bullish, 3 weeks after the accumulation"
+2026-10-30,MCD,"released: group turned bullish, 3 weeks after the accumulation"
+2026-10-30,TXRH,"released: group turned bullish, 3 weeks after the accumulation"
+2026-10-30,LVS,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,AN,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,HGV,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,ABG,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,BOOT,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,GPI,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,PHIN,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,ROAD,suppressed (alerted 2026-09-25): signal this week in a basing group
+2026-10-30,WEN,"released: group turned bullish, 2 weeks after the accumulation"
+2026-10-30,WYNN,"released: group turned bullish, 1 week after the accumulation"
+2026-10-30,DY,suppressed (alerted 2026-10-16): signal this week in a basing group
+2026-10-30,SF,suppressed (alerted 2026-10-23): signal this week in a basing group
+2026-10-30,TEX,suppressed (alerted 2026-10-23): signal this week in a basing group
+2026-10-30,FUN,"released: group turned bullish, 1 week after the accumulation"
+2026-10-30,LEU,suppressed (alerted 2026-10-23): signal this week in a bullish group
+2026-10-30,MGM,released: signal this week in a bullish group
+2026-10-30,ARWR,released: signal this week in a bullish group
+2026-10-30,BHF,released: signal this week in a bullish group

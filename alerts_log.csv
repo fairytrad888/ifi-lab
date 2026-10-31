@@ -35,3 +35,33 @@ week,symbol,group,group_state,reason,armed_week,acc_low,close,tag_ad_div,tag_tri
 2026-10-23,SF,KCE,basing,signal this week in a basing group,2026-10-23,65.4000015258789,66.68000030517578,,,True,False
 2026-10-23,APAM,KCE,basing,"group turned basing, 1 week after the accumulation",2026-10-16,30.860000610351562,33.56999969482422,,,True,False
 2026-10-23,TEX,PAVE,basing,signal this week in a basing group,2026-10-23,50.060001373291016,51.290000915527344,,,True,False
+2026-10-30,BROS,PEJ,bullish,"group turned bullish, 5 weeks after the accumulation",2026-09-25,36.5099983215332,42.869998931884766,,,True,False
+2026-10-30,COST,XRT,bullish,"group turned bullish, 5 weeks after the accumulation",2026-09-25,883.0999755859375,1012.280029296875,,,True,False
+2026-10-30,AZO,XRT,bullish,"group turned bullish, 6 weeks after the accumulation",2026-09-18,2756.1298828125,3169.820068359375,,,True,False
+2026-10-30,ARWR,XBI,bullish,signal this week in a bullish group,2026-10-30,55.83000183105469,59.900001525878906,,,True,False
+2026-10-30,LVS,PEJ,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,35.029998779296875,36.970001220703125,,,True,False
+2026-10-30,BYD,PEJ,bullish,"group turned bullish, 4 weeks after the accumulation",2026-10-02,65.0,72.83000183105469,,,True,False
+2026-10-30,MGM,PEJ,bullish,signal this week in a bullish group,2026-10-30,26.709999084472656,29.959999084472656,,,True,False
+2026-10-30,MCD,PEJ,bullish,"group turned bullish, 3 weeks after the accumulation",2026-10-09,229.1999969482422,258.1199951171875,,,True,False
+2026-10-30,HGV,PEJ,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,33.98500061035156,38.439998626708984,,,True,False
+2026-10-30,WYNN,PEJ,bullish,"group turned bullish, 1 week after the accumulation",2026-10-23,72.29000091552734,74.66000366210938,,,True,False
+2026-10-30,GPI,XRT,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,224.64999389648438,260.79998779296875,,,True,False
+2026-10-30,LOW,XRT,bullish,"group turned bullish, 3 weeks after the accumulation",2026-10-09,178.4499969482422,209.07000732421875,,,True,False
+2026-10-30,WDFC,XLP,bullish,"group turned bullish, 6 weeks after the accumulation",2026-09-18,187.77999877929688,220.61000061035156,,,True,False
+2026-10-30,NCLH,PEJ,bullish,"group turned bullish, 6 weeks after the accumulation",2026-09-18,13.630000114440918,17.56999969482422,,,True,False
+2026-10-30,CCL,PEJ,bullish,"group turned bullish, 5 weeks after the accumulation",2026-09-25,21.450000762939453,28.829999923706055,,,True,False
+2026-10-30,ABG,XRT,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,160.3000030517578,198.02999877929688,,,True,False
+2026-10-30,GME,XRT,bullish,"group turned bullish, 8 weeks after the accumulation",2026-09-04,17.790000915527344,24.229999542236328,,,True,False
+2026-10-30,FUN,PEJ,bullish,"group turned bullish, 1 week after the accumulation",2026-10-23,6.599999904632568,7.480000019073486,,,True,False
+2026-10-30,BURL,XRT,bullish,"group turned bullish, 5 weeks after the accumulation",2026-09-25,226.85000610351562,237.08999633789062,,,True,False
+2026-10-30,TJX,XRT,bullish,"group turned bullish, 6 weeks after the accumulation",2026-09-18,122.77999877929688,140.30999755859375,,,True,False
+2026-10-30,PHIN,XRT,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,55.0,62.91999816894531,,,True,False
+2026-10-30,CLX,XLP,bullish,"group turned bullish, 3 weeks after the accumulation",2026-10-09,79.12000274658203,88.0,,,True,False
+2026-10-30,BHF,KIE,bullish,signal this week in a bullish group,2026-10-30,41.97800064086914,43.91999816894531,,,True,False
+2026-10-30,CAVA,PEJ,bullish,"group turned bullish, 6 weeks after the accumulation",2026-09-18,49.67499923706055,58.7400016784668,,,True,False
+2026-10-30,BOOT,XRT,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,110.52999877929688,132.24000549316406,,,True,False
+2026-10-30,VVV,XRT,bullish,"group turned bullish, 6 weeks after the accumulation",2026-09-18,26.209999084472656,32.290000915527344,,,True,False
+2026-10-30,TXRH,PEJ,bullish,"group turned bullish, 3 weeks after the accumulation",2026-10-09,154.57000732421875,182.52000427246094,,,True,False
+2026-10-30,WEN,PEJ,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,5.940000057220459,7.210000038146973,,,True,False
+2026-10-30,CASY,XRT,bullish,"group turned bullish, 4 weeks after the accumulation",2026-10-02,575.0999755859375,680.1900024414062,,,True,False
+2026-10-30,AN,XRT,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-16,151.82000732421875,179.63999938964844,,,True,False

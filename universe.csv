@@ -374,18 +374,17 @@ PG,Procter & Gamble,Consumer Staples,Personal Care Products,sp500
 PGR,Progressive Corporation,Financials,Property & Casualty Insurance,sp500
 PLD,Prologis,Real Estate,Industrial REITs,sp500
 PRU,Prudential Financial,Financials,Life & Health Insurance,sp500
-PEG,Public Service Enterprise Group,Utilities,Electric Utilities,sp500
 PTC,PTC Inc.,Information Technology,Application Software,sp500
+PEG,Public Service Enterprise Group,Utilities,Electric Utilities,sp500
 PSA,Public Storage,Real Estate,Self-Storage REITs,sp500
 PHM,PulteGroup,Consumer Discretionary,Homebuilding,sp500
-PWR,Quanta Services,Industrials,Construction & Engineering,sp500
-QCOM,Qualcomm,Information Technology,Semiconductors,sp500
-DGX,Quest Diagnostics,Health Care,Health Care Services,sp500
 Q,Qnity Electronics,Information Technology,Semiconductor Materials & Equipment,sp500
+QCOM,Qualcomm,Information Technology,Semiconductors,sp500
+PWR,Quanta Services,Industrials,Construction & Engineering,sp500
+DGX,Quest Diagnostics,Health Care,Health Care Services,sp500
 RL,Ralph Lauren Corporation,Consumer Discretionary,"Apparel, Accessories & Luxury Goods",sp500
 RJF,Raymond James Financial,Financials,Investment Banking & Brokerage,sp500
 RDDT,Reddit,Communication Services,Interactive Media & Services,sp500
-RTX,RTX Corporation,Industrials,Aerospace & Defense,sp500
 O,Realty Income,Real Estate,Retail REITs,sp500
 REG,Regency Centers,Real Estate,Retail REITs,sp500
 REGN,Regeneron Pharmaceuticals,Health Care,Biotechnology,sp500
@@ -399,6 +398,7 @@ ROL,"Rollins, Inc.",Industrials,Environmental & Facilities Services,sp500
 ROP,Roper Technologies,Information Technology,Electronic Equipment & Instruments,sp500
 ROST,Ross Stores,Consumer Discretionary,Apparel Retail,sp500
 RCL,Royal Caribbean Group,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",sp500
+RTX,RTX Corporation,Industrials,Aerospace & Defense,sp500
 SPGI,S&P Global,Financials,Financial Exchanges & Data,sp500
 CRM,Salesforce,Information Technology,Application Software,sp500
 SNDK,Sandisk,Information Technology,"Technology Hardware, Storage & Peripherals",sp500
@@ -409,7 +409,7 @@ SRE,Sempra,Utilities,Multi-Utilities,sp500
 NOW,ServiceNow,Information Technology,Systems Software,sp500
 SHW,Sherwin-Williams,Materials,Specialty Chemicals,sp500
 SPG,Simon Property Group,Real Estate,Retail REITs,sp500
-SKYD,Skydance Corporation,Communication Services,Movies & Entertainment,sp500
+SKYD,Skydance,Communication Services,Movies & Entertainment,sp500
 SWKS,Skyworks Solutions,Information Technology,Semiconductors,sp500
 SJM,J.M. Smucker Company (The),Consumer Staples,Packaged Foods & Meats,sp500
 SW,Smurfit Westrock,Materials,Paper & Plastic Packaging Products & Materials,sp500
