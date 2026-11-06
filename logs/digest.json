@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-06 02:24",
+ "generated_utc": "2026-11-06 11:19",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-05",
@@ -1727,40 +1727,7 @@
   "universe_rows": 869
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "\u26a0 Risk tier E4_anchor_reclaim: 0.50% -> 0.25% (live -1.03R, n=2)",
-  "Paper exit: RTX E4 stop -1.03R",
-  "Paper fill: AMZN E4 @ 271.43 stop 225.0718 target 410.5045",
-  "Paper fill: BKNG E4 @ 171.96 stop 144.0798 target 255.6006",
-  "Paper fill: BMY E4 @ 65.0 stop 59.13 target 82.6101",
-  "Paper fill: EFA E4 @ 105.03 stop 102.1634 target 113.6299",
-  "Paper fill: EWQ E4 @ 43.99 stop 41.7258 target 50.7827",
-  "Paper exit: EWS E1 stop -1.06R",
-  "Paper fill: EWW E4 @ 76.46 stop 72.6492 target 87.8925",
-  "Paper fill: GE E4 @ 328.56 stop 294.8954 target 429.5537",
-  "Paper fill: IYT E4 @ 85.19 stop 79.9493 target 100.9121",
-  "Paper fill: JPM E4 @ 358.64 stop 331.7393 target 439.3422",
-  "Paper fill: LOW E4 @ 233.51 stop 197.6338 target 341.1386",
-  "Paper fill: MCD E4 @ 281.0 stop 250.7859 target 371.6422",
-  "Paper fill: NKE E4 @ 40.38 stop 36.9054 target 50.8037",
-  "Paper fill: PEP E4 @ 144.05 stop 131.1157 target 182.8531",
-  "Paper fill: TGT E4 @ 165.44 stop 146.4653 target 222.3642",
-  "Paper fill: VZ E4 @ 46.74 stop 42.9806 target 58.0182",
-  "Paper exit: XBI E4 stop -1.02R",
-  "Paper fill: XHB E4 @ 107.44 stop 96.0237 target 141.689",
-  "SPY daily: Anchor lost | stage -1 score 0 | stop 727.4113 size 33",
-  "XBI daily: Anchor lost | stage 0 score 2 | stop 145.6868 size 69",
-  "XLE daily: Anchor lost | stage 0 score 1 | stop 60.7659 size 216",
-  "RSP h4: Bear trigger (streak 2) | stage 0 score 4 | stop 215.223 size 90",
-  "IWM h4: Anchor lost | stage 0 score 2 | stop 268.7486 size 56",
-  "XBI h4: Anchor lost | stage 0 score 3 | stop 147.1729 size 67",
-  "XLB h4: Bear trigger (streak 2) | stage 3 score 5 | stop 51.5963 size 259",
-  "XLF h4: Bear trigger (streak 2) | stage 3 score 5 | stop 56.7221 size 234",
-  "XLI h4: Anchor lost | stage 0 score 2 | stop 161.3023 size 112",
-  "XLRE h4: Bear trigger (streak 1) | stage 3 score 5 | stop 43.2288 size 176",
-  "XLV h4: Bear trigger (streak 2) | stage 3 score 5 | stop 182.3438 size 71",
-  "XLY h4: Bear trigger (streak 1) | stage 3 score 5 | stop 115.7564 size 99"
- ],
+ "alerts_this_run": [],
  "alerts_last_7d": 104,
  "candidates": [
   {
@@ -1867,17 +1834,17 @@
    "slice": "E1 all",
    "n": 3,
    "mean_r": -1.0497,
-   "n_random": 136,
-   "random_r": -0.2303,
-   "edge": -0.8193
+   "n_random": 135,
+   "random_r": -0.1575,
+   "edge": -0.8922
   },
   {
    "slice": "E1 etfs",
    "n": 3,
    "mean_r": -1.0497,
-   "n_random": 43,
-   "random_r": -0.2683,
-   "edge": -0.7813
+   "n_random": 42,
+   "random_r": -0.0351,
+   "edge": -1.0146
   },
   {
    "slice": "E1 stocks",
@@ -1891,17 +1858,17 @@
    "slice": "E4 all",
    "n": 2,
    "mean_r": -1.0255,
-   "n_random": 136,
-   "random_r": -0.2303,
-   "edge": -0.7952
+   "n_random": 135,
+   "random_r": -0.1575,
+   "edge": -0.868
   },
   {
    "slice": "E4 etfs",
    "n": 1,
    "mean_r": -1.019,
-   "n_random": 43,
-   "random_r": -0.2683,
-   "edge": -0.7507
+   "n_random": 42,
+   "random_r": -0.0351,
+   "edge": -0.9839
   },
   {
    "slice": "E4 stocks",
@@ -1923,17 +1890,17 @@
    "slice": "all setups, extended symbols",
    "n": 3,
    "mean_r": -1.053,
-   "n_random": 72,
-   "random_r": 0.3173,
-   "edge": -1.3703
+   "n_random": 71,
+   "random_r": 0.4635,
+   "edge": -1.5165
   },
   {
    "slice": "all setups",
    "n": 5,
    "mean_r": -1.04,
-   "n_random": 136,
-   "random_r": -0.2303,
-   "edge": -0.8097
+   "n_random": 135,
+   "random_r": -0.1575,
+   "edge": -0.8825
   }
  ],
  "shadow_books": {
