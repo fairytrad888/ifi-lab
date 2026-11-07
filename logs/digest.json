@@ -1,20 +1,10 @@
 {
- "generated_utc": "2026-11-07 01:54",
+ "generated_utc": "2026-11-07 10:33",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-06",
-  "stale": true,
-  "still_stale": [
-   "ABBV",
-   "META",
-   "NOW",
-   "PLTR",
-   "PYPL",
-   "UBER",
-   "VST",
-   "XLC",
-   "XLRE"
-  ],
+  "stale": false,
+  "still_stale": [],
   "check_failed": false,
   "spy_last": "2026-11-06"
  },
@@ -59,9 +49,9 @@
   "E4_anchor_reclaim": {
    "live_signals": 101,
    "skip_live": 0.3069,
-   "skip_pre": 0.482,
+   "skip_pre": 0.4806,
    "stop_width_live": 0.0609,
-   "stop_width_pre": 0.0707,
+   "stop_width_pre": 0.071,
    "ks_p": null,
    "ks_flag": false
   },
@@ -1182,7 +1172,7 @@
     "target": 49.5837,
     "exit_date": null,
     "exit_reason": "",
-    "r": 0.373,
+    "r": 0.225,
     "tag_stage": 3,
     "tag_dist_anchor_atr": 0.4894,
     "tag_stop_width": 0.0497,
@@ -1658,24 +1648,10 @@
   ],
   "live_closed_n": 6,
   "live_signals_n": 110,
-  "universe_rows": 868
+  "universe_rows": 870
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "\u26a0 Data stale: the 2026-11-06 session has closed but 9 symbol(s) still lack it after a repair attempt (ABBV, META, NOW, PLTR, PYPL, UBER, VST, XLC +1 more; SPY ends 2026-11-06). Their signals for that day will be processed on the next run.",
-  "Paper exit: EFA E4 stop_gap -1.34R",
-  "Paper fill: FXI E4 @ 34.62 stop 32.6287 target 40.5938",
-  "Paper skipped: EWW E4 (a trade from this setup is already open)",
-  "SMH daily: Washout exit #1 | stage -1 score 0 | stop 434.0483 size 6",
-  "XLK daily: Washout exit #1 | stage -1 score 0 | stop 159.5611 size 36",
-  "SMH h4: Washout exit #2 | stage -1 score 0 | stop 436.8845 size 8",
-  "XBI h4: Anchor reclaimed | stage 0 score 4 | stop 145.7683 size 28",
-  "XLE h4: Washout exit #2 | stage 1 score 1 | stop 60.6142 size 140",
-  "XLE h4: Down 9 complete | stage 1 score 1 | stop 60.6142 size 140",
-  "XLK h4: Washout exit #2 | stage -1 score 0 | stop 160.2178 size 44",
-  "VST h4: Washout exit #2 | stage -1 score 1 | stop 107.9134 size 11",
-  "DUK h4: Bear trigger (streak 3) | stage 3 score 4 | stop 125.882 size 68"
- ],
+ "alerts_this_run": [],
  "alerts_last_7d": 100,
  "candidates": [
   {

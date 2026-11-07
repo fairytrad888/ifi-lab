@@ -1,31 +1,11 @@
 {
- "checked_utc": "2026-11-07 01:53",
+ "checked_utc": "2026-11-07 10:33",
  "expected": "2026-11-06",
  "error": "",
- "stale_before": [
-  "ABBV",
-  "META",
-  "NOW",
-  "PLTR",
-  "PYPL",
-  "UBER",
-  "VST",
-  "XLC",
-  "XLRE"
- ],
+ "stale_before": [],
  "repaired": [],
- "still_stale": [
-  "ABBV",
-  "META",
-  "NOW",
-  "PLTR",
-  "PYPL",
-  "UBER",
-  "VST",
-  "XLC",
-  "XLRE"
- ],
+ "still_stale": [],
  "check_failed": false,
  "spy_last": "2026-11-06",
- "stale": true
+ "stale": false
 }

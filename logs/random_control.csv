@@ -12,6 +12,7 @@ XBI,2,etf,core,2026-10-26,,open,0.223
 XBI,4,etf,core,2026-10-26,,open,0.223
 XBI,5,etf,core,2026-10-22,,open,-0.018
 XLB,3,etf,core,2026-10-14,2026-10-30,closed,2.953
+XLC,4,etf,core,2026-11-05,,open,-0.28
 XLE,2,etf,core,2026-11-02,2026-11-02,closed,-1.044
 XLF,3,etf,core,2026-10-21,,open,0.435
 XLI,2,etf,core,2026-11-05,2026-11-05,closed,-1.061
@@ -21,9 +22,9 @@ XLK,2,etf,core,2026-11-04,2026-11-05,closed,-1.035
 XLP,1,etf,core,2026-10-26,,open,1.01
 XLP,3,etf,core,2026-10-19,,open,0.778
 XLP,4,etf,core,2026-10-15,,open,0.371
-XLRE,2,etf,core,2026-10-26,,open,1.326
-XLRE,3,etf,core,2026-11-04,,open,-0.005
-XLRE,4,etf,core,2026-10-23,,open,0.591
+XLRE,2,etf,core,2026-10-26,,open,1.091
+XLRE,3,etf,core,2026-11-04,,open,-0.113
+XLRE,4,etf,core,2026-10-23,,open,0.429
 XLU,2,etf,core,2026-10-30,,open,-0.26
 XLU,3,etf,core,2026-10-20,,open,1.765
 XLU,4,etf,core,2026-10-21,,open,0.624
@@ -221,6 +222,7 @@ NEM,5,stock,core,2026-10-26,2026-10-30,closed,-1.072
 NFLX,5,stock,core,2026-10-20,2026-10-21,closed,-3.323
 NKE,1,stock,core,2026-10-16,,open,0.203
 NKE,2,stock,core,2026-10-13,,open,1.181
+NOW,1,stock,extended,2026-11-05,,open,-0.759
 NOW,3,stock,extended,2026-10-20,2026-10-29,closed,-2.087
 NVDA,1,stock,core,2026-10-20,2026-10-30,closed,-1.224
 NVDA,3,stock,core,2026-11-03,2026-11-05,closed,-1.202
@@ -250,7 +252,8 @@ PM,5,stock,extended,2026-10-19,2026-10-21,closed,-2.857
 PM,5,stock,extended,2026-11-02,2026-11-06,closed,-1.032
 PWR,1,stock,core,2026-10-28,2026-11-05,closed,-1.013
 PWR,4,stock,core,2026-10-28,2026-11-05,closed,-1.013
-PYPL,4,stock,extended,2026-11-04,,open,-0.103
+PYPL,1,stock,extended,2026-11-05,,open,-0.26
+PYPL,4,stock,extended,2026-11-04,,open,-0.043
 PYPL,5,stock,extended,2026-10-23,2026-10-26,closed,-1.046
 QCOM,2,stock,extended,2026-10-30,2026-10-30,closed,-1.053
 QCOM,5,stock,extended,2026-10-28,2026-10-30,closed,-1.022
@@ -276,7 +279,7 @@ TSLA,3,stock,core,2026-10-13,2026-10-15,closed,-1.251
 TSM,1,stock,core,2026-10-21,2026-10-30,closed,-1.026
 TSM,2,stock,core,2026-10-30,2026-10-30,closed,-1.091
 TXN,2,stock,extended,2026-10-21,2026-11-03,closed,2.949
-UBER,5,stock,core,2026-11-02,,open,0.864
+UBER,5,stock,core,2026-11-02,,open,0.799
 UNH,1,stock,core,2026-10-15,,open,-0.206
 UNH,4,stock,core,2026-10-16,,open,-0.392
 UNP,4,stock,extended,2026-10-13,,open,0.641
