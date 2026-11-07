@@ -268,7 +268,6 @@ J,Jacobs Solutions,Industrials,Construction & Engineering,sp500
 JNJ,Johnson & Johnson,Health Care,Pharmaceuticals,sp500
 JCI,Johnson Controls,Industrials,Building Products,sp500
 JPM,JPMorgan Chase,Financials,Diversified Banks,sp500
-KVUE,Kenvue,Consumer Staples,Personal Care Products,sp500
 KDP,Keurig Dr Pepper,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,sp500
 KEY,KeyCorp,Financials,Regional Banks,sp500
 KEYS,Keysight Technologies,Information Technology,Electronic Equipment & Instruments,sp500
@@ -346,6 +345,7 @@ NVR,"NVR, Inc.",Consumer Discretionary,Homebuilding,sp500
 NXPI,NXP Semiconductors,Information Technology,Semiconductors,sp500
 ORLY,O'Reilly Automotive,Consumer Discretionary,Automotive Retail,sp500
 OXY,Occidental Petroleum,Energy,Oil & Gas Exploration & Production,sp500
+OKTA,"Okta, Inc.",Information Technology,Application Software,sp500
 ODFL,Old Dominion,Industrials,Cargo Ground Transportation,sp500
 OMC,Omnicom Group,Communication Services,Advertising,sp500
 ON,ON Semiconductor,Information Technology,Semiconductors,sp500
@@ -652,7 +652,7 @@ FN,Fabrinet,Information Technology,Electronic Manufacturing Services,sp400
 FNB,FNB Corporation,Financials,Regional Banks,sp400
 FND,Floor & Decor,Consumer Discretionary,Home Improvement Retail,sp400
 FNF,Fidelity National Financial,Financials,Property & Casualty Insurance,sp400
-FORM,"FormFactor, Inc.",Information Technology,Semiconductor Materials & Equipment,sp400
+FORM,FormFactor,Information Technology,Semiconductor Materials & Equipment,sp400
 FOUR,Shift4,Financials,Transaction & Payment Processing Services,sp400
 FR,First Industrial Realty Trust,Real Estate,Industrial REITs,sp400
 FTI,TechnipFMC,Energy,Oil & Gas Equipment & Services,sp400
@@ -663,6 +663,7 @@ GBCI,Glacier Bancorp,Financials,Regional Banks,sp400
 GEF,"Greif, Inc.",Materials,"Metal, Glass & Plastic Containers",sp400
 GGG,Graco Inc.,Industrials,Industrial Machinery & Supplies & Components,sp400
 GHC,Graham Holdings,Consumer Discretionary,Education Services,sp400
+GKOS,Glaukos,Health Care,Health Care Equipment,sp400
 GLPI,Gaming and Leisure Properties,Real Estate,Other Specialized REITs,sp400
 GME,GameStop,Consumer Discretionary,Computer & Electronics Retail,sp400
 GMED,Globus Medical,Health Care,Health Care Equipment,sp400
@@ -760,7 +761,6 @@ OC,Owens Corning,Industrials,Building Products,sp400
 OGE,OGE Energy,Utilities,Multi-Utilities,sp400
 OGS,One Gas,Utilities,Gas Utilities,sp400
 OHI,Omega Healthcare Investors,Real Estate,Health Care REITs,sp400
-OKTA,"Okta, Inc.",Information Technology,Application Software,sp400
 OLED,Universal Display,Information Technology,Semiconductors,sp400
 OLLI,Ollie's Bargain Outlet,Consumer Discretionary,Broadline Retail,sp400
 ONB,Old National Bank,Financials,Regional Banks,sp400
@@ -1122,7 +1122,6 @@ GBX,"The Greenbrier Companies, Inc.",Industrials,Construction Machinery & Heavy 
 GEO,"GEO Group, Inc.",Industrials,Environmental & Facilities Services,sp600
 GFF,Griffon Corporation,Industrials,Building Products,sp600
 GIII,"G-III Apparel Group, Ltd.",Consumer Discretionary,"Apparel, Accessories & Luxury Goods",sp600
-GKOS,Glaukos Corp.,Health Care,Health Care Equipment,sp600
 GNL,"Global Net Lease, Inc.",Real Estate,Diversified REITs,sp600
 GNW,"Genworth Financial, Inc.",Financials,Multi-line Insurance,sp600
 GO,Grocery Outlet,Consumer Staples,Food Retail,sp600
@@ -1253,7 +1252,7 @@ MRCY,Mercury Systems,Industrials,Electrical Components & Equipment,sp600
 MRP,"Millrose Properties, Inc.",Real Estate,Single-Family Residential REITs,sp600
 MRTN,"Marten Transport, Ltd.",Industrials,Cargo Ground Transportation,sp600
 MSEX,Middlesex Water Company,Utilities,Water Utilities,sp600
-MSGS,Madison Square Garden Sports Corp.,Communication Services,Movies & Entertainment,sp600
+MSGK,MSG Knickerbockers Corp.,Communication Services,Movies & Entertainment,sp600
 MTCH,Match Group,Communication Services,Interactive Media & Services,sp600
 MTH,Meritage Homes Corporation,Consumer Discretionary,Homebuilding,sp600
 MTRN,Materion Corp.,Materials,Diversified Metals & Mining,sp600
@@ -1411,7 +1410,7 @@ STBA,"S&T Bancorp, Inc.",Financials,Regional Banks,sp600
 STC,Stewart Information Services Corporation,Financials,Property & Casualty Insurance,sp600
 STEP,StepStone Group,Financials,Asset Management & Custody Banks,sp600
 STRA,"Strategic Education, Inc.",Consumer Discretionary,Education Services,sp600
-SUPN,"Supernus Pharmaceuticals, Inc.",Health Care,Pharmaceuticals,sp600
+SUPN,"Supernus, Inc.",Health Care,Pharmaceuticals,sp600
 SXI,Standex International Corporation,Industrials,Industrial Machinery & Supplies & Components,sp600
 SXT,Sensient Technologies,Materials,Specialty Chemicals,sp600
 TALO,"Talos Energy, Inc.",Energy,Oil & Gas Exploration & Production,sp600

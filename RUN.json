@@ -1,20 +1,23 @@
 {
- "week": "2026-10-30",
- "released": 30,
+ "week": "2026-11-06",
+ "released": 40,
  "pushed": 0,
- "armed_waiting": 133,
- "groups_ok": 14,
+ "armed_waiting": 101,
+ "groups_ok": 16,
  "groups": 36,
  "missing": [
   "BLFS",
   "CWEN-A",
   "HLX",
+  "INDV",
   "LEG",
+  "LXP",
   "QRVO",
+  "RAMP",
   "VYLR"
  ],
  "notes": [
-  "universe: 1503 stocks (sp400 400, sp500 503, sp600 600); 832 mapped to an industry ETF, 0 with no sector ETF"
+  "universe: 1502 stocks (sp400 400, sp500 503, sp600 599); 832 mapped to an industry ETF, 0 with no sector ETF"
  ],
  "push": "push skipped: NTFY_TOPIC not set"
 }
