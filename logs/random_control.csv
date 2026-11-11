@@ -13,7 +13,7 @@ XBI,2,etf,core,2026-10-26,,open,0.612
 XBI,4,etf,core,2026-10-26,,open,0.612
 XBI,5,etf,core,2026-10-22,,open,0.25
 XLB,3,etf,core,2026-10-14,2026-10-30,closed,2.953
-XLC,4,etf,core,2026-11-05,,open,0.013
+XLC,4,etf,core,2026-11-05,,open,0.058
 XLE,2,etf,core,2026-11-02,2026-11-02,closed,-1.044
 XLF,3,etf,core,2026-10-21,,open,0.906
 XLI,2,etf,core,2026-11-05,2026-11-05,closed,-1.061
@@ -23,9 +23,9 @@ XLK,2,etf,core,2026-11-04,2026-11-05,closed,-1.035
 XLP,1,etf,core,2026-10-26,,open,1.512
 XLP,3,etf,core,2026-10-19,,open,1.013
 XLP,4,etf,core,2026-10-15,,open,0.525
-XLRE,2,etf,core,2026-10-26,,open,1.593
-XLRE,3,etf,core,2026-11-04,,open,0.117
-XLRE,4,etf,core,2026-10-23,,open,0.774
+XLRE,2,etf,core,2026-10-26,,open,1.546
+XLRE,3,etf,core,2026-11-04,,open,0.095
+XLRE,4,etf,core,2026-10-23,,open,0.742
 XLU,2,etf,core,2026-10-30,,open,0.182
 XLU,3,etf,core,2026-10-20,,open,2.476
 XLU,4,etf,core,2026-10-21,,open,1.071
@@ -240,9 +240,9 @@ NEM,5,stock,core,2026-10-26,2026-10-30,closed,-1.072
 NFLX,5,stock,core,2026-10-20,2026-10-21,closed,-3.323
 NKE,1,stock,core,2026-10-16,,open,0.223
 NKE,2,stock,core,2026-10-13,,open,1.213
-NOW,1,stock,extended,2026-11-05,,open,-0.669
+NOW,1,stock,extended,2026-11-05,2026-11-10,closed,-1.024
 NOW,3,stock,extended,2026-10-20,2026-10-29,closed,-2.087
-NOW,3,stock,extended,2026-11-06,,open,0.033
+NOW,3,stock,extended,2026-11-06,2026-11-10,closed,-1.045
 NVDA,1,stock,core,2026-10-20,2026-10-30,closed,-1.224
 NVDA,3,stock,core,2026-11-03,2026-11-05,closed,-1.202
 NVDA,4,stock,core,2026-11-04,2026-11-05,closed,-1.352
@@ -272,10 +272,11 @@ PM,5,stock,extended,2026-11-02,2026-11-06,closed,-1.032
 PWR,1,stock,core,2026-10-28,2026-11-05,closed,-1.013
 PWR,1,stock,core,2026-11-09,,open,0.375
 PWR,4,stock,core,2026-10-28,2026-11-05,closed,-1.013
-PYPL,1,stock,extended,2026-11-05,,open,-0.101
-PYPL,2,stock,extended,2026-11-06,,open,1.181
-PYPL,4,stock,extended,2026-11-04,,open,0.131
+PYPL,1,stock,extended,2026-11-05,,open,-0.351
+PYPL,2,stock,extended,2026-11-06,,open,0.527
+PYPL,4,stock,extended,2026-11-04,,open,-0.141
 PYPL,5,stock,extended,2026-10-23,2026-10-26,closed,-1.046
+PYPL,5,stock,extended,2026-11-09,,open,-0.326
 QCOM,2,stock,extended,2026-10-30,2026-10-30,closed,-1.053
 QCOM,5,stock,extended,2026-10-28,2026-10-30,closed,-1.022
 QQQ,1,etf,core,2026-10-20,2026-10-23,closed,-1.053
@@ -302,7 +303,7 @@ TSM,1,stock,core,2026-10-21,2026-10-30,closed,-1.026
 TSM,2,stock,core,2026-10-30,2026-10-30,closed,-1.091
 TSM,5,stock,core,2026-11-09,,open,0.332
 TXN,2,stock,extended,2026-10-21,2026-11-03,closed,2.949
-UBER,5,stock,core,2026-11-02,,open,1.68
+UBER,5,stock,core,2026-11-02,,open,1.298
 UNH,1,stock,core,2026-10-15,,open,0.08
 UNH,4,stock,core,2026-10-16,,open,-0.139
 UNP,2,stock,extended,2026-11-09,,open,1.143
