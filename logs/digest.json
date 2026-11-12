@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-12 02:57",
+ "generated_utc": "2026-11-12 11:39",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-11",
@@ -2012,26 +2012,9 @@
   "live_signals_n": 138,
   "universe_rows": 898
  },
- "playbook_new": [
-  {
-   "symbol": "XLK",
-   "tf": "daily",
-   "event": "Playbook E1 trigger with trend",
-   "close": 174.36,
-   "stop": 159.4255,
-   "target": 219.1635,
-   "cancel_if_open_below": 162.14
-  }
- ],
- "alerts_this_run": [
-  "Paper fill: EWT E1 @ 99.29 stop 83.9422 target 145.3333",
-  "\u2605 XLK daily: Playbook E1 trigger with trend | entry ~174.36 stop 159.4255 target 219.1635 | 12 sh | cancel if open < 162.14",
-  "IWM daily: Stage -1 -> 2 | stage 2 score 3 | stop 267.784 size 12",
-  "SPY h4: Stage -1 -> 2 | stage 2 score 0 | stop 736.8782 size 7",
-  "XLC h4: Stage 2 -> 3 | stage 3 score 4 | stop 105.5075 size 56",
-  "XLC h4: Anchor reclaimed | stage 3 score 4 | stop 105.5075 size 56"
- ],
- "alerts_last_7d": 104,
+ "playbook_new": [],
+ "alerts_this_run": [],
+ "alerts_last_7d": 92,
  "candidates": [
   {
    "id": "L1",
