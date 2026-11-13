@@ -79,5 +79,12 @@
  "daily|EWS|2026-11-09 00:00|Playbook E1 trigger with trend": 0.0025,
  "daily|NEM|2026-11-09 00:00|Playbook E4 anchor reclaim": 0.0025,
  "daily|XPH|2026-11-09 00:00|Playbook E4 anchor reclaim": 0.0025,
- "daily|EWT|2026-11-10 00:00|Playbook E1 trigger with trend": 0.0025
+ "daily|EWT|2026-11-10 00:00|Playbook E1 trigger with trend": 0.0025,
+ "daily|AMD|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
+ "daily|ITA|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
+ "daily|MU|2026-11-11 00:00|Playbook E1 trigger with trend": 0.0025,
+ "daily|RTX|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
+ "daily|TMUS|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
+ "daily|TSLA|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
+ "daily|XLK|2026-11-11 00:00|Playbook E1 trigger with trend": 0.0025
 }
