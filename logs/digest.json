@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-13 02:37",
+ "generated_utc": "2026-11-13 11:23",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-12",
@@ -2034,36 +2034,8 @@
   "live_signals_n": 139,
   "universe_rows": 899
  },
- "playbook_new": [
-  {
-   "symbol": "CEG",
-   "tf": "daily",
-   "event": "Playbook E4 anchor reclaim",
-   "close": 282.4,
-   "stop": 236.4966,
-   "target": 420.1102,
-   "cancel_if_open_below": 243.38
-  }
- ],
- "alerts_this_run": [
-  "Paper fill: AMD E4 @ 569.28 stop 382.0676 target 1130.9172",
-  "Paper fill: ITA E4 @ 73.13 stop 66.2439 target 93.7883",
-  "Paper fill: MU E1 @ 769.31 stop 619.5981 target 1218.4457",
-  "Paper fill: RTX E4 @ 202.69 stop 185.0397 target 255.6409",
-  "Paper fill: TMUS E4 @ 174.45 stop 152.5666 target 240.1002",
-  "Paper fill: TSLA E4 @ 386.36 stop 329.8459 target 555.9021",
-  "Paper fill: XLK E1 @ 169.85 stop 159.4255 target 201.1235",
-  "\u2605 CEG daily: Playbook E4 anchor reclaim | entry ~282.4 stop 236.4966 target 420.1102 | 4 sh | cancel if open < 243.38",
-  "XLI daily: Stage 0 -> 2 | stage 2 score 1 | stop 160.1647 size 20",
-  "XLY daily: Bear trigger (streak 1) | stage 3 score 5 | stop 115.4943 size 37",
-  "CEG daily: Stage 2 -> 3 | stage 3 score 2 | stop 236.4966 size 4",
-  "CEG daily: Anchor reclaimed | stage 3 score 2 | stop 236.4966 size 4",
-  "XBI h4: Anchor lost | stage -1 score 2 | stop 148.8932 size 81",
-  "XLC h4: Stage 3 -> 2 | stage 2 score 3 | stop 106.2827 size 143",
-  "XLC h4: Anchor lost | stage 2 score 3 | stop 106.2827 size 143",
-  "CEG h4: Stage 2 -> 3 | stage 3 score 3 | stop 259.3673 size 9",
-  "CEG h4: Anchor reclaimed | stage 3 score 3 | stop 259.3673 size 9"
- ],
+ "playbook_new": [],
+ "alerts_this_run": [],
  "alerts_last_7d": 77,
  "candidates": [
   {
