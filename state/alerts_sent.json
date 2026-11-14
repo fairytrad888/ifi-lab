@@ -898,7 +898,9 @@
   "daily|TMUS|2026-11-11 00:00|Playbook E4 anchor reclaim": "open",
   "daily|TSLA|2026-11-11 00:00|Playbook E4 anchor reclaim": "open",
   "daily|XLK|2026-11-11 00:00|Playbook E1 trigger with trend": "open",
-  "daily|CEG|2026-11-12 00:00|Playbook E4 anchor reclaim": "pending"
+  "daily|CEG|2026-11-12 00:00|Playbook E4 anchor reclaim": "pending",
+  "daily|BMY|2026-11-13 00:00|Playbook E4 anchor reclaim": "skipped",
+  "daily|USB|2026-11-13 00:00|Playbook E4 anchor reclaim": "skipped"
  },
  "status": {
   "E4_anchor_reclaim": "0.25%",
@@ -908,5 +910,5 @@
   "E4_anchor_reclaim": true,
   "E1_trigger_with_trend": false
  },
- "updated": "2026-11-13T11:25:14.123057+00:00"
+ "updated": "2026-11-14T02:25:17.109452+00:00"
 }
