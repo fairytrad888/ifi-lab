@@ -86,5 +86,6 @@
  "daily|RTX|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
  "daily|TMUS|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
  "daily|TSLA|2026-11-11 00:00|Playbook E4 anchor reclaim": 0.0025,
- "daily|XLK|2026-11-11 00:00|Playbook E1 trigger with trend": 0.0025
+ "daily|XLK|2026-11-11 00:00|Playbook E1 trigger with trend": 0.0025,
+ "daily|CEG|2026-11-12 00:00|Playbook E4 anchor reclaim": 0.0025
 }
