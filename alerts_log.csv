@@ -105,3 +105,31 @@ week,symbol,group,group_state,reason,armed_week,acc_low,close,tag_ad_div,tag_tri
 2026-11-06,SLGN,XLB,bullish,"group turned bullish, 4 weeks after the accumulation",2026-10-09,33.70000076293945,41.09000015258789,,,True,False
 2026-11-06,FMC,XLB,bullish,"group turned bullish, 2 weeks after the accumulation",2026-10-23,4.369999885559082,5.630000114440918,,,True,False
 2026-11-06,MOS,XLB,bullish,"group turned bullish, 1 week after the accumulation",2026-10-30,16.989999771118164,22.360000610351562,,,True,False
+2026-11-13,KNX,IYT,bullish,"group turned bullish, 1 week after the accumulation",2026-11-06,58.209999084472656,63.79999923706055,,,True,False
+2026-11-13,JBHT,IYT,bullish,signal this week in a bullish group,2026-11-13,215.52999877929688,232.85000610351562,,,True,False
+2026-11-13,XPO,IYT,bullish,"group turned bullish, 7 weeks after the accumulation",2026-09-25,170.4499969482422,192.80999755859375,,,True,False
+2026-11-13,SNEX,KCE,bullish,signal this week in a bullish group,2026-11-13,52.2599983215332,57.2400016784668,,,True,False
+2026-11-13,DAN,XLY,bullish,signal this week in a bullish group,2026-11-13,21.459999084472656,23.899999618530273,,,True,False
+2026-11-13,FSLR,SMH,basing,"group turned basing, 3 weeks after the accumulation",2026-10-23,165.86000061035156,171.38999938964844,,,True,False
+2026-11-13,AMAT,SMH,basing,signal this week in a basing group,2026-11-13,316.95001220703125,370.5,,,True,False
+2026-11-13,WERN,IYT,bullish,"group turned bullish, 1 week after the accumulation",2026-11-06,26.899999618530273,28.040000915527344,,,True,False
+2026-11-13,SNDR,IYT,bullish,signal this week in a bullish group,2026-11-13,27.770000457763672,29.34000015258789,,,True,False
+2026-11-13,PLAB,SMH,basing,"group turned basing, 2 weeks after the accumulation",2026-10-30,24.920000076293945,27.549999237060547,,,True,False
+2026-11-13,TER,SMH,basing,signal this week in a basing group,2026-11-13,211.6300048828125,249.5500030517578,,,True,False
+2026-11-13,LSCC,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,90.25,112.3499984741211,,,True,False
+2026-11-13,ACMR,SMH,basing,signal this week in a basing group,2026-11-13,37.470001220703125,47.95000076293945,,,True,False
+2026-11-13,ONTO,SMH,basing,signal this week in a basing group,2026-11-13,155.13099670410156,203.6199951171875,,,True,False
+2026-11-13,SITM,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,335.0,444.5400085449219,,,True,False
+2026-11-13,ON,SMH,basing,signal this week in a basing group,2026-11-13,61.900001525878906,71.05999755859375,,,True,False
+2026-11-13,ALGM,SMH,basing,signal this week in a basing group,2026-11-13,25.950000762939453,30.1299991607666,,,True,False
+2026-11-13,AVGO,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,289.7699890136719,347.010009765625,,,True,False
+2026-11-13,KLAC,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,128.1699981689453,152.32000732421875,,,True,False
+2026-11-13,AMKR,SMH,basing,signal this week in a basing group,2026-11-13,30.360000610351562,36.11000061035156,,,True,False
+2026-11-13,RMBS,SMH,basing,signal this week in a basing group,2026-11-13,68.19000244140625,82.2300033569336,,,True,False
+2026-11-13,KLIC,SMH,basing,signal this week in a basing group,2026-11-13,56.900001525878906,69.06999969482422,,,True,False
+2026-11-13,LRCX,SMH,basing,signal this week in a basing group,2026-11-13,184.24000549316406,225.9199981689453,,,True,False
+2026-11-13,VECO,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,31.6299991607666,39.060001373291016,,,True,False
+2026-11-13,MKSI,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,173.13999938964844,215.64999389648438,,,True,False
+2026-11-13,UCTT,SMH,basing,signal this week in a basing group,2026-11-13,37.060001373291016,46.349998474121094,,,True,False
+2026-11-13,ACLS,SMH,basing,"group turned basing, 1 week after the accumulation",2026-11-06,82.02999877929688,104.41999816894531,,,True,False
+2026-11-13,ICHR,SMH,basing,signal this week in a basing group,2026-11-13,27.729999542236328,35.720001220703125,,,True,False

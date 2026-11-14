@@ -932,3 +932,107 @@ week,symbol,event
 2026-11-06,SLM,released: signal this week in a bullish group
 2026-11-06,RCUS,released: signal this week in a bullish group
 2026-11-06,RSI,released: signal this week in a bullish group
+2026-11-13,RBA,expired after 8 weeks
+2026-11-13,LMAT,expired after 8 weeks
+2026-11-13,NHI,disarmed: weekly close below the accumulation low
+2026-11-13,STWD,disarmed: weekly close below the accumulation low
+2026-11-13,AGNC,disarmed: weekly close below the accumulation low
+2026-11-13,NLY,disarmed: weekly close below the accumulation low
+2026-11-13,ARR,disarmed: weekly close below the accumulation low
+2026-11-13,ARWR,disarmed: weekly close below the accumulation low
+2026-11-13,GNTX,disarmed: weekly close below the accumulation low
+2026-11-13,GNL,disarmed: weekly close below the accumulation low
+2026-11-13,HL,disarmed: weekly close below the accumulation low
+2026-11-13,ALB,"armed: red accumulation + signals_trigger, down9, accumulation_exit"
+2026-11-13,GOOGL,armed: red accumulation + accumulation_exit
+2026-11-13,GOOG,armed: red accumulation + accumulation_exit
+2026-11-13,AMAT,armed: red accumulation + accumulation_exit
+2026-11-13,CARR,armed: red accumulation + accumulation_exit
+2026-11-13,CAT,armed: red accumulation + accumulation_exit
+2026-11-13,CIEN,armed: red accumulation + accumulation_exit
+2026-11-13,C,armed: red accumulation + accumulation_exit
+2026-11-13,FIX,armed: red accumulation + accumulation_exit
+2026-11-13,GLW,armed: red accumulation + accumulation_exit
+2026-11-13,FLEX,armed: red accumulation + accumulation_exit
+2026-11-13,JBHT,armed: red accumulation + accumulation_exit
+2026-11-13,JBL,armed: red accumulation + accumulation_exit
+2026-11-13,LRCX,armed: red accumulation + accumulation_exit
+2026-11-13,ON,armed: red accumulation + accumulation_exit
+2026-11-13,RDDT,armed: red accumulation + accumulation_exit
+2026-11-13,STX,armed: red accumulation + accumulation_exit
+2026-11-13,TER,armed: red accumulation + accumulation_exit
+2026-11-13,AAON,armed: red accumulation + accumulation_exit
+2026-11-13,AIT,armed: red accumulation + accumulation_exit
+2026-11-13,ALGM,armed: red accumulation + accumulation_exit
+2026-11-13,AMKR,armed: red accumulation + accumulation_exit
+2026-11-13,BWA,"armed: red accumulation + down9, accumulation_exit"
+2026-11-13,CGNX,armed: red accumulation + accumulation_exit
+2026-11-13,CRS,armed: red accumulation + accumulation_exit
+2026-11-13,DOCN,armed: red accumulation + accumulation_exit
+2026-11-13,FR,armed: red accumulation + accumulation_exit
+2026-11-13,GNTX,armed: red accumulation + down9
+2026-11-13,HL,"armed: red accumulation + down9, accumulation_exit"
+2026-11-13,IESC,armed: red accumulation + accumulation_exit
+2026-11-13,MLI,armed: red accumulation + accumulation_exit
+2026-11-13,NVT,armed: red accumulation + accumulation_exit
+2026-11-13,ONTO,armed: red accumulation + accumulation_exit
+2026-11-13,RMBS,armed: red accumulation + accumulation_exit
+2026-11-13,SANM,armed: red accumulation + accumulation_exit
+2026-11-13,SLM,armed: red accumulation + down9
+2026-11-13,STRL,armed: red accumulation + accumulation_exit
+2026-11-13,TTMI,armed: red accumulation + accumulation_exit
+2026-11-13,VICR,armed: red accumulation + accumulation_exit
+2026-11-13,VMI,armed: red accumulation + accumulation_exit
+2026-11-13,ACMR,armed: red accumulation + accumulation_exit
+2026-11-13,ALG,armed: red accumulation + accumulation_exit
+2026-11-13,BHE,armed: red accumulation + accumulation_exit
+2026-11-13,CLSK,armed: red accumulation + accumulation_exit
+2026-11-13,DAN,"armed: red accumulation + down9, accumulation_exit"
+2026-11-13,GNL,"armed: red accumulation + down9, accumulation_exit"
+2026-11-13,ICHR,armed: red accumulation + accumulation_exit
+2026-11-13,KLIC,armed: red accumulation + accumulation_exit
+2026-11-13,KMT,armed: red accumulation + accumulation_exit
+2026-11-13,MARA,armed: red accumulation + accumulation_exit
+2026-11-13,NPO,armed: red accumulation + accumulation_exit
+2026-11-13,PLXS,armed: red accumulation + accumulation_exit
+2026-11-13,RCUS,armed: red accumulation + down9
+2026-11-13,RSI,"armed: red accumulation + down9, accumulation_exit"
+2026-11-13,SNDR,armed: red accumulation + accumulation_exit
+2026-11-13,SNEX,armed: red accumulation + accumulation_exit
+2026-11-13,SXI,armed: red accumulation + accumulation_exit
+2026-11-13,UCTT,armed: red accumulation + accumulation_exit
+2026-11-13,VSH,armed: red accumulation + accumulation_exit
+2026-11-13,XPO,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-13,FSLR,"released: group turned basing, 3 weeks after the accumulation"
+2026-11-13,ALB,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-13,PLAB,"released: group turned basing, 2 weeks after the accumulation"
+2026-11-13,AVGO,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,KLAC,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,BWA,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-13,KNX,"released: group turned bullish, 1 week after the accumulation"
+2026-11-13,LSCC,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,MKSI,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,SITM,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,SLM,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-13,ACLS,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,RCUS,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-13,RSI,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-13,VECO,"released: group turned basing, 1 week after the accumulation"
+2026-11-13,WERN,"released: group turned bullish, 1 week after the accumulation"
+2026-11-13,AMAT,released: signal this week in a basing group
+2026-11-13,JBHT,released: signal this week in a bullish group
+2026-11-13,LRCX,released: signal this week in a basing group
+2026-11-13,ON,released: signal this week in a basing group
+2026-11-13,TER,released: signal this week in a basing group
+2026-11-13,ALGM,released: signal this week in a basing group
+2026-11-13,AMKR,released: signal this week in a basing group
+2026-11-13,GNTX,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-13,ONTO,released: signal this week in a basing group
+2026-11-13,RMBS,released: signal this week in a basing group
+2026-11-13,ACMR,released: signal this week in a basing group
+2026-11-13,DAN,released: signal this week in a bullish group
+2026-11-13,ICHR,released: signal this week in a basing group
+2026-11-13,KLIC,released: signal this week in a basing group
+2026-11-13,SNDR,released: signal this week in a bullish group
+2026-11-13,SNEX,released: signal this week in a bullish group
+2026-11-13,UCTT,released: signal this week in a basing group
