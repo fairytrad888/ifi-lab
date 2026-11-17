@@ -373,6 +373,8 @@ TSM,2,stock,core,2026-10-30,2026-10-30,closed,-1.091
 TSM,5,stock,core,2026-11-09,,open,-0.247
 TXN,2,stock,extended,2026-10-21,2026-11-03,closed,2.949
 UBER,5,stock,core,2026-11-02,,open,1.277
+UNH,1,stock,core,2026-10-15,,open,0.26
+UNH,4,stock,core,2026-10-16,,open,0.02
 UNP,2,stock,extended,2026-11-09,,open,1.619
 UNP,4,stock,extended,2026-10-13,,open,1.899
 UPS,1,stock,extended,2026-11-02,,open,0.25
