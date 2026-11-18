@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-18 03:42",
+ "generated_utc": "2026-11-18 12:03",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-17",
@@ -1882,20 +1882,8 @@
   "universe_rows": 901
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "Paper exit: EWN E1 stop_gap -1.14R",
-  "Paper exit: KRE E4 stop -1.02R",
-  "Paper exit: JPM E4 stop -1.03R",
-  "Paper exit: NKE E4 stop -1.02R",
-  "Paper exit: EWS E1 stop_gap -1.16R",
-  "XBI h4: Washout exit #1 | stage -1 score 0 | stop 141.6469 size 45",
-  "XBI h4: Down 9 complete | stage -1 score 0 | stop 141.7028 size 51",
-  "XLB h4: Anchor lost | stage 0 score 1 | stop 50.4533 size 484",
-  "XLRE h4: Down 9 complete | stage 3 score 4 | stop 43.5662 size 545",
-  "CEG h4: Stage 3 -> 2 | stage 2 score 2 | stop 264.2129 size 20",
-  "CEG h4: Anchor lost | stage 2 score 2 | stop 264.2129 size 20"
- ],
- "alerts_last_7d": 58,
+ "alerts_this_run": [],
+ "alerts_last_7d": 57,
  "candidates": [
   {
    "id": "L1",
