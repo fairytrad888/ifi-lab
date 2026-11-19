@@ -149,10 +149,6 @@ EFA,1,etf,extended,2026-11-02,2026-11-06,closed,-1.691
 EFA,3,etf,extended,2026-10-30,2026-11-06,closed,-1.206
 EFA,5,etf,extended,2026-11-11,2026-11-18,closed,-1.029
 EMR,5,stock,extended,2026-10-21,2026-10-22,closed,-1.046
-EOG,1,stock,core,2026-10-13,,open,-0.212
-EOG,2,stock,core,2026-11-05,2026-11-06,closed,-1.071
-EOG,4,stock,core,2026-10-20,2026-11-04,closed,-1.029
-EOG,5,stock,core,2026-10-14,,open,-0.382
 EQIX,5,stock,core,2026-11-17,2026-11-18,closed,-1.081
 ETN,1,stock,core,2026-10-30,2026-11-04,closed,-1.032
 ETN,2,stock,core,2026-10-16,2026-10-20,closed,-1.038
@@ -407,6 +403,8 @@ UNP,4,stock,extended,2026-10-13,,open,1.638
 UPS,1,stock,extended,2026-11-02,,open,0.176
 UPS,2,stock,extended,2026-11-04,,open,0.067
 UPS,4,stock,extended,2026-10-14,2026-10-27,closed,2.943
+USB,1,stock,extended,2026-10-14,2026-10-16,closed,2.881
+USB,5,stock,extended,2026-10-27,,open,-0.726
 V,2,stock,core,2026-11-11,,open,-0.318
 V,3,stock,core,2026-11-04,,open,-0.35
 V,5,stock,core,2026-10-14,,open,0.624
