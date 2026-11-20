@@ -1,11 +1,33 @@
 {
- "checked_utc": "2026-11-19 11:59",
- "expected": "2026-11-18",
+ "checked_utc": "2026-11-20 03:07",
+ "expected": "2026-11-19",
  "error": "",
- "stale_before": [],
+ "stale_before": [
+  "ABBV",
+  "CEG",
+  "META",
+  "NOW",
+  "PLTR",
+  "PYPL",
+  "UBER",
+  "VST",
+  "XLC",
+  "XLRE"
+ ],
  "repaired": [],
- "still_stale": [],
+ "still_stale": [
+  "ABBV",
+  "CEG",
+  "META",
+  "NOW",
+  "PLTR",
+  "PYPL",
+  "UBER",
+  "VST",
+  "XLC",
+  "XLRE"
+ ],
  "check_failed": false,
- "spy_last": "2026-11-18",
- "stale": false
+ "spy_last": "2026-11-19",
+ "stale": true
 }
