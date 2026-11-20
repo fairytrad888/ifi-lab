@@ -1,21 +1,10 @@
 {
- "generated_utc": "2026-11-20 03:08",
+ "generated_utc": "2026-11-20 12:00",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-19",
-  "stale": true,
-  "still_stale": [
-   "ABBV",
-   "CEG",
-   "META",
-   "NOW",
-   "PLTR",
-   "PYPL",
-   "UBER",
-   "VST",
-   "XLC",
-   "XLRE"
-  ],
+  "stale": false,
+  "still_stale": [],
   "check_failed": false,
   "spy_last": "2026-11-19"
  },
@@ -931,7 +920,7 @@
     "target": 49.5837,
     "exit_date": null,
     "exit_reason": "",
-    "r": 0.038,
+    "r": -0.327,
     "tag_stage": 3,
     "tag_dist_anchor_atr": 0.4894,
     "tag_stop_width": 0.0497,
@@ -1393,7 +1382,7 @@
     "target": 429.5501,
     "exit_date": null,
     "exit_reason": "",
-    "r": -0.468,
+    "r": -0.689,
     "tag_stage": 3,
     "tag_dist_anchor_atr": 0.308,
     "tag_stop_width": 0.1625,
@@ -1620,27 +1609,7 @@
   "universe_rows": 901
  },
  "playbook_new": [],
- "alerts_this_run": [
-  "\u26a0 Data stale: the 2026-11-19 session has closed but 10 symbol(s) still lack it after a repair attempt (ABBV, CEG, META, NOW, PLTR, PYPL, UBER, VST +2 more; SPY ends 2026-11-19). Their signals for that day will be processed on the next run.",
-  "\u26a0 Risk tier E1_trigger_with_trend: 0.25% -> 0.00% (live -1.08R, n=6)",
-  "Paper exit: EWU E4 stop -1.02R",
-  "Paper exit: SLB E4 stop -1.02R",
-  "Paper exit: EWG E4 stop -1.03R",
-  "Paper exit: WFC E4 stop -1.04R",
-  "Paper exit: BMY E4 stop -1.02R",
-  "Paper exit: EWW E4 stop -1.02R",
-  "Paper exit: EWT E1 stop -1.01R",
-  "Health E4_anchor_reclaim: live R distribution differs from the backtest (KS p = 0.000). Check data and execution.",
-  "RSP daily: Anchor lost | stage 0 score 2 | stop 209.8889 size 107",
-  "XLF daily: Anchor lost | stage 0 score 2 | stop 54.8345 size 251",
-  "SPY h4: Down 9 complete | stage -1 score 1 | stop 713.0521 size 21",
-  "SMH h4: Down 9 complete | stage -1 score 1 | stop 436.9525 size 10",
-  "XLF h4: Anchor lost | stage 0 score 1 | stop 54.9923 size 252",
-  "XLF h4: Washout exit #1 | stage 1 score 1 | stop 55.0011 size 318",
-  "XLI h4: Down 9 complete | stage -1 score 1 | stop 159.7381 size 70",
-  "XLK h4: Down 9 complete | stage -1 score 1 | stop 157.6587 size 40",
-  "VST h4: Down 9 complete | stage -1 score 2 | stop 120.9802 size 50"
- ],
+ "alerts_this_run": [],
  "alerts_last_7d": 69,
  "candidates": [
   {
@@ -1747,9 +1716,9 @@
    "slice": "E1 all",
    "n": 6,
    "mean_r": -1.0765,
-   "n_random": 262,
-   "random_r": -0.5361,
-   "edge": -0.5404
+   "n_random": 264,
+   "random_r": -0.5399,
+   "edge": -0.5366
   },
   {
    "slice": "E1 etfs",
@@ -1763,17 +1732,17 @@
    "slice": "E1 stocks",
    "n": 0,
    "mean_r": null,
-   "n_random": 160,
-   "random_r": -0.5418,
+   "n_random": 162,
+   "random_r": -0.548,
    "edge": null
   },
   {
    "slice": "E4 all",
    "n": 20,
    "mean_r": -1.0488,
-   "n_random": 262,
-   "random_r": -0.5361,
-   "edge": -0.5127
+   "n_random": 264,
+   "random_r": -0.5399,
+   "edge": -0.5089
   },
   {
    "slice": "E4 etfs",
@@ -1787,33 +1756,33 @@
    "slice": "E4 stocks",
    "n": 10,
    "mean_r": -1.0267,
-   "n_random": 160,
-   "random_r": -0.5418,
-   "edge": -0.4849
+   "n_random": 162,
+   "random_r": -0.548,
+   "edge": -0.4787
   },
   {
    "slice": "all setups, core symbols",
    "n": 7,
    "mean_r": -1.0197,
-   "n_random": 113,
-   "random_r": -0.8282,
-   "edge": -0.1915
+   "n_random": 114,
+   "random_r": -0.8303,
+   "edge": -0.1894
   },
   {
    "slice": "all setups, extended symbols",
    "n": 19,
    "mean_r": -1.0683,
-   "n_random": 149,
-   "random_r": -0.3145,
-   "edge": -0.7538
+   "n_random": 150,
+   "random_r": -0.3193,
+   "edge": -0.749
   },
   {
    "slice": "all setups",
    "n": 26,
    "mean_r": -1.0552,
-   "n_random": 262,
-   "random_r": -0.5361,
-   "edge": -0.5191
+   "n_random": 264,
+   "random_r": -0.5399,
+   "edge": -0.5152
   }
  ],
  "shadow_books": {
