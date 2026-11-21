@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-21 11:34",
+ "generated_utc": "2026-11-21 18:53",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-20",
@@ -11,31 +11,31 @@
  "allocation": {
   "E4_anchor_reclaim": {
    "risk": 0.0,
-   "p_edge": 0.1146,
-   "posterior_mean": -0.1567,
+   "p_edge": 0.1127,
+   "posterior_mean": -0.1581,
    "live_n": 32,
    "live_expectancy": -1.0528,
    "live_total_r": -33.688,
-   "open_trades": 48,
+   "open_trades": 47,
    "losing_streak": 32,
-   "streak_p": 0.0008,
+   "streak_p": 0.0005,
    "streak_flag": true,
    "streak_method": "block",
-   "prior_mean": 0.289
+   "prior_mean": 0.2847
   },
   "E1_trigger_with_trend": {
    "risk": 0.0,
-   "p_edge": 0.6277,
-   "posterior_mean": 0.0555,
+   "p_edge": 0.6097,
+   "posterior_mean": 0.0475,
    "live_n": 9,
    "live_expectancy": -1.0628,
    "live_total_r": -9.565,
    "open_trades": 0,
    "losing_streak": 9,
-   "streak_p": 0.0312,
+   "streak_p": 0.0275,
    "streak_flag": false,
    "streak_method": "block",
-   "prior_mean": 0.3469
+   "prior_mean": 0.3276
   }
  },
  "portfolio": {
@@ -47,10 +47,10 @@
  },
  "health": {
   "E4_anchor_reclaim": {
-   "live_signals": 129,
-   "skip_live": 0.3798,
-   "skip_pre": 0.482,
-   "stop_width_live": 0.0678,
+   "live_signals": 128,
+   "skip_live": 0.3828,
+   "skip_pre": 0.4781,
+   "stop_width_live": 0.0696,
    "stop_width_pre": 0.0712,
    "ks_p": 0.0,
    "ks_flag": true
@@ -58,9 +58,9 @@
   "E1_trigger_with_trend": {
    "live_signals": 13,
    "skip_live": 0.2308,
-   "skip_pre": 0.0667,
+   "skip_pre": 0.0674,
    "stop_width_live": 0.0442,
-   "stop_width_pre": 0.0383,
+   "stop_width_pre": 0.0386,
    "ks_p": null,
    "ks_flag": false
   }
@@ -358,28 +358,7 @@
     "tag_dist_anchor_atr": 0.1999,
     "tag_stop_width": 0.0579,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 9,
-    "f1_view": "take"
-   },
-   {
-    "symbol": "XLF",
-    "setup": "E4",
-    "universe": "etf",
-    "group": "core",
-    "signal_bar": "2026-10-20 00:00",
-    "status": "open",
-    "fill_date": "2026-10-21 00:00",
-    "fill": 56.06,
-    "stop": 53.6629,
-    "target": 63.2512,
-    "exit_date": null,
-    "exit_reason": "",
-    "r": -0.645,
-    "tag_stage": 3,
-    "tag_dist_anchor_atr": 0.1448,
-    "tag_stop_width": 0.0369,
-    "tag_spy_trend200": true,
-    "tag_signals_same_day": 9,
+    "tag_signals_same_day": 8,
     "f1_view": "take"
    },
    {
@@ -1180,7 +1159,7 @@
     "tag_dist_anchor_atr": 0.2185,
     "tag_stop_width": 0.0461,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 9,
+    "tag_signals_same_day": 8,
     "f1_view": "take"
    },
    {
@@ -1201,7 +1180,7 @@
     "tag_dist_anchor_atr": -1.1089,
     "tag_stop_width": 0.076,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 9,
+    "tag_signals_same_day": 8,
     "f1_view": null
    },
    {
@@ -1222,7 +1201,7 @@
     "tag_dist_anchor_atr": 0.3544,
     "tag_stop_width": 0.0274,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 9,
+    "tag_signals_same_day": 8,
     "f1_view": "take"
    },
    {
@@ -1290,12 +1269,12 @@
    }
   ],
   "live_closed_n": 41,
-  "live_signals_n": 142,
-  "universe_rows": 898
+  "live_signals_n": 141,
+  "universe_rows": 893
  },
  "playbook_new": [],
  "alerts_this_run": [],
- "alerts_last_7d": 89,
+ "alerts_last_7d": 88,
  "candidates": [
   {
    "id": "L1",
@@ -1401,17 +1380,17 @@
    "slice": "E1 all",
    "n": 9,
    "mean_r": -1.0628,
-   "n_random": 314,
-   "random_r": -0.6514,
-   "edge": -0.4114
+   "n_random": 318,
+   "random_r": -0.6313,
+   "edge": -0.4315
   },
   {
    "slice": "E1 etfs",
    "n": 8,
    "mean_r": -1.0695,
-   "n_random": 124,
-   "random_r": -0.6826,
-   "edge": -0.3869
+   "n_random": 128,
+   "random_r": -0.6318,
+   "edge": -0.4377
   },
   {
    "slice": "E1 stocks",
@@ -1425,17 +1404,17 @@
    "slice": "E4 all",
    "n": 32,
    "mean_r": -1.0528,
-   "n_random": 314,
-   "random_r": -0.6514,
-   "edge": -0.4014
+   "n_random": 318,
+   "random_r": -0.6313,
+   "edge": -0.4214
   },
   {
    "slice": "E4 etfs",
    "n": 18,
    "mean_r": -1.0623,
-   "n_random": 124,
-   "random_r": -0.6826,
-   "edge": -0.3797
+   "n_random": 128,
+   "random_r": -0.6318,
+   "edge": -0.4305
   },
   {
    "slice": "E4 stocks",
@@ -1457,24 +1436,24 @@
    "slice": "all setups, extended symbols",
    "n": 27,
    "mean_r": -1.0699,
-   "n_random": 174,
-   "random_r": -0.4744,
-   "edge": -0.5955
+   "n_random": 178,
+   "random_r": -0.4425,
+   "edge": -0.6274
   },
   {
    "slice": "all setups",
    "n": 41,
    "mean_r": -1.055,
-   "n_random": 314,
-   "random_r": -0.6514,
-   "edge": -0.4036
+   "n_random": 318,
+   "random_r": -0.6313,
+   "edge": -0.4236
   }
  ],
  "shadow_books": {
   "B0": {
    "name": "5 slots x 0.75% (current)",
    "taken": 6,
-   "skipped": 83,
+   "skipped": 82,
    "open": 5,
    "ret": 0.0193,
    "heat": 0.0375,
@@ -1485,9 +1464,9 @@
   "C1": {
    "name": "every signal at 0.10%, cash-limited",
    "taken": 60,
-   "skipped": 29,
+   "skipped": 28,
    "open": 34,
-   "ret": -0.0257,
+   "ret": -0.0256,
    "heat": 0.034,
    "sessions": 27,
    "months": 1,
@@ -1496,7 +1475,7 @@
   "S20": {
    "name": "20 slots x 0.1875%",
    "taken": 22,
-   "skipped": 67,
+   "skipped": 66,
    "open": 14,
    "ret": -0.0033,
    "heat": 0.0262,
