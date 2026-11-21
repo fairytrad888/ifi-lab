@@ -1,9 +1,9 @@
 {
- "week": "2026-11-13",
- "released": 28,
+ "week": "2026-11-20",
+ "released": 57,
  "pushed": 0,
- "armed_waiting": 121,
- "groups_ok": 18,
+ "armed_waiting": 50,
+ "groups_ok": 23,
  "groups": 36,
  "missing": [
   "BLFS",
@@ -12,6 +12,7 @@
   "INDV",
   "LEG",
   "LXP",
+  "PCRX",
   "QRVO",
   "RAMP",
   "TCBI",

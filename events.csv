@@ -1036,3 +1036,179 @@ week,symbol,event
 2026-11-13,SNDR,released: signal this week in a bullish group
 2026-11-13,SNEX,released: signal this week in a bullish group
 2026-11-13,UCTT,released: signal this week in a basing group
+2026-11-20,AZO,expired after 8 weeks
+2026-11-20,HON,expired after 8 weeks
+2026-11-20,NCLH,expired after 8 weeks
+2026-11-20,TPR,expired after 8 weeks
+2026-11-20,TJX,expired after 8 weeks
+2026-11-20,CAVA,disarmed: weekly close below the accumulation low
+2026-11-20,ULS,expired after 8 weeks
+2026-11-20,VVV,expired after 8 weeks
+2026-11-20,MDU,expired after 8 weeks
+2026-11-20,WDFC,expired after 8 weeks
+2026-11-20,WMS,disarmed: weekly close below the accumulation low
+2026-11-20,WLK,disarmed: weekly close below the accumulation low
+2026-11-20,XRAY,disarmed: weekly close below the accumulation low
+2026-11-20,KRMN,disarmed: weekly close below the accumulation low
+2026-11-20,MAA,disarmed: weekly close below the accumulation low
+2026-11-20,CC,disarmed: weekly close below the accumulation low
+2026-11-20,HE,disarmed: weekly close below the accumulation low
+2026-11-20,FSLR,disarmed: weekly close below the accumulation low
+2026-11-20,AA,disarmed: weekly close below the accumulation low
+2026-11-20,ORA,disarmed: weekly close below the accumulation low
+2026-11-20,WHR,disarmed: weekly close below the accumulation low
+2026-11-20,FMC,disarmed: weekly close below the accumulation low
+2026-11-20,LEU,disarmed: weekly close below the accumulation low
+2026-11-20,RUN,disarmed: weekly close below the accumulation low
+2026-11-20,WAFD,disarmed: weekly close below the accumulation low
+2026-11-20,ALB,disarmed: weekly close below the accumulation low
+2026-11-20,BAC,disarmed: weekly close below the accumulation low
+2026-11-20,BHF,disarmed: weekly close below the accumulation low
+2026-11-20,ACAD,disarmed: weekly close below the accumulation low
+2026-11-20,CENX,disarmed: weekly close below the accumulation low
+2026-11-20,PLAB,disarmed: weekly close below the accumulation low
+2026-11-20,KLAC,disarmed: weekly close below the accumulation low
+2026-11-20,BWA,disarmed: weekly close below the accumulation low
+2026-11-20,CDE,disarmed: weekly close below the accumulation low
+2026-11-20,SLM,disarmed: weekly close below the accumulation low
+2026-11-20,AESI,disarmed: weekly close below the accumulation low
+2026-11-20,RCUS,disarmed: weekly close below the accumulation low
+2026-11-20,RSI,disarmed: weekly close below the accumulation low
+2026-11-20,UNIT,disarmed: weekly close below the accumulation low
+2026-11-20,WERN,disarmed: weekly close below the accumulation low
+2026-11-20,GOOGL,disarmed: weekly close below the accumulation low
+2026-11-20,GOOG,disarmed: weekly close below the accumulation low
+2026-11-20,AMAT,disarmed: weekly close below the accumulation low
+2026-11-20,CARR,disarmed: weekly close below the accumulation low
+2026-11-20,CAT,disarmed: weekly close below the accumulation low
+2026-11-20,C,disarmed: weekly close below the accumulation low
+2026-11-20,GLW,disarmed: weekly close below the accumulation low
+2026-11-20,JBL,disarmed: weekly close below the accumulation low
+2026-11-20,LRCX,disarmed: weekly close below the accumulation low
+2026-11-20,ON,disarmed: weekly close below the accumulation low
+2026-11-20,RDDT,disarmed: weekly close below the accumulation low
+2026-11-20,TER,disarmed: weekly close below the accumulation low
+2026-11-20,AIT,disarmed: weekly close below the accumulation low
+2026-11-20,ALGM,disarmed: weekly close below the accumulation low
+2026-11-20,AMKR,disarmed: weekly close below the accumulation low
+2026-11-20,CGNX,disarmed: weekly close below the accumulation low
+2026-11-20,CRS,disarmed: weekly close below the accumulation low
+2026-11-20,DOCN,disarmed: weekly close below the accumulation low
+2026-11-20,FR,disarmed: weekly close below the accumulation low
+2026-11-20,GNTX,disarmed: weekly close below the accumulation low
+2026-11-20,HL,disarmed: weekly close below the accumulation low
+2026-11-20,MLI,disarmed: weekly close below the accumulation low
+2026-11-20,RMBS,disarmed: weekly close below the accumulation low
+2026-11-20,TTMI,disarmed: weekly close below the accumulation low
+2026-11-20,VICR,disarmed: weekly close below the accumulation low
+2026-11-20,VMI,disarmed: weekly close below the accumulation low
+2026-11-20,ALG,disarmed: weekly close below the accumulation low
+2026-11-20,BHE,disarmed: weekly close below the accumulation low
+2026-11-20,CLSK,disarmed: weekly close below the accumulation low
+2026-11-20,GNL,disarmed: weekly close below the accumulation low
+2026-11-20,ICHR,disarmed: weekly close below the accumulation low
+2026-11-20,KLIC,disarmed: weekly close below the accumulation low
+2026-11-20,KMT,disarmed: weekly close below the accumulation low
+2026-11-20,MARA,disarmed: weekly close below the accumulation low
+2026-11-20,NPO,disarmed: weekly close below the accumulation low
+2026-11-20,SNDR,disarmed: weekly close below the accumulation low
+2026-11-20,SNEX,disarmed: weekly close below the accumulation low
+2026-11-20,SXI,disarmed: weekly close below the accumulation low
+2026-11-20,UCTT,disarmed: weekly close below the accumulation low
+2026-11-20,ALB,"armed: red accumulation + signals_trigger, down9, accumulation_exit"
+2026-11-20,GOOGL,armed: red accumulation + accumulation_exit
+2026-11-20,ADM,armed: red accumulation + down9
+2026-11-20,CARR,armed: red accumulation + accumulation_exit
+2026-11-20,CAT,armed: red accumulation + accumulation_exit
+2026-11-20,GLW,armed: red accumulation + accumulation_exit
+2026-11-20,NFLX,armed: red accumulation + down9
+2026-11-20,RDDT,armed: red accumulation + accumulation_exit
+2026-11-20,AA,"armed: red accumulation + down9, accumulation_exit"
+2026-11-20,AIT,armed: red accumulation + accumulation_exit
+2026-11-20,BWA,"armed: red accumulation + down9, accumulation_exit"
+2026-11-20,CRS,armed: red accumulation + accumulation_exit
+2026-11-20,DOCN,armed: red accumulation + accumulation_exit
+2026-11-20,HL,"armed: red accumulation + down9, accumulation_exit"
+2026-11-20,LEA,armed: red accumulation + down9
+2026-11-20,MLI,armed: red accumulation + accumulation_exit
+2026-11-20,SLM,armed: red accumulation + down9
+2026-11-20,STWD,armed: red accumulation + signals_trigger
+2026-11-20,VMI,armed: red accumulation + accumulation_exit
+2026-11-20,ALG,"armed: red accumulation + down9, accumulation_exit"
+2026-11-20,BHE,armed: red accumulation + accumulation_exit
+2026-11-20,BTU,armed: red accumulation + down9
+2026-11-20,GNL,"armed: red accumulation + down9, accumulation_exit"
+2026-11-20,GNW,armed: red accumulation + down9
+2026-11-20,HUBG,armed: red accumulation + accumulation_exit
+2026-11-20,KMT,armed: red accumulation + accumulation_exit
+2026-11-20,OII,armed: red accumulation + down9
+2026-11-20,RCUS,armed: red accumulation + down9
+2026-11-20,ROCK,armed: red accumulation + down9
+2026-11-20,RSI,"armed: red accumulation + down9, accumulation_exit"
+2026-11-20,SNDR,armed: red accumulation + accumulation_exit
+2026-11-20,SXI,armed: red accumulation + accumulation_exit
+2026-11-20,WERN,armed: red accumulation + down9
+2026-11-20,LNT,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,AEE,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,ATO,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,CMS,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,DTE,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,DUK,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,EIX,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,EXC,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,PNW,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,PEG,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,SO,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,WEC,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,XEL,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,IDA,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,SUI,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,AVA,"released: group turned bullish, 8 weeks after the accumulation"
+2026-11-20,CPT,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,HSY,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,PCG,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,O,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,UDR,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,ELS,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,NNN,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,OGS,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,CALM,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,EPRT,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,NTST,"released: group turned bullish, 7 weeks after the accumulation"
+2026-11-20,STZ,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,CCI,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,HRL,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,PEP,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,SBAC,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,VICI,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,WY,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,GLPI,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,IRT,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,KBH,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,KRG,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,POST,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,RYN,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,AKR,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,FCPT,"released: group turned bullish, 6 weeks after the accumulation"
+2026-11-20,UFPI,"released: group turned bullish, 5 weeks after the accumulation"
+2026-11-20,IBP,"released: group turned bullish, 5 weeks after the accumulation"
+2026-11-20,MRP,"released: group turned bullish, 5 weeks after the accumulation"
+2026-11-20,PMT,"released: group turned bullish, 4 weeks after the accumulation"
+2026-11-20,BNL,"released: group turned bullish, 3 weeks after the accumulation"
+2026-11-20,AAON,"released: group turned bullish, 1 week after the accumulation"
+2026-11-20,ALB,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-20,ADM,released: signal this week in a bullish group
+2026-11-20,CARR,released: signal this week in a bullish group
+2026-11-20,BWA,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-20,LEA,released: signal this week in a bullish group
+2026-11-20,SLM,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-20,STWD,released: signal this week in a bullish group
+2026-11-20,BTU,released: signal this week in a bullish group
+2026-11-20,GNL,released: signal this week in a bullish group
+2026-11-20,GNW,released: signal this week in a bullish group
+2026-11-20,HUBG,released: signal this week in a bullish group
+2026-11-20,RCUS,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-20,ROCK,released: signal this week in a bullish group
+2026-11-20,RSI,suppressed (alerted 2026-11-06): signal this week in a bullish group
+2026-11-20,SNDR,suppressed (alerted 2026-11-13): signal this week in a bullish group
+2026-11-20,WERN,suppressed (alerted 2026-11-13): signal this week in a bullish group
