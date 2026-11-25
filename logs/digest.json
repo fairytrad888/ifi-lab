@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-25 04:54",
+ "generated_utc": "2026-11-25 13:20",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-24",
@@ -11,14 +11,14 @@
  "allocation": {
   "E4_anchor_reclaim": {
    "risk": 0.0,
-   "p_edge": 0.1164,
-   "posterior_mean": -0.1557,
-   "live_n": 32,
-   "live_expectancy": -1.0426,
-   "live_total_r": -33.362,
+   "p_edge": 0.1028,
+   "posterior_mean": -0.1646,
+   "live_n": 33,
+   "live_expectancy": -1.0515,
+   "live_total_r": -34.699,
    "open_trades": 47,
-   "losing_streak": 32,
-   "streak_p": 0.0005,
+   "losing_streak": 33,
+   "streak_p": 0.0003,
    "streak_flag": true,
    "streak_method": "block",
    "prior_mean": 0.2847
@@ -47,20 +47,20 @@
  },
  "health": {
   "E4_anchor_reclaim": {
-   "live_signals": 129,
-   "skip_live": 0.3798,
-   "skip_pre": 0.482,
-   "stop_width_live": 0.0696,
-   "stop_width_pre": 0.0712,
+   "live_signals": 130,
+   "skip_live": 0.3769,
+   "skip_pre": 0.4828,
+   "stop_width_live": 0.0678,
+   "stop_width_pre": 0.0707,
    "ks_p": 0.0,
    "ks_flag": true
   },
   "E1_trigger_with_trend": {
-   "live_signals": 12,
-   "skip_live": 0.1667,
+   "live_signals": 13,
+   "skip_live": 0.2308,
    "skip_pre": 0.0674,
    "stop_width_live": 0.0442,
-   "stop_width_pre": 0.0386,
+   "stop_width_pre": 0.0377,
    "ks_p": null,
    "ks_flag": false
   }
@@ -86,7 +86,7 @@
     "tag_dist_anchor_atr": 0.135,
     "tag_stop_width": 0.0459,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 4,
+    "tag_signals_same_day": 5,
     "f1_view": "take"
    },
    {
@@ -108,7 +108,7 @@
     "tag_dist_anchor_atr": 0.1924,
     "tag_stop_width": 0.0498,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 4,
+    "tag_signals_same_day": 5,
     "f1_view": "take"
    },
    {
@@ -812,7 +812,7 @@
     "tag_dist_anchor_atr": 2.456,
     "tag_stop_width": 0.154,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "skip"
    },
    {
@@ -834,7 +834,7 @@
     "tag_dist_anchor_atr": 0.3067,
     "tag_stop_width": 0.1049,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "take"
    },
    {
@@ -856,7 +856,7 @@
     "tag_dist_anchor_atr": 5.5703,
     "tag_stop_width": 0.1384,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "skip"
    },
    {
@@ -878,7 +878,7 @@
     "tag_dist_anchor_atr": 6.1254,
     "tag_stop_width": 0.105,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "skip"
    },
    {
@@ -900,7 +900,7 @@
     "tag_dist_anchor_atr": 3.6328,
     "tag_stop_width": 0.0794,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "skip"
    },
    {
@@ -922,7 +922,7 @@
     "tag_dist_anchor_atr": 0.7911,
     "tag_stop_width": 0.102,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "take"
    },
    {
@@ -944,7 +944,7 @@
     "tag_dist_anchor_atr": 0.3097,
     "tag_stop_width": 0.0691,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "take"
    },
    {
@@ -966,7 +966,7 @@
     "tag_dist_anchor_atr": 3.6016,
     "tag_stop_width": 0.1069,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "skip"
    },
    {
@@ -1300,7 +1300,7 @@
     "tag_dist_anchor_atr": 1.1769,
     "tag_stop_width": 0.0596,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "take"
    },
    {
@@ -1344,44 +1344,20 @@
     "tag_dist_anchor_atr": 0.0382,
     "tag_stop_width": 0.1573,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 25,
+    "tag_signals_same_day": 26,
     "f1_view": "take"
    }
   ],
-  "live_closed_n": 41,
-  "live_signals_n": 141,
-  "universe_rows": 898
+  "live_closed_n": 42,
+  "live_signals_n": 143,
+  "universe_rows": 899
  },
- "playbook_new": [
-  {
-   "symbol": "XBI",
-   "tf": "daily",
-   "event": "Playbook E4 anchor reclaim",
-   "close": 156.82,
-   "stop": 137.1334,
-   "target": 215.8798,
-   "cancel_if_open_below": 139.87
-  }
- ],
+ "playbook_new": [],
  "alerts_this_run": [
-  "Paper exit: EWU E4 stop -1.02R",
-  "Paper skipped: EWU E4 (a trade from this setup is already open)",
-  "Paper skipped: EWU E4 (a trade from this setup is already open)",
-  "Paper exit: BKNG E4 stop -1.01R",
-  "Paper skipped: EWU E4 (a trade from this setup is already open)",
-  "\u2605 XBI daily: Playbook E4 anchor reclaim | entry ~156.82 stop 137.1334 target 215.8798 | 9 sh | cancel if open < 139.87",
-  "XBI daily: Anchor reclaimed | stage 0 score 1 | stop 137.1334 size 9",
-  "XLE daily: Washout exit #2 | stage -1 score 0 | stop 58.8004 size 113",
-  "XLF daily: Anchor reclaimed | stage 0 score 2 | stop 53.9265 size 85",
-  "XLU daily: Stage 0 -> 3 | stage 3 score 5 | stop 42.3138 size 172",
-  "XBI h4: Stage -1 -> 3 | stage 3 score 2 | stop 138.0338 size 10",
-  "XBI h4: Anchor reclaimed | stage 3 score 2 | stop 138.0338 size 10",
-  "XLU h4: Stage 0 -> 3 | stage 3 score 1 | stop 42.4204 size 189",
-  "XLV h4: Stage 0 -> 3 | stage 3 score 1 | stop 175.5468 size 20",
-  "XLY h4: Stage 0 -> 2 | stage 2 score 0 | stop 111.1024 size 28",
-  "SO h4: Stage 0 -> 3 | stage 3 score 3 | stop 91.4348 size 65"
+  "Paper skipped: EFA E1 (a trade from this setup is already open)",
+  "Paper exit: EFA E4 stop_gap -1.34R"
  ],
- "alerts_last_7d": 103,
+ "alerts_last_7d": 105,
  "candidates": [
   {
    "id": "L1",
@@ -1487,17 +1463,17 @@
    "slice": "E1 all",
    "n": 9,
    "mean_r": -1.0628,
-   "n_random": 327,
-   "random_r": -0.6438,
-   "edge": -0.419
+   "n_random": 326,
+   "random_r": -0.6449,
+   "edge": -0.4178
   },
   {
    "slice": "E1 etfs",
    "n": 8,
    "mean_r": -1.0695,
-   "n_random": 129,
-   "random_r": -0.6293,
-   "edge": -0.4402
+   "n_random": 128,
+   "random_r": -0.6322,
+   "edge": -0.4373
   },
   {
    "slice": "E1 stocks",
@@ -1509,19 +1485,19 @@
   },
   {
    "slice": "E4 all",
-   "n": 32,
-   "mean_r": -1.0426,
-   "n_random": 327,
-   "random_r": -0.6438,
-   "edge": -0.3988
+   "n": 33,
+   "mean_r": -1.0515,
+   "n_random": 326,
+   "random_r": -0.6449,
+   "edge": -0.4065
   },
   {
    "slice": "E4 etfs",
-   "n": 17,
-   "mean_r": -1.0461,
-   "n_random": 129,
-   "random_r": -0.6293,
-   "edge": -0.4168
+   "n": 18,
+   "mean_r": -1.0623,
+   "n_random": 128,
+   "random_r": -0.6322,
+   "edge": -0.4301
   },
   {
    "slice": "E4 stocks",
@@ -1535,32 +1511,32 @@
    "slice": "all setups, core symbols",
    "n": 15,
    "mean_r": -1.0251,
-   "n_random": 146,
-   "random_r": -0.8801,
-   "edge": -0.145
+   "n_random": 142,
+   "random_r": -0.8754,
+   "edge": -0.1497
   },
   {
    "slice": "all setups, extended symbols",
-   "n": 26,
-   "mean_r": -1.0597,
-   "n_random": 181,
-   "random_r": -0.4531,
-   "edge": -0.6065
+   "n": 27,
+   "mean_r": -1.0699,
+   "n_random": 184,
+   "random_r": -0.4671,
+   "edge": -0.6028
   },
   {
    "slice": "all setups",
-   "n": 41,
-   "mean_r": -1.047,
-   "n_random": 327,
-   "random_r": -0.6438,
-   "edge": -0.4032
+   "n": 42,
+   "mean_r": -1.0539,
+   "n_random": 326,
+   "random_r": -0.6449,
+   "edge": -0.409
   }
  ],
  "shadow_books": {
   "B0": {
    "name": "5 slots x 0.75% (current)",
    "taken": 6,
-   "skipped": 82,
+   "skipped": 83,
    "open": 5,
    "ret": 0.0307,
    "heat": 0.0375,
@@ -1571,7 +1547,7 @@
   "C1": {
    "name": "every signal at 0.10%, cash-limited",
    "taken": 60,
-   "skipped": 28,
+   "skipped": 29,
    "open": 33,
    "ret": -0.0134,
    "heat": 0.033,
@@ -1582,7 +1558,7 @@
   "S20": {
    "name": "20 slots x 0.1875%",
    "taken": 22,
-   "skipped": 66,
+   "skipped": 67,
    "open": 14,
    "ret": 0.0042,
    "heat": 0.0262,
@@ -1595,13 +1571,13 @@
   {
    "id": "R1",
    "what": "E4 prior check: live E4 mean R vs the 0.13R prior, and live edge over random entries. If live R sits below the prior's lower range, review the haircut.",
-   "progress": "32/100 closed",
+   "progress": "33/100 closed",
    "due": false
   },
   {
    "id": "R2",
    "what": "Construction: shadow books C1 and S20 vs B0 (monthly Sharpe and bad-market months). If one leads on both, pre-register an adoption decision; else close for this cycle.",
-   "progress": "41/150 closed \u00b7 date 2027-10-16",
+   "progress": "42/150 closed \u00b7 date 2027-10-16",
    "due": false
   },
   {
