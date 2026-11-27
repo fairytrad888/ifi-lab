@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-26 13:00",
+ "generated_utc": "2026-11-27 04:13",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-25",
@@ -1332,7 +1332,7 @@
  },
  "playbook_new": [],
  "alerts_this_run": [],
- "alerts_last_7d": 101,
+ "alerts_last_7d": 82,
  "candidates": [
   {
    "id": "L1",
