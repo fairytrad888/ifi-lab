@@ -903,8 +903,13 @@
   "daily|USB|2026-11-13 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|VZ|2026-11-20 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|XBI|2026-11-24 00:00|Playbook E4 anchor reclaim": "open",
-  "daily|CHTR|2026-11-25 00:00|Playbook E4 anchor reclaim": "pending",
-  "daily|UNP|2026-11-25 00:00|Playbook E4 anchor reclaim": "skipped"
+  "daily|CHTR|2026-11-25 00:00|Playbook E4 anchor reclaim": "open",
+  "daily|UNP|2026-11-25 00:00|Playbook E4 anchor reclaim": "skipped",
+  "daily|GD|2026-11-27 00:00|Playbook E4 anchor reclaim": "pending",
+  "daily|QCOM|2026-11-27 00:00|Playbook E4 anchor reclaim": "pending",
+  "daily|TSLA|2026-11-27 00:00|Playbook E4 anchor reclaim": "skipped",
+  "daily|XBI|2026-11-27 00:00|Playbook E4 anchor reclaim": "skipped",
+  "daily|XPH|2026-11-27 00:00|Playbook E4 anchor reclaim": "skipped"
  },
  "status": {
   "E4_anchor_reclaim": "0.00%",
@@ -914,5 +919,5 @@
   "E4_anchor_reclaim": true,
   "E1_trigger_with_trend": false
  },
- "updated": "2026-11-27T12:58:04.468120+00:00"
+ "updated": "2026-11-28T03:55:37.659864+00:00"
 }

@@ -1,11 +1,11 @@
 {
- "checked_utc": "2026-11-27 12:56",
- "expected": "2026-11-25",
+ "checked_utc": "2026-11-28 03:53",
+ "expected": "2026-11-27",
  "error": "",
  "stale_before": [],
  "repaired": [],
  "still_stale": [],
  "check_failed": false,
- "spy_last": "2026-11-25",
+ "spy_last": "2026-11-27",
  "stale": false
 }
