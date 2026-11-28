@@ -58,7 +58,6 @@
   "daily|RSP|2025-11-25 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|USB|2025-11-25 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|WMT|2025-11-25 00:00|Playbook E4 anchor reclaim": "skipped",
-  "daily|EFA|2025-11-26 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|ETN|2025-11-26 00:00|Playbook E1 trigger with trend": "closed",
   "daily|IYT|2025-11-26 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|MSFT|2025-11-26 00:00|Playbook E1 trigger with trend": "closed",
@@ -271,7 +270,6 @@
   "daily|UNH|2026-04-07 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|AVGO|2026-04-08 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EEM|2026-04-08 00:00|Playbook E4 anchor reclaim": "closed",
-  "daily|EFA|2026-04-08 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EWC|2026-04-08 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EWD|2026-04-08 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EWG|2026-04-08 00:00|Playbook E4 anchor reclaim": "closed",
@@ -749,7 +747,6 @@
   "daily|XLF|2026-10-05 00:00|Playbook E1 trigger with trend": "closed",
   "daily|CEG|2026-10-06 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|CSCO|2026-10-06 00:00|Playbook E4 anchor reclaim": "closed",
-  "daily|EFA|2026-10-06 00:00|Playbook E1 trigger with trend": "closed",
   "daily|EWP|2026-10-06 00:00|Playbook E1 trigger with trend": "closed",
   "daily|PWR|2026-10-06 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|VST|2026-10-06 00:00|Playbook E4 anchor reclaim": "closed",
@@ -762,7 +759,6 @@
   "daily|XPH|2026-10-09 00:00|Playbook E1 trigger with trend": "open",
   "daily|AIG|2026-10-12 00:00|Playbook E4 anchor reclaim": "open",
   "daily|COST|2026-10-12 00:00|Playbook E4 anchor reclaim": "open",
-  "daily|EFA|2026-10-12 00:00|Playbook E1 trigger with trend": "skipped",
   "daily|IWM|2026-10-12 00:00|Playbook E1 trigger with trend": "skipped",
   "daily|XBI|2026-10-12 00:00|Playbook E1 trigger with trend": "closed",
   "daily|LIN|2026-10-13 00:00|Playbook E4 anchor reclaim": "open",
@@ -846,7 +842,6 @@
   "daily|AXP|2026-11-04 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|BKNG|2026-11-04 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|BMY|2026-11-04 00:00|Playbook E4 anchor reclaim": "closed",
-  "daily|EFA|2026-11-04 00:00|Playbook E4 anchor reclaim": "closed",
   "daily|EWA|2026-11-04 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|EWC|2026-11-04 00:00|Playbook E4 anchor reclaim": "skipped",
   "daily|EWG|2026-11-04 00:00|Playbook E4 anchor reclaim": "skipped",
@@ -919,5 +914,5 @@
   "E4_anchor_reclaim": true,
   "E1_trigger_with_trend": false
  },
- "updated": "2026-11-28T03:55:37.659864+00:00"
+ "updated": "2026-11-28T12:11:05.109014+00:00"
 }

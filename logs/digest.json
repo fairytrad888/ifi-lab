@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-28 03:53",
+ "generated_utc": "2026-11-28 12:09",
  "what": "IFI Lab nightly digest (public repo: tickers and statistics only)",
  "freshness": {
   "expected": "2026-11-27",
@@ -11,13 +11,13 @@
  "allocation": {
   "E4_anchor_reclaim": {
    "risk": 0.0,
-   "p_edge": 0.085,
-   "posterior_mean": -0.1771,
-   "live_n": 35,
-   "live_expectancy": -1.049,
-   "live_total_r": -36.715,
+   "p_edge": 0.0967,
+   "posterior_mean": -0.1684,
+   "live_n": 34,
+   "live_expectancy": -1.0405,
+   "live_total_r": -35.378,
    "open_trades": 47,
-   "losing_streak": 35,
+   "losing_streak": 34,
    "streak_p": 0.0003,
    "streak_flag": true,
    "streak_method": "block",
@@ -47,20 +47,20 @@
  },
  "health": {
   "E4_anchor_reclaim": {
-   "live_signals": 137,
-   "skip_live": 0.3869,
-   "skip_pre": 0.4806,
-   "stop_width_live": 0.0699,
-   "stop_width_pre": 0.071,
+   "live_signals": 136,
+   "skip_live": 0.3897,
+   "skip_pre": 0.482,
+   "stop_width_live": 0.0702,
+   "stop_width_pre": 0.0712,
    "ks_p": 0.0,
    "ks_flag": true
   },
   "E1_trigger_with_trend": {
-   "live_signals": 13,
-   "skip_live": 0.2308,
-   "skip_pre": 0.0667,
+   "live_signals": 12,
+   "skip_live": 0.1667,
+   "skip_pre": 0.0674,
    "stop_width_live": 0.0442,
-   "stop_width_pre": 0.0383,
+   "stop_width_pre": 0.0386,
    "ks_p": null,
    "ks_flag": false
   }
@@ -86,7 +86,7 @@
     "tag_dist_anchor_atr": 0.135,
     "tag_stop_width": 0.0459,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 5,
+    "tag_signals_same_day": 4,
     "f1_view": "take"
    },
    {
@@ -108,7 +108,7 @@
     "tag_dist_anchor_atr": 0.1924,
     "tag_stop_width": 0.0498,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 5,
+    "tag_signals_same_day": 4,
     "f1_view": "take"
    },
    {
@@ -812,7 +812,7 @@
     "tag_dist_anchor_atr": 2.456,
     "tag_stop_width": 0.154,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "skip"
    },
    {
@@ -834,7 +834,7 @@
     "tag_dist_anchor_atr": 0.3067,
     "tag_stop_width": 0.1049,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "take"
    },
    {
@@ -856,7 +856,7 @@
     "tag_dist_anchor_atr": 5.5703,
     "tag_stop_width": 0.1384,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "skip"
    },
    {
@@ -878,7 +878,7 @@
     "tag_dist_anchor_atr": 6.1254,
     "tag_stop_width": 0.105,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "skip"
    },
    {
@@ -900,7 +900,7 @@
     "tag_dist_anchor_atr": 3.6328,
     "tag_stop_width": 0.0794,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "skip"
    },
    {
@@ -922,7 +922,7 @@
     "tag_dist_anchor_atr": 0.7911,
     "tag_stop_width": 0.102,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "take"
    },
    {
@@ -944,7 +944,7 @@
     "tag_dist_anchor_atr": 0.3097,
     "tag_stop_width": 0.0691,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "take"
    },
    {
@@ -966,7 +966,7 @@
     "tag_dist_anchor_atr": 3.6016,
     "tag_stop_width": 0.1069,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "skip"
    },
    {
@@ -1150,28 +1150,6 @@
   ],
   "closed_recent": [
    {
-    "symbol": "XLB",
-    "setup": "E4",
-    "universe": "etf",
-    "group": "core",
-    "signal_bar": "2026-10-20 00:00",
-    "status": "closed",
-    "fill_date": "2026-10-21 00:00",
-    "fill": 51.21,
-    "stop": 48.87,
-    "target": 58.2299,
-    "exit_date": "2026-11-20 00:00",
-    "exit_reason": "stop",
-    "r": -1.021,
-    "cancel_if_open_below": null,
-    "tag_stage": 3,
-    "tag_dist_anchor_atr": 0.2185,
-    "tag_stop_width": 0.0461,
-    "tag_spy_trend200": true,
-    "tag_signals_same_day": 9,
-    "f1_view": "take"
-   },
-   {
     "symbol": "XLK",
     "setup": "E1",
     "universe": "etf",
@@ -1282,6 +1260,28 @@
     "f1_view": "take"
    },
    {
+    "symbol": "XLB",
+    "setup": "E4",
+    "universe": "etf",
+    "group": "core",
+    "signal_bar": "2026-10-20 00:00",
+    "status": "closed",
+    "fill_date": "2026-10-21 00:00",
+    "fill": 51.21,
+    "stop": 48.87,
+    "target": 58.2299,
+    "exit_date": "2026-11-20 00:00",
+    "exit_reason": "stop",
+    "r": -1.021,
+    "cancel_if_open_below": null,
+    "tag_stage": 3,
+    "tag_dist_anchor_atr": 0.2185,
+    "tag_stop_width": 0.0461,
+    "tag_spy_trend200": true,
+    "tag_signals_same_day": 9,
+    "f1_view": "take"
+   },
+   {
     "symbol": "IYT",
     "setup": "E4",
     "universe": "etf",
@@ -1300,7 +1300,7 @@
     "tag_dist_anchor_atr": 1.1769,
     "tag_stop_width": 0.0596,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "take"
    },
    {
@@ -1322,7 +1322,7 @@
     "tag_dist_anchor_atr": 0.0382,
     "tag_stop_width": 0.1573,
     "tag_spy_trend200": true,
-    "tag_signals_same_day": 26,
+    "tag_signals_same_day": 25,
     "f1_view": "take"
    },
    {
@@ -1370,44 +1370,15 @@
     "f1_view": "take"
    }
   ],
-  "live_closed_n": 44,
-  "live_signals_n": 150,
-  "universe_rows": 910
+  "live_closed_n": 43,
+  "live_signals_n": 148,
+  "universe_rows": 905
  },
- "playbook_new": [
-  {
-   "symbol": "XBI",
-   "tf": "daily",
-   "event": "Playbook E4 anchor reclaim",
-   "close": 158.5,
-   "stop": 137.2109,
-   "target": 222.3673,
-   "cancel_if_open_below": 139.87
-  }
- ],
+ "playbook_new": [],
  "alerts_this_run": [
-  "Paper fill: CHTR E4 @ 147.65 stop 121.2357 target 226.8928",
-  "Paper skipped: TSLA E4 (a trade from this setup is already open)",
-  "Paper skipped: XBI E4 (a trade from this setup is already open)",
-  "Paper skipped: XPH E4 (a trade from this setup is already open)",
-  "\u2605 XBI daily: Playbook E4 anchor reclaim | entry ~158.5 stop 137.2109 target 222.3673 | 8 sh | cancel if open < 139.87",
-  "RSP daily: Stage -1 -> 2 | stage 2 score 0 | stop 205.1093 size 14",
-  "XBI daily: Stage 2 -> 3 | stage 3 score 2 | stop 137.2109 size 8",
-  "XBI daily: Anchor reclaimed | stage 3 score 2 | stop 137.2109 size 8",
-  "XLB daily: Stage 0 -> 3 | stage 3 score 1 | stop 47.6628 size 41",
-  "XLF daily: Stage 0 -> 3 | stage 3 score 1 | stop 53.9205 size 57",
-  "XLRE daily: Stage 0 -> 3 | stage 3 score 5 | stop 42.0589 size 90",
-  "XLY daily: Stage 0 -> 3 | stage 3 score 2 | stop 110.6216 size 20",
-  "RSP h4: Stage -1 -> 3 | stage 3 score 1 | stop 209.2343 size 21",
-  "RSP h4: Anchor reclaimed | stage 3 score 1 | stop 209.2343 size 21",
-  "XLB h4: Stage 2 -> 3 | stage 3 score 2 | stop 48.9825 size 60",
-  "XLB h4: Anchor reclaimed | stage 3 score 2 | stop 48.9825 size 60",
-  "XLC h4: Stage 1 -> 2 | stage 2 score 2 | stop 100.5278 size 28",
-  "XLF h4: Stage -1 -> 2 | stage 2 score 0 | stop 54.9806 size 82",
-  "XLY h4: Stage 0 -> 3 | stage 3 score 1 | stop 112.8627 size 26",
-  "XLY h4: Anchor reclaimed | stage 3 score 1 | stop 112.8627 size 26"
+  "RSP h4: Stage -1 -> 2 | stage 2 score 0 | stop 209.2343 size 21"
  ],
- "alerts_last_7d": 73,
+ "alerts_last_7d": 74,
  "candidates": [
   {
    "id": "L1",
@@ -1513,17 +1484,17 @@
    "slice": "E1 all",
    "n": 9,
    "mean_r": -1.0628,
-   "n_random": 337,
-   "random_r": -0.6409,
-   "edge": -0.4219
+   "n_random": 334,
+   "random_r": -0.6349,
+   "edge": -0.4279
   },
   {
    "slice": "E1 etfs",
    "n": 8,
    "mean_r": -1.0695,
-   "n_random": 133,
-   "random_r": -0.6639,
-   "edge": -0.4056
+   "n_random": 130,
+   "random_r": -0.649,
+   "edge": -0.4205
   },
   {
    "slice": "E1 stocks",
@@ -1535,19 +1506,19 @@
   },
   {
    "slice": "E4 all",
-   "n": 35,
-   "mean_r": -1.049,
-   "n_random": 337,
-   "random_r": -0.6409,
-   "edge": -0.4081
+   "n": 34,
+   "mean_r": -1.0405,
+   "n_random": 334,
+   "random_r": -0.6349,
+   "edge": -0.4056
   },
   {
    "slice": "E4 etfs",
-   "n": 18,
-   "mean_r": -1.0623,
-   "n_random": 133,
-   "random_r": -0.6639,
-   "edge": -0.3984
+   "n": 17,
+   "mean_r": -1.0461,
+   "n_random": 130,
+   "random_r": -0.649,
+   "edge": -0.3971
   },
   {
    "slice": "E4 stocks",
@@ -1567,26 +1538,26 @@
   },
   {
    "slice": "all setups, extended symbols",
-   "n": 27,
-   "mean_r": -1.0699,
-   "n_random": 187,
-   "random_r": -0.467,
-   "edge": -0.6029
+   "n": 26,
+   "mean_r": -1.0597,
+   "n_random": 184,
+   "random_r": -0.4533,
+   "edge": -0.6063
   },
   {
    "slice": "all setups",
-   "n": 44,
-   "mean_r": -1.0518,
-   "n_random": 337,
-   "random_r": -0.6409,
-   "edge": -0.4109
+   "n": 43,
+   "mean_r": -1.0452,
+   "n_random": 334,
+   "random_r": -0.6349,
+   "edge": -0.4103
   }
  ],
  "shadow_books": {
   "B0": {
    "name": "5 slots x 0.75% (current)",
    "taken": 6,
-   "skipped": 85,
+   "skipped": 84,
    "open": 5,
    "ret": 0.0419,
    "heat": 0.0375,
@@ -1597,7 +1568,7 @@
   "C1": {
    "name": "every signal at 0.10%, cash-limited",
    "taken": 62,
-   "skipped": 29,
+   "skipped": 28,
    "open": 35,
    "ret": -0.0045,
    "heat": 0.035,
@@ -1608,7 +1579,7 @@
   "S20": {
    "name": "20 slots x 0.1875%",
    "taken": 24,
-   "skipped": 67,
+   "skipped": 66,
    "open": 16,
    "ret": 0.0111,
    "heat": 0.03,
@@ -1621,13 +1592,13 @@
   {
    "id": "R1",
    "what": "E4 prior check: live E4 mean R vs the 0.13R prior, and live edge over random entries. If live R sits below the prior's lower range, review the haircut.",
-   "progress": "35/100 closed",
+   "progress": "34/100 closed",
    "due": false
   },
   {
    "id": "R2",
    "what": "Construction: shadow books C1 and S20 vs B0 (monthly Sharpe and bad-market months). If one leads on both, pre-register an adoption decision; else close for this cycle.",
-   "progress": "44/150 closed \u00b7 date 2027-10-16",
+   "progress": "43/150 closed \u00b7 date 2027-10-16",
    "due": false
   },
   {
